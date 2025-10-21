@@ -1,0 +1,19 @@
+{
+    "estudiantes": [
+        [
+            "torres",
+            "garcia",
+            "vue"
+        ],
+        [
+            "torres",
+            "mora",
+            "astro"
+        ],
+        [
+            "torres",
+            "rene",
+            "react"
+        ]
+    ]
+}
