@@ -3,6 +3,7 @@
 ## Manual de Trabajo en GitHub 
 
 **Asignatura:** Programación y Plataformas Web
+
 **Tema:** Frameworks Web (Angular, React, Vue, Astro, etc.)
 
 ---
