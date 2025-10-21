@@ -1,0 +1,85 @@
+{
+    "commit-templates": {
+        "prefix": "commit",
+        "body": [
+            "$1($2): $3",
+            "",
+            "$4"
+        ],
+        "description": "Plantilla base para commits"
+    },
+    "feat-commit": {
+        "prefix": "cfeat",
+        "body": [
+            "feat($1): $2",
+            "",
+            "- $3"
+        ],
+        "description": "Commit para nueva funcionalidad"
+    },
+    "fix-commit": {
+        "prefix": "cfix",
+        "body": [
+            "fix($1): corregir $2",
+            "",
+            "- $3"
+        ],
+        "description": "Commit para corrección de errores"
+    },
+    "docs-commit": {
+        "prefix": "cdocs",
+        "body": [
+            "docs($1): $2",
+            "",
+            "- $3"
+        ],
+        "description": "Commit para documentación"
+    },
+    "style-commit": {
+        "prefix": "cstyle",
+        "body": [
+            "style($1): $2",
+            "",
+            "- $3"
+        ],
+        "description": "Commit para cambios de estilo"
+    },
+    "refactor-commit": {
+        "prefix": "crefactor",
+        "body": [
+            "refactor($1): $2",
+            "",
+            "- $3"
+        ],
+        "description": "Commit para refactorización"
+    },
+    "init-student": {
+        "prefix": "cinit",
+        "body": [
+            "init($1): configurar proyecto base para $2",
+            "",
+            "- Estructura inicial de carpetas",
+            "- Configuración básica del framework",
+            "- Archivos de configuración (.gitignore, package.json)"
+        ],
+        "description": "Commit para inicialización de proyecto de estudiante"
+    },
+    "feat-student": {
+        "prefix": "cfeat-student",
+        "body": [
+            "feat($1/$2): implementar $3",
+            "",
+            "- $4"
+        ],
+        "description": "Commit para funcionalidad de proyecto de estudiante"
+    },
+    "scripts-commit": {
+        "prefix": "cscripts",
+        "body": [
+            "scripts: $1",
+            "",
+            "- $2"
+        ],
+        "description": "Commit para scripts de utilidad"
+    }
+}
