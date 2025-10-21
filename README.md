@@ -2,6 +2,9 @@
 
 ## Manual de Trabajo en GitHub 
 
+![alt text](.core/assets/ups-icc.png)
+
+
 **Asignatura:** Programación y Plataformas Web
 
 **Tema:** Frameworks Web (Angular, React, Vue, Astro, etc.)
@@ -13,6 +16,20 @@
 Este repositorio compartido está diseñado para que todos los estudiantes documenten sus avances prácticos sobre los frameworks web asignados.
 
 El trabajo se estructura en torno a **un flujo común de aprendizaje con Angular** —dirigido por el docente— y la **replicación de cada práctica en el framework asignado** (React, Vue, Astro, etc.).
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
+ 
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" width="80"  alt="Vue Logo"  />
+
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="80" alt="React Logo">
+
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" width="80" alt="Astro Logo">
+  
+
+
+</div>
+
 
 Cada pareja o grupo de estudiantes contará con **una carpeta propia** dentro del framework que le corresponde y también una carpeta dentro de **/angular**, donde replicará los mismos ejercicios vistos en clase.
 
