@@ -1,18 +1,68 @@
 {
     "estudiantes": [
         [
+            "avila",
+            "cabrera",
+            "react"
+        ],
+        [
+            "calle",
             "torres",
-            "garcia",
             "vue"
         ],
         [
-            "torres",
-            "mora",
+            "fernandez",
+            "chuquipoma",
             "astro"
         ],
         [
-            "torres",
-            "rene",
+            "gomez",
+            "valarezo",
+            "react"
+        ],
+        [
+            "guaman",
+            "guanga",
+            "vue"
+        ],
+        [
+            "lazo",
+            "prieto",
+            "astro"
+        ],
+        [
+            "mantilla",
+            "quevedo",
+            "react"
+        ],
+        [
+            "ramon",
+            "serrano",
+            "vue"
+        ],
+        [
+            "romero",
+            "barbecho",
+            "astro"
+        ],
+        [
+            "vanegas",
+            "vanegas",
+            "react"
+        ],
+        [
+            "vasconez",
+            "morocho",
+            "vue"
+        ],
+        [
+            "alvarez",
+            "villa",
+            "astro"
+        ],
+        [
+            "zuniga",
+            "1",
             "react"
         ]
     ]
