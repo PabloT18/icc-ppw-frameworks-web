@@ -9,8 +9,8 @@ import json
 from pathlib import Path
 from typing import List, Tuple
 
-# Directorio base del proyecto (asumiendo que el script está en .scripts/)
-BASE_DIR = Path(__file__).parent.parent
+# Directorio base del proyecto (asumiendo que el script está en .core/scripts/)
+BASE_DIR = Path(__file__).parent.parent.parent
 
 # Plantilla de .gitignore
 GITIGNORE_TEMPLATE = """# Dependencias
@@ -190,7 +190,7 @@ def main():
     print("=" * 60)
     
     # Buscar archivo de configuración
-    config_file = BASE_DIR / '.scripts' / 'estudiantes.json'
+    config_file = BASE_DIR / '.core' / 'scripts' / 'estudiantes.json'
     
     if config_file.exists():
         print(f"\n📂 Cargando configuración desde: {config_file.name}\n")
