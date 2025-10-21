@@ -152,10 +152,9 @@ def main():
         print("   Usando datos de ejemplo...\n")
         # Datos de ejemplo
         estudiantes = [
-            ["torres", "garcia", "vue"],
-            ["torres", "garcia", "angular"],
-            ["gonzalez", "marca", "astro"],
-            ["gonzalez", "marca", "angular"],
+            ["torres", "pena", "vue"],
+            ["pena", "torres", "astro"],
+            
         ]
     
     # Procesar estudiantes
