@@ -183,6 +183,152 @@ def cargar_desde_json(ruta_json: str) -> List[List[str]]:
     return data.get('estudiantes', [])
 
 
+def generar_tabla_estudiantes(estudiantes: List[List[str]]) -> str:
+    """
+    Genera una tabla en Markdown con enlaces a las carpetas de estudiantes
+    
+    Args:
+        estudiantes: Lista de estudiantes [apellido1, apellido2, framework]
+        
+    Returns:
+        String con la tabla en formato Markdown
+    """
+    # Organizar estudiantes por nombre (para evitar duplicados)
+    estudiantes_dict = {}
+    
+    for apellido1, apellido2, framework in estudiantes:
+        nombre_completo = f"{apellido1.title()} - {apellido2.title()}"
+        nombre_carpeta = f"{apellido1.lower()}_{apellido2.lower()}"
+        
+        if nombre_completo not in estudiantes_dict:
+            estudiantes_dict[nombre_completo] = {
+                'nombre_carpeta': nombre_carpeta,
+                'framework_principal': framework,
+                'frameworks': set()
+            }
+        
+        estudiantes_dict[nombre_completo]['frameworks'].add(framework)
+        # Todos tienen Angular también
+        estudiantes_dict[nombre_completo]['frameworks'].add('angular')
+    
+    # Generar tabla
+    tabla = "## 👥 Estudiantes y Proyectos\n\n"
+    tabla += "| Estudiante | Framework Principal | Angular | Estado |\n"
+    tabla += "|------------|-------------------|---------|--------|\n"
+    
+    for nombre_completo, info in sorted(estudiantes_dict.items()):
+        nombre_carpeta = info['nombre_carpeta']
+        framework_principal = info['framework_principal']
+        
+        # Enlaces a carpetas
+        enlace_framework = f"[{framework_principal.title()}]({framework_principal}/{nombre_carpeta}/)"
+        enlace_angular = f"[Angular](angular/{nombre_carpeta}/)"
+        
+        # Verificar si las carpetas existen para mostrar estado
+        ruta_framework = BASE_DIR / framework_principal / nombre_carpeta
+        ruta_angular = BASE_DIR / "angular" / nombre_carpeta
+        
+        if ruta_framework.exists() and ruta_angular.exists():
+            estado = "✅ Completo"
+        elif ruta_framework.exists() or ruta_angular.exists():
+            estado = "⚠️ Parcial"
+        else:
+            estado = "❌ Pendiente"
+        
+        tabla += f"| {nombre_completo} | {enlace_framework} | {enlace_angular} | {estado} |\n"
+    
+    # Agregar información adicional
+    tabla += f"\n### 📊 Estadísticas\n\n"
+    tabla += f"- **Total de estudiantes:** {len(estudiantes_dict)}\n"
+    
+    # Contar por framework
+    frameworks_count = {}
+    for info in estudiantes_dict.values():
+        fw = info['framework_principal']
+        frameworks_count[fw] = frameworks_count.get(fw, 0) + 1
+    
+    tabla += f"- **Distribución por framework:**\n"
+    for fw, count in sorted(frameworks_count.items()):
+        tabla += f"  - {fw.title()}: {count} estudiante(s)\n"
+    
+    tabla += f"\n---\n"
+    tabla += f"*Tabla generada automáticamente el {os.popen('date').read().strip()}*\n"
+    
+    return tabla
+
+
+def guardar_tabla_readme(tabla_md: str) -> None:
+    """
+    Guarda la tabla en un archivo README o la agrega al existente
+    
+    Args:
+        tabla_md: Contenido de la tabla en Markdown
+    """
+    readme_path = BASE_DIR / "ESTUDIANTES.md"
+    
+    # Crear contenido completo del archivo
+    contenido_completo = f"""# 📚 Índice de Estudiantes - PRW-P67 Frameworks Web
+
+Este archivo contiene el índice de todos los estudiantes y enlaces directos a sus carpetas de trabajo.
+
+{tabla_md}
+
+## 📋 Instrucciones para Estudiantes
+
+1. **Haz clic en tu framework principal** para acceder a tu carpeta específica
+2. **Haz clic en "Angular"** para acceder a tu carpeta de Angular (común para todos)
+3. **Verifica que tu estado sea "✅ Completo"** - si no, ejecuta el script de generación
+
+## 🔧 Para Generar/Actualizar esta Tabla
+
+```bash
+python3 .core/scripts/generar_estructura.py
+```
+
+## 📁 Estructura Esperada por Estudiante
+
+Cada estudiante debe tener:
+
+```
+framework_asignado/apellido1_apellido2/
+├── assets/
+│   ├── capturas/
+│   ├── codigo/
+│   └── diagramas/
+├── 01_instalacion.md
+├── 02_navegacion_forms.md
+└── .gitignore
+
+angular/apellido1_apellido2/
+├── assets/
+│   ├── capturas/
+│   ├── codigo/
+│   └── diagramas/
+├── 01_instalacion.md
+├── 02_navegacion_forms.md
+└── .gitignore
+```
+
+## 🎯 Temas de Documentación
+
+| Archivo | Descripción |
+|---------|-------------|
+| `01_instalacion.md` | Proceso de instalación y configuración inicial |
+| `02_navegacion_forms.md` | Implementación de navegación y formularios básicos |
+
+---
+
+*Este archivo es generado automáticamente. No editarlo manualmente.*
+"""
+    
+    # Escribir el archivo
+    with open(readme_path, 'w', encoding='utf-8') as f:
+        f.write(contenido_completo)
+    
+    print(f"📋 Tabla de estudiantes guardada en: ESTUDIANTES.md")
+    print(f"🔗 Contiene enlaces a {len([line for line in tabla_md.split('\n') if '|' in line and '---' not in line]) - 1} estudiantes")
+
+
 def main():
     """Función principal del script."""
     print("=" * 60)
@@ -208,10 +354,16 @@ def main():
     # Procesar estudiantes
     procesar_lista_estudiantes(estudiantes)
     
+    # Generar y guardar tabla de estudiantes
+    print("\n📋 Generando tabla de estudiantes...")
+    tabla_md = generar_tabla_estudiantes(estudiantes)
+    guardar_tabla_readme(tabla_md)
+    
     # Resumen
-    print("📊 Resumen:")
+    print("\n📊 Resumen:")
     print(f"   Total de carpetas procesadas: {len(estudiantes)}")
     print(f"   Ubicación: {BASE_DIR}")
+    print(f"   Tabla guardada en: ESTUDIANTES.md")
     print()
 
 
