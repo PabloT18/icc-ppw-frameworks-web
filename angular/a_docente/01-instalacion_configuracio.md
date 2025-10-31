@@ -87,7 +87,7 @@ Estas extensiones potencian el desarrollo con Angular:
  Atajo corto: `ng g c` = `ng generate component`
 
 ```bash
-ng help           # Ayuda general
+ng help # Ayuda general
 ng new app-name   # Crear un nuevo proyecto
 ng serve -o       # Iniciar servidor y abrir en navegador
 ng build          # Compilar para producción
@@ -143,7 +143,7 @@ Capturas de pantalla como evidencia del proceso de instalación y configuración
 
 Capturas de pantalla como evidencia del proceso de instalación y configuración de Angular, así como explicaciones detalladas de los componentes y formularios utilizados en la práctica.
 
-1. Instalación de Angular CLI y creación del proyecto:
+### 1. Instalación de Angular CLI y creación del proyecto:
 
 ![alt text](assets/01-instalacion-angular-p01.png)
 
@@ -164,7 +164,7 @@ En esta captura se muestra el proceso de instalación de Angular CLI versión 20
   Este comando muestra la versión instalada de Angular CLI y las dependencias del proyecto.
 
 
-2. Revision de configuracion de angular: 
+### 2. Revision de configuracion de angular: 
 
 ![alt text](assets/02-angular_version-p01.png)
 
@@ -180,7 +180,7 @@ Package Manager: pnpm 10.19.0
 OS: darwin arm64
 ```
 
-3. Creación del proyecto Angular:
+### 3. Creación del proyecto Angular:
 
 
 Se crea un nuevo proyecto Angular llamado `01-fundamentos` utilizando el comando `ng new 01-fundamentos`. y lo levantamos con `ng serve -o`
@@ -200,7 +200,44 @@ ng new 01-fundamentos
 
 ![Configuración ](assets/03-confiracion1-p01.png)
 
-4. Proyecto corriendo en el navegador:
+### 4. Proyecto corriendo en el navegador:
 
 ![Proyecto corriendo en el navegador](assets/04-proyecto-corriendo-p01.png)
 
+
+###  5. Explicación de la estructura del proyecto:
+
+![Estructura del proyecto](assets/05-estructura_proyecto-p01.png)
+
+
+##### Carpetas y archivos principales:
+
+- `public`: Contiene archivos estáticos accesibles públicamente.
+- `src`: Carpeta que contiene el código fuente de la aplicación.
+- `node_modules`: Carpeta que contiene las dependencias del proyecto.
+- `pnpm-lock.yaml`: Archivo de bloqueo de versiones para pnpm.
+- `angular.json`: Archivo de configuración de Angular.
+- `package.json`: Archivo de configuración de npm.
+- `tsconfig.json`: Archivo de configuración de TypeScript.
+- `tsconfig.app.json`: Archivo de configuración de TypeScript para la aplicación.
+- `tsconfig.spec.json`: Archivo de configuración de TypeScript para las pruebas.
+
+### Carpeta de código SRC
+
+Dentro de la carpeta `src`, encontramos las siguientes subcarpetas y archivos importantes:
+
+- `app`: Contiene el código principal de la aplicación, incluyendo componentes, servicios y módulos.
+- `index.html`: Archivo HTML principal de la aplicación.
+- `main.ts`: Punto de entrada de la aplicación.
+- `styles.css`: Archivo de estilos globales.
+
+### Carpeta APP
+
+Dentro de la carpeta `app`, encontramos la siguiente estructura de archivos:
+
+- `app.config.ts`: Archivo de configuración de la aplicación.
+- `app.css`: Archivo de estilos específicos de la aplicación.
+- `app.html`: Archivo HTML principal de la aplicación.
+- `app.routes.ts`: Archivo de definición de rutas de la aplicación.
+- `app.spec.ts`: Archivo de pruebas unitarias de la aplicación.
+- `app.ts`: Archivo principal de la aplicación.
