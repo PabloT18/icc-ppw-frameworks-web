@@ -43,6 +43,27 @@ Este archivo contiene las directrices para generar comentarios de commits consis
 | `config` | Archivos de configuración |
 | `deps` | Dependencias |
 
+
+## Reglas de nomenclaturales de archivos y carpetas
+
+- Nombres de carpetas de estudiantes: `<apellido1>_<apellido2>` (todo en minúsculas, sin espacios).
+- Nombres de archivos Markdown: `01_instalacion.md`, `02_navegacion_forms.md`, etc.
+- Nombres de componentes y módulos: Usar PascalCase (ejemplo: `MyComponent`, `UserModule`).
+- Nombres de servicios: Usar camelCase con sufijo `Service` (ejemplo: `userService`).
+- Nombres de variables y funciones: Usar camelCase (ejemplo: `getUserData`, `isLoggedIn`).
+
+### Assets estáticos (imágenes, estilos, etc.) deben ubicarse en carpetas específicas dentro de cada proyecto de estudiante en la carpeta `assets`.
+
+* **imágenes** → `/assets/images/`
+    * Los nombres de archivos de imagen deben ser descriptivos y en minúsculas, separados por guiones
+    * Ejemplo: `logo_empresa.png`, `fondo_principal.jpg`
+    * **Para prácticas específicas**: incluir el número de práctica al final del nombre con formato `p##`
+        * Práctica 01: `01-instalacion_configuracion`
+        * Imagen: `01-instalacion-angular-p01.png`
+
+* estilos → `/assets/styles/` :  los nombres de archivos de estilo deben ser descriptivos y en minúsculas, separados por guiones (ejemplo: `estilos_principal.css`, `temas_varios.scss`).
+* scripts → `/assets/scripts/` :  los nombres de archivos de script deben ser descriptivos y en minúsculas, separados por guiones (ejemplo: `funciones_utiles.js`, `validaciones_formulario.js`).
+
 ## Ejemplos de Commits por Contexto
 
 ### 📝  Estructura de Estudiantes
