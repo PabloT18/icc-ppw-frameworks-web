@@ -195,3 +195,15 @@ En GitHub:
 
 
 
+## GIST de ayuda
+
+* [Conceptos clave de Programación Web](https://gist.github.com/PabloT18/d06b0843d8659dcf990d2c2b902231a9)
+
+
+* [VS Code](https://gist.github.com/PabloT18/683e6d950b240f9620a98903cf92e87a)
+
+* [Git y GitHub](https://gist.github.com/PabloT18/96343b6be1b5cfe237fe53e48eeeb6ef)
+
+* [Node y PNPM](https://gist.github.com/PabloT18/8c0728e24b14c1c63a879b819f628299)
+
+* [Angular](https://gist.github.com/PabloT18/efa4daa60d4782967187ce34cfe5771a)
