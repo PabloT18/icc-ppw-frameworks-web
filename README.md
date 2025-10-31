@@ -146,6 +146,17 @@ git commit -m "Avance 1: instalación y componentes básicos en Vue"
 
 Los mensajes de commit serán indicados en clase.
 
+
+**Directrices para Commits**
+
+Es fundamental seguir ciertas directrices al realizar commits en este proyecto para asegurar la claridad y la organización del trabajo. A continuación, se presentan las pautas a seguir indicadas en el documento de directrices de commits. `.core/docs/commit-guidelines.md`.
+
+
+
+[Directrices para Commits](.core/docs/commit-guidelines.md)
+
+
+
 ---
 
 ### 5. Sincronizar antes de subir
