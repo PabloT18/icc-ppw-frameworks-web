@@ -83,7 +83,7 @@ Hojas de estilo externas: Incluir un archivo .css o scss tradicional e importar 
 
 La creación del proyecto general de React, que sirve como la estructura fundamental de la aplicación, comienza con el comando de inicialización de Vite: `npm create vite@latest nombre-del-proyecto -- --template react`. Este comando se utiliza una sola vez para generar automáticamente la estructura de directorios, configurar el entorno de desarrollo y crear los archivos esenciales necesarios (como App.jsx, main.jsx, y package.json).
 
-Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
+Componentes generados: perfilPage, el cual le coloco en la carpeta `./code pages/perfilPage`.
 
 ### Resolucion tarea
 
@@ -92,19 +92,19 @@ Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/Pabl
 
 1. Captura de `main.tsx`
 
-<img src="assets/main.jpeg" width="200" alt="main.tsx">
+<img src="assets/main.jpeg" width="2000" alt="main.tsx">
 
 2. Captura de `app.tsx`
 
-<img src="assets/app.jpeg" width="200" alt="app.tsx">
+<img src="assets/app.jpeg" width="2000" alt="app.tsx">
 
 3. Captura de `perfilPage.tsx`
 
-<img src="assets/perfilpage2.jpeg" width="200" alt="perfilpage.tsx">
+<img src="assets/perfilpage2.jpeg" width="2000" alt="perfilpage.tsx">
 
 4. Captura de la pagina desplegada
 
-<img src="assets/paginacompleta.jpeg" width="200" alt="perfilpage.tsx">
+<img src="assets/paginacompleta.jpeg" width="2000" alt="perfilpage.tsx">
 
 5. Enlace a la pagina de githubPages
 6. Enlace la repositorio de github del proyecto.
