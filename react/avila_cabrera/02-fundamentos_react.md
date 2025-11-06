@@ -14,10 +14,10 @@
 
 **Diana Avila** 
 📧 davilam3@est.ups.edu.ec 
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+💻 GitHub: [Diana Avila](https://github.com/davilam3)
 **Sebastian Cabrera** 
 📧 ccabreram1@est.ups.edu.ec 
-💻 GitHub: [SebasC14](https://github.com/Ccabreram1)
+💻 GitHub: [Sebastian Cabrera](https://github.com/Ccabreram1)
 
 
 
