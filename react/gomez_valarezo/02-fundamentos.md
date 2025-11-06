@@ -1,9 +1,9 @@
 # Programación y Plataformas Web 
 
-# Frameworks Web: Angular
+# Frameworks Web: React
 
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfZcpvdnbhcRhQ_D-Gxk2yO_MEYCH6hGioKYRiM_rQjZJPez2kxbJ-ODzXYUFtU2uTh78&usqp=CAU" width="80" alt="React Logo">
 
 </div>
 
@@ -12,80 +12,78 @@
 
 ### Autores
 
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Sebastian Gomez**  
+📧 agomezm12@est.ups.edu.ec  
+💻 GitHub: [SebastianGomez0910](https://github.com/SebastianGomez0910)
+
+**Jean Pierre**
 
 
 
 
 
 
+## Fudamentos de React
 
-## Fudamentos de Angular
+## ¿Qué es React?
 
-## ¿Qué es Angular?
+React.js, comúnmente llamado simplemente React, es una biblioteca de JavaScript que se utiliza para construir interfaces de usuario. Toda aplicación web React se compone de componentes reutilizables que conforman partes de la interfaz de usuario — podemos tener un componente distinto para nuestra barra de navegación, otro para el pie de página, otro para el contenido principal, etc.
 
-Angular es un framework de desarrollo web de código abierto mantenido por Google. Está diseñado para crear aplicaciones web dinámicas y de una sola página (SPA) utilizando TypeScript como lenguaje principal. Angular proporciona una estructura robusta y herramientas integradas para facilitar el desarrollo, la prueba y el mantenimiento de aplicaciones web complejas.
+## Características principales de React
 
-## Características principales de Angular
+1. **Componentes**: React utiliza una arquitectura basada en componentes, que son piezas de UI independientes y reutilizables. Cada componente encapsula su lógica, marcado (usando JSX) y a menudo su estado local.
 
-1. **Componentes**: Angular utiliza una arquitectura basada en componentes, donde cada componente representa una parte reutilizable de la interfaz de usuario con su propia lógica y estilo.
+2. **Declarativo**: React es declarativo, lo que significa que describes cómo debe verse tu interfaz de usuario para un estado determinado y React se encarga de actualizar el DOM real de manera eficiente cuando el estado cambia.
 
-2. **Data Binding**: Angular ofrece un sistema de enlace de datos bidireccional que sincroniza automáticamente los datos entre el modelo y la vista, facilitando la actualización de la interfaz de usuario.
+3. **Virtual DOM**: Para optimizar el rendimiento, React utiliza un DOM Virtual, que es una representación en memoria del DOM real. Cuando hay cambios de estado, React actualiza el VDOM, compara las diferencias con el VDOM anterior y solo aplica las actualizaciones necesarias y mínimas al DOM real.
 
-3. **Directivas**: Las directivas son atributos especiales que permiten manipular el DOM de manera declarativa, facilitando la creación de comportamientos personalizados en los elementos HTML.
+4. **Flujo de datos Unidireccional**: Los datos en React fluyen en una sola dirección, generalmente del componente padre al componente hijo a través de propiedades. Esto hace que el flujo de datos sea más predecible y que el código sea más fácil de depurar.
 
-4. **Inyección de Dependencias**: Angular tiene un sistema de inyección de dependencias que facilita la gestión y reutilización de servicios y componentes en toda la aplicación.
+5. **JSX**: Es una extensión de sintaxis que permite escribir marcado similar a HTML dentro de archivos JavaScript. Facilita la creación de los elementos de React de forma intuitiva, combinando la lógica de JS con la estructura de la UI.
 
-5. **Ruteo**: Angular incluye un sistema de enrutamiento que permite la navegación entre diferentes vistas y componentes dentro de una aplicación de una sola página.
-
-6. **Herramientas de Desarrollo**: Angular CLI (Command Line Interface) es una herramienta poderosa que facilita la creación, construcción y mantenimiento de proyectos Angular.
+6. **Hooks**: Introducidos en React 16.8, los Hooks son funciones que permiten "engancharse" al estado de React y a las funcionalidades del ciclo de vida de los componentes desde componentes funcionales, sin tener que usar las clases. El más común es useState para el manejo de estado.
 
 ## Rutas
 
-Angular utiliza un sistema de enrutamiento para gestionar la navegación entre diferentes vistas y componentes. Las rutas se definen en el módulo de enrutamiento de la aplicación y permiten cargar componentes específicos en función de la URL solicitada.
+React, al ser solo una librería para la UI, no incluye un sistema de routing integrado. En su lugar, la solución estándar y más popular es utilizar una librería externa como React Router DOM.
 
-
-## Directivas
-
-Las directivas en Angular son atributos o elementos especiales que permiten manipular el DOM de manera declarativa. Existen tres tipos principales de directivas:
-
-## Servicios
-Los servicios en Angular son clases que proporcionan funcionalidades específicas y se utilizan para compartir datos y lógica entre diferentes componentes. Los servicios se inyectan en los componentes mediante el sistema de inyección de dependencias de Angular.
-
-## Pipes
-
-Los pipes en Angular son funciones que transforman los datos antes de mostrarlos en la vista. Se utilizan para formatear, filtrar o transformar valores en plantillas HTML de manera sencilla y reutilizable.
 
 * Modificar el texto a mayúsculas:
-```html
-{{ 'texto de ejemplo' | uppercase }}
 ```
- * Ordena y filtra:
-```html
-<li *ngFor="let item of items | orderBy: 'name' | filter: 'active'">
-  {{ item.name }}
-</li>
+<p>{nombre.toUpperCase()}</p>
 ```
 
-## Componentes de Angular
+## Componentes de React
 
-Los componentes son la piedra angular de cualquier aplicación Angular. Cada componente consta de tres partes principales:
+Los componentes son los bloques de construcción fundamentales de cualquier aplicación React. Un componente es una función o una clase que opcionalmente acepta entradas y devuelve elementos de React que describen lo que debe aparecer en la pantalla.
 
-1. **Clase del Componente**: Define la lógica y el comportamiento del componente utilizando TypeScript.
+Aunque React es más flexible y no impone una separación estricta en tres archivos como Angular (donde a menudo se usan archivos .js/.jsx o .ts/.tsx para todo), conceptualmente un componente tiene estas tres partes principales:
 
-2. **Plantilla HTML**: Define la estructura y el diseño de la interfaz de usuario del componente.
+1. **Lógica del componente**: Define el comportamiento y la funcionalidad del componente. Esto incluye:
 
-3. **Estilos CSS**: Define la apariencia visual del componente, peude ser SCSS o cualquier otro preprocesador compatible.
+Estado: La data interna y mutable del componente.
 
+Efectos Secundarios: Operaciones como peticiones de datos o suscripciones.
 
+Manejo de eventos: fucniones que responden a interacciones del usuario.
+
+Ppropiedades: Las entradas de datos que reciben desde su componente padre. 
+
+2. **Plantilla**: Define la estructura y el diseño de la interfaz de usuario. En React la plantilla se escribe utilizando JSX que permite combinar HTML con lógica de JavaScript directamente en el archivo del componente dentro del return de la funcion o del método render() de la clase.
+
+3. **Estilos CSS-in-JS, Módulos CSS, o Archivo Externo**:Define la apariencia visual del componente. A diferencia de Angular, donde el archivo CSS es la norma, React ofrece varias formas de manejar estilos para fomentar el encapsulamiento:
+
+Modulo CSS: Archivos .module.css que garantiza que los nombres de las clases CSS sean únicos y locales al componente.
+
+CSS-in-JS: Usar librerias como Styled Components o Emotion para escrirbir CSS directamente dentro del archivo JavaScript del componente usando literales de plantilla.
+
+Hojas de estilo externas: Incluir un archivo .css o scss tradicional e importar las clases al componente.
 
 ## Resultados
 
 ### Creacion de un componente
 
-Uso el comando `ng generate component` para crear un nuevo componente en Angular. Este comando genera automáticamente los archivos necesarios y actualiza el módulo correspondiente.
+La creación del proyecto general de React, que sirve como la estructura fundamental de la aplicación, comienza con el comando de inicialización de Vite: `npm create vite@latest nombre-del-proyecto -- --template react`. Este comando se utiliza una sola vez para generar automáticamente la estructura de directorios, configurar el entorno de desarrollo y crear los archivos esenciales necesarios (como App.jsx, main.jsx, y package.json).
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
