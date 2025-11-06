@@ -1,33 +1,52 @@
-# Assets - Romero Barbecho
 
-Esta carpeta contiene todos los recursos para la documentación del framework **Astro**.
+## Proyecto Astro 
 
-## 📁 Organización Sugerida
+Astro es un framework que usa ruteo automático basado en archivos. A continuación, los pasos básicos y ejemplos para documentar en tu proyecto.
 
-```
-assets/
-├── capturas/          # Capturas de pantalla
-│   ├── instalacion/   # Capturas del proceso de instalación
-│   ├── componentes/   # Capturas de componentes
-│   └── formularios/   # Capturas de formularios
-├── codigo/            # Archivos de código de ejemplo
-└── diagramas/         # Diagramas y esquemas
-```
+### 1. Abrir VS Code
 
-## 📸 Nomenclatura de Imágenes
+Abre la carpeta del proyecto en VS Code (ej. astro/romero_barbecho).
 
-- Usar nombres descriptivos: `instalacion-npm-install.png`
-- Incluir el tema: `componentes-header-resultado.png`
-- Formato preferido: PNG para capturas, JPG para fotos
+![imagen](astro\romero_barbecho\imagenes\primera.png)
 
-## 💡 Consejos
+### 2. Abrir la terminal integrada
 
-- Mantener las imágenes organizadas por tema
-- Usar tamaños razonables (máximo 2MB por imagen)
-- Referenciar las imágenes en los archivos .md usando rutas relativas
+Abre la terminal integrada en VS Code para ejecutar comandos.
 
-## 🔗 Cómo Referenciar en Markdown
+![imagen](astro\romero_barbecho\imagenes\segunda.png)
 
-```markdown
-![Descripción](assets/capturas/instalacion/npm-install.png)
-```
+### 3. Crear el proyecto Astro
+
+Comandos típicos para crear un proyecto Astro (ejemplo genérico):
+
+npm create astro@latest
+
+Tras crear el proyecto instala dependencias y ejecuta el servidor de desarrollo:
+
+![imagen](astro\romero_barbecho\imagenes\tercera.png)
+
+### 4. Sistema de rutas (File-Based Routing)
+
+Cada archivo `.astro` dentro de `src/pages` genera una ruta automáticamente. Ejemplos:
+
+- `src/pages/index.astro` → `/`
+- `src/pages/about.astro` → `/about`
+- `src/pages/productos/index.astro` → `/productos`
+- `src/pages/productos/[id].astro` → `/productos/123` (ruta dinámica)
+
+![imagen](astro\romero_barbecho\imagenes\cuarta.png)
+
+## Control de versiones 
+
+Asegúrate de trabajar en una rama y subir tus cambios:
+
+git branch
+
+git add .
+git commit -m "creación de rutas y páginas en Astro"
+
+git push -u origin astro-romero_barbecho
+
+![imagen](astro\romero_barbecho\imagenes\quinta.png)
+
+
