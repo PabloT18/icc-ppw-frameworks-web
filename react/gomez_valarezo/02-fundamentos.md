@@ -17,10 +17,8 @@
 💻 GitHub: [SebastianGomez0910](https://github.com/SebastianGomez0910)
 
 **Jean Pierre**
-
-
-
-
+📧 jvalarezov@est.ups.edu.ec  
+💻 GitHub: [jean-pierre-valarezo](https://github.com/jean-pierre-valarezo)
 
 
 ## Fudamentos de React
@@ -87,17 +85,27 @@ La creación del proyecto general de React, que sirve como la estructura fundame
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
-![alt text](assets/06_componente-p2.png)
-
 ### Resolucion tarea
 
 Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/PabloT18/f15f92224806731541d48027df336497)
 
 
-1. Captura de `app.routes.ts`
-2. Captura de `perfilPage.ts`
-3. Captura de `perfilPage.html`
+1. Captura de `main.tsx`
+
+<img src="assets/main.jpeg" width="200" alt="main.tsx">
+
+2. Captura de `app.tsx`
+
+<img src="assets/app.jpeg" width="200" alt="app.tsx">
+
+3. Captura de `perfilPage.tsx`
+
+<img src="assets/perfilpage2.jpeg" width="200" alt="perfilpage.tsx">
+
 4. Captura de la pagina desplegada
+
+<img src="assets/paginacompleta.jpeg" width="200" alt="perfilpage.tsx">
+
 5. Enlace a la pagina de githubPages
 6. Enlace la repositorio de github del proyecto.
 
