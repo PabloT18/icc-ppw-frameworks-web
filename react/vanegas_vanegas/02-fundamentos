@@ -229,16 +229,28 @@ src/
 
 <div align="center">
   <img src="../vanegas_vanegas/assets/app-tsx.jpg" alt="app_tsx" width="500">
-</div>!
+</div>
 
+### Exlpicación:
+
+En el archivo perfilHome.tsx se crea un componente llamado PerfilHome, que representa la parte del perfil dentro de la aplicación. En este componente hay dos funciones principales: la primera se llama resetData y sirve para volver a poner los datos del usuario con valores predeterminados, por ejemplo el nombre “Juan”, el apellido “Pérez” y la edad “30”. La segunda función se llama changeAge y cambia la edad del usuario a 18 años. En la parte del return, el componente muestra en pantalla un título que dice “Perfil” y luego presenta el nombre y apellido del usuario en mayúsculas, además de mostrar el resultado de una función llamada getFullName(), que probablemente devuelve el nombre completo. Debajo hay tres botones: uno para cambiar los datos, otro para resetearlos, y un tercero que cambia la edad a 18. Cada botón está conectado a una función que se ejecuta cuando se hace clic. En resumen, este componente permite mostrar y modificar los datos del perfil de una persona de manera interactiva.    
+
+
+
+       
 2. Captura de `PerfilPage.tsx`
 
 <div align="center">
   <img src="../vanegas_vanegas/assets/perfil-tsx.jpg" alt="app_tsx" width="500">
-</div>!
+</div>
+
+### Exlpicación:
+
+Por otro lado, en el archivo App.tsx está el componente principal de toda la aplicación. Aquí se importan los componentes HomePage y PerfilHome, además de las herramientas del paquete react-router-dom que sirven para manejar las rutas y moverse entre páginas sin recargar la aplicación. Dentro de la función App, se utiliza BrowserRouter para indicar que la aplicación tendrá navegación. Luego se muestra un título que dice “Mi Aplicación” y se definen las rutas con Routes y Route. En este caso hay dos rutas: una vacía (path="") que muestra el componente HomePage, y otra llamada /perfil que muestra el componente PerfilHome. Finalmente, el componente App se exporta para poder ser usado en el archivo principal main.tsx, que es el que se encarga de mostrar toda la aplicación. En resumen, App.tsx controla las páginas y permite navegar entre la página principal y la página del perfil.
+
 
 3. Captura de la página desplegada
 
 <div align="center">
   <img src="../vanegas_vanegas/assets/perfil.jpg" alt="Pagina desplegaado" width="500">
-</div>!
+</div>
