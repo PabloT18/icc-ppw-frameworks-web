@@ -28,7 +28,7 @@ Durante la creación del proyecto, selecciona las siguientes opciones:
 - **SSR**: Colcar no (n)
 - **zoneless**: Colocar no (n)
 - **AI tools**: No usar ninugno (none)
-angular/guaman_guanga/assets/capturas/{A8E9B111-3F1C-4F20-9C87-01C84F05C5F5}.png
+![alt text](capturas/{A8E9B111-3F1C-4F20-9C87-01C84F05C5F5}.png)
 
 Luego entra al proyecto e instala dependencias (si no lo hizo automáticamente):
 
@@ -36,7 +36,7 @@ Luego entra al proyecto e instala dependencias (si no lo hizo automáticamente):
 cd mi-app-angular
 pnpm install
 ```
-angular/guaman_guanga/assets/capturas/{51FD82A8-E009-47F0-A1B7-B2A82985CE92}.png
+![alt text](capturas/{51FD82A8-E009-47F0-A1B7-B2A82985CE92}.png)
 
 ## Correr en desarrollo
 
@@ -49,14 +49,14 @@ ng serve -o
 ```bash
 ng serve --host 0.0.0.0 --port 4200
 ```
-angular/guaman_guanga/assets/capturas/{8D2F6714-D17F-4346-AFC5-DE145AD547B1}.png
+![alt text](capturas/{8D2F6714-D17F-4346-AFC5-DE145AD547B1}.png)
 
 ## Compilar para producción
 
 ```bash
 ng build
 ```
-angular/guaman_guanga/assets/capturas/{750DDEE8-A5DE-43FB-9CD1-F5411E5A74F2}.png
+![angular/guaman_guanga/assets/capturas/](capturas/{8D2F6714-D17F-4346-AFC5-DE145AD547B1}.png){750DDEE8-A5DE-43FB-9CD1-F5411E5A74F2}.png
 
 # Extensiones recomendadas para VS Code (Angular)
 
