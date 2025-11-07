@@ -94,5 +94,3 @@ Luego de instalar la librería se tiene que crear el árbol de rutas, para eso s
 Este codigo utiliza el `hook` mas comun, el `useState` utilizado para cambiar el estado de una variable, este tiene por definicion una funcion para cambiar el valor de la variable ademas de la variable ya utilizable.
 
 #### 3. Captura de la pagina desplegada
-
-
