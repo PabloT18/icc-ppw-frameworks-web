@@ -4,7 +4,7 @@
 
 <div align="center">
   
-![Astro Logo](./src/assets/astro.svg)
+![Astro Logo](./assets/astro.svg)
 
 </div>
 
@@ -64,7 +64,7 @@ npm run dev
 ```
 
 ### Captura de la instalación
-![Instalación Astro](./src/assets/instalacion_astro.png)
+![Instalación Astro](./assets/instalacion_astro.png)
 
 ---
 
@@ -81,7 +81,7 @@ Coloca archivos .astro en src/components. Ejemplo:
 ```bash
 src/components/PerfilPage.astro
 ```
-![Componente PerfilPage](./src/assets/Perfilpage.png)
+![Componente PerfilPage](.assets/Perfilpage.png)
 
 Este componente muestra información del usuario (nombre, apellido, edad) y botones para modificar valores.
 
@@ -90,16 +90,16 @@ Este componente muestra información del usuario (nombre, apellido, edad) y boto
 ## Resultados — Implementación PerfilPage
 
 1. Captura de `index.astro`  
-    ![Index - captura](./src/assets/index.png)
+    ![Index - captura](./assets/index.png)
 
 2. Captura de `Layout.astro`  
-    ![Layout - captura](./src/assets/Layout.png)
+    ![Layout - captura](./assets/Layout.png)
 
 3. Captura de `PerfilPage.astro`  
-    ![PerfilPage - captura](./src/assets/Perfilpage.png)
+    ![PerfilPage - captura](./assets/Perfilpage.png)
 
 4. Captura de la página desplegada  
-    ![Página - captura](./src/assets/page.png)
+    ![Página desplegada](./assets/page.png)
 
 5. Enlace a la página en GitHub Pages:  
    [Github Pages](https://alexchuquipoma.github.io/icc-ppw-u2-02Fundamentos/)
