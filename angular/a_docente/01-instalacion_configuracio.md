@@ -75,7 +75,7 @@ Estas extensiones potencian el desarrollo con Angular:
 
 * **[DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)** - Soporte para archivos `.env`.
 
-* **[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)** - Autocompletado y soporte para Tailwind.
+* **[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)** -   y soporte para Tailwind.
 
 
 ---
