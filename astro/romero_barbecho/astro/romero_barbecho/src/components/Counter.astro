@@ -1,0 +1,40 @@
+---
+interface Props { start?: number }
+const { start = 7 } = Astro.props;
+const uid = `ctr-${Math.random().toString(36).slice(2)}`;
+---
+
+<div id={uid} class="counter">
+  <h2>Contador <span data-val>{start}</span></h2>
+  <h2>Contador <span data-val>{start}</span></h2>
+
+  <div class="actions">
+    <button data-btn="+1">+1</button>
+    <button data-btn="-1">-1</button>
+    <button data-btn="0">0</button>
+  </div>
+</div>
+
+<style>
+  .counter { padding: 0.5rem 1rem; }
+  .actions { display: flex; gap: 1rem; margin-top: .75rem; }
+  .actions button { padding:.4rem 1.5rem; border:1px solid #cbd5e1; border-radius:.25rem; }
+</style>
+
+<!-- Importa variables del frontmatter al script de cliente -->
+<script define:vars={{ uid, start }}>
+  const root = document.getElementById(uid);
+  const valueEls = root.querySelectorAll('[data-val]');
+  const plus  = root.querySelector('[data-btn="+1"]');
+  const minus = root.querySelector('[data-btn="-1"]');
+  const zero  = root.querySelector('[data-btn="0"]');
+
+  let value = start;
+  const render = () => valueEls.forEach(el => el.textContent = String(value));
+
+  plus.addEventListener('click',  () => { value++; render(); });
+  minus.addEventListener('click', () => { value--; render(); });
+  zero.addEventListener('click',  () => { value = 0; render(); });
+
+  render();
+</script>
