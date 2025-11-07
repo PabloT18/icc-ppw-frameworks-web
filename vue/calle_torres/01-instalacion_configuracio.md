@@ -12,40 +12,36 @@
 
 ### Autores
 
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Ariel Callle**  
+📧 acalled1@est.ups.edu.ec
+💻 GitHub: [ArielStevenCalleDumaguala](hhttps://github.com/ArielCalleSteven)
 
 
 
+## Instalación de Vue
 
-
-
-
-## Instalación de Angular CLI
-
-Primero instala el **Angular CLI** globalmente:
+Primero instala el creador de proyectos de Vue (Vite + Vue) globalmente:
 
 ```bash
-pnpm install -g @angular/cli
+install -g @vue/cli
 ```
 
-Crear un nuevo proyecto Angular:
+Crear un nuevo proyecto Vue:
 
 ```bash
-ng new my-app
+vue create prueba
 ```
 
 Ejecutar la aplicación en modo desarrollo:
 
 ```bash
-ng serve -o
+npm run serve
 ```
 
 
 Ejecutar la aplicación para que sea accesible desde otras máquinas en la red local:
 ```bash
-ng serve --host 0.0.0.0 --port 4200
+npm run serve -- --host 0.0.0.0 --port 8080
 ```
 
 
@@ -58,186 +54,210 @@ ng serve --host 0.0.0.0 --port 4200
 
 Estas extensiones potencian el desarrollo con Angular:
 
-* **[Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)** – Autocompletado, IntelliSense y diagnósticos para Angular.
-* **[Angular Snippets](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2)** – Fragmentos de código para Angular (componentes, servicios, etc.).
-* **[NX Console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)** – Interfaz gráfica para ejecutar comandos de Angular y Nx.
-* **[Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)** – Iconos personalizados para archivos Angular.
-* **[Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)** – Formato automático del código.
-* **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)** – Estilo de código consistente con Angular.
+* **[Vue](https://marketplace.visualstudio.com/items?itemName=Vue.volar)** – Extensión oficial de Vue 3. Ofrece autocompletado, IntelliSense, refactorización y diagnóstico para archivos .vue
+* **[Vue VSCode Snippets](https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets)** – Fragmentos de código útiles para crear componentes, directivas y plantillas más rápido.
+* **[Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)** – Tema de íconos con soporte visual para archivos de Vue.
+* **[Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)** – Formato automático del código para mantener un estilo limpio y consistente.
+* **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)** – Linter que garantiza buenas prácticas y detecta errores en tiempo real.
 
 * **[Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)** - Cierre automático de etiquetas HTML.
 
 * **[Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)** - Renombrado automático de etiquetas en pares.
 
-* **[Paste JSON as Code](https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype)** - Convierte JSON en interfaces TypeScript.
+* **[DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)** - Soporte para archivos .env y variables de entorno en proyectos Vue.
 
-* **[TypeScript importer (opcional)](https://marketplace.visualstudio.com/items?itemName=pmneo.tsimporter)** - Importación automática de módulos.
+* **[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)** - Autocompletado, vista previa y validación para clases de Tailwind CSS (perfecto si usas Tailwind con Vue).
 
-* **[DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)** - Soporte para archivos `.env`.
+* **[Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)** - Autocompleta rutas de archivos al importar componentes o imágenes.
 
-* **[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)** - Autocompletado y soporte para Tailwind.
+* **[npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)** - Autocompleta nombres de paquetes npm en los imports.
 
 
 ---
 
-## Hoja de Atajos – Angular CLI
+## Hoja de Atajos – VUE
 
 ###  Comandos básicos
 
- Atajo corto: `ng g c` = `ng generate component`
+Atajo corto: vue g c = vue generate component
 
 ```bash
-ng help # Ayuda general
-ng new app-name   # Crear un nuevo proyecto
-ng serve -o       # Iniciar servidor y abrir en navegador
-ng build          # Compilar para producción
+vue help              # Muestra ayuda general
+vue create app-name   # Crea un nuevo proyecto Vue
+npm run serve         # Inicia el servidor de desarrollo
+npm run build         # Compila el proyecto para producción
+npm run lint          # Ejecuta el linter (verifica errores de estilo o sintaxis)
+
 ```
 
 **Parámetros útiles:**
 
-- `--style=scss` → Establece SCSS como preprocesador de estilos.
-- `--routing` → Incluye configuración de rutas desde el inicio.
-- `--skip-tests` → Omite la creación de archivos de prueba.
+- `--default` → Crea el proyecto con la configuración por defecto (sin asistente interactivo).
+- `--inlinePreset` → Usa un preset (configuración) directamente en línea.
+- `--preset <nombre>` → Crea un proyecto con una configuración guardada previamente.
+- `--packageManager <npm|yarn|pnpm>` → Especifica qué gestor de paquetes usar.
 
 
 
-####  Estructura creada automáticamente
+####  Estructura creada automáticamente (Vue CLI)
 
-- `src/app` → Carpeta principal del proyecto Angular.
-- `app.module.ts` → Módulo raíz.
-- `app.component.*` → Componente raíz (HTML, CSS, TS, etc.).
-- `angular.json` → Configuración del workspace.
-- `tsconfig.json` → Configuración del compilador TypeScript.
+- `src/app` → Carpeta principal del código fuente del proyecto. 
+    
+    assets/ → Archivos estáticos como imágenes, íconos o estilos globales.
+
+    components/ → Componentes Vue reutilizables.
+
+    App.vue → Componente raíz del proyecto (estructura principal de la aplicación).
+
+    main.js → Punto de entrada de la aplicación, donde se monta el componente App.vue en el DOM.
+
+- `public/` → Archivos públicos que no pasan por el proceso de compilación (como index.html o favicon.ico).
+- `node_modules/*` → Dependencias instaladas por npm o pnpm.
+- `babel.config.js` → Configuración del compilador Babel (traduce JS moderno a compatible con navegadores).
+- `jsconfig.json` → Configuración del entorno JavaScript (ayuda a VS Code con autocompletado y rutas).
+- `package.json` → Archivo que contiene la información del proyecto y las dependencias instaladas.
+- `pnpm-lock.yaml` → Archivo de bloqueo de dependencias (o package-lock.json si usas npm).
+- `.gitignore` → Indica qué archivos deben ignorarse al usar Git.
+- `vue.config.js` → Configuración personalizada para el proyecto Vue (opcional).
 
 ###  Generación de elementos
 
 ```bash
-ng g c my-component       # Crear componente
-ng g s my-service         # Crear servicio
-ng g m my-module          # Crear módulo
-ng g d my-directive       # Crear directiva
-ng g p my-pipe            # Crear pipe
-ng g g my-guard           # Crear guard
-ng g interceptor my-int   # Crear interceptor
+npm run make:component MiComponente    # Crear componente
+vue generate view MiVista              # Crear vista
+vue generate store MiStore             # Crear store
+vue generate directive mi-directiva    # Crear directiva
+vue generate plugin mi-plugin          # Crear plugin
 ```
 
 
 ### Entornos 
-Crea archivos de configuración para diferentes entornos (dev, prod, etc.) Defealult: `environment.ts` y `environment.development.ts`
+En Vue CLI, los entornos se manejan mediante archivos .env ubicados en la raíz del proyecto.
+Estos archivos determinan configuraciones distintas para desarrollo, producción u otros entornos personalizados.
+
+`.env` → Variables globales (para todos los entornos).
+
+`.env.development` → Variables cuando ejecutas npm run serve.
+
+`.env.production` → Variables cuando ejecutas npm run build.
+
+Ejemplo de uso:
 
 ```bash
-ng g environments 
+VUE_APP_API_URL=http://localhost:3000
 ```
 
 
 ### Ayuda y documentación
 
 ```bash
-ng g --help 
+vue --help          # Muestra ayuda general de Vue CLI
+vue create --help   # Muestra ayuda para crear proyectos
+npm run --help      # Muestra scripts disponibles
 ```
 
 ---
-Capturas de pantalla como evidencia del proceso de instalación y configuración de Angular, así como explicaciones detalladas de los componentes y formularios utilizados en la práctica.
 
 ## Resultados:
 
-Capturas de pantalla como evidencia del proceso de instalación y configuración de Angular, así como explicaciones detalladas de los componentes y formularios utilizados en la práctica.
+### 1. Instalación de VUE y creación del proyecto:
 
-### 1. Instalación de Angular CLI y creación del proyecto:
-
-![alt text](assets/01-instalacion-angular-p01.png)
+![alt text](assets/instalacion.jpg)
 
 **Descripción de la imagen:**
 
-En esta captura se muestra el proceso de instalación de Angular CLI versión 20.3.67 mediante el gestor de paquetes ppnpm (Node Package Manager). Los pasos realizados fueron:
+En esta captura se muestra el proceso de instalación de VUE CLI versión 5.0.9 mediante el gestor de paquetes ppnpm (Node Package Manager). Los pasos realizados fueron:
 
-- **Comando ejecutado:** `pnpm install -g @angular/cli@20.3.67`
-  - El flag `-g` indica una instalación global, permitiendo usar Angular CLI desde cualquier ubicación del sistema.
-  - Se especifica la versión exacta `@20.3.67` para garantizar compatibilidad y reproducibilidad del entorno.
+- **Comando ejecutado:** `pnpm install -g @vue/cli@5.0.8`
 
-- **Proceso de instalación:** Se observa la descarga de dependencias necesarias y la configuración del paquete en el sistema.
+  - El flag `-g` indica una instalación global, lo que permite usar el comando vue desde cualquier ubicación del sistema.
+  - Se especifica la versión exacta `@5.0.9` para garantizar compatibilidad y reproducibilidad del entorno
+
+- **Proceso de instalación:** Durante la instalación se descargan las dependencias necesarias y se configura el paquete Vue CLI dentro del sistema.
 
 - **Verificación:** Una vez completada la instalación, se puede verificar ejecutando:
   ```bash
-  ng version
+  vue --version
   ```
-  Este comando muestra la versión instalada de Angular CLI y las dependencias del proyecto.
+  Este comando muestra la versión instalada de Vue CLI y confirma que la instalación fue exitosa.
 
 
 ### 2. Revision de configuracion de angular: 
 
-![alt text](assets/02-angular_version-p01.png)
+![alt text](assets/vue-version.jpg)
 
-<!-- uso comando ng version -->
 **Descripción de la imagen:**
-En esta captura se muestra la salida del comando `ng version`, que proporciona información detallada sobre la configuración del entorno Angular. 
+En esta captura se muestra la salida del comando `vue info` , el cual proporciona información detallada sobre la configuración del entorno de desarrollo Vue.
 
 ```bash
 
-Angular CLI: 20.3.8
-Node: 22.21.0
-Package Manager: pnpm 10.19.0
-OS: darwin arm64
+Environment Info:
+
+  System:
+    OS: Windows 11 10.0.26100
+    CPU: (16) x64 12th Gen Intel(R) Core(TM) i7-12650H
+  Binaries:
+    Node: 22.21.0 - C:\Program Files\nodejs\node.EXE
+    Yarn: Not Found
+    npm: 10.9.4 - C:\Program Files\nodejs\npm.CMD
+  Browsers:
+    Chrome: 142.0.7444.134
+    Edge: Chromium (140.0.3485.54)
+    Firefox: 143.0 - C:\Program Files\Mozilla Firefox\firefox.exe
+  npmGlobalPackages:
+    @vue/cli: Not Found
+
 ```
 
 ### 3. Creación del proyecto Angular:
 
 
-Se crea un nuevo proyecto Angular llamado `01-fundamentos` utilizando el comando `ng new 01-fundamentos`. y lo levantamos con `ng serve -o`
+Se crea un nuevo proyecto Vue llamado `01-fundamentos` utilizando el comando `vue create 01-fundamentos`. y lo levantamos con `pnpm run serve`
 
 ```bash
-ng new 01-fundamentos
-
+vue create 01-fundamentos
 ```
 
  Configuración inicial del proyecto:
 
-* Escojer CSS como preprocesador de estilos.
-
-* Escojemos que no use Server Side Rendering (SSR). 
-* En la pregunta si queremos usar `zoneless` respondemos que si, ya que Angular recomienda usar `zoneless` para mejorar el rendimiento en aplicaciones modernas y trabaja con señales asincrónicas de manera más eficiente.
+* Durante la creación del proyecto con Vue CLI, se muestran una serie de opciones de configuración interactivas.
+Se recomienda dejar todas las opciones por defecto (presionando Enter) o elegir según las necesidades del proyecto.
 
 
-![Configuración ](assets/03-confiracion1-p01.png)
+![Configuracion 01 ](assets/configuracion1.jpg)
+
+![Configuracion 02 ](assets/configuracion2.jpg)
+![Configuracion 03](assets/configuracion3.jpg)
 
 ### 4. Proyecto corriendo en el navegador:
 
-![Proyecto corriendo en el navegador](assets/04-proyecto-corriendo-p01.png)
-
+![Proyecto corriendo en el navegador](assets/proyectocorriendo.jpg)
 
 ###  5. Explicación de la estructura del proyecto:
 
-![Estructura del proyecto](assets/05-estructura_proyecto-p01.png)
+![Estructura del proyecto](assets/estructura_proyecto.jpg)
 
 
 ##### Carpetas y archivos principales:
 
-- `public`: Contiene archivos estáticos accesibles públicamente.
-- `src`: Carpeta que contiene el código fuente de la aplicación.
-- `node_modules`: Carpeta que contiene las dependencias del proyecto.
-- `pnpm-lock.yaml`: Archivo de bloqueo de versiones para pnpm.
-- `angular.json`: Archivo de configuración de Angular.
-- `package.json`: Archivo de configuración de npm.
-- `tsconfig.json`: Archivo de configuración de TypeScript.
-- `tsconfig.app.json`: Archivo de configuración de TypeScript para la aplicación.
-- `tsconfig.spec.json`: Archivo de configuración de TypeScript para las pruebas.
+- `node_modules`: Contiene todas las dependencias instaladas del proyecto Vue.
+- `public`: Carpeta que almacena archivos estáticos visibles públicamente, como favicon.ico e index.html.
+- `src`: Carpeta principal donde se encuentra el código fuente de la aplicación Vue.
+- `.gitignore`: Define los archivos y carpetas que deben ignorarse en el control de versiones.
+- `.npmrc`: Configuración específica para el gestor de paquetes PNPM/NPM.
+- `babel.config.js`: Configuración de Babel para la compatibilidad del código JavaScript.
+- `jsconfig.json` → Configuración del entorno JavaScript (ayuda a VS Code con autocompletado y rutas).
+- `package.json` → Archivo que contiene la información del proyecto y las dependencias instaladas.
+- `pnpm-lock.yaml` → Archivo de bloqueo de dependencias (o package-lock.json si usas npm).
+- `vue.config.js` → Configuración personalizada para el proyecto Vue (opcional).
 
 ### Carpeta de código SRC
 
-Dentro de la carpeta `src`, encontramos las siguientes subcarpetas y archivos importantes:
+Dentro de la carpeta `src` se encuentran los archivos y subcarpetas principales que conforman la aplicación Vue:
 
-- `app`: Contiene el código principal de la aplicación, incluyendo componentes, servicios y módulos.
-- `index.html`: Archivo HTML principal de la aplicación.
-- `main.ts`: Punto de entrada de la aplicación.
-- `styles.css`: Archivo de estilos globales.
+- `assets`: Carpeta donde se almacenan recursos estáticos como imágenes, íconos o estilos globales.
+- `components`: Carpeta que contiene los componentes reutilizables de la aplicación (por ejemplo, HelloWorld.vue).
+- `App.vue`: Componente raíz de la aplicación; actúa como el contenedor principal del proyecto.
+- `main.js`: Punto de entrada del proyecto Vue; se encarga de crear la instancia principal de Vue y montar la aplicación en el DOM.
 
-### Carpeta APP
 
-Dentro de la carpeta `app`, encontramos la siguiente estructura de archivos:
-
-- `app.config.ts`: Archivo de configuración de la aplicación.
-- `app.css`: Archivo de estilos específicos de la aplicación.
-- `app.html`: Archivo HTML principal de la aplicación.
-- `app.routes.ts`: Archivo de definición de rutas de la aplicación.
-- `app.spec.ts`: Archivo de pruebas unitarias de la aplicación.
-- `app.ts`: Archivo principal de la aplicación.

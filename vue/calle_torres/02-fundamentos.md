@@ -89,7 +89,7 @@ Uso el comando `ng generate component` para crear un nuevo componente en Angular
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
-<img src="img1.jpg" alt="HomePage">
+![alt text](assets/06_componente-p2.png)
 
 ### Resolucion tarea
 
@@ -97,23 +97,10 @@ Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/Pabl
 
 
 1. Captura de `app.routes.ts`
-
-<img src="img2.jpg" alt="HomePage">
-
 2. Captura de `perfilPage.ts`
-
-<img src="img3.jpg" alt="HomePage">
-
 3. Captura de `perfilPage.html`
-
-<img src="img4.jpg" alt="HomePage">
-
 4. Captura de la pagina desplegada
-
-<img src="img5.jpg" alt="HomePage">
-
 5. Enlace a la pagina de githubPages
-
 6. Enlace la repositorio de github del proyecto.
 
 Paso 5 y 6 debe estar subido al AVAC. 
