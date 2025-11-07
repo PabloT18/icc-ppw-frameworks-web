@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Contador">
+
+<h1>Home</h1>
+<h2>Fundamentos</h2>
+<p>Esta es la página principal de Astro</p>
+
+<h1 id="counter">Contador: 0</h1>
+<h1 id="counter-signal">Contador Signal: 0</h1>
+
+<button id="inc-btn">Incrementar</button>
+<button id="dec-btn">Restar</button>
+<button id="reset-btn">RESET</button>
+
+<a href="/" class="astro-btn">
+    Volver al inicio
+</a>
+
+<script is:inline>
+    let counter = 0;
+    let counterSignal = 0;
+
+    const elCounter = document.getElementById('counter');
+    const elCounterSignal = document.getElementById('counter-signal');
+
+    function render() {
+        elCounter.textContent = `Contador: ${counter}`;
+        elCounterSignal.textContent = `Contador (Simulando al signal de angular): ${counterSignal}`;
+    }
+
+    function changeValue(value) {
+        counter += value;
+        counterSignal += value;
+        render();
+    }
+
+    function resetValue(value) {
+        counter = value;
+        counterSignal = value;
+        render();
+    }
+
+    document.getElementById('inc-btn')?.addEventListener('click', () => changeValue(1));
+    document.getElementById('dec-btn')?.addEventListener('click', () => changeValue(-1));
+    document.getElementById('reset-btn')?.addEventListener('click', () => resetValue(0));
+
+    setInterval(() => {
+        counterSignal += 1;
+        render();
+    }, 1000);
+
+    render();
+</script>
+
+</Layout>

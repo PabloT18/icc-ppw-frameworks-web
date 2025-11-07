@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Perfil">
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<h1 id="name-display"></h1>
+
+<dl>
+    <dt>Nombre:</dt>
+    <dd id="dd-name"></dd>
+
+    <dt>Apellido:</dt>
+    <dd id="dd-lastName"></dd>
+
+    <dt>Edad:</dt>
+    <dd id="dd-age"></dd>
+
+    <dt>Nombre Completo:</dt>
+    <dd id="dd-fullName"></dd>
+
+    <dt>Nombre y Apellido (Mayúsculas):</dt>
+    <dd id="dd-fullNameUpper"></dd>
+</dl>
+
+<button id="change-data-btn">
+    Cambiar datos
+</button>
+
+<button id="change-age-btn">
+    Cambiar edad
+</button>
+
+<button id="reset-data-btn">
+    Reset
+</button>
+
+<a href="/" class="astro-btn">
+    Ir a la página principal
+</a>
+
+<script is:inline>
+    let profileData = {
+        name: 'Rafael',
+        lastName: 'Prieto',
+        age: 22
+    };
+
+    const elements = {
+        nameDisplay: document.getElementById('name-display'),
+        ddName: document.getElementById('dd-name'),
+        ddLastName: document.getElementById('dd-lastName'),
+        ddAge: document.getElementById('dd-age'),
+        ddFullName: document.getElementById('dd-fullName'),
+        ddFullNameUpper: document.getElementById('dd-fullNameUpper'),
+    };
+
+    const getFullName = () => `${profileData.name} ${profileData.lastName} con edad ${profileData.age} años`;
+
+    function updateProfileDisplay() {
+        elements.nameDisplay.textContent = profileData.name;
+        elements.ddName.textContent = profileData.name;
+        elements.ddLastName.textContent = profileData.lastName;
+        elements.ddAge.textContent = profileData.age.toString();
+        elements.ddFullName.textContent = getFullName();
+        elements.ddFullNameUpper.textContent = `${profileData.name.toUpperCase()} ${profileData.lastName.toUpperCase()}`;
+    }
+
+    document.getElementById('change-data-btn').addEventListener('click', () => {
+        profileData.name = 'Adrian';
+        profileData.lastName = 'Lazo';
+        profileData.age = 26;
+        updateProfileDisplay();
+    });
+
+    document.getElementById('change-age-btn').addEventListener('click', () => {
+        profileData.age = 18;
+        updateProfileDisplay();
+    });
+
+    document.getElementById('reset-data-btn').addEventListener('click', () => {
+        profileData = { name: 'Rafael', lastName: 'Prieto', age: 22 };
+        updateProfileDisplay();
+    });
+
+    updateProfileDisplay();
+</script>
+</Layout>
