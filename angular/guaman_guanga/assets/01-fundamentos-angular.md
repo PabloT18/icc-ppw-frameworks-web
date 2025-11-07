@@ -8,7 +8,7 @@
 # Práctica 1: Instalación y Configuración de Angular
 ## Autores 
 
-**Alex Guaman**\
+**Alex Guaman**
 **Daniel Guanga**
 
 # Instalación de Angular CLI
@@ -108,8 +108,6 @@ ng test                       # Ejecutar pruebas unitarias
 - `angular.json` → Configuración del proyecto Angular.
 - `package.json` → Dependencias y scripts.
 - `tsconfig.json` → Configuración de TypeScript.
-
-
 
 ---
 

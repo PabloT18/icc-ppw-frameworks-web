@@ -1,4 +1,4 @@
-# 🅰️ Programación y Plataformas Web · Práctica 2: Fundamentos (Angular)
+# Programación y Plataformas Web · Práctica 2: Fundamentos (Angular)
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" width="80" alt="Angular Logo">
