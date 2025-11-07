@@ -49,7 +49,7 @@ Las rutas se configuran dentro del componente principal utilizando elementos com
 De esta manera, React puede renderizar distintos componentes según la dirección actual del navegador, brindando una experiencia fluida al usuario.
 
 ## Servicios
-En React, los servicios no se definen como clases inyectadas, sino como funciones o módulos reutilizables que contienen la lógica de negocio o las operaciones que se comparten entre varios componentes.
+En React, los servicios son funciones o módulos reutilizables que contienen la lógica de negocio o las operaciones que se comparten entre varios componentes.
 Estos servicios pueden incluir operaciones como consultas a una API, validaciones, o gestión de datos.
 Generalmente, los servicios se importan directamente en los componentes que los necesitan, o se comparten mediante Context API o custom hooks, lo que permite inyectar su funcionalidad de forma sencilla y reutilizable.
 
@@ -70,6 +70,7 @@ Define la estructura visual de la interfaz combinando HTML y JavaScript en una s
 
 3. **Estilos CSS**
 Controla la apariencia del componente. Se pueden aplicar estilos con CSS tradicional, CSS Modules, Styled Components o TailwindCSS, según las necesidades del proyecto.
+
 
 
 ## Resultados
