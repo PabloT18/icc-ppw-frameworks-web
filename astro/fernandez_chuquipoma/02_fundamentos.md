@@ -81,7 +81,7 @@ Coloca archivos .astro en src/components. Ejemplo:
 ```bash
 src/components/PerfilPage.astro
 ```
-![Componente PerfilPage](.assets/Perfilpage.png)
+![Componente PerfilPage](./assets/Perfilpage.png)
 
 Este componente muestra información del usuario (nombre, apellido, edad) y botones para modificar valores.
 
