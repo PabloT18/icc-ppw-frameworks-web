@@ -14,6 +14,10 @@
 📧 lvasconezj@est.ups.edu.ec  
 💻 GitHub: [LeoFV87](https://github.com/LeoFV87)
 
+**Michelle Morocho**  
+📧 mmorochop3@est.ups.edu.ec
+💻 GitHub: [Michelle97-bit](https://github.com/Michelle97-bit)
+
 
 ## Fudamentos de Angular
 
@@ -82,38 +86,38 @@ Uso el comando `ng generate component` para crear un nuevo componente en Angular
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
-![alt text](image-8.png)
+![Home Page](capturas/instalacion/home-page.png)
 
 1. Captura de `app.routes.ts`
 
-![alt text](image.png)
+![App Routes](capturas/instalacion/app-routes.png)
 
 2. Captura de `perfilPage.ts`
 
-![alt text](image-1.png)
+![Perfil Ts](capturas/componentes/perfil-page-ts.png)
 
 3. Captura de `perfilPage.html`
 
-![alt text](image-2.png)
+![Perfil Html](capturas/componentes/perfil-page-html.png)
 
 
 4. Captura de la pagina desplegada
 
 ### Captura de la pagina desplegada
 
-![alt text](image-3.png)
+![Captura pagina](capturas/instalacion/captura-pagina-desplegada.png)
 
 ### Boton Cambiar Datos
 
-![alt text](image-4.png)
+![Captura cambiar datos](capturas/formularios/funcionalidad-cambiar-datos.png)
 
 ### Boton Cambiar Edad
 
-![alt text](image-5.png)
+![Captura cambiar edad](capturas/formularios/funcionalidad-cambiar-edad.png)
 
 ### Boton Reset
 
-![alt text](image-6.png)
+![Captura reset](capturas/formularios/funcionalidad-reset.png)
 
 5. Enlace a la pagina de githubPages
 
