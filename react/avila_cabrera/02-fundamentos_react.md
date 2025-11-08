@@ -106,16 +106,10 @@ function Home() {
 
 ## Resultados
 
-### Creacion de un componente
-
-Uso el comando `ng generate component` para crear un nuevo componente en Angular. Este comando genera automáticamente los archivos necesarios y actualiza el módulo correspondiente.
-
-Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 ### HomePage
+[HomePage](https://davilam3.github.io/icc-ppw-u2-react_perfil/)
 ![HomePage](assets/HomePage.jpg)
+
 ### PerfilPage
-![HomePage](assets/Perfilpage.jpg)
-
-
-### Resolucion tarea
-
+[PerfilPage](https://davilam3.github.io/icc-ppw-u2-react_home/)
+![PerfilPage](assets/Perfilpage.jpg)
