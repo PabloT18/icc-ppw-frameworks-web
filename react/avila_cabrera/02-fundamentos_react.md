@@ -107,9 +107,9 @@ function Home() {
 ## Resultados
 
 ### HomePage
-[HomePage](https://davilam3.github.io/icc-ppw-u2-react_perfil/)
+[HomePage](https://davilam3.github.io/icc-ppw-u2-react_home/)
 ![HomePage](assets/HomePage.jpg)
 
 ### PerfilPage
-[PerfilPage](https://davilam3.github.io/icc-ppw-u2-react_home/)
+[PerfilPage](https://davilam3.github.io/icc-ppw-u2-react_perfil/)
 ![PerfilPage](assets/Perfilpage.jpg)
