@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://jordyromeroa.github.io/icc-ppw-u1-FrameworkGrupal/',
+  site: 'https://jordyromeroa.github.io',
   base: '/icc-ppw-u1-FrameworkGrupal/',
 });
