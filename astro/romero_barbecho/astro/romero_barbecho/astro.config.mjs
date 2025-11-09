@@ -1,5 +1,6 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://jordyromeroa.github.io',
+  base: '/icc-ppw-u1-FrameworkGrupal/',
+});
