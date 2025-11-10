@@ -3,11 +3,11 @@
 # Frameworks Web: Astro
 
 <div align="center">
-  <img src="public/framework-logo.png"
-  width="80" alt="Astro Logo">
+  <img src="assets/framework-logo.png" width="200">
 </div>
 
-## Practica 1: Instalación y Configuración de Astro
+
+## Práctica 1: Instalación y Configuración de Astro
 
 ### Autores
 
@@ -31,14 +31,14 @@ A continuación, presentamos una comparación resumida entre Angular y Astro:
 | Renderizado Predeterminado | CSR (Client-Side Rendering). Gran carga de JavaScript inicial | SSG/SSR. Envía HTML puro (Zero JavaScript por defecto)                    |
 | Archivos TypeScript   | La lógica TS (ej. Signals) se ejecuta en el cliente para la interactividad | La lógica TS entre --- se ejecuta sólo en el servidor (o en compilación). La interactividad requiere componentes de UI (client:) |
 
-### Instalación de Astro CLI
+### 1. Instalación de Astro CLI
 
 Antes de iniciar, es necesario verificar que tenemos **pnpm** instalado.
 Para verificarlo:
 
-'''bash
+```bash
 pnpm -v
-'''
+```
 
 si dice que no existe el comando, instálalo ejecutando:
 
@@ -47,12 +47,17 @@ npm install -g pnpm
 ```
 ---
 
-### Creación de un Proyecto en Astro 
+### 2. Creación (e instalación) de un Proyecto en Astro 
 
 Primero ubícate en la carpeta donde quieras trabajar y vamos a ejecutar el siguente comando:
 ```bash
 pnpm create astro@latest
 ```
+
+<div align="center">
+  <img src="assets/capturas/instalacion/01_creacion.png" width="400">
+</div>
+
 Esto iniciará el asistente interactivo
 1. **dir**, Project name -> aquí tendras que especificar el nombre del proyecto
 
@@ -62,9 +67,15 @@ Esto iniciará el asistente interactivo
 3. **ts** TypeScript setup -> seleciona : yes, probablemente esta opción no aparezca porque ya tenemos **ts** instalado
 4. **deps**, Install dependencies: -> yes
 5. **git**, Initialize git repo -> esto depende que si inicializa ahi o lo quieres iniciar tu manualmente.
+
+
+<div align="center">
+  <img src="assets/capturas/instalacion/01_newproject.png" width="400">
+</div>
+
 ---
 <div align="center">
-<img src="public/installed.png" width="450">
+<img src="/astro/lazo_prieto/assets/capturas/instalacion/01_installed.png" width="650">
 </div>
  
 Una vez hecho esto, necesitamos correr el servidor, para lograr esto se ejecuta el siguente comando:
@@ -77,12 +88,12 @@ pnpm dev run
  ```
 
 <div align="center">
-  <img src="public/instalacion-astro-iniciar.png" width="800">
+  <img src="assets/capturas/instalacion/01_instalacion-astro-iniciar.png" width="650">
 </div>
 
 ---
 
-### Visualización del proyecto en el navegador
+### 3. Visualización del proyecto en el navegador
 
 Una vez iniciado el servidor, podemos acceder a la aplicación desde el navegador ingresando a la dirección:
 
@@ -91,5 +102,41 @@ Una vez iniciado el servidor, podemos acceder a la aplicación desde el navegado
 Aquí podremos ver la interfaz inicial del proyecto recién creado con Astro.
 
 <div align="center">
-  <img src="public/astro-corriendo-navegador.png" width="650">
+  <img src="assets/capturas/instalacion/01_astro-corriendo-navegador.png" width="650">
 </div>
+
+### 4. Explicación de la estructura del proyecto
+
+<div align="center">
+  <img src="assets/capturas/instalacion/01_estructura.png" width="550">
+</div>
+
+#### Carpetas y archivos principales:
+
+	•	public: Archivos estáticos accesibles públicamente (imágenes, favicon, etc.).
+	•	src: Carpeta principal con el código fuente del proyecto.
+	•	node_modules: Contiene las dependencias del proyecto.
+	•	package.json: Archivo de configuración de npm/pnpm con dependencias y scripts.
+	•	tsconfig.json: Configuración de TypeScript.
+	•	astro.config.mjs: Archivo de configuración de Astro, donde se puede modificar rutas, integraciones y otros parámetros.
+
+#### Carpeta src/
+
+Dentro de src/:
+	•	components/: Componentes reutilizables (UI).
+	•	layouts/: Plantillas de páginas (layouts).
+	•	pages/: Páginas del proyecto (.astro o .md).
+	•	styles/: Archivos CSS/SCSS globales o específicos.
+
+#### Carpeta pages/
+
+Dentro de pages/ se crean las rutas del sitio:
+	•	index.astro: Página principal.
+	•	about.astro: Página “Acerca de” (si aplica).
+
+#### Flujo de Astro
+	1.	Astro genera HTML estático por defecto.
+	2.	La interactividad se carga solo en los componentes con client:.
+	3.	TypeScript se puede usar en componentes y scripts del proyecto.
+	4.	La arquitectura permite optimizar la velocidad del sitio, enviando cero JavaScript por defecto al navegador.
+
