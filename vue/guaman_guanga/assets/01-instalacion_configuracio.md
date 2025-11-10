@@ -271,7 +271,7 @@ rutas, stores y formularios usados en la práctica.
 ``` {.bash language="bash"}
 pnpm dlx create-vue@latest
 ```
-![alt text](<capturas/instalacion/Captura de pantalla 2025-11-05 171823.png>)
+![alt text](<capturas/instalacion/crear_Proyecto.png>)
 El asistente permite seleccionar TypeScript, Router, Pinia, Vitest,
 ESLint y Prettier. Se crea la estructura base y los archivos de
 configuración.
@@ -292,7 +292,7 @@ vue --version
 ```
 
 ## 2) Revisión de configuración (versiones y entorno) 
-![alt text](<capturas/instalacion/Captura de pantalla 2025-11-05 174237.png>)
+![alt text](<capturas/instalacion/revision_Configuracion.png>)
 Salida de comandos de verificación y confirmación de scripts (`dev`,
 `build`, `preview`) en `package.json`.
 
@@ -305,9 +305,9 @@ pnpm run dev -o
 ```
 
 ## 4) Proyecto corriendo en el navegador 
-![alt text](<capturas/instalacion/Captura de pantalla 2025-11-05 174649.png>)
+![alt text](<capturas/instalacion/proyecto_Corriendo.png>)
 ## 5) Explicación de la estructura del proyecto 
-![alt text](<capturas/instalacion/Captura de pantalla 2025-11-05 174345.png>)
+![alt text](<capturas/instalacion/explicacion_Estructura.png>)
 ### Carpetas y archivos principales 
 
 -   `public`: Archivos estáticos públicos.

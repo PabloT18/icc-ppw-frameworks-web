@@ -124,7 +124,7 @@ TODO)
 ```
 
 # HomePage (implementado)
-![alt text](<capturas/instalacion/Captura de pantalla 2025-11-06 005812.png>)
+![alt text](<capturas/fundamentos/HomePage.png>)
 **Archivo:** `src/app/features/homePage/HomePage.vue`
 
     <script setup lang="ts">

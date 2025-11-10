@@ -291,14 +291,14 @@ Sigue estos pasos para implementar la navegación en tu proyecto Vue:
 ## �📸 Capturas de Implementación
 
 ### 1. Configuración de Rutas (`src/router/index.ts`)
-![alt text](capturas/instalacion/image.png)
+![alt text](capturas/instalacion/Rutas.png)
 
 ### 2. Navegación con `<RouterLink>`
-![alt text](image.png)
+![alt text](capturas/instalacion/RouterLink.png)
 
 ### 3. Componente con Navegación Programática
 
-
+```typescript
 <script setup lang="ts">
 import { useProjectStore } from '@/stores/project.store'
 import { useRouter } from 'vue-router'
@@ -314,18 +314,13 @@ function goToProjectsTwo() {
   router.push({ name: 'projects-two' })
 }
 </script>
-
+```
 
 ### 4. Aplicación Funcionando
 
-*[Inserta captura navegando entre vistas]*
+![*\[Inserta captura navegando entre vistas\]*](capturas/fundamentos/App.png)
 
 ---
-
-
-### 3. Componente con Navegación
-*[Insertar código del código TypeScript del componente con navegación]*
-
 
 
 ## 🔗 Enlaces del Proyecto
