@@ -221,11 +221,11 @@ ng build
 
 # Resultados
 
-![alt text](capturas/{3354025A-0657-4DCF-938B-37C2D14CE2EA}.png)
+![alt text](fundamentos/inicio.png)
 
-![alt text](capturas/{74A1D1D9-3489-4966-A1FD-892EA6A0AE78}.png)
+![alt text](fundamentos/inicio_Contador.png)
 
-![alt text](capturas/{77B9DD73-8BC9-4471-AE83-21B55C1381AC}.png)
+![alt text](fundamentos/inicio_Datos.png)
 
 ---
 
