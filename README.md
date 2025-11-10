@@ -83,7 +83,7 @@ README.md
 Descargar el repositorio localmente:
 
 ```bash
-git clone https://github.com/usuario/repositorio-frameworks.git
+git clone https://github.com/PabloT18/icc-ppw-frameworks-web.git
 ```
 
 Entrar al proyecto:

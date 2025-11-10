@@ -89,7 +89,7 @@ Uso el comando `ng generate component` para crear un nuevo componente en Angular
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
-![alt text](assets/06_componente-p2.png)
+![alt text](assets/componentep2.png)
 
 ### Resolucion tarea
 
@@ -97,6 +97,7 @@ Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/Pabl
 
 
 1. Captura de `app.routes.ts`
+
 2. Captura de `perfilPage.ts`
 3. Captura de `perfilPage.html`
 4. Captura de la pagina desplegada

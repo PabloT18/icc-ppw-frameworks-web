@@ -12,9 +12,9 @@
 
 ### Autores
 
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Ariel Calle**  
+📧 acalled1@est.ups.edu.ec
+💻 GitHub: [ArielStevenCalleDumaguala](hhttps://github.com/ArielCalleSteven)
 
 
 
@@ -22,25 +22,25 @@
 
 
 
-## Fudamentos de Angular
+## Fudamentos de VUE
 
-## ¿Qué es Angular?
+## ¿Qué es VUE?
 
-Angular es un framework de desarrollo web de código abierto mantenido por Google. Está diseñado para crear aplicaciones web dinámicas y de una sola página (SPA) utilizando TypeScript como lenguaje principal. Angular proporciona una estructura robusta y herramientas integradas para facilitar el desarrollo, la prueba y el mantenimiento de aplicaciones web complejas.
+Vue.js es un framework progresivo de JavaScript que permite crear interfaces de usuario y aplicaciones web de manera sencilla y eficiente. Se basa en una arquitectura de componentes, donde cada parte de la interfaz se construye de forma modular y reutilizable. Vue destaca por su sistema reactivo, que actualiza automáticamente la vista cuando cambian los datos, y por su fácil integración con HTML, CSS y JavaScript. Es una herramienta ligera, flexible y fácil de aprender, ideal para desarrollar aplicaciones de una sola página (SPA) o mejorar proyectos web existentes.
 
-## Características principales de Angular
+## Características principales de VUE
 
-1. **Componentes**: Angular utiliza una arquitectura basada en componentes, donde cada componente representa una parte reutilizable de la interfaz de usuario con su propia lógica y estilo.
+1. **Framework progresivo** : Puede usarse desde pequeños componentes hasta aplicaciones completas.
 
-2. **Data Binding**: Angular ofrece un sistema de enlace de datos bidireccional que sincroniza automáticamente los datos entre el modelo y la vista, facilitando la actualización de la interfaz de usuario.
+2. **Arquitectura basada en componentes**: Permite dividir la interfaz en partes reutilizables y organizadas.
 
-3. **Directivas**: Las directivas son atributos especiales que permiten manipular el DOM de manera declarativa, facilitando la creación de comportamientos personalizados en los elementos HTML.
+3. **Reactividad**: Actualiza automáticamente la vista cuando cambian los datos del modelo
 
-4. **Inyección de Dependencias**: Angular tiene un sistema de inyección de dependencias que facilita la gestión y reutilización de servicios y componentes en toda la aplicación.
+4. **Componentes**: Estructura la aplicación en partes reutilizables, facilitando el mantenimiento.
 
-5. **Ruteo**: Angular incluye un sistema de enrutamiento que permite la navegación entre diferentes vistas y componentes dentro de una aplicación de una sola página.
+5. **Data Binding (enlace de datos):**: Permite manipular el DOM con atributos como v-if, v-for o v-model.
 
-6. **Herramientas de Desarrollo**: Angular CLI (Command Line Interface) es una herramienta poderosa que facilita la creación, construcción y mantenimiento de proyectos Angular.
+6. **Facilidad de aprendizaje**: Su sintaxis es intuitiva y cercana a HTML, ideal para principiantes.
 
 ## Rutas
 
@@ -49,35 +49,25 @@ Angular utiliza un sistema de enrutamiento para gestionar la navegación entre d
 
 ## Directivas
 
-Las directivas en Angular son atributos o elementos especiales que permiten manipular el DOM de manera declarativa. Existen tres tipos principales de directivas:
+Las directivas en Vue.js son atributos especiales que se utilizan dentro del HTML para manipular el DOM de forma declarativa.Permiten aplicar comportamientos dinámicos, mostrar u ocultar elementos, repetir listas, enlazar datos y más
 
-## Servicios
-Los servicios en Angular son clases que proporcionan funcionalidades específicas y se utilizan para compartir datos y lógica entre diferentes componentes. Los servicios se inyectan en los componentes mediante el sistema de inyección de dependencias de Angular.
+1. **Directivas estructurales** : Controlan la visualización o renderización de elementos en el DOM.
 
-## Pipes
+2. **Directivas de atributos** : Modifican el comportamiento o aspecto de un elemento existente.
 
-Los pipes en Angular son funciones que transforman los datos antes de mostrarlos en la vista. Se utilizan para formatear, filtrar o transformar valores en plantillas HTML de manera sencilla y reutilizable.
+3. **Directivas personalizadas** : Permiten crear tus propias directivas para reutilizar lógica o manipular el DOM directamente.
 
-* Modificar el texto a mayúsculas:
-```html
-{{ 'texto de ejemplo' | uppercase }}
-```
- * Ordena y filtra:
-```html
-<li *ngFor="let item of items | orderBy: 'name' | filter: 'active'">
-  {{ item.name }}
-</li>
-```
 
-## Componentes de Angular
 
-Los componentes son la piedra angular de cualquier aplicación Angular. Cada componente consta de tres partes principales:
+## Componentes de VUE
 
-1. **Clase del Componente**: Define la lógica y el comportamiento del componente utilizando TypeScript.
+Los componentes son la base de toda aplicación en Vue.js. Cada componente encapsula su propia lógica, estructura y estilos, permitiendo construir interfaces modulares y reutilizables. Cada componente en Vue se compone de tres partes principales:
 
-2. **Plantilla HTML**: Define la estructura y el diseño de la interfaz de usuario del componente.
+1. **Script**: Contiene la lógica del componente escrita en JavaScript (o TypeScript, si se configura). Aquí se definen los datos, métodos, propiedades y ciclos de vida del componente.
 
-3. **Estilos CSS**: Define la apariencia visual del componente, peude ser SCSS o cualquier otro preprocesador compatible.
+2. **Plantilla template**: Define la estructura HTML del componente, especificando cómo se mostrará la información en la interfaz de usuario.
+
+3. **Estilos styles**: Define la apariencia visual del componente.Puede incluir estilos globales o locales (usando scoped), y soporta preprocesadores como CSS, SCSS o LESS.
 
 
 
@@ -85,23 +75,32 @@ Los componentes son la piedra angular de cualquier aplicación Angular. Cada com
 
 ### Creacion de un componente
 
-Uso el comando `ng generate component` para crear un nuevo componente en Angular. Este comando genera automáticamente los archivos necesarios y actualiza el módulo correspondiente.
+Uso el comando `vue generate component` o, de forma manual, se crea un nuevo archivo .vue dentro de la carpeta correspondiente. En Vue 3, los componentes se componen en un solo archivo que contiene la plantilla, la lógica y los estilos.
 
-Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
+Componente generado: HomePage, el cual se ubica en la ruta `src/home/pages/HomePage.vue`.
 
-![alt text](assets/06_componente-p2.png)
+![alt text](assets/componentep2.jpg)
 
 ### Resolucion tarea
 
 Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/PabloT18/f15f92224806731541d48027df336497)
 
 
-1. Captura de `app.routes.ts`
-2. Captura de `perfilPage.ts`
-3. Captura de `perfilPage.html`
-4. Captura de la pagina desplegada
-5. Enlace a la pagina de githubPages
-6. Enlace la repositorio de github del proyecto.
+1. Captura de `app.vue`
 
-Paso 5 y 6 debe estar subido al AVAC. 
+![alt text](assets/app.jpg)
+
+2. Captura de `perfilPage.vue`
+
+![alt text](assets/p1.jpg)
+
+![alt text](assets/p2.jpg)
+
+3. Captura de la pagina desplegada
+
+![alt text](assets/componentep3.jpg)
+
+4. Enlace a la pagina de githubPages
+5. Enlace la repositorio de github del proyecto.
+
 
