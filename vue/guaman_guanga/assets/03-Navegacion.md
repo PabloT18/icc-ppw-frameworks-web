@@ -66,7 +66,7 @@ Las **directivas** son atributos especiales que extienden el HTML (ej. `v-if`, `
 * `:to` usa **enlace reactivo** para pasar objetos con nombre de ruta y parámetros.
 * Vue aplica las clases `router-link-active` y `router-link-exact-active` para marcar enlaces activos.
 
-## 🔎 Navegación en el proyecto 
+## 🔎 Navegación en el proyecto (estado actual)
 
 El código actual usa navegación **declarativa** mediante `<RouterLink>` en el encabezado (`src/components/layout/AppHeader.vue`).  
 No hay llamadas al `router` desde métodos ni uso de `useRouter()` para redirecciones programáticas.  
