@@ -318,7 +318,7 @@ function goToProjectsTwo() {
 
 ### 4. Aplicación Funcionando
 
-![*\[Inserta captura navegando entre vistas\]*](capturas/fundamentos/App.png)
+![*\[Captura navegando entre vistas\]*](capturas/fundamentos/App.png)
 
 ---
 

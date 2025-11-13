@@ -66,22 +66,26 @@ Las **directivas** son instrucciones especiales que le dicen a Angular cómo mod
 ### 2. **Directivas Estructurales** (Angular 20+)
 
 ```html
-<!-- Control Flow moderno -->
-@if (usuario) {
-  <p>Bienvenido {{ usuario.nombre }}</p>
-}
-
-@for (producto of productos; track producto.id) {
-  <div>{{ producto.nombre }}</div>
-}
+<!-- Control para ingresar una listas de proyectos -->
+  @for (proyecto of proyectos(); track proyecto.id) {
+    <li>{{proyecto.name}} - {{proyecto.description}}</li>
+  }
 ```
+![alt text](navegacion/directivaEstructural.png)
+![alt text](navegacion/directivaEstructural2.png)
 
 ### 3. **Directivas de Atributo**
 
 ```html
 <!-- routerLink es una directiva de atributo -->
-<a routerLink="/inicio">Inicio</a>
-<div [ngClass]="{'activo': isActive}">Contenido</div>
+<nav>
+
+  <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a [routerLink]="['/perfil']" routerLinkActive="active">Perfil</a>
+  <a routerLink="/proyectos" routerLinkActive="active">Proyectos</a>
+  <a routerLink="/proyecto-dos" routerLinkActive="active">Proyecto Dos</a>
+
+</nav>
 ```
 
 ## 🔗 RouterLink: Tipos de Sintaxis
@@ -247,7 +251,7 @@ Para destacar el enlace activo, Angular proporciona `routerLinkActive`:
      routerLinkActive="active">
     Contacto
   </a>
-</nav>
+<nav>
 
 <style>
 .active {
@@ -293,7 +297,7 @@ export class EjemploComponent {
 3. **Sintaxis String**: Simple, para rutas fijas (`routerLink="/inicio"`)
 4. **Sintaxis Array**: Flexible, para rutas con parámetros (`[routerLink]="['/perfil']"`)
 5. **RouterLinkActive**: Para destacar enlaces activos
-6. **Navegación programática**: Usando el servicio Router
+6. **navegacion/Navegación programática**: Usando el servicio Router
 
 La navegación en Angular es mucho más eficiente y proporciona una mejor experiencia de usuario comparada con la navegación tradicional HTML.
 
@@ -385,9 +389,8 @@ export const routes: Routes = [
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
   >Proyectos Dos</a>
-</nav>
+<nav>
 ```
-
 ### 3. Componente con Navegación
 
 ```typescript
@@ -398,7 +401,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-nav-bar',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './nav-bar.html',
+  templateUrl: '.nav-bar.html',
   styles: [`
     nav { background-color: skyblue; margin-right: 1rem; padding: 1rem; }
     a { color: white; margin-right: 1rem; text-decoration: none; }
@@ -410,9 +413,16 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class NavBar {}
 ```
 
+### 3.1 Agracion de un servicio en proyectos-dos
+
+
+![navegacion](navegacion/navegacion.png) 
 ### 4. Aplicación Funcionando
 
-Agrega aquí una captura de la aplicación en el navegador mostrando la navegación entre Home, Perfil, Proyectos y Proyectos Dos.
+![alt text](navegacion/navHome.png)
+![alt text](navegacion/navPerfil.png)
+![alt text](navegacion/navProyectos.png)
+![alt text](navegacion/navProyectosDos.png)
 
 ## 🔗 Enlaces del Proyecto
 
