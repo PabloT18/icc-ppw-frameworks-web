@@ -1,17 +1,13 @@
 # Programación y Plataformas Web
 
 # Frameworks Web: Vue 3
-
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="80" alt="Vue Logo">
-</div>
+ <div align="center"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="80" alt="Vue Logo"></div>
 
 ## Práctica 2: Navegación en Vue
 
 ### Autores
-**Alex Guaman**
+**Alex Guaman**  
 **Daniel Guanga**
-
 
 ---
 
@@ -69,6 +65,14 @@ Las **directivas** son atributos especiales que extienden el HTML (ej. `v-if`, `
 
 * `:to` usa **enlace reactivo** para pasar objetos con nombre de ruta y parámetros.
 * Vue aplica las clases `router-link-active` y `router-link-exact-active` para marcar enlaces activos.
+
+## 🔎 Navegación en el proyecto (estado actual)
+
+El código actual usa navegación **declarativa** mediante `<RouterLink>` en el encabezado (`src/components/layout/AppHeader.vue`).  
+No hay llamadas al `router` desde métodos ni uso de `useRouter()` para redirecciones programáticas.  
+Una búsqueda en `src/` no muestra referencias a `useRouter` ni `router.push`; las únicas apariciones están en este README como ejemplos.
+
+**Conclusión:** hoy toda la navegación se gestiona de forma declarativa con `<RouterLink>`.
 
 ## 🔗 `<RouterLink>`: Tipos de sintaxis
 
@@ -257,7 +261,7 @@ export default createRouter({
 
 ---
 
-## �️ Implementación Práctica
+## 🛠️ Implementación Práctica
 
 Sigue estos pasos para implementar la navegación en tu proyecto Vue:
 
@@ -288,13 +292,13 @@ Sigue estos pasos para implementar la navegación en tu proyecto Vue:
 
 ---
 
-## �📸 Capturas de Implementación
+## 📸 Capturas de Implementación
 
 ### 1. Configuración de Rutas (`src/router/index.ts`)
-![alt text](capturas/instalacion/Rutas.png)
+![Configuración de rutas](capturas/instalacion/Rutas.png)
 
 ### 2. Navegación con `<RouterLink>`
-![alt text](capturas/instalacion/RouterLink.png)
+![RouterLink en el header](capturas/instalacion/RouterLink.png)
 
 ### 3. Componente con Navegación Programática
 
@@ -318,15 +322,18 @@ function goToProjectsTwo() {
 
 ### 4. Aplicación Funcionando
 
+<<<<<<< HEAD
 ![*\[Captura navegando entre vistas\]*](capturas/fundamentos/App.png)
+=======
+![Aplicación en funcionamiento](capturas/fundamentos/App.png)
+>>>>>>> 802e3646caec22a64001bb3746420ecebca724fc
 
 ---
 
-
 ## 🔗 Enlaces del Proyecto
 
-* **Repositorio GitHub**: [https://github.com/kennypallchizaca-coder/icc-ppw-u2-01_fundamentos-vue]
-* **GitHub Pages / Deploy**: [https://kennypallchizaca-coder.github.io/icc-ppw-u2-01_fundamentos-vue/#/]
+* **Repositorio GitHub**: <https://github.com/kennypallchizaca-coder/icc-ppw-u2-01_fundamentos-vue>
+* **GitHub Pages / Deploy**: <https://kennypallchizaca-coder.github.io/icc-ppw-u2-01_fundamentos-vue/#/>
 
 ---
 
@@ -342,8 +349,8 @@ function goToProjectsTwo() {
 
 ## 🎓 Resumen
 
-1. `<RouterLink>` habilita navegación SPA sin recargas.
-2. Evita `href` para no perder estado.
-3. String para rutas fijas, objeto para rutas con parámetros.
-4. Clases activas: `active-class` y `exact-active-class` o las clases por defecto.
+1. `<RouterLink>` habilita navegación SPA sin recargas.  
+2. Evita `href` para no perder estado.  
+3. String para rutas fijas, objeto para rutas con parámetros.  
+4. Clases activas: `active-class` y `exact-active-class` o las clases por defecto.  
 5. Navegación programática con `useRouter().push()`.
