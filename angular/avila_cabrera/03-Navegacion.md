@@ -10,15 +10,12 @@
 
 ### Autores
 
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
-
-
-
-
-
-
+*Diana Avila* 
+📧 davilam3@est.ups.edu.ec 
+💻 GitHub: [Diana Avila](https://github.com/davilam3)
+*Sebastian Cabrera*
+📧 ccabreram1@est.ups.edu.ec 
+💻 GitHub: [Sebastian Cabrera](https://github.com/Ccabreram1)
 
 ---
 
@@ -361,8 +358,47 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 ### 1. Configuración de Rutas (app.routes.ts)
 *[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
 
+```bash
+import { Routes } from '@angular/router';
+import { Component } from '@angular/core';
+import { Homepage } from './features/homepage/homepage';
+import { PerfilPage } from './features/PerfilPage/PerfilPage';
+import { Proyectos } from './features/proyectos/proyectos';
+import { Proyectos2 } from './features/proyectos2/proyectos2';
+
+export const routes: Routes = [
+    {
+        path: "",
+        component: Homepage,    
+    },
+
+    {
+        path: 'perfil',
+        component: PerfilPage,
+    },
+
+    {
+        path: 'proyectos',
+        component: Proyectos,
+    },
+
+    {
+        path: 'proyectos2',
+        component: Proyectos2,
+    }
+];
+
+```
 ### 2. Navegación con RouterLink
 *[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
+```bash
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:true }">Home</a>
+  <a routerLink="/perfil" routerLinkActive="active">Perfil</a>
+  <a routerLink="/proyectos" routerLinkActive="active">Proyectos</a>
+  <a routerLink="/proyectos2" routerLinkActive="active">Proyectos 2</a>
+</nav>
+```
 
 ### 3. Componente con Navegación
 *[Insertar código del código TypeScript del componente con navegación]*
@@ -375,7 +411,7 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 
 ## 🔗 Enlaces del Proyecto
 
-- **Repositorio GitHub**: [Enlace al repositorio]
+- **Repositorio GitHub**: [GitHub](https://github.com/Ccabreram1/icc-ppw-u2-01Fundamentos.git)
 - **GitHub Pages**: [Enlace a la aplicación desplegada]
 
 

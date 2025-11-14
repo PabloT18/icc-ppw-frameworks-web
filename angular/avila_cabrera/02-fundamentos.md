@@ -12,10 +12,12 @@
 
 ### Autores
 
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
-
+*Diana Avila* 
+📧 davilam3@est.ups.edu.ec 
+💻 GitHub: [Diana Avila](https://github.com/davilam3)
+*Sebastian Cabrera*
+📧 ccabreram1@est.ups.edu.ec 
+💻 GitHub: [Sebastian Cabrera](https://github.com/Ccabreram1)
 
 
 
@@ -97,11 +99,19 @@ Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/Pabl
 
 
 1. Captura de `app.routes.ts`
+![app.routes.ts](assets/app-routers-ts.png)
 2. Captura de `perfilPage.ts`
+![perfilPage.ts](assets/perfil-page-ts.png)
 3. Captura de `perfilPage.html`
+![perfilPage.html](assets/perfil-page-html.png)
 4. Captura de la pagina desplegada
+* Perfil Page
+![perfil](assets/perfilpage.png)
+* Home Page
+![home](assets/homepage.png)
 5. Enlace a la pagina de githubPages
 6. Enlace la repositorio de github del proyecto.
+[GitHub](https://github.com/Ccabreram1/icc-ppw-u2-01Fundamentos.git)
 
 Paso 5 y 6 debe estar subido al AVAC. 
 
