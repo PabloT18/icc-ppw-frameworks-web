@@ -309,35 +309,333 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 
 * `HomePage`, `PerfilPage`, `ProyectosPages`, `ProyectosDosPages` como componentes standalone.
 
+![alt text](navegacion/pagPrincipales.png)
+
 #### 1.1 Crear ProyectosPage
 
 * Estructura inicial con Signals para `name`, `description` y lista `proyectos`.
+```ts
+
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ListadoProyectos } from './components/listado-proyectos/listado-proyectos';
+
+@Component({
+  selector: 'app-proyecto-page',
+  imports: [ListadoProyectos],
+  templateUrl: './proyectoPage.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ProyectoPage {
+  name = signal('');
+  description = signal('');
+
+  proyectos = signal<Proyecto[]>([{ id: 1, name: 'Proyecto A', description: 'Descripcion' }]);
+
+  changeName(value: string) {
+    this.name.set(value);
+  }
+  changeDescription(value: string) {
+    this.description.set(value);
+  }
+  addProyecto() {
+    const newProyecto: Proyecto = {
+      id: this.proyectos().length + 1,
+      name: this.name(),
+      description: this.description()
+    };
+    this.proyectos.set([...this.proyectos(), newProyecto]);
+    this.name.set('');
+    this.description.set('');
+  }
+}
+
+```
+
+```html
+<h1>Proyectos</h1>
+
+<section>
+  <div>
+    <h3>Agregar proyecto</h3>
+    <h4>Proyecto a Agregar {{name()}}</h4>
+    <input
+      type="text"
+      placeholder="Nombre del proyecto"
+      [value]="name()"
+      (change)="changeName(txtName.value)"
+      #txtName
+    >
+    <input
+      type="text"
+      placeholder="Descripcion del proyecto"
+      [value]="description()"
+      (change)="changeDescription(txtDescription.value)"
+      #txtDescription
+    >
+    <button (click)="addProyecto()">Agregar</button>
+  </div>
+
+  <div>
+    <h3>Listado</h3>
+    <!-- <ul>
+      <li>Proyecto 1</li>
+      <li>Proyecto 2</li>
+    </ul> -->
+    <ul>
+      @for (proyecto of proyectos(); track proyecto.id) {
+        <li>{{proyecto.name}} - {{proyecto.description}}</li>
+      }
+    </ul>
+  </div>
+  <listado-proyectos [listName]="'Listado de proyectos'" [proyectos]="proyectos()"></listado-proyectos>
+</section>
+```
+**Creacion de una carpeta de interfaces**
+Esta carpeta sirve para organizar y tipar tus datos de forma clara, reutilizable y profesional.
+
+```ts
+interface Proyecto {
+  id: number;
+  name: string;
+  description: string;
+}
+```
+![alt text](navegacion/interfaces.png)
 
 #### 1.2 Crear ProyectosDosPage
 
-* Página secundaria para practicar navegación entre vistas.
+```html
+<listado-proyectos [listName]="'Listado de proyectos desde Servicio'" [proyectos]="proyectosService.proyectos()"></listado-proyectos>
+<p>Aqui deberia estar un componente que agregue al servicio</p>
+<add-proyecto (newProyecto)="proyectosService.addProyecto($event)"
+             (removeProyecto)="proyectosService.deleteProyecto()"></add-proyecto>
+```
+
+```ts
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ProyectosService } from './services/proyectos-service';
+import { ListadoProyectos } from '../proyectoPage/components/listado-proyectos/listado-proyectos';
+import { AddProyecto } from '../proyectoPage/components/add-proyecto/add-proyecto';
+
+@Component({
+  selector: 'app-proyecto-dos',
+  imports: [ListadoProyectos, AddProyecto],
+  templateUrl: './proyectoDos.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ProyectoDos {
+
+  proyectosService = inject(ProyectosService);
+
+ }
+```
+
+![alt text](navegacion/ProyetosDos.png)
 
 ### Paso 2: Configurar las Rutas
 
-* Define las rutas en `src/app/app.routes.ts` y mapea cada página a su `path`.
+```ts
+import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+import { HomePage } from './features/homePage/homePage';
+import { PerfilPage } from './features/perfilPage/perfilPage';
+import { ProyectoPage } from './features/proyectoPage/proyectoPage';
+import { ProyectoDos } from './features/proyectoDos/proyectoDos';
 
+export const routes: Routes = [
+  {
+    path: 'home',
+    component: HomePage
+  },
+  {
+    path: 'perfil',
+    component: PerfilPage
+  },
+  {
+    path: 'proyectos',
+    component: ProyectoPage
+  },
+  {
+    path: 'proyecto-dos',
+    component: ProyectoDos
+  },
+];
+```
 ### Paso 3: Agregar al Navbar
 
-* Crea `NavBar` con enlaces `routerLink` y estados activos con `routerLinkActive`.
+```html
+<nav>
+  <!-- <a href="/home">Home</a>
+  <a href="/perfil">Perfil</a> -->
+
+  <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a [routerLink]="['/perfil']" routerLinkActive="active">Perfil</a>
+  <a routerLink="/proyectos" routerLinkActive="active">Proyectos</a>
+  <a routerLink="/proyecto-dos" routerLinkActive="active">Proyecto Dos</a>
+
+</nav>
+```
+
+```ts
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from "@angular/router";
+
+@Component({
+  selector: 'app-nav-bar',
+  imports: [RouterLink, RouterLinkActive],
+  templateUrl: './nav-bar.html',
+  styles: [`
+    nav {
+      background-color: darkblue;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    a {
+      color: white;
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    a.active {
+      color: yellow;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NavBar { }
+```
 
 ### Paso 4: Crear Componentes para Proyectos y separarlos en componentes individuales
 
-#### 4.1 Crear Componente para Agregar Proyectos
+**Creacion de la carpeta components**
 
-* Formulario controlado por Signals que emite un evento al guardar.
+Es un directorio donde guardas todos los componentes reutilizables o partes visuales de tu proyecto.
 
-#### 4.2 Crear Componente para Lista de Proyectos
+Ejemplos de componentes:
 
-* Renderiza la lista y emite eventos para acciones sobre cada ítem.
+encabezado (header)
+
+barra lateral
+
+formulario
+
+tabla
+
+tarjeta de proyecto
+
+lista de tareas
+
+botones personalizados
+
+modales
+
+etc.
+
+Codigo de los archivos de add-proyecto:
+
+```html
+<div>
+<h3>Agregar proyecto</h3>
+<h4>Proyecto a Agregar {{name()}}</h4>
+<input type="text" placeholder="Nombre del proyecto" [value]="name()" (change)="changeName(txtName.value)" #txtName>
+<input type="text" placeholder="Descripcion del proyecto" [value]="description()"
+  (change)="changeDescription(txtDescription.value)" #txtDescription>
+<button (click)="addProyecto()" >Agregar</button>
+<button (click)="deleteProyecto(1)" >Eliminar</button>
+</div>
+```
+
+```ts
+import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+
+@Component({
+  selector: 'add-proyecto',
+  imports: [],
+  templateUrl: './add-proyecto.html',
+  styles: [
+    `
+    button {
+      margin: 5px;
+    }
+    `
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AddProyecto {
+
+
+  name = signal('');
+  description = signal('');
+  //input
+  newProyecto = output<Proyecto>();
+  removeProyecto = output<number>();
+
+  changeName(value: string) {
+    this.name.set(value);
+  }
+
+  changeDescription(value: string) {
+    this.description.set(value);
+  }
+
+  addProyecto() {
+    const newProyecto: Proyecto = {
+      id: Math.floor(Math.random() * 1000),
+      name: this.name(),
+      description: this.description()
+    };
+
+    this.newProyecto.emit(newProyecto);
+    this.name.set('');
+    this.description.set('');
+
+  }
+
+  deleteProyecto(id: number) {
+    this.removeProyecto.emit(id);
+  }
+
+ }
+```
+
+Codigo de los archivos de listado-proyectos
+
+```html
+<h1>{{listName()}}</h1>
+<ul>
+  @for (proyecto of proyectos(); track proyecto.id) {
+    <li>{{proyecto.name}} - {{proyecto.description}}</li>
+  }
+</ul>
+```
+
+```ts
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+@Component({
+  selector: 'listado-proyectos',
+  imports: [],
+  templateUrl: './listado-proyectos.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ListadoProyectos {
+
+  listName = input.required<string>();
+  proyectos = input.required<Array<Proyecto>>();
+
+ }
+```
+
+![alt text](navegacion/components.png)
 
 ### Paso 5: Implementar la Página de Proyectos
 
-* Conecta los subcomponentes y maneja el estado en `ProyectosPages`.
+![alt text](navegacion/manejoProyecto1.png)
+![alt text](navegacion/manejoProyecto2.png)
 
 ### Paso 6: Implementar la Página ProyectosDos
 
@@ -412,17 +710,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavBar {}
 ```
-
-### 3.1 Agracion de un servicio en proyectos-dos
-
-
 ![navegacion](navegacion/navegacion.png) 
+
 ### 4. Aplicación Funcionando
 
 ![alt text](navegacion/navHome.png)
 ![alt text](navegacion/navPerfil.png)
 ![alt text](navegacion/navProyectos.png)
-![alt text](navegacion/navProyectosDos.png)
+![alt text](navegacion/navProyectoDos.png)
 
 ## 🔗 Enlaces del Proyecto
 
