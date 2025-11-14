@@ -110,6 +110,8 @@ Seguir las instrucciones del siguiente GIST: [GIST](https://gist.github.com/Pabl
 * Home Page
 ![home](assets/homepage.png)
 5. Enlace a la pagina de githubPages
+[PerfilPage](https://davilam3.github.io/icc-ppw-u2-react_perfil/)
+[HomePage](https://davilam3.github.io/icc-ppw-u2-react_home/)
 6. Enlace la repositorio de github del proyecto.
 [GitHub](https://github.com/Ccabreram1/icc-ppw-u2-01Fundamentos.git)
 
