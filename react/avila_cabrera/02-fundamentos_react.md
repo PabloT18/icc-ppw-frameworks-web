@@ -7,23 +7,18 @@
 
 </div>
 
-
 ## Practica 2: Fundamentos 
 
 ### Autores
 
-**Diana Avila** 
+*Diana Avila* 
 📧 davilam3@est.ups.edu.ec 
 💻 GitHub: [Diana Avila](https://github.com/davilam3)
-**Sebastian Cabrera** 
+*Sebastian Cabrera* 
 📧 ccabreram1@est.ups.edu.ec 
 💻 GitHub: [Sebastian Cabrera](https://github.com/Ccabreram1)
 
-
-
-
-
-
+---
 
 ## Fudamentos de React
 
