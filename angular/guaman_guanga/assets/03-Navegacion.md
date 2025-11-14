@@ -303,17 +303,12 @@ La navegación en Angular es mucho más eficiente y proporciona una mejor experi
 
 ## 🛠️ Implementación Práctica
 
-Sigue estos pasos para implementar la navegación en tu proyecto Angular:
-
 ### Paso 1: Crear las Páginas Principales
-
-* `HomePage`, `PerfilPage`, `ProyectosPages`, `ProyectosDosPages` como componentes standalone.
 
 ![alt text](navegacion/pagPrincipales.png)
 
 #### 1.1 Crear ProyectosPage
 
-* Estructura inicial con Signals para `name`, `description` y lista `proyectos`.
 ```ts
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
@@ -632,16 +627,14 @@ export class ListadoProyectos {
 
 ![alt text](navegacion/components.png)
 
-### Paso 5: Implementar la Página de Proyectos
+
+## 📸 Capturas de Implementación
 
 ![alt text](navegacion/manejoProyecto1.png)
 ![alt text](navegacion/manejoProyecto2.png)
-
-### Paso 6: Implementar la Página ProyectosDos
-
-* Añade enlaces de ida y vuelta para practicar navegación.
-
-## 📸 Capturas de Implementación
+![alt text](navegacion/manejoProyectoDos1.png)
+![alt text](navegacion/manejoProyectoDos2.png)
+![alt text](navegacion/manejoProyectoDos3.png)
 
 ### 1. Configuración de Rutas (app.routes.ts)
 
