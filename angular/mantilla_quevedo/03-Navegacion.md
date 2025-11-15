@@ -342,6 +342,9 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 ```
+* Este componente representa la página principal de proyectos. 
+Importa el listado de proyectos y renderiza su contenido en la plantilla.
+
 #### 1.2 Crear ProyectosDosPage
 ```typescript
 @Component({
@@ -351,6 +354,8 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 ```
+* Esta página carga tanto el listado como el formulario de agregar proyectos, conectados a un servicio para gestionar la información.
+
 ### Paso 2: Configurar las Rutas
 ```typescript
 import { Routes } from '@angular/router';
@@ -389,6 +394,12 @@ export const routes: Routes = [
 
 ];
 ```
+```typeScript
+export const routes: Routes = [...]
+```
+* Este archivo define las rutas de la aplicación.
+Cada objeto indica qué componente se muestra según la URL (ejemplo: /perfil, /proyectos).
+
 ### Paso 3: Agregar al Navbar
 ```html
 <nav>
@@ -437,8 +448,13 @@ styles: [`
         text-decoration: underline;
       }
   `],
-
 ```
+```html
+<nav> ... </nav>
+```
+* Este menú permite navegar entre las diferentes páginas usando routerLink sin recargar la aplicación.
+routerLinkActive aplica estilos al enlace que está activo.
+
 ### Paso 4: Crear Componentes para Proyectos y separarlos en componentes indivuduals
 #### 4.1 Crear Componente para Agregar Proyectos
 ```html
@@ -464,6 +480,8 @@ styles: [`
 <button (click)="dellProyecto(1)">Eliminar</button>
 </div>
 ```
+* Formulario sencillo con campos para nombre y descripción, más botones para agregar o eliminar un proyecto.
+
 ```typescript
 @Component({
   selector: 'add-proyecto',
@@ -506,6 +524,10 @@ export class AddProyecto {
 
 }
 ```
+- Maneja los campos mediante signals.
+- Emite eventos al padre para agregar o eliminar proyectos.
+- Genera un ID aleatorio al crear un nuevo proyecto.
+
 #### 4.2 Crear Componente para Lista de Proyectos
 ```typescript
 @Component({
@@ -520,6 +542,7 @@ export class ListadoProyecto {
   proyectos = input.required<Proyecto[]>();
 }
 ```
+* Lista los proyectos recibidos como inputs.
 ```html
 <h1>{{listName()}}</h1>
 <ul>
@@ -528,6 +551,8 @@ export class ListadoProyecto {
 }
 </ul>
 ```
+- Recibe el nombre del listado y el arreglo de proyectos.
+- Solo muestra datos, no los modifica.
 ### Paso 5: Implementar la Página de Proyectos
 ```html
 <section>
@@ -567,6 +592,7 @@ export class ListadoProyecto {
     > </listado-proyecto>
 </section>
 ```
+* Contiene el formulario para agregar proyectos y el listado donde se muestran.
 ```typescript
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ListadoProyecto } from './components/listado-proyecto/listado-proyecto';
@@ -610,7 +636,8 @@ export class ProyectosPage {
   
 }
 ```
-
+- Maneja el estado local de la página con signals.
+- Agrega nuevos proyectos al arreglo y actualiza la vista.
 ### Paso 6: Implementar la Página ProyectosDos
 ```html
 <listado-proyecto
@@ -624,6 +651,7 @@ export class ProyectosPage {
 (removeProyecto)="proyectosService.delFirstProyecto()"
 ></add-proyecto>
 ```
+* Muestra el listado y el componente de agregar proyecto, pero esta vez conectados a un servicio.
 ```typescript
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AddProyecto } from '../ProyectosPage/components/listado-proyecto/add-proyecto/add-proyecto';
@@ -642,20 +670,26 @@ export class ProyectoDosPage {
   proyectosService = inject(ProyectosService);
 }
 ```
-
+- Inyecta el servicio para centralizar la información.
+- Permite agregar y eliminar proyectos desde el servicio.
 ## �📸 Capturas de Implementación
 
 ### 1. Configuración de Rutas (app.routes.ts)
 *[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
 ![Conf de app.routes.ts](image-1.png)
 
+* Muestra cómo configurar las rutas en Angular para navegar entre las diferentes páginas de la aplicación.
 ### 2. Navegación con RouterLink
 *[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
 ![routerLink](image-2.png)
 
+* Se muestra cómo usar las directivas routerLink y routerLinkActive para navegar entre las páginas de la aplicación sin recargar la página completa.
+
 ### 3. Componente con Navegación
 *[Insertar código del código TypeScript del componente con navegación]*
 ![nav-bar.ts](image-3.png)
+
+* Componente que incluye navegación mediante routerLink
 
 ### 4. Aplicación Funcionando
 *[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
