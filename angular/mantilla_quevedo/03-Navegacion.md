@@ -676,6 +676,7 @@ export class ProyectoDosPage {
 
 - [[Enlace GitHubPages clcmono](https://clcmono.github.io/icc-ppw-u1-01-Fundamentos-Angular/)]
 
+
 ## 📝 Notas de Implementación
 
 - Usé Angular 20+ con sintaxis moderna
