@@ -97,8 +97,11 @@ Los componentes son la piedra angular de cualquier aplicación Angular. Cada com
 ![Página perfil](perfil.png)
 
 5. Enlace a la pagina de githubPages
+
 https://clcmono.github.io/icc-ppw-u1-01-Fundamentos-Angular/
+
 6. Enlace la repositorio de github del proyecto.
+
 https://github.com/clcmono/icc-ppw-u1-01-Fundamentos-Angular
 
 ### Creacion de un componente
