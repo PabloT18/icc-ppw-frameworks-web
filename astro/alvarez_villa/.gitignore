@@ -37,3 +37,6 @@ Thumbs.db
 .cache/
 .parcel-cache/
 .temp/
+
+# Ignorar carpeta de la práctica
+astro/alvarez_villa/Practica_2_alvarez-villa/
