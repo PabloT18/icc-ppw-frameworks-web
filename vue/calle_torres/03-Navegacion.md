@@ -417,13 +417,17 @@ En este proyecto se aplicó la segunda opción.
 En la siguiente figura se observa la aplicación en ejecución, mostrando la navegación entre las distintas vistas mediante el menú principal.
 
 
+![alt text](assets/Pag1.jpg) 
+![alt text](assets/Pag2.jpg) 
+![alt text](assets/Pag3.jpg) 
+![alt text](assets/Pag4.jpg) 
 
 
 
 
 ## 🔗 Enlaces del Proyecto
 
-- **Repositorio GitHub**: [Enlace al repositorio]
+- **Repositorio GitHub**: [\[Enlace al repositorio\]](https://github.com/PabloT18/icc-ppw-frameworks-web.git)
 - **GitHub Pages**: [Enlace a la aplicación desplegada]
 
 
