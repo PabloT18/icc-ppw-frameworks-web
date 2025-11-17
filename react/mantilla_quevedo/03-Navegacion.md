@@ -3,12 +3,13 @@
 # Frameworks Web: React
 
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="80" alt="React Logo">
+  <img src="https://avatars.githubusercontent.com/u/6412038?s=200&v=4"  width="80" alt="React Logo">
 </div>
 
-## Práctica 3: Navegación en React
+## Práctica 3: Navegación en Angular
 
 ### Autores
+
 
 *Valeria Mantilla*
 📧 [amantillac3@est.ups.edu.ec](mailto:amantillac3@est.ups.edu.ec)
@@ -17,236 +18,247 @@
 *Claudia Quevedo*
 📧 [cquevedor@ups.edu.ec](mailto:cquevedor@ups.edu.ec)
 💻 GitHub: [clcmono](https://github.com/clcmono)
+---
+
+
 
 ---
 
 ## 🧭 Navegación en React
 
-En React la navegación no funciona como en HTML tradicional usando <a href="">, ni como Angular con routerLink.
-React utiliza React Router, una librería que permite construir aplicaciones de una sola página (SPA) sin recargar el navegador.
+React, a diferencia de HTML tradicional, no recarga la página completa cuando navegas entre secciones.
+Para lograr esto utiliza bibliotecas como React Router, que permiten crear Single Page Applications (SPA).
+
+Esto significa:
+  -No hay recargas completas
+  -La experiencia es fluida
+  -La URL cambia sin perder el estado
+  -Solo cambia el contenido central de la pantalla
 
 ## 🔄 ¿Por qué NO usar `href` tradicional?
 
 ### ❌ Navegación Tradicional con `href`:
 ```html
-<!-- Esto RECARGA toda la página -->
-<a href="/perfil">Ir al Perfil</a>
-<a href="/productos">Ver Productos</a>
-```
+<a href="/perfil">Ir a Perfil</a>
 
 **Problemas:**
 - ✗ Recarga completa de la página
 - ✗ Pérdida del estado de la aplicación
 - ✗ Mayor tiempo de carga
 - ✗ Experiencia de usuario interrumpida
+- ✗ No funciona con SPA
 
-### ✅ Navegación con `React Router`:
-```tsx
-<Link to="/perfil">Perfil</Link>
+
+### ✅ Navegación con `routerLink`:
+```html
+
+<a routerLink="/perfil">Perfil</a>
+
 ```
 
 **Ventajas:**
-- ✓ No recarga la página
-- ✔ Mantiene estado
-- ✔ Se integra con el enrutador SPA
+- ✓ Navegación instantánea
+- ✓ Preserva el estado de la aplicación
+- ✓ Mejor experiencia de usuario
+- ✓ Aplicación de una sola página (SPA)
 
-## 📚 ¿Qué son las Directivas?
+## 📚 ¿Qué es React Router?
 
-Las **directivas** son instrucciones especiales que le dicen a Angular cómo modificar el DOM (Document Object Model). En Angular existen tres tipos:
+React Router es una librería que permite:
 
-### 1. **Directivas de Componente**
+  -Crear rutas
+  -Mostrar componentes según la URL
+  -Navegar sin recargar
+  -Pasar parámetros
+  -Usar navegación programática
+ En este proyecto se usó:
 ```typescript
-@Component({
-  selector: 'app-home'  // Esta es una directiva de componente
-})
+import { createBrowserRouter } from "react-router-dom";
 ```
 
-### 2. **Directivas Estructurales** (Angular 20+)
-```html
-<!-- Control Flow moderno -->
-@if (usuario) {
-  <p>Bienvenido {{ usuario.nombre }}</p>
-}
+### 🌐 Configuración de Rutas (React Router)
 
-@for (producto of productos; track producto.id) {
-  <div>{{ producto.nombre }}</div>
-}
+Archivo: Routes/routes.tsx
+```typescript
+export const router = createBrowserRouter([
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/",
+    element: (
+      <>
+        <Navbar />
+        <HomePage />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/perfil",
+    element: (
+      <>
+        <Navbar />
+        <Perfil />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/proyectos",
+    element: (
+      <>
+        <Navbar />
+        <ProyectosPage />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/proyectos-dos",
+    element: (
+      <>
+        <Navbar />
+        <ProyectosDosPage />
+      </>
+    ),
+  },
+]);
+
+```
+Esta configuración permite que React Router reemplace el contenido sin recargar.
+
+### 🧩 Componentes Principales del Proyecto
+1️⃣ Navbar (Navegación)
+
+Archivo: components/Navbar.tsx
+```typescript
+<Link to="/icc-ppw-u2-02_fundamentos_framework/">Home</Link>
+<Link to="/icc-ppw-u2-02_fundamentos_framework/perfil">Perfil</Link>
+<Link to="/icc-ppw-u2-02_fundamentos_framework/proyectos">Proyectos</Link>
+<Link to="/icc-ppw-u2-02_fundamentos_framework/proyectos-dos">Proyectos Dos</Link>
+
+```
+✔ Usa <Link> en vez de <a>
+✔ Navegación instantánea
+✔ No recarga la página
+
+2️⃣ HomePage
+-Dos contadores
+-Uso de useState
+-Uso de useEffect para intervalo automático
+
+Conceptos usados:
+-Estado
+-Efectos con limpieza
+-Eventos (onClick)
+
+3️⃣ PerfilPage
+  -Estado local para nombre, apellido y edad
+  -Funciones internas para modificar la información
+  -Render dinámico
+
+Conceptos usados:
+  -Múltiples estados
+  -Funciones internas
+  -Transformaciones de strings (uppercase)
+
+
+4️⃣ ProyectosPage
+
+-Manejo de proyectos usando estado local:
+```typescript
+setProyectos([...proyectos, nuevoProyecto]);
 ```
 
-### 3. **Directivas de Atributo**
-```html
-<!-- routerLink es una directiva de atributo -->
-<a routerLink="/inicio">Inicio</a>
-<div [ngClass]="{'activo': isActive}">Contenido</div>
+Incluye:
+  -Formulario simple
+  -Listado de proyectos
+  -Componentización (ListadoProyecto)
+
+
+5️⃣ ProyectosDosPage
+Versión con Context API:
+  -Estado global
+  -ProyectosProvider
+  -useProyectos() hook personalizado
+  -Métodos globales:
+    ✓ addProyecto
+    ✓ removeFirstProyecto
+
+Se utiliza:
+```typescript
+<ProyectosProvider>
+   ...
+</ProyectosProvider>
+
 ```
 
-## 🔗 RouterLink: Tipos de Sintaxis
-
-Angular ofrece dos formas principales de usar `routerLink`:
-
-### 1. **Sintaxis de String Simple**
-```html
-<a routerLink="/">Home</a>
-<a routerLink="/productos">Productos</a>
-<a routerLink="/contacto">Contacto</a>
-```
-
-**Características:**
-- ✓ Sintaxis más simple
-- ✓ Ideal para rutas estáticas
-- ✓ Fácil de leer y escribir
-
-### 2. **Sintaxis de Array (Binding)**
-```html
-<a [routerLink]="['/perfil']">Perfil</a>
-<a [routerLink]="['/usuario', usuarioId]">Ver Usuario</a>
-<a [routerLink]="['/productos', 'categoria', categoriaId]">Categoría</a>
-```
-
-**Características:**
-- ✓ Permite pasar parámetros dinámicos
-- ✓ Más flexible para rutas complejas
-- ✓ Ideal para rutas con variables
-
-## 💡 Ejemplos Prácticos
-
-### Ejemplo 1: Navegación Básica
-```tsx
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import App from "./App"
-import Perfil from "./pages/Perfil"
-
-export function AppRouter() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/perfil" element={<Perfil />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
-```
-```tsx
-<Link to="/">Inicio</Link>
-<Link to="/perfil">Perfil</Link>
-```
-
-### Ejemplo 2: Navegación con Parámetros
-```tsx
-<Link to={`/producto/${id}`}>Ver Producto</Link>
-```
-
-```tsx
-<Route path="/producto/:id" element={<Producto />} />
-```
-
-```tsx
-const { id } = useParams();
-```
-
-## 🎯 Diferencias Clave: String vs Array
-
-| Aspecto | Sintaxis String | Sintaxis Array |
-|---------|----------------|----------------|
-| **Formato** | `routerLink="/ruta"` | `[routerLink]="['/ruta']"` |
-| **Parámetros** | ❌ No soporta | ✅ `['/ruta', parametro]` |
-| **Variables** | ❌ Solo texto fijo | ✅ Puede usar variables |
-| **Complejidad** | Simple | Más flexible |
-
-### Ejemplos Comparativos:
-
-```html
-<!-- ✅ String: Ideal para rutas fijas -->
-<a routerLink="/">Inicio</a>
-<a routerLink="/productos">Productos</a>
-<a routerLink="/contacto">Contacto</a>
-
-<!-- ✅ Array: Ideal para rutas dinámicas -->
-<a [routerLink]="['/perfil']">Mi Perfil</a>
-<a [routerLink]="['/usuario', usuario.id]">Ver Usuario: {{ usuario.nombre }}</a>
-<a [routerLink]="['/producto', producto.id, 'reviews']">Reviews del Producto</a>
-
-<!-- 🔍 Ejemplo con múltiples parámetros -->
-<a [routerLink]="['/categoria', categoria.id, 'producto', producto.id]">
-  Ver Producto en Categoría
-</a>
-```
-
-## 🚀 RouterLink Activo
-
-Para destacar el enlace activo, Angular proporciona `routerLinkActive`:
-
-```html
-<nav>
-  <a routerLink="/" 
-     routerLinkActive="active" 
-     [routerLinkActiveOptions]="{exact: true}">
-    Inicio
-  </a>
-  
-  <a routerLink="/productos" 
-     routerLinkActive="active">
-    Productos
-  </a>
-  
-  <a routerLink="/contacto" 
-     routerLinkActive="active">
-    Contacto
-  </a>
-</nav>
-
-<style>
-.active {
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-}
-</style>
-```
-
-## 📱 Navegación Programática
-
-También podemos navegar desde el código TypeScript:
+## 🎛️ Componentes Reutilizables
+✔ AddProyecto
+Formulario conectado al contexto global.
+✔ ListadoProyecto
+Lista de proyectos utilizando props.
+✔ Proyecto Interface
+Archivo: interfaces/Proyecto.ts
 
 ```typescript
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-
-@Component({
-  selector: 'app-ejemplo',
-  template: `
-    <button (click)="irAProductos()">Ver Productos</button>
-    <button (click)="irAProducto(123)">Ver Producto 123</button>
-  `
-})
-export class EjemploComponent {
-  private router = inject(Router);
-  
-  irAProductos() {
-    this.router.navigate(['/productos']);
-  }
-  
-  irAProducto(id: number) {
-    this.router.navigate(['/producto', id]);
-  }
+export interface Proyecto {
+  id: number;
+  nombre: string;
+  descripcion: string;
 }
+
 ```
+## 🔧 Servicios (Context API)
+
+Archivo: services/ProyectosService.tsx
+
+Incluye:
+  -Creación del contexto
+  -Proveedor global
+  -Hook useProyectos
+  -Métodos globales de actualización
+
+Esto permite compartir datos entre múltiples componentes sin usar props manualmente.
+
+## 📁 Estilos Utilizados
+
+**Navbar.css** → estilos morados del menú
+
+**App.css**→ tarjetas, inputs, botones
+
+**index.css** → estilos globales
+
+Se mantiene una identidad visual coherente:
+  -Bordes redondeados
+  -Fondo suave
+  -Sombra ligera
+  -Layout centrado
+
+
+## 🚀 Navegación Programática en React
+
+React también soporta navegación desde código:
+```typescript
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
+navigate("/perfil");
+
+
+```
+
+
 
 
 
 ## 🎓 Resumen
 
-1. **RouterLink** es una directiva de Angular que permite navegación SPA
-2. **No usar `href`** porque recarga la página completa
-3. **Sintaxis String**: Simple, para rutas fijas (`routerLink="/inicio"`)
-4. **Sintaxis Array**: Flexible, para rutas con parámetros (`[routerLink]="['/perfil']"`)
-5. **RouterLinkActive**: Para destacar enlaces activos
-6. **Navegación programática**: Usando el servicio Router
+1. **React Router** permite navegación SPA sin recargar la página.
+2. **No usar href** tradicional, ya que recarga la página completa y rompe el comportamiento SPA.
+3. **<Link>** es la alternativa correcta para navegación interna.
+4. Las rutas se definen con **createBrowserRouter** y se renderizan con **<RouterProvider>.**
+5. Cada ruta muestra un componente distinto según la URL.
+6. Puedes navegar programáticamente usando el hook **useNavigate().**
 
-La navegación en Angular es mucho más eficiente y proporciona una mejor experiencia de usuario comparada con la navegación tradicional HTML.
+La navegación en React es fluida, optimizada y ofrece una experiencia mucho más moderna que la navegación HTML tradicional.ciente y proporciona una mejor experiencia de usuario comparada con la navegación tradicional HTML.
 
-## �️ Implementación Práctica
+##  ️ Implementación Práctica
 
 Sigue estos pasos para implementar la navegación en tu proyecto React:
 
@@ -274,34 +286,121 @@ Sigue estos pasos para implementar la navegación en tu proyecto React:
 ### Paso 6: Implementar la Página ProyectosDos
 
 
-## �📸 Capturas de Implementación
+##  📸 Capturas de Implementación
 
 ### 1. Configuración de Rutas (app.routes.ts)
 *[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
+import { createBrowserRouter } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import HomePage from "../homePage/HomePage";
+import Perfil from "../perfilPage/Perfil";
+import ProyectosDosPage from "../proyectosDosPage/ProyectosDosPage";
+import ProyectosPage from "../proyectosPage/ProyectosPage";
 
-### 2. Navegación con RouterLink
-*[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
+export const router = createBrowserRouter([
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/",
+    element: (
+      <>
+        <Navbar />
+        <HomePage />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/perfil",
+    element: (
+      <>
+        <Navbar />
+        <Perfil />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/proyectos",
+    element: (
+      <>
+        <Navbar />
+        <ProyectosPage />
+      </>
+    ),
+  },
+  {
+    path: "/icc-ppw-u2-02_fundamentos_framework/proyectos-dos",
+    element: (
+      <>
+        <Navbar />
+        <ProyectosDosPage />
+      </>
+    ),
+  },
+]);
 
+### 2. Navegación con Link
+*[Insertar código del template HTML mostrando ambos tipos de sintaxis de Link]*
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+
+export default function Navbar() {
+  return (
+    <nav className="navbar">
+      <Link to="/icc-ppw-u2-02_fundamentos_framework/">Home</Link>
+      <Link to="/icc-ppw-u2-02_fundamentos_framework/perfil">Perfil</Link>
+      <Link to="/icc-ppw-u2-02_fundamentos_framework/proyectos">Proyectos</Link>
+      <Link to="/icc-ppw-u2-02_fundamentos_framework/proyectos-dos">Proyectos Dos</Link>
+    </nav>
+  );
+}
+
+![Link](image.png)
 ### 3. Componente con Navegación
-*[Insertar código del código TypeScript del componente con navegación]*
+*[Insertar código del código css del componente con navegación]*
+.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 15px 25px;
+  background: #b434dbff;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.navbar a:hover {
+  opacity: 0.7;
+}
+
+![Navbar.css](image-5.png)
 
 ### 4. Aplicación Funcionando
 *[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
-
-
-
+![Home](image-1.png)
+![Perfil](image-2.png)
+![Proyectos](image-3.png)
+![Proyectos Dos](image-4.png)
 
 ## 🔗 Enlaces del Proyecto
 
-- **Repositorio GitHub**: [[Alanissette16](https://github.com/Alanissette16/icc-ppw-u2-02_fundamentos_framework.git)]
-- **GitHub Pages**: [[Alanissette16](https://alanissette16.github.io/icc-ppw-u2-02_fundamentos_framework/)]
+- **Repositorio GitHub**:(https://github.com/Alanissette16/icc-ppw-u2-02_fundamentos_framework/tree/valeria_mantilla)
+- **GitHub Pages**: https://alanissette16.github.io/icc-ppw-u2-02_fundamentos_framework/
 
 
 ## 📝 Notas de Implementación
 
-- Proyecto realizado con React + Vite
-- Navegación implementada con React Router
-- Se crearon páginas, componentes y vistas separadas
-- Se sigue arquitectura modular
-- Se implementó navegación estática y dinámica
-- Se añadieron componentes reutilizables
+ -Proyecto realizado con React + Vite
+ -Navegación con React Router (createBrowserRouter)
+ -Manejo de estado:
+    ✓ useState
+    ✓ useEffect
+    ✓ Context API
+  -Componentes reutilizables
+  -Estilos personalizados
+  -Rutas configuradas para GitHub Pages
