@@ -433,7 +433,6 @@ export class Navbar { }
 ```
 
 ### 4. Aplicación Funcionando
-*[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
 **HomePage**
 ![HomePage](assets/Home.png)
 **Perfil**
