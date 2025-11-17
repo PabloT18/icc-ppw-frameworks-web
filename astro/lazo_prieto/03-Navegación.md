@@ -214,7 +214,7 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 ### 1. Configuración de Rutas
 En Astro, cada archivo .astro dentro de src/pages genera automáticamente una ruta, por lo que podemos mostrar la estructura de carpetas como “configuración de rutas”:
 
-<div style="text-align: center;">
+<div align="center">
   <img src="assets/capturas/componentes/03_rutas.png" width="70%" alt="Rutas">
 </div>
 
