@@ -402,17 +402,58 @@ export const routes: Routes = [
 
 ### 3. Componente con Navegación
 *[Insertar código del código TypeScript del componente con navegación]*
+```bash 
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+@Component({
+  selector: 'app-navbar',
+  imports: [RouterLinkActive, RouterLink],
+  templateUrl: './navbar.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  
+  styles: [`
+    nav {
+      background-color: #159;
+      padding: 1rem;
+    }
+    a {
+      color: white;
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    a.active {
+      color: red;
+    }
+    a:hover{
+      text-decoration: underline;
+    }`],
+})
+export class Navbar { }
+```
 
 ### 4. Aplicación Funcionando
 *[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
-
-
+**HomePage**
+![HomePage](assets/Home.png)
+**Perfil**
+![PerfilPage](assets/perfil.png)
+**Proyectos**
+![Proyectos](assets/proyectos.png)
+**Proyetos Dos**
+![Proyectos Dos](assets/proyecto2.png)
+**Formulario**
+![Formulario](assets/formulario.png)
 
 
 ## 🔗 Enlaces del Proyecto
 
-- **Repositorio GitHub**: [GitHub](https://github.com/Ccabreram1/icc-ppw-u2-01Fundamentos.git)
+- **Repositorio GitHub**: 
+* [GitHub Sebastian Cabrera](https://github.com/Ccabreram1/icc-ppw-u2-01Fundamentos.git)
+* [GitHub Diana Avila]( https://github.com/davilam3/icc-pww-u1-01_fundamentos.git )
 - **GitHub Pages**: [Enlace a la aplicación desplegada]
+* [Page Diana Avila](https://davilam3.github.io/icc-pww-u1-01_fundamentos/)
+* [Page Sebastian Cabrera](https://ccabreram1.github.io/icc-ppw-u2-01Fundamentos/)
 
 
 ## 📝 Notas de Implementación
