@@ -211,21 +211,21 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 
 ## Capturas de Implementación
 
-### 1. Configuración de Rutas (app.routes.ts)
+### 1. Configuración de Rutas
 En Astro, cada archivo .astro dentro de src/pages genera automáticamente una ruta, por lo que podemos mostrar la estructura de carpetas como “configuración de rutas”:
 
 <div style="text-align: center;">
   <img src="assets/capturas/componentes/03_rutas.png" width="70%" alt="Rutas">
 </div>
 
-### 2. Navegación con RouterLink
-El `<nav>` define la barra de navegación de la aplicación. Cada enlace apunta a una página de Astro (Home, Perfil, Proyectos, Proyectos 2) y la condición class={currentPath === '...' ? 'active' : ''} resalta el enlace de la página actual.
-
+### 2. Navegación 
+El `<nav>` define la barra de navegación de la aplicación. Cada enlace apunta a una página de Astro (Home, Perfil, Proyectos, Proyectos 2), además, se le hizo para compatibilidad con gh-pages.
 <div style="text-align: center;">
   <img src="assets/capturas/componentes/03_navegacion.png" width="100%" alt="Navegacion">
 </div>
 
 ### 3. Componente con Navegación
+![alt text](image.png)
 <div style="text-align: center;">
   <img src="assets/capturas/componentes/03_navbar.png" width="100%" alt="NavBar">
 </div>
