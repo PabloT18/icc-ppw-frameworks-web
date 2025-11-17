@@ -220,28 +220,27 @@ En Astro, cada archivo .astro dentro de src/pages genera automáticamente una ru
 
 ### 2. Navegación 
 El `<nav>` define la barra de navegación de la aplicación. Cada enlace apunta a una página de Astro (Home, Perfil, Proyectos, Proyectos 2), además, se le hizo para compatibilidad con gh-pages.
-<div style="text-align: center;">
+<div align="center">
   <img src="assets/capturas/componentes/03_navegacion.png" width="100%" alt="Navegacion">
 </div>
 
 ### 3. Componente con Navegación
-![alt text](image.png)
-<div style="text-align: center;">
+<div align="center">
   <img src="assets/capturas/componentes/03_navbar.png" width="100%" alt="NavBar">
 </div>
 
 ### 4. Aplicación Funcionando
 
-<div style="text-align: center;">
-  <img src="assets/capturas/componentes/03_proyectos1.png" width="70%" alt="Proyectos Page Añadir">
+<div align="center">
+  <img src="assets/capturas/componentes/03_proyectos1.png" width="80%" alt="Proyectos Page Añadir">
 </div>
 
-<div style="text-align: center;">
-  <img src="assets/capturas/componentes/03_proyectos2Add.png" width="70%" alt="Proyectos Page Dos Añadir">
+<div align="center">
+  <img src="assets/capturas/componentes/03_proyectos2Add.png" width=80%" alt="Proyectos Page Dos Añadir">
 </div>
 
-<div style="text-align: center;">
-  <img src="assets/capturas/componentes/03_proyectosdosDel.png" width="70%" alt="Proyectos Page Dos Eliminar">
+<div align="center">
+  <img src="assets/capturas/componentes/03_proyectosdosDel.png" width="80%" alt="Proyectos Page Dos Eliminar">
 </div>
 
 
