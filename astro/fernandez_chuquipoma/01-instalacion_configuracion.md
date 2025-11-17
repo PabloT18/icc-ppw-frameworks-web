@@ -4,7 +4,7 @@
 
 <div align="center">
   
-![Astro Logo](./src/assets/astro.svg)
+![Astro Logo](./assets/astro.svg)
 
 </div>
 
@@ -64,7 +64,7 @@ npm run dev
 ```
 
 ### Captura de la instalación
-![Instalación Astro](./src/assets/instalacion_astro.png)
+![Instalación Astro](./assets/instalacion_astro.png)
 
 ---
 
@@ -77,7 +77,7 @@ Partes principales:
 - Estilos: <style> scoped por componente.
 
 ### Despliegue pagina Astro
-![Instalación Astro](./src/assets/astroo.png)
+![Instalación Astro](./assets/astroo.png)
 
 
 ### 🧾 Conclusión

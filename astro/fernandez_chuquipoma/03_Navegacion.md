@@ -4,7 +4,7 @@
 
 <div align="center">
   
-![Astro Logo](./src/assets/astro.svg)
+![Astro Logo](./assets/astro.svg)
 
 </div>
 
@@ -97,13 +97,13 @@ saveProyectos(proyectos);
 ## Funcionalidad del codigo
 
 1. Captura de `Proyectospage.astro` 
-![proyectos - captura](./src/assets/proyectospage.png) 
+![proyectos - captura](./assets/proyectospage.png) 
 
 Este código permite agregar proyectos a una lista dinámica.
 El usuario escribe un nombre y una descripción, presiona Agregar, y el proyecto aparece automáticamente en dos listados. Todo se maneja con JavaScript dentro de la misma página, sin recargarla.
 
 2. Captura de `ProyectosDospage.astro` 
-![proyectos - captura](./src/assets/proyectodospage.png) 
+![proyectos - captura](./assets/proyectodospage.png) 
 
 Este código implementa un pequeño servicio interno dentro del componente para manejar una lista de proyectos. Permite:
 
@@ -124,7 +124,7 @@ Al presionar el botón, se elimina el último elemento de la lista y se guarda e
 Cada vez que se agrega o elimina un proyecto, la lista se reconstruye automáticamente en pantalla.
 
 3. Captura de `Formulario.astro` 
-![proyectos - captura](./src/assets/formulariopage.png) 
+![proyectos - captura](./assets/formulariopage.png) 
 
 Este formulario permite ingresar nombre, edad y correo, y utiliza FormUtils para validar cada campo.
 Cuando el usuario escribe y sale de un input, se muestran errores si el dato es incorrecto.
@@ -132,7 +132,7 @@ Al presionar Guardar, se revisan todas las validaciones; si todo está correcto,
 En resumen: valida datos en tiempo real, evita envíos incorrectos y gestiona los errores de forma automática.
 
 4. Captura de `FormUtils.js` 
-![proyectos - captura](./src/assets/utilis.png) 
+![proyectos - captura](./assets/utilis.png) 
 
 FormUtils es una clase utilitaria que contiene funciones de validación para formularios.
 Su propósito es validar campos, generar mensajes de error, y controlar cuándo mostrar dichos errores.
@@ -165,13 +165,13 @@ Su propósito es validar campos, generar mensajes de error, y controlar cuándo 
 ## Resultados — Despliegue de la pagina
 
 1. Captura de `proyectos`  
-    ![Index - captura](./src/assets/proyectos.png)
+    ![Index - captura](./assets/proyectos.png)
 
 2. Captura de `proyectos-dos`  
-    ![Layout - captura](./src/assets/proyectosdos.png)
+    ![Layout - captura](./assets/proyectosdos.png)
 
 3. Captura de `formulariopage`  
-    ![PerfilPage - captura](./src/assets/Formulario.png)
+    ![PerfilPage - captura](./assets/Formulario.png)
 
 5. Enlace a la página en GitHub Pages:  
    [Github Pages](https://alexchuquipoma.github.io/icc-ppw-u2-02Fundamentos/)
