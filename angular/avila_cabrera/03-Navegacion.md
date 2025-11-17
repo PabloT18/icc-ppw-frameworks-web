@@ -440,7 +440,7 @@ export class Navbar { }
 **Proyectos**
 ![Proyectos](assets/proyectos.png)
 **Proyetos Dos**
-![Proyectos Dos](assets/proyecto2.png)
+![Proyectos Dos](assets/proyectodos.png)
 **Formulario**
 ![Formulario](assets/formulario.png)
 
