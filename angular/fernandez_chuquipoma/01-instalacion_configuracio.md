@@ -145,7 +145,7 @@ Capturas de pantalla como evidencia del proceso de instalación y configuración
 Capturas de pantalla como evidencia del proceso de instalación y configuración de Angular, así como explicaciones detalladas de los componentes y formularios utilizados en la práctica.
 
 ### 1. Instalación de Angular CLI y creación del proyecto:
-![Instalación Angular](./src/assets/01-instalacion-angular-p01.png)
+![Instalación Angular](./assets/01-instalacion-angular-p01.png)
 
 **Descripción de la imagen:**
 
