@@ -86,7 +86,7 @@ Uso el comando `ng generate component` para crear un nuevo componente en Angular
 
 Componentes generados: HomePage, el cual le coloco en la carpeta `src/app/home/pages/homePage`.
 
-![Estructura de la carpeta del componente HomePage](./src/assets/06_componente-p2.png)
+![Estructura de la carpeta del componente HomePage](./assets/06_componente-p2.png)
 **Descripción de la Imagen:** Esta captura muestra la estructura de archivos generada por Angular CLI para el nuevo componente `HomePage`, ubicado dentro de la carpeta `src/app/home/pages`.
 
 ### Resolución de la Tarea
@@ -95,22 +95,22 @@ Para la resolución de la tarea, se han implementado las siguientes configuracio
 
 1.  **Captura de `app.routes.ts`**
     
-    ![Definición de rutas en app.routes.ts](./src/assets\routers.png)
+    ![Definición de rutas en app.routes.ts](./assets\routers.png)
     **Descripción de la Imagen:** Este fragmento de código muestra la configuración del archivo `app.routes.ts`, donde se define el enrutamiento principal de la aplicación. Aquí se establecen las rutas para `Homepage`, `Perfilpage`, `ProyectosPage`, `ProyectoDosPage` y `FormularioPage`, asociando cada path a su componente correspondiente.
 
 2.  **Captura de `perfilPage.ts`**
     
-    ![Lógica y estado del componente Perfilpage en perfilPage.ts](./src/assets/perfilpagets.png)
+    ![Lógica y estado del componente Perfilpage en perfilPage.ts](./assets/perfilpagets.png)
     **Descripción de la Imagen:** Este archivo (`perfilPage.ts`) define la lógica y el estado del componente `Perfilpage`. Utiliza **`signals`** para manejar las propiedades reactivas `name`, `lastName` y `age`, e incluye métodos como `getFullName()`, `changeData()`, `resetData()` y `changeAge()` para manipular el estado del perfil.
 
 3.  **Captura de `perfilPage.html`**
     
-    ![Plantilla HTML del componente Perfilpage en perfilPage.html](./src/assets/perfilpagehtml.png)
+    ![Plantilla HTML del componente Perfilpage en perfilPage.html](./assets/perfilpagehtml.png)
     **Descripción de la Imagen:** Esta captura muestra la plantilla HTML (`perfilPage.html`) del componente `Perfilpage`. Se visualizan los datos del perfil (`name`, `lastName`, `age`) usando *data binding* unidireccional y bidireccional, y se incluyen botones con eventos **`(click)`** para interactuar con la lógica del componente, como cambiar datos o resetear el perfil.
 
 4.  **Captura de la Página Desplegada**
 
-    ![Página de perfil desplegada con datos iniciales](./src/assets/perfila.png)
+    ![Página de perfil desplegada con datos iniciales](./assets/perfila.png)
 
     **Descripción de la Imagen:** Esta captura muestra la interfaz de usuario final del componente `Perfilpage` tal como se visualiza en el navegador web después de ser desplegado. Se puede observar la **renderización de los datos del perfil** y los botones interactivos en acción.
 

@@ -166,7 +166,7 @@ En esta captura se muestra el proceso de instalación de Angular CLI versión 20
 
 ### 2. Revision de configuracion de angular: 
 
-![alt text](./src/assets/02-angular_version-p01.png)
+![alt text](./assets/02-angular_version-p01.png)
 
 <!-- uso comando ng version -->
 **Descripción de la imagen:**
@@ -198,16 +198,16 @@ ng new 01-fundamentos
 * En la pregunta si queremos usar `zoneless` respondemos que si, ya que Angular recomienda usar `zoneless` para mejorar el rendimiento en aplicaciones modernas y trabaja con señales asincrónicas de manera más eficiente.
 
 
-![Configuración ](./src/assets/03-confiracion1-p01.png)
+![Configuración ](./assets/03-confiracion1-p01.png)
 
 ### 4. Proyecto corriendo en el navegador:
 
-![Proyecto corriendo en el navegador](./src/assets/04-proyecto-corriendo-p01.png)
+![Proyecto corriendo en el navegador](./assets/04-proyecto-corriendo-p01.png)
 
 
 ###  5. Explicación de la estructura del proyecto:
 
-![Estructura del proyecto](./src/assets/05-estructura_proyecto-p01.png)
+![Estructura del proyecto](./assets/05-estructura_proyecto-p01.png)
 
 
 ##### Carpetas y archivos principales:

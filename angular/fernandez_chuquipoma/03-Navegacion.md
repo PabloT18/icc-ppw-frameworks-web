@@ -370,14 +370,14 @@ Se implementó la composición de la vista en ProyectoDosPage, demostrando la mo
 
 ## �📸 Capturas de Implementación
 
-![Definición de rutas en app.routes.ts](./src/assets/routersts.png)
+![Definición de rutas en app.routes.ts](./assets/routersts.png)
 **Descripción de la Imagen:** Este archivo es el mapa de la aplicación. Muestra cómo se han definido las **rutas estáticas** (`'perfil'`, `'proyectos'`) y cómo se asocian a sus componentes principales (`Perfilpage`, `ProyectoDosPage`), habilitando la navegación de una sola página (SPA).
 
 ---
 
 ### 2. Implementación del Contenedor (`proyectos-dos-pages.ts`)
 
-![Código TypeScript del componente ProyectosDosPage](./src/assets/proyectodosts.png)
+![Código TypeScript del componente ProyectosDosPage](./assets/proyectodosts.png)
 **Descripción de la Imagen:** El corazón de la gestión de proyectos. Este componente:
 1.  **Inyecta** (`inject(ProyectosService)`) el servicio que maneja el estado de la lista de proyectos.
 2.  Define la propiedad `proyectos` que se conecta a los datos reactivos del servicio.
@@ -387,7 +387,7 @@ Se implementó la composición de la vista en ProyectoDosPage, demostrando la mo
 
 ### 3. Integración de Componentes (`proyectos-dos-pages.html`)
 
-![Plantilla HTML del componente ProyectosDosPage](./src/assets/proyectodoshtml.png)
+![Plantilla HTML del componente ProyectosDosPage](./assets/proyectodoshtml.png)
 **Descripción de la Imagen:** Muestra la integración de los componentes hijos y la lógica de estado:
 1.  La lista de proyectos se muestra mediante el *control flow* **`@for`** utilizando el arreglo de `proyectos()`.
 2.  El componente **`<add-proyecto>`** se enlaza (`(newProyecto)`, `(removeProyecto)`) a los métodos del servicio (`addProyecto`, `removeFirstProyecto`), permitiendo que el componente hijo interactúe directamente con el estado global de la aplicación.
@@ -396,7 +396,7 @@ Se implementó la composición de la vista en ProyectoDosPage, demostrando la mo
 
 ### 4. Aplicación Funcionando (Ruta: `/proyectos-dos`)
 
-![Vista de la página Proyectos Dos en ejecución](./src/assets/pgdosejecucion.png)
+![Vista de la página Proyectos Dos en ejecución](./assets/pgdosejecucion.png)
 **Descripción de la Imagen:** Captura de la aplicación en el navegador en la ruta `/proyectos-dos`. Se observa la **barra de navegación** (donde el enlace "Proyectos Dos" está activo), el **listado de proyectos** (`prueba - proyecto`) y el formulario con los botones de **"Agregar"** y **"Eliminar"**, confirmando que la integración de los componentes y el servicio de estado funcionan correctamente.
 
 
