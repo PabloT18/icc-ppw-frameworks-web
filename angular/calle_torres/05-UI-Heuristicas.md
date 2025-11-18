@@ -329,13 +329,19 @@ Para evaluar la interfaz desarrollada:
 
 <img src="h1.jpg" alt="router"> 
 
+<img src="j1.png" alt="router">   
+
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
 
 <img src="h2.jpg" alt="router"> 
 
+<img src="j2.png" alt="router"> 
+
 3. Codigo con ejemplos aplicados. PASO 3 y 4
 
 <img src="h3.jpg" alt="router"> 
+
+<img src="j3.png" alt="router"> 
 
 
 
