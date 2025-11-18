@@ -360,8 +360,15 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 ![Componente Navegación](/angular/lazo_prieto/assets/lazo/03_navts.png)
 
 ### 4. Aplicación Funcionando
+<<<<<<< HEAD
 ![Aplicación Funcionando](/angular/lazo_prieto/assets/lazo/03_funcionando.png)
 ![Aplicación Funcionando](/angular/lazo_prieto/assets/lazo/03_pagedos.png)
+=======
+![Proyectos Page](/angular/lazo_prieto/assets/lazo/03_proyectospage.png)
+![Proyectos Dos Page](/angular/lazo_prieto/assets/lazo/03_proyectosdospage.png)
+
+
+>>>>>>> 63d6d1fe8153d8d2912f316b6e5888af4ae968e5
 
 ## 🔗 Enlaces del Proyecto
 
