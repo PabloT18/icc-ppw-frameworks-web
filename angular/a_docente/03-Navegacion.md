@@ -359,20 +359,16 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 ## �📸 Capturas de Implementación
 
 ### 1. Configuración de Rutas (app.routes.ts)
-
-<img src="router.jpg" alt="router">
+*[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
 
 ### 2. Navegación con RouterLink
-
-<img src="navhtml.jpg" alt="Archivo html">
+*[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
 
 ### 3. Componente con Navegación
-
-<img src="navts.jpg" alt="archivo .ts">
+*[Insertar código del código TypeScript del componente con navegación]*
 
 ### 4. Aplicación Funcionando
-
-<img src="funcional.jpg" alt="Aplicacion Funcionando">
+*[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
 
 
 
@@ -390,3 +386,4 @@ Sigue estos pasos para implementar la navegación en tu proyecto Angular:
 - Agregué estilos para mejorar la experiencia de usuario
 - Utilicé signals para el manejo de estado moderno
 - Apliqué las mejores prácticas de navegación SPA 
+
