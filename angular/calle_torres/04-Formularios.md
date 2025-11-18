@@ -821,7 +821,26 @@ El uso de `ReactiveFormsModule`, junto con `@if` y `FormUtils`, ofrece un flujo 
 
 1. Tres capturas por cada pagina con los formularios  
   * Pagina formulario vacio
+
+<img src="F1.jpg" alt="router">
+
+<img src="F2.jpg" alt="router">
+
+<img src="F3.jpg" alt="router"> 
+
   * Pagina fomrualurio mostrar todos los errores
+
+<img src="F4.jpg" alt="router"> 
+
+<img src="F5.jpg" alt="router"> 
+
+<img src="F6.jpg" alt="router"> 
+
+
   * Página formulario enviado correctamente y muestra en listado
 
+<img src="F7.jpg" alt="router"> 
 
+<img src="F8.jpg" alt="router"> 
+
+<img src="F9.jpg" alt="router"> 
