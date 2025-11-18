@@ -113,7 +113,7 @@ export class HeaderHeuristicaComponent {
 ### Tabla Principal de Navegación
 
 ```html
-<!-- app.component.html -->
+<!-- interfaz-page.html -->
 <div class="min-h-screen bg-gray-50 py-12 px-4">
   <div class="max-w-7xl mx-auto">
     <!-- Header Principal -->
