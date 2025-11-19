@@ -113,7 +113,7 @@ export class HeaderHeuristicaComponent {
 ### Tabla Principal de Navegación
 
 ```html
-<!-- app.component.html -->
+<!-- interfaz-page.html -->
 <div class="min-h-screen bg-gray-50 py-12 px-4">
   <div class="max-w-7xl mx-auto">
     <!-- Header Principal -->
@@ -244,7 +244,7 @@ export class HeaderHeuristicaComponent {
 ```
 
 ```typescript
-// app.component.ts
+
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -258,13 +258,13 @@ interface Heuristica {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-interfaz-page',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './interfaz-page.html',
+  styleUrl: './interfaz-page.css',
 })
-export class AppComponent {
+export class InterfazPage {
   heuristicas = signal<Heuristica[]>([
     {
       id: 1,
@@ -2101,20 +2101,7 @@ export class ReconocimientoBuenoComponent {
 }
 ```
 
-## Resultado esperado
+## Resultados:
 
-1. Página inicial con Tailwind configurado y funcionando. ✅ PASO 1
-2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. ✅ PASO 2  
-3. Código con ejemplos aplicados de todas las heurísticas. ✅ PASO 3 y 4
-
-### Heurísticas implementadas:
-1. ✅ **Visibilidad del Estado del Sistema** - Formulario con feedback completo
-2. ✅ **Correspondencia con el Mundo Real** - Iconos y lenguaje familiar  
-3. ✅ **Control y Libertad del Usuario** - Editor con deshacer/rehacer
-4. ✅ **Consistencia y Estándares** - Patrones visuales uniformes
-5. ✅ **Prevención de Errores** - Validaciones y confirmaciones
-6. ✅ **Reconocimiento vs Recordar** - Selección visual en lugar de memorizar códigos
-
-
-
-
+1. Página inicial con Tailwind configurado y funcionando. 
+2. Una captura por cada pagina de heuristica
