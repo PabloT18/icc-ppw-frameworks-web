@@ -13,9 +13,12 @@
 
 ### Autor
 
-**Pablo Torres**
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+*Miguel Ángel Vanegas*   
+📧 mvanegasp@est.ups.edu.ec  
+💻 GitHub: [MiguelV145](https://github.com/MiguelV145)  
+*Jose Vanegas*  
+📧 jvanegasp1@est.ups.edu.ec   
+💻 GitHub: [josevac1](https://github.com/josevac1)
 
 ---
 
@@ -2104,4 +2107,18 @@ export class ReconocimientoBuenoComponent {
 ## Resultados:
 
 1. Página inicial con Tailwind configurado y funcionando. 
+![pantilla](./assets/pantilla.png)
 2. Una captura por cada pagina de heuristica
+h1
+![h1](./assets/h1.png)
+h2
+![h2](./assets/h2.png)
+h3
+![h3](./assets/h3.png)
+h4
+![h4](./assets/h4.png)
+h5
+![h5](./assets/h5.png)
+h6
+![h6](./assets/h6.png)
+
