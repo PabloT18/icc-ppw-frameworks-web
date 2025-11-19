@@ -342,9 +342,24 @@ Para evaluar la interfaz desarrollada:
 ## Resultado esperado
 
 1. Página inicial con Tailwind configurado y funcionando. PASO 1
-2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
-3. Codigo con ejemplos aplicados. PASO 3 y 4
 
+Jose
+![alt text](/angular/vanegas_vanegas/assets/Jose1.png)
+
+Miguel
+![alt text](/angular/vanegas_vanegas/assets/Miguel1.jpeg)
+2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
+Jose
+![alt text](/angular/vanegas_vanegas/assets/Jose2.png)
+
+Miguel 
+![alt text](/angular/vanegas_vanegas/assets/Miguel.2.jpeg)
+3. Codigo con ejemplos aplicados. PASO 3 y 4
+jose
+![alt text](/angular/vanegas_vanegas/assets/Jose3.png)
+
+Miguel
+![alt text](/angular/vanegas_vanegas/assets/Miguel3.jpeg)
 
 
 
