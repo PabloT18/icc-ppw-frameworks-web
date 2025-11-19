@@ -378,14 +378,14 @@ export default function Navbar() {
   opacity: 0.7;
 }
 
-![Navbar.css](image-5.png)
+![Navbar.css](./assets/image-5.png)
 
 ### 4. Aplicación Funcionando
 *[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
-![Home](image-1.png)
-![Perfil](image-2.png)
-![Proyectos](image-3.png)
-![Proyectos Dos](image-4.png)
+![Home](./assets/image-1.png)
+![Perfil](./assets/image-2.png)
+![Proyectos](./assets/image-3.png)
+![Proyectos Dos](./assets/image-4.png)
 
 ## 🔗 Enlaces del Proyecto
 

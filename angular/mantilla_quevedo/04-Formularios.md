@@ -823,16 +823,16 @@ El uso de `ReactiveFormsModule`, junto con `@if` y `FormUtils`, ofrece un flujo 
 
 1. Tres capturas por cada pagina con los formularios  
   * Pagina formulario vacio
-![formulario basic](image-9.png)
-![formulario dynamic](image-10.png)
-![formulario more](image-11.png)
+![formulario basic](./assets/image-9.png)
+![formulario dynamic](./assets/image-10.png)
+![formulario more](./assets/image-11.png)
 
   * Pagina formulario mostrar todos los errores
-![formulario basic-error](image-12.png)
-![formulario dynamic-error](image-13.png)
-![formulario more](image-14.png)
+![formulario basic-error](./assets/image-12.png)
+![formulario dynamic-error](./assets/image-13.png)
+![formulario more](./assets/image-14.png)
 
   * Página formulario enviado correctamente y muestra en listado
-![formulario dynamic](image-15.png)
-![formulario more](image-16.png)
+![formulario dynamic](./assets/image-15.png)
+![formulario more](./assets/image-16.png)
 

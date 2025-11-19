@@ -676,27 +676,27 @@ export class ProyectoDosPage {
 
 ### 1. Configuración de Rutas (app.routes.ts)
 *[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
-![Conf de app.routes.ts](image-1.png)
+![Conf de app.routes.ts](./assets/image-1.png)
 
 * Muestra cómo configurar las rutas en Angular para navegar entre las diferentes páginas de la aplicación.
 ### 2. Navegación con RouterLink
 *[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
-![routerLink](image-2.png)
+![routerLink](./assets/image-2.png)
 
 * Se muestra cómo usar las directivas routerLink y routerLinkActive para navegar entre las páginas de la aplicación sin recargar la página completa.
 
 ### 3. Componente con Navegación
 *[Insertar código del código TypeScript del componente con navegación]*
-![nav-bar.ts](image-3.png)
+![nav-bar.ts](./assets/image-3.png)
 
 * Componente que incluye navegación mediante routerLink
 
 ### 4. Aplicación Funcionando
 *[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
-![Home](image-5.png)
-![Perfil](image-6.png)
-![Proyectos](image-7.png)
-![ProyectosDos](image-8.png)
+![Home](./assets/image-5.png)
+![Perfil](./assets/image-6.png)
+![Proyectos](./assets/image-7.png)
+![ProyectosDos](./assets/image-8.png)
 
 ## 🔗 Enlaces del Proyecto
 

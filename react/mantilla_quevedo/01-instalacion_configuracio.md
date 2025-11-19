@@ -142,7 +142,7 @@ Capturas de pantalla como evidencia del proceso de instalación y configuración
 
 ### 1. Creación del proyecto React:
 
-![Creación Proyecto React](image-4.png)
+![Creación Proyecto React](./assets/image-4.png)
 **Descripción de la imagen:**
 En esta captura se muestra la terminal de Windows durante el proceso de instalación y configuración del proyecto React con Vite utilizando el comando:
 
@@ -184,15 +184,15 @@ Rolldown es un nuevo bundler experimental que Vite está probando.
 * Install with pnpm and start now? Yes
 Este comando instalará las dependencias con pnpm.
 
-![Configuración](image-3.png)
+![Configuración](./assets/image-3.png)
 
 ### 3. Proyecto corriendo en el navegador:
 
-![Proyecto corriendo en el navegador](image-1.png)
+![Proyecto corriendo en el navegador](./assets/image-1.png)
 
 ### 4. Explicación de la estructura del proyecto:
 
-![Estructura del proyecto](image-2.png)
+![Estructura del proyecto](./assets/image-2.png)
 
 ##### Carpetas y archivos principales:
 

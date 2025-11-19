@@ -153,7 +153,7 @@ src/
  ├── App.tsx
  └── index.tsx
 
-![Estructura del Proyecto](image-10.png)
+![Estructura del Proyecto](./assets/image-10.png)
 **Resultados**
 
 **Componentes generados:**
@@ -163,15 +163,15 @@ Perfil → Página de perfil con las funcionalidades de cambio y reset de datos.
 
 **Capturas de Pantalla**
 Captura de App.tsx
-![App.tsx](image-5.png)
+![App.tsx](./assets/image-5.png)
 **Explicación:**
 
 * Navegación: El menú de navegación se encuentra dentro de un nav con enlaces a la página de inicio y al perfil.
 * Rutas: Se definen las rutas con <Route> y <Routes>. El componente Perfil se carga en la ruta /perfil.
 
 **Captura de Perfil.tsx**
-![Perfil.tsx](image-6.png)
-![Perfil.tsx, parte2](image-7.png)
+![Perfil.tsx](./assets/image-6.png)
+![Perfil.tsx, parte2](./assets/image-7.png)
 **Explicación:**
 
 * Estado: Usamos useState para manejar el estado de name, lastName, y age.
@@ -183,8 +183,8 @@ Captura de App.tsx
 - Interactividad: Hay tres botones que permiten cambiar los datos, cambiar la edad y resetear los datos del perfil.
 
 **Página Desplegada**
-![Pagina Inicial](image-8.png)
-![Perfil](image-9.png)
+![Pagina Inicial](./assets/image-8.png)
+![Perfil](./assets/image-9.png)
 
 **Explicación de la práctica:**
 
