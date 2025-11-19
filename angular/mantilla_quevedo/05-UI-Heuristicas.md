@@ -334,7 +334,7 @@ Para evaluar la interfaz desarrollada:
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
 ![paso 2](./assets/Paso2.png)
 3. Codigo con ejemplos aplicados. PASO 3 y 4
-![paso]./assets/(Paso3.png)
+![paso](./assets/Paso3.png)
 
 
 
