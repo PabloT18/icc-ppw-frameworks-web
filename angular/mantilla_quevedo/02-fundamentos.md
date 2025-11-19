@@ -84,17 +84,17 @@ Los componentes son la piedra angular de cualquier aplicación Angular. Cada com
 ## Resultados
 
 1. Captura de `app.routes.ts`
-![archivo app.routes.ts](approuters.png)
+![archivo app.routes.ts](./assets/approuters.png)
 
 2. Captura de `perfilPage.html`
-![archivo perfilPage.html](perfilpagehtml.png)
+![archivo perfilPage.html](./assets/perfilpagehtml.png)
 
 3. Captura de `perfilPage.ts`
-![archivo perfilPage.ts](perfilpagests.png)
+![archivo perfilPage.ts](./assets/perfilpagests.png)
 
 4. Captura de la pagina desplegada
-![Página homePage](homepage.png)
-![Página perfil](perfil.png)
+![Página homePage](./assets/homepage.png)
+![Página perfil](./assets/perfil.png)
 
 5. Enlace a la pagina de githubPages
 

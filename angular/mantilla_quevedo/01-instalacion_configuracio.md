@@ -143,7 +143,7 @@ ng g --help
 
 ### 1. Instalación de Angular CLI y creación del proyecto:
 
-![Instalación de Angular](install.png)
+![Instalación de Angular](./assets/install.png)
 
 **Descripción de la imagen:**
 
@@ -164,7 +164,7 @@ En esta captura se muestra el proceso de instalación de Angular CLI versión 20
 
 ### 2. Revision de configuracion de angular: 
 
-![Revisión de configuración](Angular_ins.png)
+![Revisión de configuración](./assets/Angular_ins.png)
 
 <!-- uso comando ng version -->
 **Descripción de la imagen:**
@@ -196,15 +196,15 @@ ng new my-app
 * En la pregunta si queremos usar `zoneless` respondemos que si, ya que Angular recomienda usar `zoneless` para mejorar el rendimiento en aplicaciones modernas y trabaja con señales asincrónicas de manera más eficiente.
 
 
-![Configuración Inicial](Angula-newapp.png)
+![Configuración Inicial](./assets/Angula-newapp.png)
 
 ### 4. Proyecto corriendo en el navegador:
 
-![Proyecto corriendo en el navegador](myapp.jpg)
+![Proyecto corriendo en el navegador](./assets/myapp.jpg)
 
 ###  5. Explicación de la estructura del proyecto:
 
-![Estructura del proyecto](image.png)
+![Estructura del proyecto](./assets/image.png)
 
 
 ##### Carpetas y archivos principales:

@@ -267,7 +267,7 @@ export class InterfazPage {}
 
 Resultado PASO 2 (Debera estar en la sección de resultados su captura)
 
-![alt text](./assets/Paso1.png)
+![alt text](./assets/Paso2.png)
 
 
 ---
@@ -332,7 +332,7 @@ Para evaluar la interfaz desarrollada:
 1. Página inicial con Tailwind configurado y funcionando. PASO 1
 ![paso1](./assets/Paso1.png)
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
-![paso 2](./assets/Paso1.png)
+![paso 2](./assets/Paso2.png)
 3. Codigo con ejemplos aplicados. PASO 3 y 4
 ![paso]./assets/(Paso3.png)
 

@@ -2108,8 +2108,8 @@ export class ReconocimientoBuenoComponent {
 ## Resultados:
 
 1. Página inicial con Tailwind configurado y funcionando.
-![pagina inicial](./assets/./assets/image-17.png)
-![heuristicas](./assets/./assets/image-18.png)
+![pagina inicial](./assets/image-17.png)
+![heuristicas](./assets/image-18.png)
 2. Una captura por cada pagina de heuristica
 ![visibilidad](./assets/image-19.png)
 ![componente malo - bueno](./assets/image-20.png)
