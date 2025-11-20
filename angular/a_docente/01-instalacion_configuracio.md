@@ -206,7 +206,7 @@ ng new 01-fundamentos
 
 
 ###  5. Explicación de la estructura del proyecto:
-
+  
 ![Estructura del proyecto](assets/05-estructura_proyecto-p01.png)
 
 
