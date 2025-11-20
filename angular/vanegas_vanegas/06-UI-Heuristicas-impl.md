@@ -2114,7 +2114,7 @@ h1
 h2
 ![h2](./assets/h2.png)
 h3
-![h3](./assets/h3.png)
+![h3](./assets/h3-corregido.png)
 h4
 ![h4](./assets/h4.png)
 h5
