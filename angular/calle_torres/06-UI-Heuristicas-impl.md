@@ -2101,20 +2101,883 @@ export class ReconocimientoBuenoComponent {
 }
 ```
 
-## Resultado esperado
 
-1. Página inicial con Tailwind configurado y funcionando. ✅ PASO 1
-2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. ✅ PASO 2  
-3. Código con ejemplos aplicados de todas las heurísticas. ✅ PASO 3 y 4
+## 7. Flexibilidad y Eficiencia de Uso
 
-### Heurísticas implementadas:
-1. ✅ **Visibilidad del Estado del Sistema** - Formulario con feedback completo
-2. ✅ **Correspondencia con el Mundo Real** - Iconos y lenguaje familiar  
-3. ✅ **Control y Libertad del Usuario** - Editor con deshacer/rehacer
-4. ✅ **Consistencia y Estándares** - Patrones visuales uniformes
-5. ✅ **Prevención de Errores** - Validaciones y confirmaciones
-6. ✅ **Reconocimiento vs Recordar** - Selección visual en lugar de memorizar códigos
+**Componente: `flexibilidad-eficiencia.component.ts`**
+**Objetivo UX:** Permitir que tanto usuarios novatos como expertos puedan usar el sistema, ofreciendo atajos, configuraciones personalizadas y formas más rápidas de completar tareas frecuentes.
+
+---
+
+### Ejemplo Malo (NO aplica la heurística 7)
+
+```typescript
+// flexibilidad-malo.component.ts
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-flexibilidad-malo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="p-6 max-w-lg mx-auto bg-white rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Redactar Mensaje</h2>
+
+      <!-- Interfaz rígida, misma experiencia para todos -->
+      <textarea 
+        [(ngModel)]="mensaje"
+        class="w-full h-32 p-3 border rounded mb-4"
+        placeholder="Escribe tu mensaje aquí...">
+      </textarea>
+
+      <!-- Solo un botón, sin atajos, sin opciones avanzadas -->
+      <button 
+        (click)="enviar()"
+        class="w-full bg-blue-500 text-white p-3 rounded">
+        Enviar Mensaje
+      </button>
+
+      <!-- Sin historial, sin plantillas, sin autocompletado -->
+      <div class="mt-6 text-gray-600 text-sm">
+        No hay opciones avanzadas disponibles.
+      </div>
+    </div>
+  `
+})
+export class FlexibilidadMaloComponent {
+  mensaje = '';
+
+  enviar() {
+    console.log('Mensaje enviado:', this.mensaje);
+  }
+}
+```
+
+#### Por qué NO aplica la heurística:
+
+* No existen atajos ni funciones avanzadas para usuarios expertos.
+* No permite configurar la experiencia (tema, tamaño del texto, plantillas).
+* No ofrece autocompletado, historial o sugerencias.
+* Es completamente rígido: todos los usuarios reciben la misma interfaz.
+
+---
+
+### Ejemplo Bueno (Sí aplica la heurística)
+
+Este ejemplo introduce:
+
+* Modo rápido de envío con atajos de teclado (Ctrl + Enter).
+* Plantillas rápidas para usuarios avanzados.
+* Autoguardado automático.
+* Configuración de tamaño de texto.
+* Vista simplificada o avanzada según preferencia del usuario.
+
+```typescript
+// flexibilidad-bueno.component.ts
+import { Component, HostListener, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-flexibilidad-bueno',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-lg border">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center">
+          <span class="text-2xl mr-3">⚡</span>
+          <h2 class="text-xl font-semibold">Redacción Rápida con Flexibilidad</h2>
+        </div>
+
+        <!-- Modo experto -->
+        <button 
+          (click)="toggleModoExperto()"
+          class="px-4 py-2 rounded-lg text-sm font-medium border transition-colors"
+          [ngClass]="{
+            'bg-blue-600 text-white border-blue-700': modoExperto(),
+            'bg-gray-100 border-gray-300 text-gray-700': !modoExperto()
+          }">
+          {{ modoExperto() ? 'Modo Avanzado Activado' : 'Modo Avanzado Desactivado' }}
+        </button>
+      </div>
+
+      <!-- Controles de personalización -->
+      @if (modoExperto()) {
+        <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h3 class="font-semibold mb-3">Ajustes Personalizados</h3>
+          
+          <div class="flex space-x-4 items-center">
+
+            <div>
+              <label class="text-sm text-gray-700">Tamaño de texto</label>
+              <select 
+                [(ngModel)]="tamanoTexto"
+                class="p-2 border rounded ml-2">
+                <option value="text-sm">Pequeño</option>
+                <option value="text-base">Mediano</option>
+                <option value="text-lg">Grande</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-sm text-gray-700">Plantillas rápidas</label>
+              <select 
+                (change)="insertarPlantilla($event)"
+                class="p-2 border rounded ml-2">
+                <option value="">Seleccionar plantilla</option>
+                <option value="saludo">Saludo Formal</option>
+                <option value="recordatorio">Recordatorio</option>
+                <option value="despedida">Despedida</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Área de texto -->
+      <textarea
+        [(ngModel)]="mensaje"
+        (input)="autoGuardar()"
+        class="w-full h-40 p-4 border-2 rounded-lg transition-all duration-200"
+        [class]="tamanoTexto">
+      </textarea>
+
+      <div class="text-sm text-gray-600 mt-2">
+        Último autoguardado: {{ ultimoGuardado() }}
+      </div>
+
+      <!-- Botones -->
+      <div class="flex space-x-3 mt-4">
+
+        <button 
+          (click)="enviar()"
+          class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">
+          Enviar Mensaje
+        </button>
+
+        @if (modoExperto()) {
+          <button 
+            (click)="limpiar()"
+            class="px-6 py-3 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-semibold">
+            Limpiar
+          </button>
+        }
+      </div>
+
+      <!-- Instrucciones de atajos -->
+      @if (modoExperto()) {
+        <div class="mt-4 p-3 bg-gray-100 border rounded text-sm text-gray-700">
+          Atajos disponibles:
+          <ul class="list-disc ml-6 mt-1">
+            <li>Ctrl + Enter: Enviar mensaje</li>
+            <li>Ctrl + L: Limpiar texto</li>
+          </ul>
+        </div>
+      }
+
+    </div>
+  `
+})
+export class FlexibilidadBuenoComponent {
+  mensaje = '';
+  tamanoTexto = 'text-base';
+  modoExperto = signal(false);
+  ultimoGuardado = signal('Nunca');
+
+  toggleModoExperto() {
+    this.modoExperto.update(v => !v);
+  }
+
+  insertarPlantilla(event: any) {
+    const value = event.target.value;
+
+    const plantillas: any = {
+      saludo: 'Estimado/a,\n\nEspero que se encuentre bien.\n',
+      recordatorio: 'Recordatorio:\nNo olvide revisar el siguiente pendiente...\n',
+      despedida: 'Saludos cordiales,\n\n'
+    };
+
+    if (plantillas[value]) {
+      this.mensaje += '\n' + plantillas[value];
+    }
+  }
+
+  autoGuardar() {
+    const fecha = new Date().toLocaleTimeString();
+    this.ultimoGuardado.set(fecha);
+  }
+
+  enviar() {
+    alert('Mensaje enviado');
+  }
+
+  limpiar() {
+    this.mensaje = '';
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  manejarAtajos(event: KeyboardEvent) {
+    if (!this.modoExperto()) return;
+
+    if (event.ctrlKey && event.key === 'Enter') {
+      this.enviar();
+    }
+
+    if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+      this.limpiar();
+    }
+  }
+}
+```
+
+----
+
+
+## 8. Diseño Estético y Minimalista
+
+**Componente: `diseno-estetico-minimalista.component.ts`**
+**Objetivo UX:** Presentar únicamente la información relevante para la tarea actual, evitando sobrecargar visualmente al usuario. Interfaces limpias, ordenadas y con jerarquía clara mejoran la comprensión y reducen la carga cognitiva.
+
+---
+
+### Ejemplo Malo (NO aplica la heurística 8)
+
+```typescript
+// minimalismo-malo.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-minimalismo-malo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="p-6 max-w-3xl mx-auto bg-white rounded shadow border space-y-4">
+
+      <h2 class="text-2xl font-bold underline italic text-red-600 mb-4">
+        Panel de Usuario SUPER COMPLETO
+      </h2>
+
+      <!-- Exceso de elementos visuales -->
+      <div class="grid grid-cols-3 gap-4">
+
+        <div class="p-4 border-4 border-red-400 bg-yellow-200 rounded-xl">
+          <h3 class="font-bold text-lg text-blue-800 underline">Sección 1</h3>
+          <p class="text-sm">Información irrelevante que no se necesita ahora.</p>
+          <button class="mt-2 bg-green-300 border border-black px-4 py-1 rounded-full">
+            Botón A
+          </button>
+        </div>
+
+        <div class="p-4 border-4 border-blue-400 bg-pink-200 rounded-xl shadow-xl">
+          <h3 class="font-bold text-lg text-red-700 italic">Sección 2 Importante</h3>
+          <ul class="list-disc pl-4 text-sm text-purple-800">
+            <li>Dato 1</li>
+            <li>Dato 2</li>
+            <li>Dato 3 que podría estar oculto</li>
+          </ul>
+          <button class="mt-2 bg-orange-300 border-4 border-purple-700 px-4 py-1 rounded-full">
+            Botón B
+          </button>
+        </div>
+
+        <div class="p-4 border-4 border-green-400 bg-indigo-100 rounded-xl">
+          <h3 class="font-bold text-lg text-indigo-800 underline italic">Sección 3</h3>
+          <p class="text-sm">Demasiada información en un espacio pequeño.</p>
+          <input type="text" class="border border-black p-1 w-full mt-2" placeholder="Escriba aquí">
+          <button class="mt-2 bg-red-300 px-4 py-1 rounded">
+            Botón C
+          </button>
+        </div>
+      </div>
+
+      <!-- Exceso de botones repetitivos -->
+      <div class="flex space-x-3 mt-6">
+        <button class="bg-red-500 text-white px-4 py-2 rounded">Guardar</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded">Guardar Datos</button>
+        <button class="bg-yellow-500 text-black px-4 py-2 rounded">Guardar Todo</button>
+        <button class="bg-purple-500 text-white px-4 py-2 rounded">Guardar Formulario</button>
+      </div>
+
+    </div>
+  `
+})
+export class MinimalismoMaloComponent {}
+```
+
+#### Por qué NO aplica la heurística:
+
+* Colores excesivos y sin jerarquía.
+* Tipografías inconsistentes y subrayados innecesarios.
+* Demasiada información visible al mismo tiempo.
+* Repetición de botones con la misma función.
+* Falta de enfoque: no está claro qué debe hacer el usuario.
+
+---
+
+### Ejemplo Bueno (Sí aplica la heurística 8)
+
+Este ejemplo usa:
+
+* Jerarquía visual clara.
+* Limpieza y eliminación de elementos irrelevantes.
+* Estilo minimalista con TailwindCSS moderno.
+* Uso de espacios, colores neutros y acciones principales destacadas.
+* Secciones colapsables para evitar sobrecargar al usuario.
+
+```typescript
+// minimalismo-bueno.component.ts
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-minimalismo-bueno',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="p-8 max-w-3xl mx-auto bg-white rounded-xl shadow-lg border">
+
+      <!-- Header limpio -->
+      <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900 tracking-tight">
+          Panel de Usuario
+        </h2>
+        <p class="text-gray-600 mt-1">
+          Gestiona tu información de forma clara y organizada.
+        </p>
+      </div>
+
+      <!-- Tarjeta principal -->
+      <div class="space-y-4">
+
+        <!-- Información esencial -->
+        <div class="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+          <h3 class="text-lg font-semibold text-gray-800">Información Básica</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Solo los datos relevantes aparecen aquí.
+          </p>
+
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-gray-700">Nombre</label>
+              <input type="text"
+                class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Ingrese su nombre">
+            </div>
+
+            <div>
+              <label class="text-sm text-gray-700">Email</label>
+              <input type="email"
+                class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="correo@ejemplo.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección avanzada colapsable -->
+        <div class="border border-gray-200 rounded-lg">
+          <button 
+            (click)="toggleAvanzado()"
+            class="w-full text-left px-4 py-3 bg-white hover:bg-gray-50 flex justify-between items-center">
+            <span class="font-medium text-gray-800">Opciones Avanzadas</span>
+            <span class="text-xl">{{ avanzado() ? '−' : '+' }}</span>
+          </button>
+
+          <!-- Solo aparece si se activa -->
+          @if (avanzado()) {
+            <div class="p-4 bg-gray-50 border-t border-gray-200 space-y-3">
+              <div>
+                <label class="text-sm text-gray-700">Tema</label>
+                <select class="w-full mt-1 p-2 border rounded-lg">
+                  <option>Claro</option>
+                  <option>Oscuro</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-700">Notificaciones</label>
+                <select class="w-full mt-1 p-2 border rounded-lg">
+                  <option>Activadas</option>
+                  <option>Desactivadas</option>
+                </select>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+
+      <!-- Botón principal -->
+      <div class="mt-8">
+        <button
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+          Guardar Cambios
+        </button>
+      </div>
+
+    </div>
+  `
+})
+export class MinimalismoBuenoComponent {
+  avanzado = signal(false);
+
+  toggleAvanzado() {
+    this.avanzado.update(v => !v);
+  }
+}
+```
 
 
 
+## 9. Reconocer, Diagnosticar y Recuperarse de Errores
+
+**Componente: `errores-recuperacion.component.ts`**
+**Objetivo UX:** El sistema debe ayudar al usuario a entender qué ocurrió, qué causó el error y cómo solucionarlo, usando mensajes claros, no técnicos, y con acciones de recuperación visibles.
+
+---
+
+### Ejemplo Malo (NO aplica la heurística 9)
+
+```typescript
+// errores-malo.component.ts
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-errores-malo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="max-w-md mx-auto p-6 bg-white rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Inicio de Sesión</h2>
+
+      <input 
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="user"
+        class="w-full p-2 border rounded mb-4">
+
+      <input 
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        class="w-full p-2 border rounded mb-4">
+
+      <button 
+        (click)="login()"
+        class="w-full bg-blue-500 text-white p-2 rounded">
+        Ingresar
+      </button>
+
+      <!-- Error técnico y sin ayuda -->
+      @if (error()) {
+        <div class="mt-4 p-3 bg-red-200 text-red-900 rounded">
+          ERROR 401: BAD CREDENTIALS
+        </div>
+      }
+    </div>
+  `
+})
+export class ErroresMaloComponent {
+  user = '';
+  password = '';
+  error = signal(false);
+
+  login() {
+    this.error.set(true);
+    console.error('ERROR 401 - BAD CREDENTIALS');
+  }
+}
+```
+
+#### Por qué NO aplica la heurística:
+
+* Muestra un mensaje técnico que el usuario no puede interpretar.
+* No explica qué ocurrió.
+* No ofrece pasos para solucionar el error.
+* No permite recuperación (no hay botón de reintentar, ni ayuda, ni guía visual).
+* Tono negativo y poco informativo.
+
+---
+
+### Ejemplo Bueno (Sí aplica la heurística 9)
+
+Este ejemplo incorpora:
+
+* Mensajes claros, naturales y sin tecnicismos.
+* Ayuda contextual: qué ocurrió, por qué, cómo solucionarlo.
+* Opciones de recuperación: reintentar, ver contraseña, restaurar cuenta.
+* Validación en tiempo real para evitar errores antes de ocurrir.
+* Estados visuales con TailwindCSS: rojo suave, borde destacado, íconos guía.
+
+```typescript
+// errores-bueno.component.ts
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-errores-bueno',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg border">
+
+      <!-- Header -->
+      <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900">Inicio de Sesión</h2>
+        <p class="text-gray-600 text-sm mt-1">
+          Ingresa tus credenciales para continuar.
+        </p>
+      </div>
+
+      <!-- Usuario -->
+      <div class="mb-4">
+        <label class="text-sm text-gray-700">Usuario</label>
+        <input 
+          type="text"
+          [(ngModel)]="user"
+          (input)="validarUsuario()"
+          class="w-full p-3 rounded-lg border-2 transition-all"
+          [ngClass]="{
+            'border-gray-300': estadoUsuario() === 'neutral',
+            'border-red-500 bg-red-50': estadoUsuario() === 'error',
+            'border-green-500 bg-green-50': estadoUsuario() === 'ok'
+          }"
+          placeholder="tu_usuario">
+        
+        <!-- Feedback -->
+        @if (estadoUsuario() === 'error') {
+          <p class="text-sm text-red-600 mt-1">
+            El usuario debe tener al menos 3 caracteres.
+          </p>
+        }
+      </div>
+
+      <!-- Contraseña -->
+      <div class="mb-4 relative">
+        <label class="text-sm text-gray-700">Contraseña</label>
+        <input 
+          [type]="verPass() ? 'text' : 'password'"
+          [(ngModel)]="password"
+          class="w-full p-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-blue-500"
+          placeholder="Escribe tu contraseña">
+
+        <!-- Botón de mostrar contraseña -->
+        <button 
+          (click)="toggleVerPass()"
+          class="absolute right-3 top-10 text-gray-600 hover:text-gray-800">
+          {{ verPass() ? 'Ocultar' : 'Ver' }}
+        </button>
+      </div>
+
+      <!-- Botón principal -->
+      <button 
+        (click)="login()"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
+        Ingresar
+      </button>
+
+      <!-- Mensaje de error con diagnóstico y soluciones -->
+      @if (error()) {
+        <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <p class="font-semibold text-red-800">No pudimos iniciar sesión</p>
+              <p class="text-sm text-red-700 mt-1">
+                Verifica tu usuario y contraseña. Asegúrate de que estén escritos correctamente.
+              </p>
+
+              <ul class="list-disc ml-5 text-sm text-red-700 mt-2 space-y-1">
+                <li>Comprueba que no haya espacios al inicio o final.</li>
+                <li>Revisa si tienes activado el bloqueo de mayúsculas.</li>
+                <li>Si olvidaste tu contraseña, puedes restaurarla.</li>
+              </ul>
+
+              <!-- Acciones de recuperación -->
+              <div class="flex space-x-3 mt-4">
+                <button 
+                  (click)="reintentar()"
+                  class="px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200">
+                  Reintentar
+                </button>
+                <button 
+                  class="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 text-gray-700">
+                  Recuperar Cuenta
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  `
+})
+export class ErroresBuenoComponent {
+  user = '';
+  password = '';
+
+  error = signal(false);
+  verPass = signal(false);
+
+  estadoUsuario = signal<'neutral' | 'error' | 'ok'>('neutral');
+
+  validarUsuario() {
+    if (this.user.length === 0) {
+      this.estadoUsuario.set('neutral');
+    } else if (this.user.length < 3) {
+      this.estadoUsuario.set('error');
+    } else {
+      this.estadoUsuario.set('ok');
+    }
+  }
+
+  toggleVerPass() {
+    this.verPass.update(v => !v);
+  }
+
+  login() {
+    if (this.user !== 'admin' || this.password !== '1234') {
+      this.error.set(true);
+    } else {
+      alert('Inicio de sesión exitoso');
+      this.error.set(false);
+    }
+  }
+
+  reintentar() {
+    this.error.set(false);
+  }
+}
+```
+
+
+
+## 10. Ayuda y Documentación
+
+**Componente: `ayuda-documentacion.component.ts`**
+**Objetivo UX:** El sistema debe ofrecer ayuda accesible, clara y contextual. Los usuarios deben poder encontrar instrucciones, ejemplos y soluciones sin salir de la interfaz ni perder el flujo de trabajo.
+
+---
+
+### Ejemplo Malo (NO aplica la heurística 10)
+
+```typescript
+// ayuda-malo.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-ayuda-malo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="max-w-lg mx-auto p-6 bg-white rounded shadow border">
+      <h2 class="text-xl font-semibold mb-4">Subir Documento</h2>
+
+      <input 
+        type="file"
+        class="w-full p-2 border rounded mb-4"
+      />
+
+      <button class="w-full bg-blue-500 text-white p-3 rounded">
+        Subir
+      </button>
+
+      <!-- Ayuda inexistente o inútil -->
+      <div class="mt-6 text-sm text-gray-500">
+        Para más información, consulte el Manual V3.2, Sección 9.4.21.
+      </div>
+    </div>
+  `
+})
+export class AyudaMaloComponent {}
+```
+
+#### Por qué NO aplica la heurística:
+
+* La ayuda no está disponible en el contexto donde el usuario la necesita.
+* La referencia a un “manual V3.2 sección 9.4.21” es inútil e inaccesible.
+* No explica pasos, ejemplos, ni soluciones.
+* No hay accesos directos para problemas comunes.
+* No ayuda al usuario a completar la tarea actual.
+
+---
+
+### Ejemplo Bueno (Sí aplica la heurística 10)
+
+Este ejemplo incluye:
+
+* Ayuda contextual en la misma pantalla.
+* Preguntas frecuentes integradas.
+* Instrucciones paso a paso.
+* Posibilidad de mostrar/ocultar documentación avanzada.
+* Sugerencias inteligentes según el estado del formulario.
+* Uso de colores suaves, botones accesibles, paneles que guían.
+
+```typescript
+// ayuda-bueno.component.ts
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-ayuda-bueno',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="max-w-3xl mx-auto p-8 bg-white rounded-xl shadow-lg border">
+
+      <!-- Header -->
+      <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900 tracking-tight">
+          Subir Documento
+        </h2>
+        <p class="text-gray-600 mt-1">
+          Selecciona un archivo y revisa las instrucciones si necesitas ayuda.
+        </p>
+      </div>
+
+      <input 
+        type="file"
+        (change)="validarArchivo($event)"
+        class="w-full p-3 border rounded-lg mb-4"
+      />
+
+      <!-- Sugerencias según el estado -->
+      @if (estado() === 'error-tipo') {
+        <div class="p-3 bg-red-50 border border-red-200 text-red-700 rounded mb-4">
+          Solo se permiten archivos PDF o DOCX.
+        </div>
+      }
+
+      @if (estado() === 'error-peso') {
+        <div class="p-3 bg-yellow-50 border border-yellow-200 text-yellow-700 rounded mb-4">
+          El archivo supera el tamaño máximo permitido (10 MB).
+        </div>
+      }
+
+      <!-- Botón principal -->
+      <button
+        [disabled]="!archivoValido()"
+        class="w-full py-3 rounded-lg font-semibold transition-colors"
+        [ngClass]="{
+          'bg-blue-600 text-white hover:bg-blue-700': archivoValido(),
+          'bg-gray-300 text-gray-500 cursor-not-allowed': !archivoValido()
+        }">
+        Subir Archivo
+      </button>
+
+      <!-- Panel de ayuda contextual -->
+      <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-gray-800 text-lg">
+            Ayuda y Documentación
+          </h3>
+
+          <button 
+            (click)="toggleAyuda()"
+            class="text-sm text-blue-600 hover:underline">
+            {{ ayudaVisible() ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+
+        @if (ayudaVisible()) {
+          <div class="mt-4 space-y-6">
+
+            <!-- Paso a paso -->
+            <div>
+              <h4 class="font-semibold text-gray-800">Cómo subir tu archivo</h4>
+              <ol class="ml-6 list-decimal text-sm text-gray-700 mt-2 space-y-1">
+                <li>Haz clic en el cuadro para seleccionar un archivo.</li>
+                <li>Asegúrate de que el formato sea PDF o DOCX.</li>
+                <li>Verifica que su peso sea menor a 10 MB.</li>
+                <li>Haz clic en “Subir Archivo”.</li>
+              </ol>
+            </div>
+
+            <!-- FAQs -->
+            <div>
+              <h4 class="font-semibold text-gray-800">Preguntas Frecuentes</h4>
+              <div class="mt-2 space-y-3">
+
+                <div class="p-3 bg-white border rounded">
+                  <p class="font-medium text-gray-800">¿Qué formatos se permiten?</p>
+                  <p class="text-sm text-gray-700">PDF y DOCX.</p>
+                </div>
+
+                <div class="p-3 bg-white border rounded">
+                  <p class="font-medium text-gray-800">¿Cuál es el tamaño máximo?</p>
+                  <p class="text-sm text-gray-700">10 MB.</p>
+                </div>
+
+                <div class="p-3 bg-white border rounded">
+                  <p class="font-medium text-gray-800">¿Qué hago si el archivo no carga?</p>
+                  <p class="text-sm text-gray-700">
+                    Revisa tu conexión o intenta usar otro navegador.
+                    También puedes contactar a soporte si el problema persiste.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Enlace de soporte -->
+            <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p class="text-sm text-blue-900">
+                ¿Aún necesitas ayuda?  
+                Contáctanos en soporte@ejemplo.com
+              </p>
+            </div>
+
+          </div>
+        }
+      </div>
+
+    </div>
+  `
+})
+export class AyudaBuenoComponent {
+  estado = signal<'ok' | 'error-tipo' | 'error-peso' | 'neutral'>('neutral');
+  archivoValido = signal(false);
+  ayudaVisible = signal(false);
+
+  toggleAyuda() {
+    this.ayudaVisible.update(v => !v);
+  }
+
+  validarArchivo(event: any) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      this.estado.set('neutral');
+      this.archivoValido.set(false);
+      return;
+    }
+
+    const tipoValido = 
+      file.type === 'application/pdf' || 
+      file.type ===
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+    if (!tipoValido) {
+      this.estado.set('error-tipo');
+      this.archivoValido.set(false);
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      this.estado.set('error-peso');
+      this.archivoValido.set(false);
+      return;
+    }
+
+    this.estado.set('ok');
+    this.archivoValido.set(true);
+  }
+}
+```
 
