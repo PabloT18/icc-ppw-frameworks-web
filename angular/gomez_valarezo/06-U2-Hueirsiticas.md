@@ -2984,40 +2984,35 @@ export class AyudaBuenoComponent {
   }
 }
 ```
-## 01 - Visibilidad del Estado del Sistema
-![Visibilidad del Estado del Sistema](943d01a6-ee3b-4d46-a427-e6b82ec2989f.png)
+## 📸 Capturas de las Heurísticas
 
-## 02 - Correspondencia con el Mundo Real
+### 1. Visibilidad del Estado del Sistema
+![Visibilidad del Estado del Sistema](./Captura%20de%20pantalla%202025-11-21%20162107.png)
 
-![Correspondencia con el Mundo Real](Captura de pantalla 2025-11-21 162148.png)
+### 2. Reconocer y Recuperarse de Errores
+![Reconocer y Recuperarse de Errores](./Captura%20de%20pantalla%202025-11-21%20162127.png)
 
-## 03 - Control y Libertad del Usuario
+### 3. Correspondencia con el Mundo Real
+![Correspondencia con el Mundo Real](./Captura%20de%20pantalla%202025-11-21%20162148.png)
 
-![Control y Libertad del Usuario](Captura de pantalla 2025-11-21 162205.png)
+### 4. Control y Libertad del Usuario
+![Control y Libertad del Usuario](./Captura%20de%20pantalla%202025-11-21%20162205.png)
 
-## 04 - Consistencia y Estándares
+### 5. Consistencia y Estándares
+![Consistencia y Estándares](./Captura%20de%20pantalla%202025-11-21%20162217.png)
 
-![Consistencia y Estándares](Captura de pantalla 2025-11-21 162217.png)
+### 6. Prevención de Errores
+![Prevención de Errores](./Captura%20de%20pantalla%202025-11-21%20162229.png)
 
-## 05 - Prevención de Errores
+### 7. Reconocimiento vs Recordar
+![Reconocimiento vs Recordar](./Captura%20de%20pantalla%202025-11-21%20162244.png)
 
-![Prevención de Errores](Captura de pantalla 2025-11-21 162229.png)
+### 8. Flexibilidad y Eficiencia
+![Flexibilidad y Eficiencia](./Captura%20de%20pantalla%202025-11-21%20162300.png)
 
-## 06 - Reconocimiento vs Recordar
+### 9. Diseño Estético y Minimalista
+![Diseño Estético y Minimalista](./Captura%20de%20pantalla%202025-11-21%20162308.png)
 
-![Reconocimiento vs Recordar](Captura de pantalla 2025-11-21 162244.png)
-
-## 07 - Flexibilidad y Eficiencia
-
-![Flexibilidad y Eficiencia](Captura de pantalla 2025-11-21 162300.png)
-
-## 08 - Diseño Estético y Minimalista
-
-![Diseño Estético y Minimalista](Captura de pantalla 2025-11-21 162308.png)
-
-## 09 - Reconocer y Recuperarse de Errores
-
-![Reconocer y Recuperarse de Errores](Captura de pantalla 2025-11-21 162107.png)
 
 ## 10 - Ayuda y Documentación
 
