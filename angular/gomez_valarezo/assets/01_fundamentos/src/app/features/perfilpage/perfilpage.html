@@ -1,0 +1,31 @@
+<h1>{{ name() }}</h1>
+
+<dl>
+  <dt>Nombre:</dt>
+  <dd>{{ name() }}</dd>
+
+  <dt>Apellido:</dt>
+  <dd>{{ lastName() }}</dd>
+
+  <dt>Edad:</dt>
+  <dd>{{ age() }}</dd>
+
+  <dt>Nombre Completo:</dt>
+  <dd>{{ getFullName() }}</dd>
+
+  <!-- 8. Mostrar nombre y apellido en mayúsculas en un solo campo -->
+  <dt>Nombre y Apellido (Mayúsculas):</dt>
+  <dd>{{ (name() + ' ' + lastName()).toUpperCase() }}</dd>
+</dl>
+
+<button (click)="changeData()">
+  Cambiar datos
+</button>
+
+<button (click)="changeAge()">
+  Cambiar edad a 18
+</button>
+
+<button (click)="resetData()">
+  Reset
+</button>

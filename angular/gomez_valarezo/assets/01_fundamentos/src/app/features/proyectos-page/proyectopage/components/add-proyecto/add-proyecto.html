@@ -1,0 +1,26 @@
+
+
+<section>
+  <h3>Agregar proyecto</h3>
+  <h4>Proyecto a agregar: {{ name() }}</h4>
+
+  <input
+    type="text"
+    placeholder="Nombre del proyecto"
+    [value]="name()"
+    (input)="changeName(txtName.value)"
+    #txtName
+  />
+
+  <input
+    type="text"
+    placeholder="Descripción del proyecto"
+    [value]="descripcion()"
+    (input)="changeDescription(txtDescription.value)"
+    #txtDescription
+  />
+
+  <button (click)="addProyecto()">Agregar</button>
+  <button (click)="dellProyecto(1)">Eliminar </button>
+
+</section>
