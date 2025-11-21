@@ -544,5 +544,21 @@ export class SignalBoxComponent {
 # Resultado esperado de la práctica
 
 1. Enlace a pagina desplegada
+
+https://arielcallesteven.github.io/03-ui-Components-estilos/estilos
+
 2. Captura de pagina con estilos aplicados 
+
+<img src="m1.jpg" alt="router"> 
+<img src="m2.jpg" alt="router"> 
+<img src="m2.jpg" alt="router"> 
+
+
 3. Captura de estilos-page.html
+
+<img src="es2.jpg" alt="router">
+
+<img src="es2.jpg" alt="router">
+
+
+
