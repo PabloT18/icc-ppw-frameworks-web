@@ -2109,8 +2109,10 @@ export class ReconocimientoBuenoComponent {
 1. Página inicial con Tailwind configurado y funcionando. 
 ![pantilla](./assets/pantilla.png)
 2. Una captura por cada pagina de heuristica
+
 h1
 ![h1](./assets/h1.png)
+
 h2
 ![h2](./assets/h2.png)
 h3
