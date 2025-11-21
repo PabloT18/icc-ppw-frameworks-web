@@ -2984,3 +2984,41 @@ export class AyudaBuenoComponent {
   }
 }
 ```
+## 01 - Visibilidad del Estado del Sistema
+![Visibilidad del Estado del Sistema](943d01a6-ee3b-4d46-a427-e6b82ec2989f.png)
+
+## 02 - Correspondencia con el Mundo Real
+
+![Correspondencia con el Mundo Real](Captura de pantalla 2025-11-21 162148.png)
+
+## 03 - Control y Libertad del Usuario
+
+![Control y Libertad del Usuario](Captura de pantalla 2025-11-21 162205.png)
+
+## 04 - Consistencia y Estándares
+
+![Consistencia y Estándares](Captura de pantalla 2025-11-21 162217.png)
+
+## 05 - Prevención de Errores
+
+![Prevención de Errores](Captura de pantalla 2025-11-21 162229.png)
+
+## 06 - Reconocimiento vs Recordar
+
+![Reconocimiento vs Recordar](Captura de pantalla 2025-11-21 162244.png)
+
+## 07 - Flexibilidad y Eficiencia
+
+![Flexibilidad y Eficiencia](Captura de pantalla 2025-11-21 162300.png)
+
+## 08 - Diseño Estético y Minimalista
+
+![Diseño Estético y Minimalista](Captura de pantalla 2025-11-21 162308.png)
+
+## 09 - Reconocer y Recuperarse de Errores
+
+![Reconocer y Recuperarse de Errores](Captura de pantalla 2025-11-21 162107.png)
+
+## 10 - Ayuda y Documentación
+
+![Ayuda y Documentación](Captura de pantalla 2025-11-21 162127.png)
