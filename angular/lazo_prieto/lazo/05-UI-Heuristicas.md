@@ -13,9 +13,9 @@
 
 ### Autor
 
-**Pablo Torres**
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Adrian Lazo Cabrera**  
+📧 blazocp@est.ups.edu.ec  
+💻 GitHub: [scomygod](https://github.com/scomygod)
 
 ---
 
@@ -326,9 +326,12 @@ Para evaluar la interfaz desarrollada:
 ## Resultado esperado
 
 1. Página inicial con Tailwind configurado y funcionando. PASO 1
-
+![Formularios básicos vacío](/angular/lazo_prieto/assets/lazo/05_1.png)
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
+![Interfaz Limpia](/angular/lazo_prieto/assets/lazo/05_2.png)
 3. Codigo con ejemplos aplicados. PASO 3 y 4
+![Código 1](/angular/lazo_prieto/assets/lazo/05_3.png)
+![Código 2](/angular/lazo_prieto/assets/lazo/05_4.png)
 
 
 
