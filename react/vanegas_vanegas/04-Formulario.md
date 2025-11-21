@@ -148,9 +148,10 @@ Antes de comenzar con las prácticas:
 
 Creamos un formulario con campos nombre, edad y correo, aplicando validaciones y mostrando errores.
 
-**Código del Componente** (Formulario.jsx)
+**Código del Componente** (`Formulario.jsx`)
 
-En lugar de una clase FormUtils, en React es idiomático acceder directamente al estado del formulario (formState: { errors, touchedFields }).
+En lugar de una clase `FormUtils`, en React es idiomático acceder directamente al estado del formulario (`formState: { errors, touchedFields }` ).
+
 ---
 
 
@@ -180,36 +181,40 @@ export class FormulariosBasicosPage {
 
 #### Explicación
 
-#### FormBulder
+#### useForm
 
-Angular provee una clase llamada FormBuilder, que simplifica
-la creación de formularios reactivos.
+En React, el equivalente es **useForm()**, que inicializa el formulario, define valores por defecto y gestiona validaciones, errores y el envío.
 
 ```typescript
-private fb = inject(FormBuilder);
+const {
+  register,
+  handleSubmit,
+  formState: { errors, touchedFields },
+  reset,
+} = useForm<FormData>();
 ```
 
-#### FormGroup
-Aquí creamos un FormGroup, que representa todo el
-formulario.
-Cada campo dentro del formulario (nombre, edad, correo)
-se declara como un FormControl, junto con sus validadores.
+#### Estado interno del formulario en useForm
+
+En React, `useForm` maneja este estado automáticamente y `register()` conecta cada input al formulario.
 
 ```typescript
-myForm: FormGroup = this.fb.group({...})
+defaultValues: {
+  nombre: "",
+  edad: 0,
+  correo: ""
+}
 ```
 #### Mas funciones
 
-* [formGroup]="myForm" → Vincula el formulario del
-HTML con el FormGroup definido en TypeScript.
-Todo lo que ocurra en la vista (inputs, validaciones) se
-sincroniza automáticamente con la instancia myForm.
+* `<form onSubmit={handleSubmit(onSubmit)}>` → Vincula el formulario del HTML con la lógica del formulario creada en JavaScript/TypeScript mediante React Hook Form.
+Todo lo que ocurre en el formulario (inputs, validaciones, errores, envío) queda sincronizado con el estado interno que maneja `useForm()`.
 
-* (ngSubmit)="onSubmit()" → Se ejecuta cuando se
-envía el formulario (al presionar el botón de tipo
-submit).
-* autocomplete="off" → Evita que el navegador rellene
-automáticamente los campos anteriores.
+* `<form autoComplete="off">` →
+ Evita que el navegador rellene automáticamente campos anteriores. Se usa mucho en formularios con validaciones personalizadas
+
+* `<button type="submit">` →Este botón es el único que dispara handleSubmit ` (onSubmit)`
+
 * El botón con type="submit" es el que activa el evento
 (ngSubmit).
 * Cualquier otro botón dentro del <form> no ejecutará la
@@ -222,54 +227,87 @@ automáticamente los campos anteriores.
 
 ### Código del HTML
 
-```html
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label>Nombre</label>
-    <input formControlName="nombre" class="form-control" placeholder="Ingrese su nombre">
-    @if(formUtils.isValidField(myForm, 'nombre')){
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'nombre') }}
-      </span>
-    }
-  </div>
+```tsx
+ <div className="row">
+      <div className="col">
+        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          
+          {/* Campo Nombre */}
+          <div className="mb-3 row">
+            <label className="col-sm-3 col-form-label">Nombre</label>
+            <div className="col-sm-9">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre del usuario"
+                {...register("nombre", {
+                  required: "Este campo es requerido",
+                  minLength: { value: 3, message: "Mínimo de 3 caracteres" }
+                })}
+              />
 
-  <div class="mb-3">
-    <label>Edad</label>
-    <input formControlName="edad" type="number" class="form-control">
-    @if(formUtils.isValidField(myForm, 'edad')){
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'edad') }}
-      </span>
-    }
-  </div>
+              {errors.nombre && touchedFields.nombre && (
+                <p className="text-danger">{errors.nombre.message}</p>
+              )}
+            </div>
+          </div>
 
-  <div class="mb-3">
-    <label>Correo</label>
-    <input formControlName="correo" class="form-control" placeholder="example@mail.com">
-    @if(formUtils.isValidField(myForm, 'correo')){
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'correo') }}
-      </span>
-    }
-  </div>
+          {/* Campo Edad */}
+          <div className="mb-3 row">
+            <label className="col-sm-3 col-form-label">Edad</label>
+            <div className="col-sm-9">
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Edad del usuario"
+                {...register("edad", {
+                  required: "Este campo es requerido",
+                  min: { value: 1, message: "Edad mínima 1" }
+                })}
+              />
+              {errors.edad && touchedFields.edad && (
+                <p className="text-danger">{errors.edad.message}</p>
+              )}
+            </div>
+          </div>
 
-  <button class="btn btn-primary float-end" type="submit">Guardar</button>
-</form>
+          {/* Campo Correo */}
+          <div className="mb-3 row">
+            <label className="col-sm-3 col-form-label">Correo</label>
+            <div className="col-sm-9">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="correo@ejemplo.com"
+                {...register("correo", {
+                  required: "El correo es obligatorio",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Correo no válido"
+                  }
+                })}
+              />
+
+              {errors.correo && touchedFields.correo && (
+                <p className="text-danger">{errors.correo.message}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Botón */}
+          <button type="submit" className="btn btn-primary">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
 ```
 
 ---
 
 #### Explicación
 
-* **Input:** Cada `<input>`:  
-  * Está enlazado al formulario reactivo con formControlName.
-  * Hereda los validadores declarados en TypeScript.
-  * Angular gestiona automáticamente si el campo está válido o inválido.
-
-* **Validators:** define las reglas (requerido, mínimo, longitud, formato).
-* **@if:** sintaxis moderna en Angular 20+ para mostrar mensajes condicionales.
-* **FormUtils:** clase auxiliar que simplifica los mensajes de error.
+En React, cuando escribes un formulario con `<form onSubmit={handleSubmit(onSubmit)}>`, estás conectando directamente el formulario HTML con la lógica que maneja React Hook Form. Esto significa que todo lo que ocurre dentro del formulario—los cambios en los inputs, las validaciones, los errores y el envío final—queda sincronizado con el estado interno que administra `useForm()`. El atributo `autocomplete="off"` evita que el navegador complete los campos automáticamente, manteniendo control total sobre la entrada del usuario. Dentro del `<form>`, solo el botón con type="submit" desencadena el envío, mientras que cualquier otro botón no ejecutará el formulario a menos que también tenga ese tipo. En conjunto, estos elementos permiten que React maneje formularios de manera controlada, ordenada y completamente sincronizada con tu lógica de JavaScript/TypeScript.
 
 ## Clase auxiliar FormUtils
 
@@ -279,85 +317,56 @@ Para evitar esta repetición y mantener el código limpio, se recomienda central
 
 
 
-### ¿Por qué crear una clase `FormUtils` separada?
+### ¿Por qué crear una clase `React hook `?
 
-**1️⃣ Reutilización y consistencia:**
-Permite que todos los formularios de la aplicación utilicen los mismos mensajes de error y validaciones.
-Así, si se necesita modificar el texto de un error o agregar un nuevo tipo, solo se cambia en un único lugar.
+En React, especialmente cuando se trabaja con múltiples formularios usando React Hook Form, también es común repetir lógica como:
 
-**2️⃣ Código más limpio:**
-Evita repetir bloques de `if` o `switch` en cada componente.
-El HTML se mantiene más legible, ya que basta con usar:
+* revisar si un campo tiene error,
 
-```html
-@if(formUtils.isValidField(myForm, 'nombre')) {
-  <span>{{ formUtils.getFieldError(myForm, 'nombre') }}</span>
-}
+* obtener el mensaje correcto,
+
+* convertir los tipos de error de las validaciones a textos entendibles.
+
+Para evitar repetir estas funciones en cada formulario, también es recomendable crear una utilidad centralizada, igual que en Angular, pero adaptada al estilo de React.
+
+```tsx
+  {errors.nombre && touchedFields.nombre && (
+                <p className="text-danger">{errors.nombre.message}</p>
+              )}
 ```
-
-**3️⃣ Escalabilidad y mantenimiento:**
-En aplicaciones grandes, donde se manejan muchos formularios, tener un helper unificado hace más fácil mantener y actualizar las validaciones.
-
-**4️⃣ Control de errores centralizado:**
-Si en el futuro se agregan validadores personalizados o asincrónicos, se pueden integrar fácilmente dentro de esta misma clase, sin modificar todos los formularios existentes.
 
 ---
 
 ### Código base de la clase `FormUtils`
 
 ```typescript
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { useForm } from "react-hook-form";
 
-export class FormUtils {
-
-  static isValidField(form: FormGroup, fieldName: string): boolean | null {
-    return (
-      !!form.controls[fieldName].errors &&
-      form.controls[fieldName].touched
-    );
-  }
-
-  static getFieldError(form: FormGroup, fieldName: string): string | null {
-    if (!form.controls[fieldName]) return null;
-
-    const errors = form.controls[fieldName].errors ?? {};
-    return FormUtils.getTextError(errors);
-  }
-
-  static getTextError(errors: ValidationErrors): string | null {
-    for (const key of Object.keys(errors)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo es requerido';
-
-        case 'minlength':
-          return `Mínimo de ${errors['minlength'].requiredLength} caracteres`;
-
-        case 'min':
-          return `Valor mínimo de ${errors['min'].min}`;
-
-        case 'email':
-          return 'El valor ingresado no es un correo electrónico válido';
-
-        case 'emailTaken':
-          return 'El correo ya está siendo utilizado';
-
-        case 'invalidName':
-          return 'El nombre no puede ser ocupado';
-
-        case 'pattern':
-          if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
-            return 'El formato del correo electrónico es incorrecto';
-          }
-          return 'Error de patrón (expresión regular)';
-
-        default:
-          return 'Error de validación no controlado';
-      }
-    }
-    return null;
-  }
+interface FormData {
+  nombre: string;
+  edad: number;
+  correo: string;
 }
+
+export const Formulario = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields },
+    reset
+  } = useForm<FormData>({
+    defaultValues: {
+      nombre: "",
+      edad: 0,
+      correo: ""
+    }
+  });
+    const onSubmit = (data: FormData) => {
+    console.log("Datos del formulario:", data);
+    alert("Formulario válido. Datos enviados correctamente.");
+    reset();
+  };
+
 ```
 
 ---
@@ -378,11 +387,10 @@ export class FormUtils {
 
 El uso de esta clase es simple y uniforme en todas las páginas:
 
-```html
-@if (formUtils.isValidField(myForm, 'correo')) {
-  <span class="form-text text-danger">
-    {{ formUtils.getFieldError(myForm, 'correo') }}
-  </span>
+```tsx
+ {errors.correo && touchedFields.correo && (
+ <p className="text-danger">{errors.correo.message}</p>
+)}
 }
 ```
 
@@ -398,9 +406,7 @@ Esta sección se integrará directamente después de la práctica 1 en tu docume
 
 ## PRÁCTICA 2: Formularios Dinámicos
 
-En esta práctica aprenderás a crear **formularios que permiten agregar y eliminar campos de manera dinámica**, utilizando la clase `FormArray`.
-Este tipo de formularios son ideales cuando no sabemos cuántos valores tendrá el usuario al ingresar (por ejemplo, lista de lenguajes, teléfonos, hobbies, tareas, etc.).
-
+En esta práctica aprenderás a crear formularios dinámicos en React, donde el usuario puede agregar y eliminar campos sin límites, utilizando el hook `useFieldArray()` de React Hook Form. Este hook funciona como el equivalente a `FormArray` en Angular y permite manejar listas de valores cuyo tamaño no es fijo. Este tipo de formularios es ideal cuando no sabemos cuántos datos ingresará el usuario, como listas de lenguajes, hobbies, teléfonos, tareas, correos adicionales, entre otros. Con `useFieldArray` puedes construir formularios flexibles, escalables y totalmente controlados desde JavaScript/TypeScript manteniendo una sintaxis limpia y eficiente.
 
 
 ### PASO 1 — Crear el formulario base
@@ -408,64 +414,139 @@ Este tipo de formularios son ideales cuando no sabemos cuántos valores tendrá 
 En el archivo TypeScript del componente comenzamos con el formulario principal y el campo fijo “nombre”.
 
 ```typescript
-export class FormulariosDinamicos {
-  private fb = inject(FormBuilder);
-  formUtils = FormUtils;
+import { useState } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
-  // Formulario principal
-  myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-
-    lenguajes: this.fb.array([
-      this.fb.control('Python', [Validators.required, Validators.minLength(3)]),
-      this.fb.control('Java', [Validators.required, Validators.minLength(3)]),
-    ], Validators.minLength(3))
+export const FormularioDinamico = () => {
+  const [newLenguaje, setNewLenguaje] = useState('');
+  
+  const { register, control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      name: '',
+      lenguajes: [{ name: 'Python' }, { name: 'Java' }]
+    }
   });
-}
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "lenguajes",
+    rules: {
+      minLength: 3 
+    }
+  });
+
+  const onSubmit = (data: unknown) => {
+    console.log(data);
+  };
+
+  const onAddToLenguajes = () => {
+    if (newLenguaje.trim().length < 3) return;
+    append({ name: newLenguaje });
+    setNewLenguaje('');
+  };
+
+  const handleKeyDown = (e: { key: string; preventDefault: () => void; }) => {
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onAddToLenguajes();
+    }
+  };
+
+  return (
+    <div>
+      <h2>Formularios: <small>Dinámicos</small></h2>
+      
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Nombre</label>
+          <div className="col-sm-9">
+            <input
+              className="form-control"
+              placeholder="Nombre del proyecto"
+              {...register('name', { 
+                required: 'Este campo es requerido', 
+                minLength: { value: 3, message: 'Mínimo 3 caracteres' } 
+              })}
+            />
+            {errors.name && (
+              <span className="form-text text-danger">{errors.name.message}</span>
+            )}
+          </div>
+        </div>
+
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Agregar</label>
+          <div className="col-sm-9">
+            <div className="input-group">
+              <input
+                className="form-control"
+                placeholder="Agregar lenguaje"
+                value={newLenguaje}
+                onChange={(e) => setNewLenguaje(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={onAddToLenguajes}
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Lenguajes</label>
+          <div className="col-sm-9">
+            {fields.map((item, index) => (
+              <div key={item.id}>
+                <div className="input-group mb-2">
+                  <input 
+                    className="form-control" 
+                    {...register(`lenguajes.${index}.name`, { required: true })}
+                  />
+                  <button
+                    className="btn btn-outline-danger"
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                {errors.lenguajes?.[index]?.name && (
+                   <span className="form-text text-danger">Campo requerido</span>
+                )}
+              </div>
+            ))}
+
+            {errors.lenguajes && errors.lenguajes.root && (
+               <span className="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
+            )}
+            {errors.lenguajes && errors.lenguajes.type === "minLength" && (
+               <span className="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
+            )}
+          </div>
+        </div>
+        
+        <div className="row">
+            <div className="col">
+                 <button type="submit" className="btn btn-primary float-end">Guardar</button>
+            </div>
+        </div>
+
+      </form>
+    </div>
+  );
+};
 ```
 
 ####  Explicación
 
-* `FormBuilder` simplifica la creación del formulario.
-* `FormGroup` agrupa todos los controles del formulario.
-* `FormArray` crea un arreglo dinámico de controles — en este caso, lenguajes de programación.
-* Cada elemento del array (`'Python'`, `'Java'`) se define con `this.fb.control()` y sus validadores.
-* Además, el propio `FormArray` tiene un validador: `Validators.minLength(3)`, que indica que debe contener al menos 3 lenguajes.
-
----
-
-####  En el HTML
-
-```html
-<h2>Formularios: <small>Dinámicos</small></h2>
-
-<form
-  autocomplete="off"
-  [formGroup]="myForm"
-  (ngSubmit)="onSubmit()"
->
-
-  <!-- Nombre -->
-  <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Nombre</label>
-    <div class="col-sm-9">
-      <input
-        class="form-control"
-        formControlName="name"
-        placeholder="Nombre del proyecto"
-      >
-
-      @if(formUtils.isValidField(myForm, 'name')){
-        <span class="form-text text-danger">
-          {{ formUtils.getFieldError(myForm, 'name') }}
-        </span>
-      }
-    </div>
-  </div>
-</form>
-```
-
- Hasta este punto el formulario tiene un campo “nombre” y un arreglo inicial con dos lenguajes precargados.
+Este componente implementa un **formulario dinámico** usando `React Hook Form` y `useFieldArray`, lo que permite agregar o eliminar campos sin definirlos de antemano. El formulario comienza con un nombre y una lista inicial de lenguajes, pero el usuario puede añadir más lenguajes escribiéndolos en un campo adicional y presionando un botón o Enter. Cada lenguaje aparece como un input editable con un botón para eliminarlo. Además, se aplican validaciones como mínimo de caracteres y un mínimo de elementos en la lista, mostrando mensajes de error cuando es necesario.
+En resumen, este formulario permite manejar colecciones de datos que crecen o disminuyen dinámicamente, manteniendo validaciones, control del estado y una estructura limpia gracias a `React Hook Form`.
 
 ---
 
@@ -473,51 +554,49 @@ export class FormulariosDinamicos {
 Ahora creamos un nuevo control para capturar el texto de un nuevo lenguaje antes de añadirlo al arreglo.
 
 ```typescript
-// Control para agregar nuevos lenguajes
-newLenguaje: FormControl = this.fb.control('', [Validators.required, Validators.minLength(3)]);
+className="form-control"
+placeholder="Nombre del proyecto"
+{...register('name', { 
+ required: 'Este campo es requerido', 
+minLength: { value: 3, message: 'Mínimo 3 caracteres' } 
+})}
 ```
 
 #### Explicación
 
-Este `FormControl` es **independiente del formulario principal** (`myForm`).
-Sirve únicamente para manejar el valor temporal que el usuario escribe en el campo “Agregar lenguaje”.
-
-Cuando el usuario hace clic en el botón o presiona *Enter*, este valor será insertado en el `FormArray` y luego se vacía el campo.
+El siguiente campo de formulario utiliza react-hook-form para registrar el input bajo el nombre name y aplicar validaciones de manera sencilla. El atributo `register()` conecta el input con el sistema de formularios y define reglas como `required`, que obliga a que el usuario ingrese un valor, y `minLength`, que exige que el texto tenga al menos 3 caracteres; si alguna validación falla, se muestra el mensaje correspondiente. Además, `className="form-control"` aplica los estilos del formulario y `placeholder="Nombre del proyecto"` indica al usuario qué debe escribir dentro del campo.
 
 ---
 
 #### En el HTML
 
-```html
-<!-- Agregar Lenguaje -->
-<div class="mb-3 row">
-  <label class="col-sm-3 col-form-label">Agregar</label>
-  <div class="col-sm-9">
-    <div class="input-group">
-      <input
-        class="form-control"
-        placeholder="Agregar lenguaje"
-        [formControl]="newLenguaje"
-        (keydown.enter)="onAddToLenguajes(); $event.preventDefault()"
-      >
-
-      <button
-        class="btn btn-outline-primary"
-        type="button"
-        (click)="onAddToLenguajes()"
-      >
-        Agregar
-      </button>
-    </div>
-  </div>
-</div>
+```tsx
+ <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Agregar</label>
+          <div className="col-sm-9">
+            <div className="input-group">
+              <input
+                className="form-control"
+                placeholder="Agregar lenguaje"
+                value={newLenguaje}
+                onChange={(e) => setNewLenguaje(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={onAddToLenguajes}
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
 ```
 
 ####  Explicación html
 
-* `[formControl]="newLenguaje"` vincula el input al control independiente.
-* `(keydown.enter)` ejecuta el método para agregar el nuevo lenguaje.
-* `$event.preventDefault()` evita que al presionar *Enter* se dispare el evento `(ngSubmit)` del formulario (es decir, evita que se envíe el formulario antes de tiempo).
+Este bloque crea una sección del formulario que permite agregar elementos a una lista dinámica, como lenguajes, hobbies o tareas. El campo de texto captura el valor escrito mediante `value={newLenguaje}` y lo actualiza con `onChange`, mientras que `onKeyDown` permite agregar el elemento también presionando Enter. El botón “Agregar” ejecuta la función `onAddToLenguajes`, que incorpora el nuevo valor a la lista principal. Todo está organizado con clases de Bootstrap: el `input-group` alinea el campo y el botón, y las clases de columnas controlan la distribución responsiva del diseño.
 
 ---
 
@@ -525,38 +604,38 @@ Cuando el usuario hace clic en el botón o presiona *Enter*, este valor será in
 
 ```typescript
 // Agregar lenguaje dinámicamente
-onAddToLenguajes() {
-  if (this.newLenguaje.invalid) return;
-
-  this.lenguajes.push(
-    this.fb.control(this.newLenguaje.value, Validators.required)
-  );
-
-  this.newLenguaje.reset();
-}
+ const onAddToLenguajes = () => {
+    if (newLenguaje.trim().length < 3) return;
+    append({ name: newLenguaje });
+    setNewLenguaje('');
+  };
 ```
 
 ##### Explicación
 
-1. Se verifica si el nuevo campo es válido.
-2. Si es correcto, se agrega al arreglo `lenguajes` un nuevo `FormControl`.
-3. Luego se limpia el input con `reset()`.
+1. Se verifica la validez: Se comprueba que el texto ingresado (`newLenguaje`) tenga al menos 3 caracteres útiles (usando  `.trim()` para ignorar espacios vacíos). Si no cumple, se detiene la ejecución.
+
+2. Se agrega al array: Si es válido, se usa la función `append` (de `useFieldArray`) para insertar un nuevo objeto con el dato en el listado de lenguajes.
+
+3. Se limpia el campo: Finalmente, se actualiza el estado local (`setNewLenguaje('')`) para borrar el texto del input temporal y dejarlo listo para el siguiente ingreso.
 
 ---
 
 #### Getter para acceder al arreglo de lenguajes
 
 ```typescript
-// Obtener lenguajes como FormArray
-get lenguajes(): FormArray {
-  return this.myForm.get('lenguajes') as FormArray;
-}
+const { fields, append, remove } = useFieldArray({
+  control,
+  name: "lenguajes", // <--- Aquí le dices a qué parte del formulario conectarse
+  rules: {
+    minLength: 3 
+  }
+});
 ```
 
 ##### Explicación
 
-Este *getter* facilita acceder al `FormArray` desde el HTML.
-Gracias a esto, podemos usar directamente `lenguajes.controls` en el `@for` del template, sin escribir `myForm.get('lenguajes')` cada vez.
+La variable `fields` que obtienes de `useFieldArray`  contiene la lista actual y sincronizada de los elementos. Es la variable que utilizas en el HTML (TSX) para recorrer y pintar cada uno de los inputs en la pantalla.
 
 ---
 
@@ -566,50 +645,55 @@ Ahora agregamos la sección que muestra la lista actual de lenguajes y permite e
 
 #### En el HTML
 ```html
-<!-- Lista dinámica -->
-<div class="mb-3 row">
-  <label class="col-sm-3 col-form-label">Lenguajes</label>
+ <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Lenguajes</label>
+          <div className="col-sm-9">
+            {fields.map((item, index) => (
+              <div key={item.id}>
+                <div className="input-group mb-2">
+                  <input 
+                    className="form-control" 
+                    {...register(`lenguajes.${index}.name`, { required: true })}
+                  />
+                  <button
+                    className="btn btn-outline-danger"
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                {errors.lenguajes?.[index]?.name && (
+                   <span className="form-text text-danger">Campo requerido</span>
+                )}
+              </div>
+            ))}
 
-  <div class="col-sm-9" formArrayName="lenguajes">
-
-    @for(item of lenguajes.controls; track item; let i = $index) {
-
-      <div class="input-group mb-2">
-        <input class="form-control" [formControlName]="i">
-        <button
-          class="btn btn-outline-danger"
-          type="button"
-          (click)="onDeleteLenguaje(i)"
-        >
-          Eliminar
-        </button>
-      </div>
-
-      @if(formUtils.isValidFieldInArray(lenguajes, i)) {
-        <span class="form-text text-danger">
-          {{ formUtils.getFieldErrorInArray(lenguajes, i) }}
-        </span>
-      }
-    }
-
-    @if(formUtils.isValidField(myForm, 'lenguajes')){
-      <span class="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
-    }
-
-  </div>
-</div>
+            {errors.lenguajes && errors.lenguajes.root && (
+               <span className="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
+            )}
+            {errors.lenguajes && errors.lenguajes.type === "minLength" && (
+               <span className="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
+            )}
+          </div>
+        </div>
 ```
 
 ---
 
 #### Explicación
 
-1. `formArrayName="lenguajes"` indica que los controles internos pertenecen al arreglo.
-2. `@for` recorre todos los controles del arreglo (`lenguajes.controls`).
-3. `[formControlName]="i"` asocia cada input con su índice dentro del FormArray.
-4. `(click)="onDeleteLenguaje(i)"` elimina el elemento correspondiente.
-5. `@if(formUtils.isValidFieldInArray(...))` muestra el mensaje de error si ese control específico es inválido.
-6. Al final, se muestra un mensaje general si el arreglo tiene menos de 3 elementos válidos.
+1. `fields.map(...)` recorre el arreglo de controles (`fields`) obtenido del hook useFieldArray para renderizar la lista.
+
+2. `key={item.id}` es obligatorio en React Hook Form; usa un ID interno único para rastrear cada fila correctamente (no se debe usar el índice aquí).
+
+3. `register(...)` asocia cada input construyendo dinámicamente su nombre usando el índice (ej: `lenguajes.0.name`).
+
+4. `onClick={() => remove(index)}` ejecuta la función `remove` del hook para eliminar el elemento en esa posición específica.
+
+5. `{errors.lenguajes?.[index]?.name && ...}` verifica y muestra el error específico de ese input individual si existe.
+
+6. Al final, `errors.lenguajes` (root o type) verifica si hay un error global en el arreglo (como no cumplir el mínimo de 3 elementos).
 
 ---
 
@@ -617,15 +701,21 @@ Ahora agregamos la sección que muestra la lista actual de lenguajes y permite e
 
 ```typescript
 // Eliminar lenguaje
-onDeleteLenguaje(index: number) {
-  this.lenguajes.removeAt(index);
-}
+<button
+  className="btn btn-outline-danger"
+  type="button"
+  onClick={() => remove(index)}  
+>
+  Eliminar
+</button>
 
 // Enviar
-onSubmit() {
-  this.myForm.markAllAsTouched();
-  console.log(this.myForm.value);
-}
+const onSubmit = (data) => {
+  console.log(data); // <--- ESTO EQUIVALE AL console.log(this.myForm.value)
+};
+
+// En la etiqueta form
+<form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
 ```
 
 #### Explicación
@@ -636,46 +726,34 @@ onSubmit() {
 
 ---
 
-### PASO 5 — Métodos genéricos de `FormUtils` para FormArray
+### PASO 5 — Métodos genéricos para FormArray
 
-Para manejar los errores de cada control dentro del FormArray, agregamos en la clase `FormUtils` los métodos especializados:
+En React con React Hook Form, no necesitas crear métodos genéricos (`isValidFieldInArray` o `getFieldErrorInArray`) en una clase externa.
+
+Toda esa lógica se reemplaza por el acceso directo al objeto de errores dentro de tu TSX (HTML).
 
 ```typescript
-static isValidFieldInArray(formArray: FormArray, index: number) {
-  return (
-    formArray.controls[index].errors && formArray.controls[index].touched
-  );
-}
-
-static getFieldErrorInArray(formArray: FormArray, index: number): string | null {
-  if (formArray.controls.length == 0) return null;
-
-  const errors = formArray.controls[index].errors ?? {};
-  return FormUtils.getTextError(errors);
-}
+{errors.name && (
+<span className="form-text text-danger">{errors.name.message}</span>
+)}
 ```
 
 #### Explicación
 
-* **`isValidFieldInArray()`**:
-  Comprueba si un campo dentro del arreglo tiene errores y si el usuario ya interactuó con él.
-  Devuelve `true` cuando debe mostrarse el mensaje de error.
+* `errors.name &&`: Comprueba si existe un error registrado para el campo name (lo que implica que falló la validación y el estado del formulario permite mostrarlo). Actúa como un condicional: si el error existe, permite que se renderice el elemento `<span>`.
 
-* **`getFieldErrorInArray()`**:
-  Devuelve el mensaje correspondiente según el tipo de error del control, reutilizando la función `getTextError()` de `FormUtils`.
+* `errors.name.message`: Devuelve el texto del mensaje de error específico que se definió dentro de la función `register`, eliminando la necesidad de buscar o traducir el código de error manualmente.
 
 ---
 
 ### RESUMEN GENERAL
-
-| Concepto               | Descripción                                                               |
-| ---------------------- | ------------------------------------------------------------------------- |
-| **FormArray**          | Permite crear listas dinámicas de campos.                                 |
-| **newLenguaje**        | Control temporal para capturar valores nuevos.                            |
-| **Getter `lenguajes`** | Facilita el acceso al arreglo desde el HTML.                              |
-| **@for y @if**         | Nuevas estructuras de control en Angular 17+ (reemplazan *ngFor y *ngIf). |
-| **FormUtils**          | Centraliza la validación de cada elemento y simplifica el HTML.           |
-
+| Concepto | Descripción |
+| :--- | :--- |
+| **useFieldArray** | Hook que permite manejar listas dinámicas (agregar/eliminar filas). Equivalente a `FormArray`. |
+| **useState** | Estado local temporal (`newLenguaje`) para capturar valores antes de insertarlos en el formulario. |
+| **fields** | Variable obtenida de `useFieldArray` que contiene la lista actual para recorrerla en el JSX. |
+| **.map() y &&** | Métodos nativos de JavaScript usados en JSX para iterar listas y mostrar contenido condicionalmente. |
+| **Objeto errors** | Contiene directamente los mensajes de error definidos en `register`, eliminando la necesidad de utilidades externas. |
 ---
 
 
@@ -693,144 +771,213 @@ Estos tipos de campos permiten al usuario definir configuraciones o preferencias
 
 ### PASO 1. Crear el componente y definir el formulario
 
-Se crea un nuevo componente llamado `FormulariosSwitches` dentro de la carpeta correspondiente al módulo *reactive*.
+Se crea un nuevo archivo llamado `formularioMore.tsx` dentro de la carpeta de componentes.
 
-```bash
-ng g c features/formularios/pages/formularios-more-page --standalone --skip-tests
-```
+Luego se configura el hook `useForm` definiendo los valores iniciales (`defaultValues`) para controlar el estado de los inputs desde el principio.
+
+creamos un nuevo ponconente para `formularioMore`asi
+
+![more](../vanegas_vanegas/assets/morecreacion.png)
 
 Luego se configura el formulario reactivo en el archivo TypeScript.
 
 ```typescript
-export class FormulariosMorePage {
-  private fb = inject(FormBuilder);
-  formUtils = FormUtils;
+import { useState } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
-  myForm: FormGroup = this.fb.group({
-    genero: ['M', [Validators.required]],
-    notificaciones: [true, [Validators.required]],
-    condiciones: [false, [Validators.requiredTrue]],
+export const FormularioDinamico = () => {
+  const [newLenguaje, setNewLenguaje] = useState('');
+  
+  const { register, control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      name: '',
+      lenguajes: [{ name: 'Python' }, { name: 'Java' }]
+    }
   });
 
-  onSubmit() {
-    this.myForm.markAllAsTouched();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "lenguajes",
+    rules: {
+      minLength: 3 
+    }
+  });
 
-    if (this.myForm.invalid) return;
+  const onSubmit = (data: unknown) => {
+    console.log(data);
+    alert("Guardado correctamente");
+  };
 
-    console.log('Datos enviados:', this.myForm.value);
-    alert('Formulario válido. Datos registrados correctamente.');
-  }
-}
+  const onAddToLenguajes = () => {
+    if (newLenguaje.trim().length < 3) return;
+    append({ name: newLenguaje });
+    setNewLenguaje('');
+  };
+
+  const handleKeyDown = (e: { key: string; preventDefault: () => void; }) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onAddToLenguajes();
+    }
+  };
+
 ```
 
 #### Explicación
-
-* **`genero`**: se implementará con botones de opción (*radio buttons*).
-* **`notificaciones`**: se representará con un interruptor o *checkbox*.
-* **`condiciones`**: casilla obligatoria; usa `Validators.requiredTrue` para exigir que esté marcada.
-* El método `onSubmit()` valida y muestra los resultados.
+* **`genero`**: se inicializa en `"M"` para controlar el estado de los botones de opción (*radio buttons*).
+* **`notificaciones`**: se inicializa en `true`, representando un interruptor o *switch* activado por defecto.
+* **`condiciones`**: inicia en `false`; la lógica `!form.condiciones` actúa como validación obligatoria para exigir que esté marcada.
+* El método **`handleSubmit()`** previene la recarga de la página, fuerza la visualización de errores (`setTouched`) y, si todo es válido, muestra los resultados.
 
 ---
 
 ### PASO 2. Crear la plantilla del formulario
 
-El archivo HTML vincula cada control a su `formControlName` y muestra mensajes de error cuando sea necesario.
+lógica del formulario mediante la función `register` y muestra los mensajes de error utilizando renderizado condicional (`&&`).
 
-```html
-<h2>Formularios: <small>Switches y Opciones</small></h2>
+```tsx
+ <div>
+      <h2>Formularios: <small>Dinámicos</small></h2>
+      
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Nombre</label>
+          <div className="col-sm-9">
+            <input
+              className="form-control"
+              placeholder="Nombre del proyecto"
+              {...register('name', { 
+                required: 'Este campo es requerido', 
+                minLength: { value: 3, message: 'Mínimo 3 caracteres' } 
+              })}
+            />
+            {errors.name && (
+              <span className="form-text text-danger">{errors.name.message}</span>
+            )}
+          </div>
+        </div>
 
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Agregar</label>
+          <div className="col-sm-9">
+            <div className="input-group">
+              <input
+                className="form-control"
+                placeholder="Agregar lenguaje"
+                value={newLenguaje}
+                onChange={(e) => setNewLenguaje(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={onAddToLenguajes}
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
 
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <div className="mb-3 row">
+          <label className="col-sm-3 col-form-label">Lenguajes</label>
+          <div className="col-sm-9">
+            {fields.map((item, index) => (
+              <div key={item.id}>
+                <div className="input-group mb-2">
+                  <input 
+                    className="form-control" 
+                    {...register(`lenguajes.${index}.name`, { required: true })}
+                  />
+                  <button
+                    className="btn btn-outline-danger"
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                {errors.lenguajes?.[index]?.name && (
+                   <span className="form-text text-danger">Campo requerido</span>
+                )}
+              </div>
+            ))}
 
-  <!-- Selección de género -->
-  <div class="mb-3">
-    <label class="form-label">Género</label>
-    <div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="masculino" value="M" formControlName="genero">
-        <label class="form-check-label" for="masculino">Masculino</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" id="femenino" value="F" formControlName="genero">
-        <label class="form-check-label" for="femenino">Femenino</label>
-      </div>
+            {errors.lenguajes && (errors.lenguajes.root || errors.lenguajes.type === "minLength") && (
+               <span className="form-text text-danger">Debe tener mínimo 3 lenguajes</span>
+            )}
+          </div>
+        </div>
+        
+        <div className="row">
+            <div className="col">
+                 <button type="submit" className="btn btn-primary float-end">Guardar</button>
+            </div>
+        </div>
+
+      </form>
     </div>
-    @if(formUtils.isValidField(myForm, 'genero')) {
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'genero') }}
-      </span>
-    }
-  </div>
 
-  <!-- Notificaciones -->
-  <div class="form-check form-switch mb-3">
-    <input class="form-check-input" type="checkbox" role="switch" id="notificaciones" formControlName="notificaciones">
-    <label class="form-check-label" for="notificaciones">
-      Deseo recibir notificaciones
-    </label>
-  </div>
-
-  <!-- Aceptar condiciones -->
-  <div class="form-check mb-3">
-    <input class="form-check-input" type="checkbox" id="condiciones" formControlName="condiciones">
-    <label class="form-check-label" for="condiciones">
-      Acepto los términos y condiciones
-    </label>
-    @if(formUtils.isValidField(myForm, 'condiciones')) {
-      <span class="form-text text-danger">
-        {{ formUtils.getFieldError(myForm, 'condiciones') }}
-      </span>
-    }
-  </div>
-
-  <div class="text-end">
-    <button type="submit" class="btn btn-primary">Guardar</button>
-  </div>
-
-</form>
 ```
 
 ---
 
 ### PASO 3. Funcionamiento de cada control
-
 **1. Botones de opción (`radio`)**
-Solo uno puede estar seleccionado.
-El valor elegido se asigna a `genero` dentro del `FormGroup`.
+Se asegura que solo uno esté seleccionado mediante la propiedad `checked={form.genero === "VALOR"}`.
+Al cambiar, el evento `onChange` actualiza el estado `form.genero` con el valor seleccionado ("M" o "F").
 
 **2. Interruptor o switch (`form-switch`)**
-Funciona como un *checkbox*, pero con diseño de palanca.
-El valor es booleano (`true` o `false`), vinculado al control `notificaciones`.
+Técnicamente es un *input* de tipo `checkbox` con estilos de Bootstrap.
+Su valor es booleano y se controla accediendo a `e.target.checked` en el evento `onChange` para actualizar la propiedad `notificaciones`.
 
-**3. Casilla de verificación (`checkbox`) con validación obligatoria**
-`Validators.requiredTrue` obliga a que la casilla esté marcada antes de permitir el envío del formulario.
+**3. Casilla de verificación (`checkbox`) con validación manual**
+A diferencia de los validadores automáticos, aquí la validación se define en la constante `errors`: `!form.condiciones`.
+Esto verifica manualmente si el valor es `false` para obligar al usuario a marcar la casilla antes de enviar.
 
-**4. Método `onSubmit()`**
-Valida el formulario, muestra errores con ayuda de `FormUtils` y, si todo es correcto, imprime los datos y muestra una alerta de confirmación.
+**4. Método `handleSubmit()`**
+Al intentar enviar:
+1. Previene la recarga de la página (`e.preventDefault()`).
+2. Marca todos los campos como "tocados" (`setTouched`) para forzar que aparezcan los mensajes de error rojos en la interfaz.
+3. Verifica si existen errores en el objeto `errors`. Si hay alguno, detiene el envío (`return`).
+4. Si todo es correcto, muestra la alerta y los datos en consola.
 
 ---
 
-### PASO 4. Integración con la clase FormUtils
+### PASO 4. Validación y Gestión de Errores Local
 
-En este formulario se reutilizan los mismos métodos genéricos de `FormUtils` empleados en las prácticas anteriores.
+A diferencia de Angular donde usábamos una clase externa `FormUtils`, en este enfoque manual de React definimos la lógica de validación directamente dentro del componente para mantener el control total del estado.
+
+Se crean dos elementos clave para gestionar los mensajes:
 
 ```typescript
-static isValidField(form: FormGroup, fieldName: string): boolean | null {
-  return (
-    !!form.controls[fieldName].errors &&
-    form.controls[fieldName].touched
-  );
-}
+ const errors = {
+    genero: !form.genero ? "Seleccione un género" : null,
+    condiciones: !form.condiciones ? "Debe aceptar las condiciones" : null,
+  };
 
-static getFieldError(form: FormGroup, fieldName: string): string | null {
-  if (!form.controls[fieldName]) return null;
+  const isInvalid = (field: string) =>
+    Boolean(errors[field as keyof typeof errors] && touched[field as keyof typeof touched]);
 
-  const errors = form.controls[fieldName].errors ?? {};
-  return FormUtils.getTextError(errors);
-}
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setTouched({
+      genero: true,
+      condiciones: true,
+    });
+
+    if (errors.genero || errors.condiciones) return;
+
+    alert("Datos enviados correctamente");
+    console.log("Datos enviados:", form);
+  };
+
 ```
 
-Estos métodos permiten mostrar de manera uniforme los mensajes de error en todos los formularios, manteniendo el HTML limpio y consistente.
+Esta función auxiliar permite condicionar el renderizado de los mensajes de error de forma uniforme, evitando repetir la lógica de comprobación (`errors && touched`) en cada campo del JSX, lo que mantiene el código limpio y legible.
 
 ---
 
@@ -843,14 +990,34 @@ El formulario presenta:
 * Una casilla obligatoria de aceptación de condiciones.
 * Mensajes de error claros cuando los campos no cumplen los requisitos.
 
-El uso de `ReactiveFormsModule`, junto con `@if` y `FormUtils`, ofrece un flujo de validación estructurado, reutilizable y coherente con los estándares de Angular 20+.
-
+El uso de **estado controlado** (`useState`), junto con el renderizado condicional (`&&`) y la función auxiliar `isInvalid`, ofrece un flujo de validación transparente, robusto y coherente con los fundamentos de React.
 
 # Resultados 
 
 1. Tres capturas por cada pagina con los formularios  
   * Pagina formulario vacio
+
+  formulario
+![formu-vacio](../vanegas_vanegas/assets/formular-react.png)
+  formulario dinamico
+![dina-vacio](../vanegas_vanegas/assets/dina-react-vacio.png)
+  formulario More
+![more-vacio](../vanegas_vanegas/assets/more-react-vacio.png)
   * Pagina fomrualurio mostrar todos los errores
+  
+  formulario
+![form-error](../vanegas_vanegas/assets/for-react-error.png)
+  formulario dinamico
+![dina-error](../vanegas_vanegas/assets/dina-react-error.png)
+  formulario More
+![more-error](../vanegas_vanegas/assets/more-react-error.png)
   * Página formulario enviado correctamente y muestra en listado
+
+  formulario
+![form-funci](../vanegas_vanegas/assets/for-react-funcionando.png)
+  formulario dinamico
+![dina-funci](./assets/dina-react-funcio.png)
+  formulario More
+![more-funcio](../vanegas_vanegas/assets/more-react-funci.png)
 
 
