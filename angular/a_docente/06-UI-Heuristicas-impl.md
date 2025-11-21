@@ -113,7 +113,7 @@ export class HeaderHeuristicaComponent {
 ### Tabla Principal de Navegación
 
 ```html
-<!-- app.component.html -->
+<!-- interfaz-page.html -->
 <div class="min-h-screen bg-gray-50 py-12 px-4">
   <div class="max-w-7xl mx-auto">
     <!-- Header Principal -->
@@ -244,7 +244,7 @@ export class HeaderHeuristicaComponent {
 ```
 
 ```typescript
-// app.component.ts
+
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -258,13 +258,13 @@ interface Heuristica {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-interfaz-page',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './interfaz-page.html',
+  styleUrl: './interfaz-page.css',
 })
-export class AppComponent {
+export class InterfazPage {
   heuristicas = signal<Heuristica[]>([
     {
       id: 1,
