@@ -13,9 +13,13 @@
 
 ### Autor
 
-**Pablo Torres**
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Jean Pierre Valarezo**
+📧 [jvalarezov@ups.edu.ec](mailto:jvalarezov@ups.edu.ec)
+💻 GitHub: [jean-pierre-valarezo](jean-pierre-valarezo)
+
+**Sebastian Gomez**
+📧 [agomezm12@est.ups.edu.ec](mailto:agomezm12@est.ups.edu.ec)
+💻 GitHub: [SebastianGomez0910](SebastianGomez0910)
 
 ---
 
