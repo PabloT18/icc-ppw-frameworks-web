@@ -329,7 +329,10 @@ Para evaluar la interfaz desarrollada:
 
 1. Página inicial con Tailwind configurado y funcionando. PASO 1
 
-![imagen de tailwind activado y funcionando](\assets\tailwind.png)
+![imagen de tailwind activado y funcionando de Jordy Romero](\assets\tailwind.png)
+
+![Imagen de tailwind funcionando de Nayely Barbecho](\assets\versionnayeli.jpg)
+
 
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
 
