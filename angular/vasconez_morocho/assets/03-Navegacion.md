@@ -394,7 +394,6 @@ Ejemplo de como configurar rutas:
 
 ![Rutas 1](capturas/instalacion/app-routes2.png)
 
-Copiamos lo del selector y en este caso lo agregamos al nav bar en el siguiente paso.
 
 ### Paso 3: Agregar al Navbar
 
@@ -413,7 +412,7 @@ Como se vió anteriromente el componente add proyecto se encarga de agregar los 
 
 #### 4.2 Crear Componente para Lista de Proyectos
 
-Como se vió anteriormente el componente listar proyectos se encarga de listar los proyectos
+Como se vió anteriormente el componente encargado de listar es listar proyectos
 
 ![Proyectos listado proyectos html](capturas/componentes/proyectos-listado-html.png)
 
