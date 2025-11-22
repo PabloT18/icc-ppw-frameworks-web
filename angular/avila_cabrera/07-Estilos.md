@@ -544,7 +544,8 @@ export class SignalBoxComponent {
 # Resultado esperado de la práctica
 
 1. Enlace a pagina desplegada
-[Page](https://davilam3.github.io/icc-ppw-u3-03-ui-componentes-estilos/)
+[Page Sebastian Cabrera](https://ccabreram1.github.io/icc-ppw-u3-03-ui-componentes-estilos/)
+[Page Diana Avila](https://davilam3.github.io/icc-ppw-u3-03-ui-componentes-estilos/)
 2. Captura de pagina con estilos aplicados 
 ![Page](assets/PageEstilos.jpg)
 3. Captura de estilos-page.html
