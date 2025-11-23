@@ -2988,22 +2988,22 @@ export class AyudaBuenoComponent {
 * Heurísticas de Usabilidad de Nielsen
 
 1. Captura de heuristica
-![form](./src/assets/heuris.png)
+![form](./assets/heuris.png)
 
 2. Captura de Heurística 1
-![form](./src/assets/h1.png)
+![form](./assets/h1.png)
 
 3. Captura de Heurística 2
-![form](./src/assets/h2.png)
+![form](./assets/h2.png)
 
 4. Captura de Heurística 3
-![form](./src/assets/h3.png)
+![form](./assets/h3.png)
 
 5. Captura de Heurística 4
-![form](./src/assets/h4.png)
+![form](./assets/h4.png)
 
 6. Captura de Heurística 5
-![form](./src/assets/h5.png)
+![form](./assets/h5.png)
 
 7. Captura de Heurística 5
-![form](./src/assets/h6.png)
+![form](./assets/h6.png)
