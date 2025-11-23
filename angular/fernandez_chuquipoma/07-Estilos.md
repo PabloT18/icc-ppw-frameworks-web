@@ -550,7 +550,7 @@ export class SignalBoxComponent {
 - **GitHub Pages**: [[Enlace GitHub Pages](https://alexchuquipoma.github.io/03-ui-componentes-/)]
 
 2. Captura de pagina con estilos aplicados 
-![form](./src/assets/paginadesplegada.png)
+![form](./assets/paginadesplegada.png)
 
 3. Captura de estilos-page.html
-![form](./src/assets/estilos-page.html.png)
+![form](./assets/estilos-page.html.png)
