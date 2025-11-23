@@ -11,15 +11,16 @@
 
 ## Práctica 6: Aplicación de Heurísticas de Usabilidad
 
-### Autor
+### Autores
+**Alexander Chuquipoma**  
+📧 [achuquipoma@est.ups.edu.ec](mailto:achuquipoma@est.ups.edu.ec)  
+💻 GitHub: [AlexChuquipoma](https://github.com/AlexChuquipoma)
 
 **Juan Fernandez**  
 📧 jfernandezl6@est.ups.edu.ec  
 💻 GitHub: [Juan0Fernandedez](https://github.com/Juan0Fernandez)
 
-**Alexander Chuquipoma**  
-📧 [achuquipoma@est.ups.edu.ec](mailto:achuquipoma@est.ups.edu.ec)  
-💻 GitHub: [AlexChuquipoma](https://github.com/AlexChuquipoma)
+---
 
 # Instrucciones: Implementación de Heurísticas con Angular + TailwindCSS
 
@@ -450,10 +451,6 @@ export const heuristicaRoutes: Routes = [
 
 * Usarlo en `app.routes.ts` para enlazar todas las rutas de heurísticas:
 
- ![Página inicial con menu de heuristica](./assets/HeuristicaPage.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
-
-
 # Práctica Heurísticas de Usabilidad
 
 ## 1. Visibilidad del Estado del Sistema
@@ -672,10 +669,6 @@ export class EstadoSistemaBuenoComponent {
 }
 ```
 
-![Página inicial de la heuristica numero 1](./assets/Heuristica1.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
-
-
 ## 2. Correspondencia entre el Sistema y el Mundo Real
 
 ### Crear el componente `mundo-real.component.ts`
@@ -833,11 +826,6 @@ export class MundoRealBuenoComponent {
   }
 }
 ```
-
-![Página inicial de la heuristica numero 2](./assets/Heuristica2.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
-
-
 
 ## 3. Control y Libertad del Usuario
 
@@ -1506,10 +1494,6 @@ export class RegistroBuenoComponent {
 5. **Mensajes Contextuales**: Información específica sobre errores y cómo corregirlos
 6. **Animaciones de Transición**: Cambios suaves que comunican el estado del sistema
 
-![Página inicial de la heuristica numero 3](./assets/Heuristica3.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
-
-
 ## 4. Consistencia y Estándares
 
 ### Crear el componente `consistencia-estandares.component.ts`
@@ -1641,9 +1625,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ConsistenciaBuenoComponent {}
 ```
-  ![Página inicial de la heuristica numero 4](./assets/Heuristica4.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
-
 
 ## 5. Prevención de Errores
 
@@ -1845,9 +1826,6 @@ export class PrevencionBuenoComponent {
   }
 }
 ```
-
-![Página inicial de la heuristica numero 5](./assets/Heuristica5.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
 
 ## 6. Reconocimiento en Lugar de Recordar
 
@@ -2125,8 +2103,6 @@ export class ReconocimientoBuenoComponent {
   }
 }
 ```
-![Página inicial de la heuristica numero 6](./assets/Heuristica6.png)
-      **Descripción de la Imagen:** Esta captura muestra el resultado de la copilacion del codigo.
 
 
 ## 7. Flexibilidad y Eficiencia de Uso
@@ -3008,3 +2984,26 @@ export class AyudaBuenoComponent {
 }
 ```
 
+# Resultados 
+* Heurísticas de Usabilidad de Nielsen
+
+1. Captura de heuristica
+![form](./src/assets/heuris.png)
+
+2. Captura de Heurística 1
+![form](./src/assets/h1.png)
+
+3. Captura de Heurística 2
+![form](./src/assets/h2.png)
+
+4. Captura de Heurística 3
+![form](./src/assets/h3.png)
+
+5. Captura de Heurística 4
+![form](./src/assets/h4.png)
+
+6. Captura de Heurística 5
+![form](./src/assets/h5.png)
+
+7. Captura de Heurística 5
+![form](./src/assets/h6.png)
