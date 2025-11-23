@@ -12,9 +12,13 @@
 
 ### Autor
 
-**Pablo Torres**
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+**Jean Pierre Valarezo**
+📧 [ jvalarezov@ups.edu.ec ]
+💻 GitHub: [jean-pierre-valarezo](https://github.com/jean-pierre-valarezo)
+
+**Sebastian Gomez**
+📧 [ agomezm12@est.ups.edu.ec]
+💻 GitHub: [SebastianGomez0910](https://github.com/SebastianGomez0910)
 
 ---
 
@@ -545,4 +549,7 @@ export class SignalBoxComponent {
 
 1. Enlace a pagina desplegada
 2. Captura de pagina con estilos aplicados 
+![Paso 1](Estilos07.png)
 3. Captura de estilos-page.html
+![Paso 2](Estilos207.png)
+
