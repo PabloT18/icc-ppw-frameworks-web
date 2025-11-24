@@ -544,13 +544,13 @@ html
 # Resultado esperado de la práctica
 
 1. Enlace a pagina desplegada
-
 (https://nayelic98.github.io/icc-ppw-u1-estilos-componentes-nuevo/)
 2. Captura de pagina con estilos aplicados 
 
-![Estilos aplicados](/assets/estilosaplicados.png)
+![imagen](assets/estilosaplicados.png)
 
 3. Captura de estilos-page.html
 
-![Interfaz con boton corregido](\assets\botoncorregido.png)
+![imagen](assets/estilosPage.png)
+
 
