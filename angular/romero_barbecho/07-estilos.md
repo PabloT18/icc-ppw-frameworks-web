@@ -12,9 +12,9 @@
 
 ### Autor
 
-*Pablo Torres*
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+*Nayeli Barbecho,Jordy Romero*
+
+💻 GitHub: (https://github.com/Nayelic98/icc-ppw-u1-estilos-componentes-nuevo.git)
 
 ---
 
@@ -535,7 +535,7 @@ html
 
 ### Resultado esperado
 
-* Al escribir un número menor o igual a *20, el cuadro permanece **rojo*.
+* Al escribir un número menor o igual a *20, el cuadro pesrmanece **rojo*.
 * Si el número supera *20, el cuadro cambia automáticamente a **verde*.
 * No se usa ngIf ni ngModel; todo se maneja con *Signals* y clases dinámicas de TailwindCSS.
 
@@ -544,5 +544,13 @@ html
 # Resultado esperado de la práctica
 
 1. Enlace a pagina desplegada
+
+(https://nayelic98.github.io/icc-ppw-u1-estilos-componentes-nuevo/)
 2. Captura de pagina con estilos aplicados 
+
+![Estilos aplicados](/assets/estilosaplicados.png)
+
 3. Captura de estilos-page.html
+
+![Interfaz con boton corregido](\assets\botoncorregido.png)
+
