@@ -2982,21 +2982,29 @@ export class AyudaBuenoComponent {
 ```
 
 
-## Pruebas de la practica
+## Pruebas de la práctica
 
-1.
-![header heuristica](assets\first.png)
-2.
-![componentes heuristica](assets\second.png)
-3.
+1.  
+![header heuristica](assets/first.png)
+
+2.  
+![componentes heuristica](assets/second.png)
+
+3.  
 ![h1](assets/h1.png)
-4.
-![h2](assets\h2.png)
-5.
-![h3](assets\h3.png)
-6.
-![h4](assets\h4.png)
-7.
-![h5](assets\h5.png)
-8.
-1[h6](assets\h6.png)
+
+4.  
+![h2](assets/h2.png)
+
+5.  
+![h3](assets/h3.png)
+
+6.  
+![h4](assets/h4.png)
+
+7.  
+![h5](assets/h5.png)
+
+8.  
+![h6](assets/h6.png)
+
