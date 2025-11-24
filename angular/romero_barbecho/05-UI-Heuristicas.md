@@ -329,23 +329,23 @@ Para evaluar la interfaz desarrollada:
 
 1. Página inicial con Tailwind configurado y funcionando. PASO 1
 
-![imagen de tailwind activado y funcionando de Jordy Romero](\assets\tailwind.png)
+![imagen de tailwind activado y funcionando de Jordy Romero](assets\tailwind.png)
 
-![Imagen de tailwind funcionando de Nayely Barbecho](\assets\versionnayeli.jpg)
+![Imagen de tailwind funcionando de Nayeli Barbecho](assets\versionnayeli.jpg)
 
 
 2. Interfaz limpia, centrada en el usuario y con retroalimentación visual. PASO
 
-![interfaz limpia y centrada](\assets\interfaz.png)
+![interfaz limpia y centrada](assets\interfaz.png)
 
 3. Codigo con ejemplos aplicados. PASO 3 y 4
 
 paso 3
 
-![Interfaz con boton adicional](\assets\botonextra.png)
+![Interfaz con boton adicional](assets\botonextra.png)
 
 paso 4
 
-![Interfaz con boton corregido](\assets\botoncorregido.png)
+![Interfaz con boton corregido](assets\botoncorregido.png)
 
 
