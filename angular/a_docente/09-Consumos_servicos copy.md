@@ -393,13 +393,13 @@ Agrega la URL base de la API en los archivos `environment.ts` y `environment.pro
 ```typescript
 // environment.ts
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://thesimpsonsapi.com/api'
 };
 
-// environment.prod.ts
+// environment.development.ts
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'https://thesimpsonsapi.com/api'
 };
 ```
@@ -551,67 +551,209 @@ export class SimpsonsPageComponent {
     { initialValue: null }
   );
 
-  /// VERISION REACTIVA 
-  instResource = rxResource({
-  // 1. La petición depende de los valores de las señales
-  request: () => ({
-    page: this.paginationService.currentPage() - 1,
-    limit: this.bannersPerPage(),
-  }),
+  /// VERISION REACTIVA con recursos
+ simpsonsResource = resource({
+    params: () => ({
+      page: this.paginationService.currentPage() - 1,
+      limit: this.charactersPerPage(),
+    }),
+    loader: async ({ params }) => {
+      return this.simpsonsService.getCharactersOptions({
+        offset: params.page,
+        limit: params.limit,
+      });
+    },
+  });
 
-  // 2. El loader ejecuta el servicio de la API según esos valores
-  loader: ({ request }) => {
-    return this.instService.getInstitucionesUsers({
-      offset: request.page * request.limit,
-      limit: request.limit,
-    });
-  },
-});
+  /// VERSIUON CON RXRESOURCE
+  simpsonsResource2 = rxResource({
+    params: () => ({
+      page: this.paginationService.currentPage() - 1,
+      limit: this.charactersPerPage(),
+    }),
+    stream: ({params}) => {
+      return this.simpsonsService.getCharactersOptions({
+        offset: params.page,
+        limit: params.limit,
+      });
+    },
+  });
+
+
 }
 ```
-Ejemplo de integración con rxResource
 
-Podemos usar este servicio junto con rxResource para manejar la paginación reactiva del listado de personajes, instituciones o banners.
+### 3. Versión **toSignal + pipe**
 
-```typescript
-instResource = rxResource({
-  // 1. La petición depende de los valores de las señales
-  request: () => ({
+#### La forma manual y clásica
+
+Aquí mismo se gestiona:
+
+* Observables
+* Estados de carga
+* Errores
+* Transformaciones
+
+No se tiene estados como `isLoading()` o `error()`.
+
+#### ✔ Ejemplo
+
+```ts
+simpsonsResource = toSignal(
+  this.simpsonsService.getCharacters(this.paginationService.currentPage()).pipe(
+    map(res => res)
+  ),
+  { initialValue: null }
+);
+```
+
+#### ✔ Explicación
+
+* `toSignal()` convierte un observable a una señal.
+* **No actualiza automáticamente** cuando cambian los parámetros.
+* No maneja estados de carga.
+* No cancela peticiones automáticamente.
+
+#### ✔ Cuándo usarlo
+
+* Cuando necesitas convertir un observable simple a señal.
+* Para casos extremadamente simples.
+* Cuando no necesitas paginación ni recarga reactiva.
+
+### 2. Versión **Resource**
+
+
+#### Maneja promesas de forma automática
+
+`resource()` es la nueva API principal en Angular 20 para cargar datos asíncronos usando señales.
+Está diseñado para trabajar con **promesas**, no con observables.
+
+#### ✔ Cómo funciona
+
+`resource()` hace tres cosas automáticamente:
+
+1. Lee señales dentro de `params` → recalcula el parámetro.
+2. Llama al `loader` cuando los parámetros cambian.
+3. Expone estados reactivos:
+
+   * `value()`
+   * `isLoading()`
+   * `error()`
+
+Es como un `computed()` + un `effect()` + manejo de carga integrada.
+
+---
+
+#### ✔ Ejemplo aplicado a `SimpsonsPage`
+
+```ts
+simpsonsResource = resource({
+  params: () => ({
     page: this.paginationService.currentPage() - 1,
-    limit: this.bannersPerPage(),
+    limit: this.charactersPerPage(),
   }),
-
-  // 2. El loader ejecuta el servicio de la API según esos valores
-  loader: ({ request }) => {
-    return this.instService.getInstitucionesUsers({
-      offset: request.page * request.limit,
-      limit: request.limit,
+  loader: async ({ params }) => {
+    return this.simpsonsService.getCharactersOptions({
+      offset: params.page,
+      limit: params.limit,
     });
   },
 });
+```
+
+#### ✔ Explicación
+
+* `params()` se ejecuta cada vez que cambian:
+
+  * `currentPage()`
+  * `charactersPerPage()`
+
+* El `loader` recibe `{ params }` y **retorna una promesa** del servicio.
+
+* La vista puede usar:
+
+```html
+@if(impsonsResource.isLoading()){
+  <div >Cargando...</div>
+}
+@if(impsonsResource.value()){
+  <div >{{ data | json }</div>
+}
+
+@if(impsonsResource.error()){
+  <div >Error: {{ err }}</div>
+}
 
 ```
 
-#### Cómo funciona el flujo
+#### ✔ Cuándo usar `resource`
 
-PaginationService obtiene la página actual desde la URL (?page=2).
+* Cuando tu servicio devuelve promesas o usas async/await.
+* Para lógica de paginación, filtros, sort, búsqueda.
+* Para reemplazar un efecto manual que reactualiza datos.
 
-rxResource detecta automáticamente el cambio en la señal currentPage().
-
-Se ejecuta el método getInstitucionesUsers() con los nuevos parámetros (offset y limit).
-
-La vista se actualiza con los nuevos datos, sin necesidad de usar subscribe() o ngOnInit().
-
-#### Ventajas
-
-Totalmente reactivo y compatible con Angular Signals.
-
-No requiere manualmente subscribe() ni unsubscribe().
-
-Se integra fácilmente con componentes de paginación o filtros.
-
-Permite mantener la página actual sincronizada con la URL (ideal para compartir enlaces).
 ---
+
+### 3. Versión **rxResource**
+
+#### Ideal para trabajar con **Observables** (RxJS)
+
+`rxResource()` funciona parecido a `resource()`, pero:
+
+* Trabaja con **observables**
+* Usa `stream` (antes era `request` + `loader` en Angular 17–19)
+
+#### ✔ Ejemplo
+
+```ts
+simpsonsResource2 = rxResource({
+  params: () => ({
+    page: this.paginationService.currentPage() - 1,
+    limit: this.charactersPerPage(),
+  }),
+  stream: ({ params }) => {
+    return this.simpsonsService.getCharactersOptions({
+      offset: params.page,
+      limit: params.limit,
+    });
+  },
+});
+```
+
+#### ✔ Explicación
+
+* Reacciona cuando `params()` cambia.
+* Ejecuta un observable retornado por el servicio.
+* Mantiene estados `.value()`, `.isLoading()`, `.error()`
+
+#### ✔ Cuándo usar rxResource
+
+* Cuando tus servicios ya trabajan con RxJS (observables).
+* Cuando vas a combinar operadores (switchMap, catchError, etc.).
+* Cuando necesitas cancelar peticiones anteriores (stream ya usa switchMap internamente).
+
+
+
+
+---
+
+### 4. Tabla comparativa completa
+
+| Característica                                 | `resource()`             | `rxResource()`   | `toSignal()`                             |
+| ---------------------------------------------- | ------------------------ | ---------------- | ---------------------------------------- |
+| Tipo principal                                 | Promesas (async/await)   | Observables      | Observables                              |
+| API reactiva                                   | Sí                       | Sí               | Parcial                                  |
+| Recalcula con señales                          | Sí                       | Sí               | No (solo una vez)                        |
+| Estados integrados (loading, error, value)     | Sí                       | Sí               | No                                       |
+| Cancela peticiones anteriores                  | Sí (loader)              | Sí (switchMap)   | No                                       |
+| Soporta paginación reactiva                    | Perfecto                 | Perfecto         | Limitado                                 |
+| Manejo intuitivo                               | Muy alto                 | Alto             | Medio                                    |
+| Ideal para                                     | Apps modernas Angular 20 | Apps con RxJS    | Casos simples                            |
+| Facilidad para combinar filtrados y parámetros | Muy fácil                | Muy fácil        | Manual                                   |
+| Quién lo recomienda Angular                    | Uso principal            | Alternativa RxJS | No recomendado para peticiones complejas |
+
+---
+
 
 ### HTML: `simpsons-page.html`
 
@@ -666,6 +808,88 @@ Permite mantener la página actual sincronizada con la URL (ideal para compartir
 ```
 
 ---
+
+Version Resource o rxResource
+```html
+<section class="p-8">
+    <h1 class="text-3xl font-bold mb-2 text-center">The Simpsons API</h1>
+    <h2 class="text-lg text-center mb-6">Listado de personajes</h2>
+
+    <!-- Spinner de carga -->
+    @if (simpsonsResource.isLoading()) {
+    <div class="flex justify-center items-center h-64">
+        <span class="loading loading-spinner loading-lg"></span>
+    </div>
+    }
+
+    <!-- Paginación y controles -->
+    @if (simpsonsResource.hasValue()) {
+    <div class="flex gap-2 items-center h-20 mb-4">
+
+        <select
+            class="select select-bordered w-32"
+            (change)="charactersPerPage.set(+selectPerPage.value)"
+            #selectPerPage
+        >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        <app-pagination
+            [pages]="simpsonsResource.hasValue()? simpsonsResource.value().pages : 0"
+            [currentPage]="paginationService.currentPage()"
+        />
+
+        <div class="flex flex-1"></div>
+    </div>
+    }
+
+    <!-- Tabla de personajes -->
+    @if (simpsonsResource.hasValue()) {
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Ocupación</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (personaje of simpsonsResource.value().results; track personaje.id) {
+                <tr>
+                    <td>{{ personaje.id }}</td>
+                    <td>{{ personaje.name }}</td>
+                    <td>{{ personaje.occupation }}</td>
+                    <td>
+                        <span class="badge badge-{{ personaje.status === 'Alive' ? 'success' : 'error' }}">
+                            {{ personaje.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <a
+                            [routerLink]="['/simpsons', personaje.id]"
+                            class="btn btn-sm btn-primary"
+                        >
+                            Ver Detalle
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>
+```
+
+
+Para mayor infromacion sobre cual escojer ver el archivo
+
+[Angular Obserbables porque es recomdable por los expertos](../../docs/angular-obserbables-rx.md)
 
 ## 5. Página de detalle `SimpsonDetailPage`
 
