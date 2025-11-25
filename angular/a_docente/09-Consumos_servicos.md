@@ -491,6 +491,8 @@ export interface SimpsonsCharacterDetail extends SimpsonsCharacter {
 ---
 
 ## 3. Servicio de paginación `PaginationService`
+En las aplicaciones que consumen APIs con resultados paginados, es común que cada petición incluya los parámetros page (número de página) y limit (cantidad de registros por página).
+Para manejar esto de forma reactiva y sin lógica repetida, se puede crear un servicio que escuche los cambios en la URL y actualice la página actual automáticamente.
 
 ```typescript
 import { inject, Injectable } from '@angular/core';
@@ -502,6 +504,7 @@ import { map } from 'rxjs';
 export class PaginationService {
   private activatedRoute = inject(ActivatedRoute);
 
+  // Convierte los parámetros de la URL (?page=2) en una señal reactiva
   currentPage = toSignal(
     this.activatedRoute.queryParamMap.pipe(
       map((params) => (params.get('page') ? +params.get('page')! : 1)),
@@ -511,6 +514,16 @@ export class PaginationService {
   );
 }
 ```
+
+| Elemento                       | Descripción                                                                                              |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `ActivatedRoute`               | Permite acceder a los parámetros de la ruta actual (por ejemplo, `?page=2`).                             |
+| `toSignal()`                   | Convierte el flujo del observable en una **Signal** reactiva que Angular puede detectar automáticamente. |
+| `queryParamMap.pipe(map(...))` | Extrae y transforma el parámetro `page` desde la URL.                                                    |
+| `initialValue: 1`              | Indica que, si no existe parámetro en la URL, se usará la página 1 por defecto.                          |
+
+De esta forma, cuando el usuario cambia de página (por ejemplo, ?page=3), Angular detecta el cambio y actualiza automáticamente la señal currentPage, sin necesidad de recargar el componente.
+
 
 ---
 
@@ -537,9 +550,67 @@ export class SimpsonsPageComponent {
     ),
     { initialValue: null }
   );
+
+  /// VERISION REACTIVA 
+  instResource = rxResource({
+  // 1. La petición depende de los valores de las señales
+  request: () => ({
+    page: this.paginationService.currentPage() - 1,
+    limit: this.bannersPerPage(),
+  }),
+
+  // 2. El loader ejecuta el servicio de la API según esos valores
+  loader: ({ request }) => {
+    return this.instService.getInstitucionesUsers({
+      offset: request.page * request.limit,
+      limit: request.limit,
+    });
+  },
+});
 }
 ```
+Ejemplo de integración con rxResource
 
+Podemos usar este servicio junto con rxResource para manejar la paginación reactiva del listado de personajes, instituciones o banners.
+
+```typescript
+instResource = rxResource({
+  // 1. La petición depende de los valores de las señales
+  request: () => ({
+    page: this.paginationService.currentPage() - 1,
+    limit: this.bannersPerPage(),
+  }),
+
+  // 2. El loader ejecuta el servicio de la API según esos valores
+  loader: ({ request }) => {
+    return this.instService.getInstitucionesUsers({
+      offset: request.page * request.limit,
+      limit: request.limit,
+    });
+  },
+});
+
+```
+
+#### Cómo funciona el flujo
+
+PaginationService obtiene la página actual desde la URL (?page=2).
+
+rxResource detecta automáticamente el cambio en la señal currentPage().
+
+Se ejecuta el método getInstitucionesUsers() con los nuevos parámetros (offset y limit).
+
+La vista se actualiza con los nuevos datos, sin necesidad de usar subscribe() o ngOnInit().
+
+#### Ventajas
+
+Totalmente reactivo y compatible con Angular Signals.
+
+No requiere manualmente subscribe() ni unsubscribe().
+
+Se integra fácilmente con componentes de paginación o filtros.
+
+Permite mantener la página actual sincronizada con la URL (ideal para compartir enlaces).
 ---
 
 ### HTML: `simpsons-page.html`
