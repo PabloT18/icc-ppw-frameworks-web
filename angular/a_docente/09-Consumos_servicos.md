@@ -566,7 +566,7 @@ export class SimpsonsPageComponent {
   });
 
   /// VERSIUON CON RXRESOURCE
-  simpsonsResource2 = rxResource({
+  simpsonsResource = rxResource({
     params: () => ({
       page: this.paginationService.currentPage() - 1,
       limit: this.charactersPerPage(),
@@ -706,7 +706,7 @@ simpsonsResource = resource({
 #### ✔ Ejemplo
 
 ```ts
-simpsonsResource2 = rxResource({
+simpsonsResource = rxResource({
   params: () => ({
     page: this.paginationService.currentPage() - 1,
     limit: this.charactersPerPage(),
@@ -890,6 +890,32 @@ Version Resource o rxResource
 Para mayor infromacion sobre cual escojer ver el archivo
 
 [Angular Obserbables porque es recomdable por los expertos](../../docs/angular-obserbables-rx.md)
+
+### Modificar el `SimpsonsService` agregar el siguiente metodo:
+
+```typescript
+getCharactersOptions(options: Options): Observable<SimpsonsResponse> {
+    return this.http.get<SimpsonsResponse>(`${this.API_URL}/characters?page=${options.offset}`).pipe(
+      delay(3500),
+      map(res => res),
+      catchError(err => {
+        console.error('Error al obtener personajes', err);
+        return of({ count: 0, next: null, prev: null, pages: 0, results: [] });
+      })
+    );
+  }
+```
+
+
+### Crear la interface Options
+
+```typescript
+export interface Options {
+    limit?: number;
+    offset?: number;
+}
+```
+
 
 ## 5. Página de detalle `SimpsonDetailPage`
 
