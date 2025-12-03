@@ -1362,11 +1362,58 @@ export class FavoritesService {
 Agregar las siguientes importaciones y propiedades:
 
 ```typescript
-export class SimpsonsPage {
-    // AGREGAR
-  private fb = inject(FormBuilder);
+private simpsonsService = inject(SimpsonsService);
+  paginationService = inject(PaginationService);
+
   private favoritesService = inject(FavoritesService);
-  private authService = inject(AuthService);
+  private authService = inject(AuthFB);
+
+  // Triggers para acciones de favoritos
+  private addFavoriteAction = signal<{ nombre: string; imagen: string } | null>(null);
+  private deleteFavoriteAction = signal<string | null>(null);
+  private updateFavoriteAction = signal<{ id: string; customName: string } | null>(null);
+
+  charactersPerPage = signal(10);
+
+  // Signal que mantiene el número total de páginas
+  totalPages = signal(0);
+
+  constructor() {
+    // Effect que actualiza el número de páginas cuando hay datos válidos
+    effect(() => {
+      if (this.simpsonsResource.hasValue()) {
+        this.totalPages.set(this.simpsonsResource.value().pages);
+      }
+    });
+
+    // Inicializar formulario de edición
+    this.editForm = this.fb.group({
+      customName: ['', [Validators.required, Validators.minLength(2)]]
+    });
+
+    // Effect: Recargar favoritos cuando el usuario se autentica
+    effect(() => {
+      const user = this.authService.currentUser();
+      if (user) {
+        this.reloadFavoritesTrigger.update(v => v + 1);
+      }
+    });
+  }
+
+  simpsonsResource = rxResource({
+    params: () => ({
+      page: this.paginationService.currentPage() - 1,
+      limit: this.charactersPerPage(),
+    }),
+    stream: ({ params }) => {
+      return this.simpsonsService.getCharactersOptions({
+        offset: params.page,
+        limit: params.limit,
+      });
+    },
+  });
+
+  private fb = inject(FormBuilder);
 
   // Signal para trigger de recarga de favoritos
   private reloadFavoritesTrigger = signal(0);
@@ -1381,9 +1428,71 @@ export class SimpsonsPage {
     }
   });
 
+  /**
+   * Recursos para operaciones de favoritos
+   */
+  private addFavoriteResource = rxResource({
+    params: () => this.addFavoriteAction(),
+    stream: ({ params }) => {
+      if (!params) return of(null);
+      return this.favoritesService.addFavorite(params.nombre, params.imagen).pipe(
+        tap(() => {
+          untracked(() => {
+            this.reloadFavoritesTrigger.update(v => v + 1);
+            alert('¡Agregado a favoritos!');
+          });
+        }),
+        catchError((error) => {
+          console.error('Error al agregar favorito:', error);
+          alert('Error al agregar a favoritos: ' + error.message);
+          return of(null);
+        })
+      );
+    }
+  });
+
+  private deleteFavoriteResource = rxResource({
+    params: () => this.deleteFavoriteAction(),
+    stream: ({ params }) => {
+      if (!params) return of(null);
+      return this.favoritesService.deleteFavorite(params).pipe(
+        tap(() => {
+          untracked(() => {
+            this.reloadFavoritesTrigger.update(v => v + 1);
+            alert('Eliminado de favoritos');
+          });
+        }),
+        catchError((error) => {
+          console.error('Error al eliminar favorito:', error);
+          return of(null);
+        })
+      );
+    }
+  });
+
+  private updateFavoriteResource = rxResource({
+    params: () => this.updateFavoriteAction(),
+    stream: ({ params }) => {
+      if (!params) return of(null);
+      return this.favoritesService.updateFavorite(params.id, params.customName).pipe(
+        tap(() => {
+          untracked(() => {
+            this.reloadFavoritesTrigger.update(v => v + 1);
+            this.cancelEditingFavorite();
+            alert('Nombre actualizado');
+          });
+        }),
+        catchError((error) => {
+          console.error('Error al actualizar favorito:', error);
+          return of(null);
+        })
+      );
+    }
+  });
+
   // Signal para el ID del favorito en edición
   editingFavoriteId = signal<string | null>(null);
-  
+
   // Formulario para editar nombres personalizados
   editForm!: FormGroup;
 
@@ -1391,25 +1500,11 @@ export class SimpsonsPage {
   favorites = () => this.favoritesResource.value() || [];
   loadingFavorites = this.favoritesResource.isLoading;
 
-  constructor() {
-    // Inicializar formulario de edición
-    this.editForm = this.fb.group({
-      customName: ['', [Validators.required, Validators.minLength(2)]]
-    });
-
-    // Effect: Recargar favoritos cuando el usuario se autentica
-    effect(() => {
-      const user = this.authService.currentUser();
-      if (user) {
-        this.reloadFavorites();
-      }
-    });
-  }
 
   /**
    * Disparar recarga de favoritos
    */
-  private reloadFavorites() {
+  reloadFavorites() {
     this.reloadFavoritesTrigger.update(v => v + 1);
   }
 
@@ -1426,16 +1521,7 @@ export class SimpsonsPage {
       return;
     }
 
-    this.favoritesService.addFavorite(nombre, imagen).subscribe({
-      next: () => {
-        this.reloadFavorites();
-        alert('¡Agregado a favoritos!');
-      },
-      error: (error) => {
-        console.error('Error al agregar favorito:', error);
-        alert('Error al agregar a favoritos: ' + error.message);
-      }
-    });
+    this.addFavoriteAction.set({ nombre, imagen });
   }
 
   /**
@@ -1443,15 +1529,7 @@ export class SimpsonsPage {
    */
   removeFromFavorites(favoriteId: string) {
     if (confirm('¿Eliminar de favoritos?')) {
-      this.favoritesService.deleteFavorite(favoriteId).subscribe({
-        next: () => {
-          this.reloadFavorites();
-          alert('Eliminado de favoritos');
-        },
-        error: (error) => {
-          console.error('Error al eliminar favorito:', error);
-        }
-      });
+      this.deleteFavoriteAction.set(favoriteId);
     }
   }
 
@@ -1475,19 +1553,10 @@ export class SimpsonsPage {
     }
 
     const favoriteId = this.editingFavoriteId();
-    const newName = this.editForm.value.customName;
+    const customName = this.editForm.value.customName;
 
-    if (favoriteId) {
-      this.favoritesService.updateFavorite(favoriteId, newName).subscribe({
-        next: () => {
-          this.reloadFavorites();
-          this.cancelEditingFavorite();
-          alert('Nombre actualizado');
-        },
-        error: (error) => {
-          console.error('Error al actualizar favorito:', error);
-        }
-      });
+    if (favoriteId && customName) {
+      this.updateFavoriteAction.set({ id: favoriteId, customName });
     }
   }
 
@@ -1505,10 +1574,9 @@ export class SimpsonsPage {
   isFavorite(characterName: string): boolean {
     return this.favorites().some(fav => fav.nombre === characterName);
   }
-}
 ```
 
-**Cambios clave en Angular 20:**
+#### **Cambios clave en Angular 20:**
 
 1. **`rxResource` con `params` y `stream`**:
    ```typescript
@@ -1576,12 +1644,15 @@ Agregar sección de favoritos después de la tabla:
 
 ```html
 <!-- Sección de Favoritos -->
+
+<section>
+
 <div class="mt-8">
   <div class="flex items-center justify-between mb-4">
     <h2 class="text-2xl font-bold">⭐ Mis Favoritos</h2>
     <button 
       class="btn btn-sm btn-ghost"
-      (click)="loadFavorites()"
+      (click)="reloadFavorites()"
       [disabled]="loadingFavorites()"
     >
       @if (loadingFavorites()) {
@@ -1683,6 +1754,7 @@ Agregar sección de favoritos después de la tabla:
     </div>
   }
 </div>
+</section>
 ```
 
 
