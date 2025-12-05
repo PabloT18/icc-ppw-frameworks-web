@@ -1,4 +1,4 @@
-# 📚 Índice de Estudiantes - PRW-P67 Frameworks Web
+#  Índice de Estudiantes - PRW-P67 Frameworks Web
 
 Este archivo contiene el índice de todos los estudiantes y enlaces directos a sus carpetas de trabajo.
 
