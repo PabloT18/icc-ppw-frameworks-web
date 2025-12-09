@@ -13,9 +13,13 @@
 
 ### Autor
 
-**Pablo Torres**  
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+### Autor
+*Miguel Ángel Vanegas*   
+📧 mvanegasp@est.ups.edu.ec  
+💻 GitHub: [MiguelV145](https://github.com/MiguelV145)  
+*Jose Vanegas*  
+📧 jvanegasp1@est.ups.edu.ec   
+💻 GitHub: [josevac1](https://github.com/josevac1)
 
 ---
 
