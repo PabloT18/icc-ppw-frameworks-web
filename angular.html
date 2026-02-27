@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular - Material y Prácticas | ICC PPW</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #DD0031 0%, #C3002F 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #DD0031;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: white;
+            color: #DD0031;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .section h2 {
+            color: #DD0031;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #DD0031;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .content-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #DD0031;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-item h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .content-item p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .content-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .content-link {
+            display: inline-block;
+            background: #DD0031;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .content-link:hover {
+            background: #C3002F;
+        }
+
+        .content-link.secondary {
+            background: #667eea;
+        }
+
+        .content-link.secondary:hover {
+            background: #5568d3;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .badge.teoria {
+            background: #17a2b8;
+        }
+
+        .badge.practica {
+            background: #28a745;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Volver al Inicio</a>
+
+        <div class="header">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular Logo">
+            <h1>Angular Framework</h1>
+            <p>Material Conceptual y Prácticas</p>
+        </div>
+
+        <!-- Sección de Material Conceptual -->
+        <div class="section">
+            <h2>📚 Material Conceptual</h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>01. Instalación y Configuración <span class="badge teoria">Teoría</span></h3>
+                    <p>Aprende a instalar Angular CLI, crear tu primer proyecto y configurar tu entorno de desarrollo.</p>
+                    <div class="content-links">
+                        <a href="angular/01-instalacion_configuracio/01-instalacion_configuracio.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>02. Fundamentos de Angular <span class="badge teoria">Teoría</span></h3>
+                    <p>Componentes, templates, data binding, directivas y pipes básicos.</p>
+                    <div class="content-links">
+                        <a href="angular/02-fundamentos/02-fundamentos.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>03. Navegación y Routing <span class="badge teoria">Teoría</span></h3>
+                    <p>Configuración de rutas, navegación entre componentes y parámetros de ruta.</p>
+                    <div class="content-links">
+                        <a href="angular/03-Navegacion/03-Navegacion.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>04. Formularios <span class="badge teoria">Teoría</span></h3>
+                    <p>Formularios reactivos y template-driven, validaciones y manejo de datos.</p>
+                    <div class="content-links">
+                        <a href="angular/04-Formularios/04-Formularios.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>05. UI y Heurísticas <span class="badge teoria">Teoría</span></h3>
+                    <p>Principios de diseño de interfaces y heurísticas de usabilidad.</p>
+                    <div class="content-links">
+                        <a href="angular/05-UI-Heuristicas/05-UI-Heuristicas.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>06. Implementación de Heurísticas <span class="badge teoria">Teoría</span></h3>
+                    <p>Aplicación práctica de heurísticas en componentes Angular.</p>
+                    <div class="content-links">
+                        <a href="angular/06-UI-Heuristicas-impl/06-UI-Heuristicas-impl.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>07. Estilos en Angular <span class="badge teoria">Teoría</span></h3>
+                    <p>CSS, SCSS, estilos globales y por componente.</p>
+                    <div class="content-links">
+                        <a href="angular/07-Estilos/07-Estilos.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>08. Estilos, Temas y Componentes <span class="badge teoria">Teoría</span></h3>
+                    <p>Sistema de temas, componentes Material Design y personalización.</p>
+                    <div class="content-links">
+                        <a href="angular/08-Estilos-Tema-Componentes/08-Estilos-Tema-Componentes.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>09. Consumo de Servicios <span class="badge teoria">Teoría</span></h3>
+                    <p>HttpClient, servicios REST, interceptores y manejo de respuestas.</p>
+                    <div class="content-links">
+                        <a href="angular/09-Consumos_servicos/09-Consumos_servicos.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>10. Mejoras Visuales <span class="badge teoria">Teoría</span></h3>
+                    <p>Animaciones, transiciones y efectos visuales avanzados.</p>
+                    <div class="content-links">
+                        <a href="angular/10-mejoras-vsuales/10-mejoras-vsuales.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>11. Firebase Integration <span class="badge teoria">Teoría</span></h3>
+                    <p>Integración con Firebase: Autenticación, Firestore y Hosting.</p>
+                    <div class="content-links">
+                        <a href="angular/11-firebase/11-firebase.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>12. Guards y Seguridad <span class="badge teoria">Teoría</span></h3>
+                    <p>Guards de rutas, autenticación y autorización en Angular.</p>
+                    <div class="content-links">
+                        <a href="angular/12-guards-seguridad-rutas/12-guards-seguridad-rutas.md" class="content-link">Ver Material</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Prácticas -->
+        <div class="section">
+            <h2>🔨 Prácticas y Ejercicios</h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>Práctica 01: Instalación <span class="badge practica">Práctica</span></h3>
+                    <p>Instalar Angular CLI, crear proyecto inicial y configurar ambiente de desarrollo.</p>
+                    <div class="content-links">
+                        <a href="angular/01-instalacion_configuracio/01-instalacion_configuracio.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 02: Fundamentos <span class="badge practica">Práctica</span></h3>
+                    <p>Crear componentes, trabajar con templates y data binding.</p>
+                    <div class="content-links">
+                        <a href="angular/02-fundamentos/02-fundamentos-practica.html" class="content-link secondary">Ver Práctica</a>
+                        <a href="angular/02-fundamentos/02-fundamentos-practica.md" class="content-link">Guía MD</a>
+                        <a href="angular/02-fundamentos/02-fundamentos-file-1.html" class="content-link">Archivo 1</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 03: Navegación <span class="badge practica">Práctica</span></h3>
+                    <p>Implementar sistema de rutas y navegación entre vistas.</p>
+                    <div class="content-links">
+                        <a href="angular/03-Navegacion/03-Navegacion.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 04: Formularios <span class="badge practica">Práctica</span></h3>
+                    <p>Crear y validar formularios reactivos y template-driven.</p>
+                    <div class="content-links">
+                        <a href="angular/04-Formularios/04-Formularios.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 05-06: UI Heurísticas <span class="badge practica">Práctica</span></h3>
+                    <p>Aplicar principios de usabilidad en componentes.</p>
+                    <div class="content-links">
+                        <a href="angular/05-UI-Heuristicas/05-UI-Heuristicas.md" class="content-link secondary">Teoría</a>
+                        <a href="angular/06-UI-Heuristicas-impl/06-UI-Heuristicas-impl.md" class="content-link">Implementación</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 07-08: Estilos <span class="badge practica">Práctica</span></h3>
+                    <p>Aplicar estilos, temas y componentes Material Design.</p>
+                    <div class="content-links">
+                        <a href="angular/07-Estilos/07-Estilos.md" class="content-link secondary">Estilos Básicos</a>
+                        <a href="angular/08-Estilos-Tema-Componentes/08-Estilos-Tema-Componentes.md" class="content-link">Temas y Componentes</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 09: Servicios HTTP <span class="badge practica">Práctica</span></h3>
+                    <p>Consumir APIs REST y manejar respuestas HTTP.</p>
+                    <div class="content-links">
+                        <a href="angular/09-Consumos_servicos/09-Consumos_servicos.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 10: Mejoras Visuales <span class="badge practica">Práctica</span></h3>
+                    <p>Implementar animaciones y transiciones.</p>
+                    <div class="content-links">
+                        <a href="angular/10-mejoras-vsuales/10-mejoras-vsuales.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 11: Firebase <span class="badge practica">Práctica</span></h3>
+                    <p>Integrar Firebase en tu aplicación Angular.</p>
+                    <div class="content-links">
+                        <a href="angular/11-firebase/11-firebase.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Práctica 12: Guards <span class="badge practica">Práctica</span></h3>
+                    <p>Implementar guards para proteger rutas.</p>
+                    <div class="content-links">
+                        <a href="angular/12-guards-seguridad-rutas/12-guards-seguridad-rutas.md" class="content-link secondary">Guía de Práctica</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Recursos Adicionales -->
+        <div class="section">
+            <h2>📖 Recursos Adicionales</h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>Documentación de Referencia</h3>
+                    <p>Material adicional y documentación complementaria.</p>
+                    <div class="content-links">
+                        <a href="docs/angular-deploy.md" class="content-link">Deploy de Angular</a>
+                        <a href="docs/angular-obserbables-rx.md" class="content-link">Observables y RxJS</a>
+                        <a href="docs/05-heristicas.md" class="content-link">Heurísticas UI</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Gists de Ayuda</h3>
+                    <p>Guías rápidas y referencias útiles.</p>
+                    <div class="content-links">
+                        <a href="https://gist.github.com/PabloT18/efa4daa60d4782967187ce34cfe5771a" target="_blank" class="content-link">Guía Angular</a>
+                        <a href="https://gist.github.com/PabloT18/683e6d950b240f9620a98903cf92e87a" target="_blank" class="content-link">VS Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - Angular Framework</p>
+        </footer>
+    </div>
+</body>
+</html>

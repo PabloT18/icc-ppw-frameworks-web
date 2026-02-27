@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Material y Prácticas | ICC PPW</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #42B883 0%, #35495E 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #42B883;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: white;
+            color: #42B883;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .section h2 {
+            color: #42B883;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #42B883;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .content-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #42B883;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-item h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .content-item p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .content-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .content-link {
+            display: inline-block;
+            background: #42B883;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .content-link:hover {
+            background: #35495E;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Volver al Inicio</a>
+
+        <div class="header">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue Logo">
+            <h1>Vue Framework</h1>
+            <p>Material y Proyectos de Estudiantes</p>
+        </div>
+
+        <div class="section">
+            <div class="info-box">
+                <h3>ℹ️ Información</h3>
+                <p>Esta sección está en desarrollo. El material de Vue será agregado próximamente.</p>
+                <p>Por ahora, puedes ver los proyectos de los estudiantes en las carpetas correspondientes.</p>
+            </div>
+        </div>
+
+        <!-- Sección de Proyectos de Estudiantes -->
+        <div class="section">
+            <h2>👥 Proyectos de Estudiantes</h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>Calle Torres</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="vue/calle_torres/assets/README.md" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Guamán Guanga</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="vue/guaman_guanga/assets/README.md" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Ramón Serrano</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="vue/ramon_serrano/assets/README.md" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Vascónez Morocho</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="vue/vasconez_morocho/assets/README.md" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Recursos -->
+        <div class="section">
+            <h2>📚 Recursos de Aprendizaje</h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3>Documentación Oficial</h3>
+                    <p>La guía completa de Vue.js</p>
+                    <div class="content-links">
+                        <a href="https://vuejs.org/" target="_blank" class="content-link">Vue Docs</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Vue CLI</h3>
+                    <p>Herramienta para crear proyectos Vue</p>
+                    <div class="content-links">
+                        <a href="https://cli.vuejs.org/" target="_blank" class="content-link">CLI Docs</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Vite + Vue</h3>
+                    <p>Herramienta moderna para proyectos Vue</p>
+                    <div class="content-links">
+                        <a href="https://vitejs.dev/" target="_blank" class="content-link">Vite Docs</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Vue Router</h3>
+                    <p>Sistema de routing oficial de Vue</p>
+                    <div class="content-links">
+                        <a href="https://router.vuejs.org/" target="_blank" class="content-link">Router Docs</a>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>Pinia</h3>
+                    <p>State management para Vue 3</p>
+                    <div class="content-links">
+                        <a href="https://pinia.vuejs.org/" target="_blank" class="content-link">Pinia Docs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - Vue Framework</p>
+        </footer>
+    </div>
+</body>
+</html>
