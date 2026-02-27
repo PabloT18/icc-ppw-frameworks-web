@@ -107,7 +107,7 @@ assets/
 └── diagramas/         # Diagramas y esquemas
 ```
 
-## 📸 Nomenclatura de Imágenes
+##  Nomenclatura de Imágenes
 
 - Usar nombres descriptivos: `instalacion-npm-install.png`
 - Incluir el tema: `componentes-header-resultado.png`
@@ -119,7 +119,7 @@ assets/
 - Usar tamaños razonables (máximo 2MB por imagen)
 - Referenciar las imágenes en los archivos .md usando rutas relativas
 
-## 🔗 Cómo Referenciar en Markdown
+##  Cómo Referenciar en Markdown
 
 ```markdown
 ![Descripción](assets/capturas/instalacion/npm-install.png)
@@ -127,7 +127,7 @@ assets/
 """
         with open(assets_readme, 'w', encoding='utf-8') as f:
             f.write(assets_readme_content)
-        print(f"   📝 Creado README.md en assets")
+        print(f"    Creado README.md en assets")
     else:
         print(f"   ℹ️  Carpeta assets ya existe en {framework}/{nombre_carpeta}")
     
@@ -326,7 +326,7 @@ angular/apellido1_apellido2/
         f.write(contenido_completo)
     
     print(f"📋 Tabla de estudiantes guardada en: ESTUDIANTES.md")
-    print(f"🔗 Contiene enlaces a {len([line for line in tabla_md.split('\n') if '|' in line and '---' not in line]) - 1} estudiantes")
+    print(f" Contiene enlaces a {len([line for line in tabla_md.split('\n') if '|' in line and '---' not in line]) - 1} estudiantes")
 
 
 def main():

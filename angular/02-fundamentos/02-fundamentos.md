@@ -783,9 +783,7 @@ Esta práctica te permitirá consolidar los conceptos de:
 
 ## Resultados y Evidencias
 
-### Estructura del Proyecto
-
-
+### Estructura del Proyecto 
 
 Para este curso trabajaremos con **un único proyecto de Angular** donde realizaremos todas las prácticas (práctica 01, 02, 03, 04, etc.). Dentro del proyecto Angular, crearemos una carpeta especial para documentar las evidencias.
 

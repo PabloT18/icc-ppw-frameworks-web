@@ -163,7 +163,7 @@ pnpm deploy:gh
 
 ---
 
-# 📝 8. Notas importantes
+#  8. Notas importantes
 
 * GitHub Pages no soporta recargar rutas Angular directamente (si usas routing, considera usar `HashLocationStrategy` o agregar un `404.html` especial).
 * Si usas dominio personalizado, crea un archivo `CNAME` dentro de la carpeta `browser`.

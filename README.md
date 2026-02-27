@@ -4,7 +4,6 @@
 
 ![alt text](.core/assets/ups-icc.png)
 
-
 **Asignatura:** Programación y Plataformas Web
 
 **Tema:** Frameworks Web (Angular, React, Vue, Astro, etc.)
@@ -13,9 +12,7 @@
 
 ## Descripción general del proyecto
 
-Este repositorio compartido está diseñado para que todos los estudiantes documenten sus avances prácticos sobre los frameworks web asignados.
-
-El trabajo se estructura en torno a **un flujo común de aprendizaje con Angular** —dirigido por el docente— y la **replicación de cada práctica en el framework asignado** (React, Vue, Astro, etc.).
+Este repositorio contiene material conceptual y guías prácticas sobre frameworks web modernos (Angular, React, Vue, Astro, etc.) para el curso de Programación y Plataformas Web.
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
@@ -25,186 +22,313 @@ El trabajo se estructura en torno a **un flujo común de aprendizaje con Angular
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="80" alt="React Logo">
 
    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" width="80" alt="Astro Logo">
-  
-
-
 </div>
 
+El repositorio incluye:
 
-Cada pareja o grupo de estudiantes contará con **una carpeta propia** dentro del framework que le corresponde y también una carpeta dentro de **/angular**, donde replicará los mismos ejercicios vistos en clase.
-
-El objetivo es que cada grupo:
-
-1. Comprenda los conceptos comunes aplicados en Angular (ejemplo principal de clase).
-2. Replique la práctica en su framework asignado, documentando paso a paso cada avance con capturas, comandos y explicaciones en archivos `.md`.
-3. Mantenga el orden del repositorio sin modificar el trabajo de otros grupos.
+1. Material conceptual organizado por framework y tema
+2. Guías paso a paso para cada práctica
+3. Instrucciones para que los estudiantes creen sus proyectos independientes
 
 ---
 
-## 📂 Estructura del Repositorio
+## Estructura del Repositorio
 
-El repositorio tendrá la siguiente organización:
+El repositorio está organizado de la siguiente manera:
 
 ```
 /angular
-   ├── docente
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
+   ├── 01-instalacion-configuracion/
+   │   └── 01-instalacion-configuracion.md
+   ├── 02-fundamentos/
+   │   ├── 02-fundamentos.md
+   │   └── 02-fundamentos-practica.md
+   ├── 03-navegacion/
+   │   └── 03-navegacion.md
+   ├── 04-formularios/
+   │   └── 04-formularios.md
+   └── ...
 /react
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
+   ├── 01-instalacion-configuracion/
+   │   └── 01-instalacion-configuracion.md
+   ├── 02-fundamentos/
+   │   └── 02-fundamentos.md
+   └── ...
 /vue
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
+   ├── 01-instalacion-configuracion/
+   │   └── 01-instalacion-configuracion.md
+   ├── 02-fundamentos/
+   │   └── 02-fundamentos.md
+   └── ...
 /astro
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
+   ├── 01-instalacion-configuracion/
+   │   └── 01-instalacion-configuracion.md
+   ├── 02-fundamentos/
+   │   └── 02-fundamentos.md
+   └── ...
+/docs
+   ├── angular-deploy.md
+   ├── angular-observables-rx.md
+   └── ...
 README.md
 ```
 
-* La carpeta **`/angular/docente`** contendrá las guías oficiales vistas en clase.
-* Cada pareja tendrá su **carpeta personal (por apellidos)** dentro de **/angular** y dentro de **su framework asignado**.
-* En cada una deberá replicar las secciones trabajadas (instalación, componentes, formularios, etc.).
-
-
+Cada carpeta de framework contiene:
+- Material conceptual organizado por temas
+- Guías de prácticas paso a paso
+- Recursos y assets de apoyo
 
 ---
 
-## 🛠️ Pasos para trabajar
+## Pasos para trabajar
 
-### 1. Clonar el repositorio
+### 1. Clonar el repositorio de material
 
-Descargar el repositorio localmente:
+Descargar el repositorio con el material del curso:
 
 ```bash
 git clone https://github.com/PabloT18/icc-ppw-frameworks-web.git
 ```
 
-Entrar al proyecto:
+Este repositorio contiene únicamente **material de referencia y guías** para seguir las prácticas.
 
+---
+
+### 2. Crear tu propio proyecto
+
+Cada estudiante debe crear **su propio proyecto independiente** en el framework asignado o de preferencia.
+
+#### Para Angular:
 ```bash
-cd repositorio-frameworks
+ng new mi-proyecto-angular
+cd mi-proyecto-angular
+```
+
+#### Para React:
+```bash
+npx create-react-app mi-proyecto-react
+cd mi-proyecto-react
+```
+
+#### Para Vue:
+```bash
+npm init vue@latest mi-proyecto-vue
+cd mi-proyecto-vue
+```
+
+#### Para Astro:
+```bash
+npm create astro@latest mi-proyecto-astro
+cd mi-proyecto-astro
 ```
 
 ---
 
-### 2. Crear una rama personal
+### 3. Estructura del proyecto del estudiante
 
-Cada pareja trabajará en una rama con el nombre del framework y apellidos:
+Para este curso trabajaremos con **un único proyecto por framework** donde realizarás todas las prácticas (práctica 01, 02, 03, 04, etc.). Dentro del proyecto, crearás una carpeta especial para documentar las evidencias.
 
-```bash
-git checkout -b vue-apellido1-apellido2
+**Estructura recomendada del proyecto:**
+
+```
+mi-proyecto-[framework]/
+├── src/
+│   ├── app/ (o components/, pages/, según el framework)
+│   │   ├── home/
+│   │   ├── perfil/
+│   │   └── ...
+├── evidencias/
+│   ├── assets/
+│   │   ├── 01-captura-instalacion.png
+│   │   ├── 02-captura-routes.png
+│   │   ├── 02-captura-component.png
+│   │   ├── 03-captura-navegacion.png
+│   │   └── ...
+│   ├── 01-instalacion-nombre-apellido.md
+│   ├── 02-fundamentos-nombre-apellido.md
+│   ├── 03-navegacion-nombre-apellido.md
+│   └── ...
+├── README.md
+└── package.json
 ```
 
-Ejemplo:
+#### Formato del Archivo de Evidencias
 
-```bash
-git checkout -b react-perez_torres
-```
+**Nombre del archivo:** `[numero]-[tema]-nombre-apellido.md`
 
----
+**Ubicación:** `evidencias/[numero]-[tema]-nombre-apellido.md`
 
-### 3. Editar SOLO su carpeta y archivos
+**Ejemplo:** `evidencias/02-fundamentos-pablo-torres.md`
 
-Cada grupo debe **editar únicamente los archivos de su propia carpeta** tanto en:
-
-* `/angular/nombre_apellido1_apellido2/`
-* y en `/framework_asignado/nombre_apellido1_apellido2/`
-
-En cada archivo `.md` deberán incluir:
-
-* Capturas de pantalla del proceso.
-* Explicaciones de instalación, componentes, formularios, y otros temas vistos.
-* Comparaciones con Angular cuando corresponda.
-
-Ejemplo:
+**Contenido del archivo:**
 
 ```markdown
-# 01 - Instalación de Vue
-1. Ejecutamos: `npm init vue@latest`
-2. Creamos el proyecto con las opciones por defecto.
-3. Captura: ![Instalación Vue](img/vue-instalacion.png)
+# Práctica [Numero]: [Título de la Práctica]
 
-# 02 - Navegación y Formularios
-Creamos el archivo `router/index.js` con las rutas principales.
+## Datos del Estudiante
+- **Nombre:** [Tu nombre completo]
+- **Curso:** [Tu curso]
+- **Fecha:** [Fecha de entrega]
+
+---
+
+## 1. [Título de la sección]
+![Descripción de la captura](assets/02-captura-ejemplo.png)
+
+**Descripción:** [Explicar qué muestra esta captura]
+
+---
+
+## 2. [Siguiente sección]
+![Descripción de la captura](assets/02-captura-ejemplo-2.png)
+
+**Descripción:** [Explicar qué muestra esta captura]
+
+---
+
+## 3. Captura de la aplicación funcionando
+![Aplicación desplegada](assets/02-captura-demo.png)
+
+**Descripción:** Aplicación funcionando en el navegador.
+
+---
+
+## 4. Conclusiones
+
+[Aquí debes agregar conclusiones, dificultades encontradas o mejoras implementadas]
 ```
 
 ---
 
-### 4. Guardar cambios y hacer commit
+### 4. Crear repositorio propio en GitHub
+
+Cada estudiante debe crear su propio repositorio en GitHub para su proyecto:
+
+1. Ir a [GitHub](https://github.com) y crear un nuevo repositorio
+2. Nombrarlo como: `mi-proyecto-[framework]-ppw`
+3. Hacer que el repositorio sea **público**
+4. Subir tu proyecto:
 
 ```bash
-git add vue/perez_torres/01_instalacion.md
-git commit -m "Avance 1: instalación y componentes básicos en Vue"
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/tu-usuario/mi-proyecto-[framework]-ppw.git
+git branch -M main
+git push -u origin main
 ```
 
-Los mensajes de commit serán indicados en clase.
+---
 
+### 5. Guardar cambios y hacer commits
+
+A medida que avances con las prácticas, guarda tus cambios con commits descriptivos:
+
+```bash
+git add .
+git commit -m "feat: Práctica 02 - Fundamentos completada"
+git push origin main
+```
 
 **Directrices para Commits**
 
-Es fundamental seguir ciertas directrices al realizar commits en este proyecto para asegurar la claridad y la organización del trabajo. A continuación, se presentan las pautas a seguir indicadas en el documento de directrices de commits. `.core/docs/commit-guidelines.md`.
+Es fundamental seguir ciertas directrices al realizar commits para asegurar la claridad y organización del trabajo.
 
-
-
-[Directrices para Commits](.core/docs/commit-guidelines.md)
-
-
+Referencia: [Directrices para Commits](.core/docs/commit-guidelines.md)
 
 ---
 
-### 5. Sincronizar antes de subir
+### 6. README del proyecto del estudiante
 
-Antes de subir cambios, siempre sincronizar con la rama principal:
+El archivo `README.md` en la raíz de tu proyecto debe incluir:
 
-```bash
-git pull origin main
+```markdown
+# Mi Proyecto [Framework] - ICC PPW
+
+## Descripción
+Proyecto de prácticas del curso de Programación y Plataformas Web usando [Framework].
+
+## Prácticas Realizadas
+- Práctica 01: Instalación y Configuración
+- Práctica 02: Fundamentos
+- Práctica 03: Navegación
+- Práctica 04: Formularios
+- ... (agregar según vayas completando)
+
+## Aplicación Desplegada
+
+**Ver aplicación:** [URL de tu aplicación desplegada]
+
+Ejemplo para GitHub Pages: [https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/](https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/)
+
+## Evidencias
+
+Las evidencias de cada práctica se encuentran en la carpeta [`evidencias/`](./evidencias/)
+
+## Tecnologías
+- [Framework] [versión]
+- [Lenguaje] (TypeScript, JavaScript, etc.)
+- [Otras tecnologías usadas]
+
+## Instalación
+
+\```bash
+# Instalar dependencias
+npm install
+# o
+pnpm install
+\```
+
+## Ejecutar en desarrollo
+
+\```bash
+# Para Angular
+ng serve
+
+# Para React
+npm start
+
+# Para Vue
+npm run dev
+
+# Para Astro
+npm run dev
+\```
+
+## Autor
+[Tu nombre completo]
+[Tu correo institucional]
 ```
 
-Si surgen conflictos:
-
-* Resolver solo los que afecten a sus propios archivos.
-* No modificar carpetas ni archivos de otros compañeros.
-
 ---
 
-### 6. Subir los cambios a su rama
+### 7. Qué entregar en el AVAC
 
-```bash
-git push origin vue-apellido1-apellido2
-```
+Para completar la entrega de cada práctica, debes subir al AVAC **DOS elementos**:
 
----
+1. **Link al repositorio remoto de GitHub**
+   - URL del repositorio de tu proyecto
+   - Ejemplo: `https://github.com/tu-usuario/icc-ppw-[framewor]-[nombre]`
+   - Asegúrate de que el repositorio sea **público**
 
-### 7. Crear un Pull Request (PR)
-
-Cuando se haya comletado un avance importante (sera indicado en clases), crear un PR. 
-En GitHub:
-
-1. Ir al repositorio.
-2. Seleccionar la rama creada (`vue-nombre1-nombre2`).
-3. Hacer clic en **"New Pull Request"**.
-4. Solicitar merge hacia `main`.
-
-* Luego revisaré y aprobará el PR colocando la calificación
+2. **Archivo Markdown de evidencias convertido a PDF**
+   - El archivo `[numero]-[tema]-nombre-apellido.pdf` 
+   - Genera el PDF desde tu archivo Markdown usando una extensión de VS Code o herramienta de tu preferencia
+   - Este archivo debe contener todas las capturas y descripciones
 
 ---
 
 ## Reglas Importantes
 
-* **No trabajar en la rama `main`.**
-* **No editar archivos ajenos ni el `README.md` principal.**
-* Los commits deben ser **claros, breves y coherentes**.
-* **Subir avances al final de cada clase.**
-* Verificar que los archivos `.md` contengan texto ordenado, imágenes visibles y descripciones comprensibles.
+- **Cada estudiante trabaja en su propio repositorio personal**
+- El repositorio del curso es solo **material de referencia**
+- Los commits deben ser **claros, breves y coherentes**
+- **Subir avances regularmente** a tu repositorio personal
+- Verificar que los archivos `.md` contengan texto ordenado, imágenes visibles y descripciones comprensibles
+- El repositorio personal debe ser **público** para poder compartir el enlace
+- Mantener organizada la carpeta `evidencias/` con todas las capturas y archivos
 
-
+---
 
 ## GIST de ayuda
 

@@ -66,7 +66,7 @@ Este archivo contiene las directrices para generar comentarios de commits consis
 
 ## Ejemplos de Commits por Contexto
 
-### 📝  Estructura de Estudiantes
+###   Estructura de Estudiantes
 
 ```bash
 # Al crear carpetas de estudiantes
@@ -245,7 +245,7 @@ fix(scripts): corregir manejo de rutas en Windows
 
 ---
 
-## 📝 Nota para Desarrolladores
+##  Nota para Desarrolladores
 
 Este archivo debe mantenerse actualizado con nuevas convenciones y ejemplos específicos del proyecto. Si agregas nuevos frameworks o cambias la estructura, actualiza las plantillas correspondientes.
 

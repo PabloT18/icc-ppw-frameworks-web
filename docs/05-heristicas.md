@@ -9,7 +9,11 @@
 ### Autor
 
 **Pablo Torres**
+
 📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)
+
+📧 [pabloa_ec@hotmail.com](mailto:pabloa_ec@hotmail.com)
+
 💻 GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
@@ -549,7 +553,7 @@ Las heurísticas de usabilidad presentadas en este documento se basan en los tra
 
 ---
 
-## 🎓 Conclusión
+##  Conclusión
 
 Las heurísticas de usabilidad de Nielsen siguen siendo relevantes después de más de 30 años porque abordan aspectos fundamentales de la cognición humana y la interacción con sistemas digitales. En el desarrollo de frameworks web modernos como Angular, React, Vue o Astro, aplicar estos principios garantiza interfaces más intuitivas, eficientes y satisfactorias para los usuarios.
 

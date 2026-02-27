@@ -14,7 +14,7 @@ assets/
 └── diagramas/         # Diagramas y esquemas
 ```
 
-## 📸 Nomenclatura de Imágenes
+##  Nomenclatura de Imágenes
 
 - Usar nombres descriptivos: `instalacion-npm-install.png`
 - Incluir el tema: `componentes-header-resultado.png`
@@ -26,7 +26,7 @@ assets/
 - Usar tamaños razonables (máximo 2MB por imagen)
 - Referenciar las imágenes en los archivos .md usando rutas relativas
 
-## 🔗 Cómo Referenciar en Markdown
+##  Cómo Referenciar en Markdown
 
 ```markdown
 ![Descripción](assets/capturas/instalacion/npm-install.png)

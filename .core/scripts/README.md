@@ -123,7 +123,7 @@ Puedes modificar:
 2. **Formato del nombre de carpeta**: Modifica la función `crear_carpeta_estudiante()`
 3. **Lista de estudiantes**: Edita `estudiantes.json`
 
-## 📝 Ejemplo Completo
+##  Ejemplo Completo
 
 ```bash
 # 1. Editar estudiantes.json con tu lista
