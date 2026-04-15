@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Web: JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap">
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0;">
+    <div class="container py-4" style="background: linear-gradient(135deg, #323330 0%, #1a1a2e 100%); min-height: 100vh;">
+        <header class="bg-white rounded-4 p-5 mb-4 shadow-lg text-center">
+            <h1 class="text-dark fw-bold mb-3" style="font-size: 2.5rem;">Programacion y Plataformas Web</h1>
+            <h2 class="fw-semibold mb-4" style="color: #323330; font-size: 2rem;">JavaScript para Desarrollo Web</h2>
+            
+            <div class="logo-container my-4">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                     alt="JavaScript Logo" 
+                     width="80" 
+                     height="80"
+                     style="filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
+            </div>
+
+            <div class="author-info bg-light p-4 rounded-3 d-inline-block mt-4">
+                <h3 class="text-secondary fs-5 mb-3 fw-medium">Autor</h3>
+                <p class="text-dark fs-6 fw-medium mb-2"><strong>Pablo Torres</strong></p>
+                <p class="text-dark fs-6 fw-medium mb-2">
+                    <a href="mailto:ptorersp@ups.edu.ec" class="text-decoration-none" style="color: #323330;">ptorersp@ups.edu.ec</a>
+                </p>
+                <p class="text-dark fs-6 fw-medium mb-0">
+                    GitHub: <a href="https://github.com/PabloT18" target="_blank" class="text-decoration-none" style="color: #323330;">PabloT18</a>
+                </p>
+            </div>
+        </header>
+
+        <div class="row g-4">
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/01-introduccion-sintaxis/01-introduccion-sintaxis.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 01
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Introduccion y Sintaxis de JavaScript
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Variables (let, const, var), tipos de datos, operadores, estructuras de control de flujo, funciones y scope. Bases del lenguaje para desarrollo web.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/02-dom-basico/02-dom-basico.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 02
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Manipulacion del DOM
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Selectores del DOM (getElementById, querySelector), modificar contenido, atributos y estilos. Crear y eliminar elementos dinamicamente.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/03-eventos/03-eventos.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 03
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Eventos en JavaScript
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                addEventListener, tipos de eventos (click, submit, input, keydown), event object, event delegation y preventDefault. Interactividad real en el navegador.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/04-dom-avanzado/04-dom-avanzado.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 04
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                DOM Avanzado y Componentes
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Componentes reutilizables con template literals, renderizado dinamico de listas, data attributes, classList API y manipulacion avanzada del DOM.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/05-asincronia/05-asincronia.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 05
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Asincronia en JavaScript
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Callbacks, Promises, async/await, setTimeout/setInterval. Manejo de errores con try/catch y encadenamiento de promesas.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/06-fetch-api/06-fetch-api.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 06
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Fetch API y Consumo de Datos
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Fetch API, metodos HTTP (GET, POST, PUT, DELETE), headers, JSON. Consumo de APIs publicas y renderizado de datos en el DOM.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/07-storage/07-storage.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 07
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Almacenamiento en el Navegador
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                localStorage, sessionStorage, JSON.stringify/parse. Persistencia de datos en el cliente, operaciones CRUD y sincronizacion entre pestanas.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/08-formularios-validacion/08-formularios-validacion.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 08
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Formularios y Validacion
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Captura de datos con FormData API, validacion nativa HTML5, validacion custom con JavaScript, expresiones regulares y feedback visual de errores.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/09-modulos-estructura/09-modulos-estructura.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 09
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Modularizacion y Estructura de Proyecto
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                ES Modules (import/export), organizacion de archivos, patron MVC simplificado, separacion de responsabilidades y configuracion con Live Server.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/10-optimizacion-buenas-practicas/10-optimizacion-buenas-practicas.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 10
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Optimizacion y Buenas Practicas
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Performance (debounce, throttle, lazy loading), accesibilidad basica, clean code en JavaScript, manejo de errores global y responsive con matchMedia.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <a href="https://github.com/PabloT18/icc-ppw-frameworks-web/blob/main/javascript/11-proyecto-integrador/11-proyecto-integrador.md" 
+                   target="_blank" 
+                   class="text-decoration-none" style="color: inherit !important;">
+                    <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden" 
+                         style="border-left: 5px solid #F7DF1E !important; transition: all 0.3s ease;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.25)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.15)';">
+                        <div class="card-body p-4">
+                            <span class="badge rounded-pill mb-3 px-3 py-2 fw-bold" 
+                                  style="background: linear-gradient(135deg, #F7DF1E, #c8b900); font-size: 0.9rem; color: #323330 !important;">
+                                Practica 11
+                            </span>
+                            <h4 class="card-title fw-semibold mb-3" style="color: #333; font-size: 1.3rem;">
+                                Proyecto Integrador
+                            </h4>
+                            <p class="card-text text-muted mb-3" style="font-size: 0.95rem; line-height: 1.6;">
+                                Aplicacion web completa con HTML + CSS + JavaScript puro. Consumo de API, CRUD con localStorage, formularios validados, componentes reutilizables y navegacion SPA con hash routing.
+                            </p>
+                            <span class="fw-semibold d-flex align-items-center gap-2" style="color: #323330; font-size: 0.9rem;">
+                                Ver practica completa &rarr;
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

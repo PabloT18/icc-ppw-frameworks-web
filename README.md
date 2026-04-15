@@ -124,7 +124,136 @@ cd mi-proyecto-astro
 
 ---
 
-### 3. Estructura del proyecto del estudiante
+
+### 3. Crear repositorio propio en GitHub
+
+Cada estudiante debe crear su propio repositorio en GitHub para su proyecto:
+
+1. Ir a [GitHub](https://github.com) y crear un nuevo repositorio
+2. Nombrarlo como: `icc-p68-ppw-[framework]`
+3. Hacer que el repositorio sea **público**
+4. Subir tu proyecto:
+
+```bash
+git init
+git add .
+git commit -m "init: Angular Project"
+git remote add origin https://github.com/tu-usuario/mi-proyecto-[framework]-ppw.git
+git branch -M main
+git push -u origin main
+```
+
+---
+
+### 4. Guardar cambios y hacer commits
+
+A medida que avances con las prácticas, guarda tus cambios con commits descriptivos:
+
+Para inicio de la practica 
+
+```bash
+git add .
+git commit -m "feat: Práctica 02 - Fundamentos completada"
+git push origin main
+```
+
+Para cambios de actualización o adición 
+
+
+```bash
+git add .
+
+git commit -m "add: Práctica 02 - se agrego el modulo usuarios"
+
+o
+
+git commit -m "upd: Práctica 02 - se actulizo el hombe page"
+
+git push origin main
+```
+
+
+Para finalizar la práctica 
+```bash
+git add .
+git commit -m "END: Práctica 02 - Fundamentos completada"
+git push origin main
+```
+
+**Directrices para Commits**
+
+Es fundamental seguir ciertas directrices al realizar commits para asegurar la claridad y organización del trabajo.
+
+Referencia: [Directrices para Commits](.core/docs/commit-guidelines.md)
+
+---
+
+### 5. README del proyecto del estudiante
+
+El archivo `README.md` en la raíz de tu proyecto debe incluir:
+
+```markdown
+# Mi Proyecto [Framework] - ICC PPW
+
+## Descripción
+Proyecto de prácticas del curso de Programación y Plataformas Web usando [Framework].
+
+## Prácticas Realizadas
+- Práctica 01: Instalación y Configuración
+- Práctica 02: Fundamentos
+- Práctica 03: Navegación
+- Práctica 04: Formularios
+- ... (agregar según vayas completando)
+
+## Aplicación Desplegada
+
+**Ver aplicación:** [URL de tu aplicación desplegada]
+
+Ejemplo para GitHub Pages: [https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/](https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/)
+
+## Evidencias
+
+Las evidencias de cada práctica se encuentran en la carpeta [`evidencias/`](./evidencias/)
+
+## Tecnologías
+- [Framework] [versión]
+- [Lenguaje] (TypeScript, JavaScript, etc.)
+- [Otras tecnologías usadas]
+
+## Instalación
+
+\```bash
+# Instalar dependencias
+npm install
+# o
+pnpm install
+\```
+
+## Ejecutar en desarrollo
+
+\```bash
+# Para Angular
+ng serve
+
+# Para React
+npm start
+
+# Para Vue
+npm run dev
+
+# Para Astro
+npm run dev
+\```
+
+## Autor
+[Tu nombre completo]
+[Tu correo institucional]
+```
+
+---
+
+
+### 6. Estructura del proyecto del estudiante
 
 Para este curso trabajaremos con **un único proyecto por framework** donde realizarás todas las prácticas (práctica 01, 02, 03, 04, etc.). Dentro del proyecto, crearás una carpeta especial para documentar las evidencias.
 
@@ -133,9 +262,9 @@ Para este curso trabajaremos con **un único proyecto por framework** donde real
 ```
 mi-proyecto-[framework]/
 ├── src/
-│   ├── app/ (o components/, pages/, según el framework)
-│   │   ├── home/
-│   │   ├── perfil/
+│   ├── app/ 
+│   │   ├── home/ (components/, pages/, según el framework)
+│   │   ├── perfil/ (components/, pages/, según el framework)
 │   │   └── ...
 ├── evidencias/
 │   ├── assets/
@@ -200,107 +329,6 @@ mi-proyecto-[framework]/
 
 ---
 
-### 4. Crear repositorio propio en GitHub
-
-Cada estudiante debe crear su propio repositorio en GitHub para su proyecto:
-
-1. Ir a [GitHub](https://github.com) y crear un nuevo repositorio
-2. Nombrarlo como: `mi-proyecto-[framework]-ppw`
-3. Hacer que el repositorio sea **público**
-4. Subir tu proyecto:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/tu-usuario/mi-proyecto-[framework]-ppw.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-### 5. Guardar cambios y hacer commits
-
-A medida que avances con las prácticas, guarda tus cambios con commits descriptivos:
-
-```bash
-git add .
-git commit -m "feat: Práctica 02 - Fundamentos completada"
-git push origin main
-```
-
-**Directrices para Commits**
-
-Es fundamental seguir ciertas directrices al realizar commits para asegurar la claridad y organización del trabajo.
-
-Referencia: [Directrices para Commits](.core/docs/commit-guidelines.md)
-
----
-
-### 6. README del proyecto del estudiante
-
-El archivo `README.md` en la raíz de tu proyecto debe incluir:
-
-```markdown
-# Mi Proyecto [Framework] - ICC PPW
-
-## Descripción
-Proyecto de prácticas del curso de Programación y Plataformas Web usando [Framework].
-
-## Prácticas Realizadas
-- Práctica 01: Instalación y Configuración
-- Práctica 02: Fundamentos
-- Práctica 03: Navegación
-- Práctica 04: Formularios
-- ... (agregar según vayas completando)
-
-## Aplicación Desplegada
-
-**Ver aplicación:** [URL de tu aplicación desplegada]
-
-Ejemplo para GitHub Pages: [https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/](https://tu-usuario.github.io/mi-proyecto-[framework]-ppw/)
-
-## Evidencias
-
-Las evidencias de cada práctica se encuentran en la carpeta [`evidencias/`](./evidencias/)
-
-## Tecnologías
-- [Framework] [versión]
-- [Lenguaje] (TypeScript, JavaScript, etc.)
-- [Otras tecnologías usadas]
-
-## Instalación
-
-\```bash
-# Instalar dependencias
-npm install
-# o
-pnpm install
-\```
-
-## Ejecutar en desarrollo
-
-\```bash
-# Para Angular
-ng serve
-
-# Para React
-npm start
-
-# Para Vue
-npm run dev
-
-# Para Astro
-npm run dev
-\```
-
-## Autor
-[Tu nombre completo]
-[Tu correo institucional]
-```
-
----
 
 ### 7. Qué entregar en el AVAC
 
