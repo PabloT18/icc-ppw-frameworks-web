@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Arquitectura Modular</title>
+    <script defer src="scripts/content-data.js"></script>
+    <script defer>
+        // Script de prueba para verificar que los datos estén disponibles
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('=== TEST DE ARQUITECTURA MODULAR ===');
+            console.log('');
+            
+            // Verificar que window.frameworksData existe
+            if (window.frameworksData) {
+                console.log('✓ window.frameworksData está disponible');
+                
+                // Verificar cada framework
+                const frameworks = ['javascript', 'angular', 'astro', 'react', 'vue'];
+                frameworks.forEach(fw => {
+                    if (window.frameworksData[fw]) {
+                        const data = window.frameworksData[fw];
+                        console.log(`✓ ${fw}: ${data.modules.length} módulos, ${data.resources.length} recursos`);
+                        if (data.features) {
+                            console.log(`  → ${data.features.length} características adicionales`);
+                        }
+                    } else {
+                        console.error(`✗ ${fw}: NO ENCONTRADO`);
+                    }
+                });
+            } else {
+                console.error('✗ window.frameworksData NO está disponible');
+                console.error('  Verifica que content-data.js se cargue correctamente');
+            }
+            
+            console.log('');
+            console.log('=== FIN DEL TEST ===');
+        });
+    </script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #003772;
+            margin: 0 0 20px 0;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196F3;
+        }
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1> Test - Arquitectura Modular</h1>
+        
+        <div class="info">
+            <strong>Instrucciones:</strong>
+            <ol>
+                <li>Abre la Consola de Desarrollador (F12)</li>
+                <li>Verifica que veas los mensajes de prueba</li>
+                <li>Todos los frameworks deben mostrar ✓</li>
+            </ol>
+        </div>
+        
+        <h2>Frameworks disponibles:</h2>
+        <ul>
+            <li><code>javascript</code> - 11 módulos</li>
+            <li><code>angular</code> - 12 módulos</li>
+            <li><code>astro</code> - 3 módulos + 4 características</li>
+            <li><code>react</code> - 5 proyectos de estudiantes</li>
+            <li><code>vue</code> - 4 proyectos de estudiantes</li>
+        </ul>
+        
+        <h2>Archivos de la arquitectura:</h2>
+        <ul>
+            <li><code>scripts/content-data.js</code> - Datos centralizados</li>
+            <li><code>scripts/render-modules.js</code> - Lógica de renderizado</li>
+            <li><code>data-framework="xxx"</code> - Atributo en body de cada página</li>
+        </ul>
+        
+        <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em;">
+            Si todos los tests pasan ✓, la arquitectura está funcionando correctamente.
+        </p>
+    </div>
+</body>
+</html>

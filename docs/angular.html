@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angular - Material y Prácticas | ICC PPW</title>
     <link rel="stylesheet" href="styles/institutional.css">
+    
+    <!-- ===== SCRIPTS DE DATOS Y RENDERIZADO ===== -->
+    <!-- Cargar primero los datos, luego el renderizador -->
+    <script defer src="scripts/content-data.js"></script>
+    <script defer src="scripts/render-modules.js"></script>
+    
     <style>
         /* Estilos específicos para Angular */
         .content-item {
-            border-left: 4px solid #DD0031;
+            border-left: 4px solid #e82936;
         }
 
         .content-link {
-            background: #DD0031;
+            background: #fb313e;
         }
 
         .content-link:hover {
-            background: #C3002F;
+            background: #e82936;
         }
 
         .content-link.secondary {
@@ -32,9 +38,9 @@
         }
     </style>
 </head>
-<body>
+<body data-framework="angular">
     <div class="layout-container">
-        <a href="index.html" class="back-btn">Volver al Inicio</a>
+        <a href="../docs/index.html" class="back-btn">Volver al Inicio</a>
 
         <div class="hero">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular Logo">
@@ -45,215 +51,18 @@
         <div class="section">
             <h2>Material Conceptual</h2>
             
-            <div class="card-grid">
-                <div class="card content-item">
-                    <h3>01. Instalación y Configuración <span class="badge teoria">Teoría</span></h3>
-                    <p>Aprende a instalar Angular CLI, crear tu primer proyecto y configurar tu entorno de desarrollo.</p>
-                    <div class="content-links">
-                        <a href="angular/01-instalacion_configuracio/01-instalacion_configuracio.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>02. Fundamentos de Angular <span class="badge teoria">Teoría</span></h3>
-                    <p>Componentes, templates, data binding, directivas y pipes básicos.</p>
-                    <div class="content-links">
-                        <a href="angular/02-fundamentos/02-fundamentos.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>03. Navegación y Routing <span class="badge teoria">Teoría</span></h3>
-                    <p>Configuración de rutas, navegación entre componentes y parámetros de ruta.</p>
-                    <div class="content-links">
-                        <a href="angular/03-Navegacion/03-Navegacion.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>04. Formularios <span class="badge teoria">Teoría</span></h3>
-                    <p>Formularios reactivos y template-driven, validaciones y manejo de datos.</p>
-                    <div class="content-links">
-                        <a href="angular/04-Formularios/04-Formularios.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>05. UI y Heurísticas <span class="badge teoria">Teoría</span></h3>
-                    <p>Principios de diseño de interfaces y heurísticas de usabilidad.</p>
-                    <div class="content-links">
-                        <a href="angular/05-UI-Heuristicas/05-UI-Heuristicas.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>06. Implementación de Heurísticas <span class="badge teoria">Teoría</span></h3>
-                    <p>Aplicación práctica de heurísticas en componentes Angular.</p>
-                    <div class="content-links">
-                        <a href="angular/06-UI-Heuristicas-impl/06-UI-Heuristicas-impl.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>07. Estilos en Angular <span class="badge teoria">Teoría</span></h3>
-                    <p>CSS, SCSS, estilos globales y por componente.</p>
-                    <div class="content-links">
-                        <a href="angular/07-Estilos/07-Estilos.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>08. Estilos, Temas y Componentes <span class="badge teoria">Teoría</span></h3>
-                    <p>Sistema de temas, componentes Material Design y personalización.</p>
-                    <div class="content-links">
-                        <a href="angular/08-Estilos-Tema-Componentes/08-Estilos-Tema-Componentes.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>09. Consumo de Servicios <span class="badge teoria">Teoría</span></h3>
-                    <p>HttpClient, servicios REST, interceptores y manejo de respuestas.</p>
-                    <div class="content-links">
-                        <a href="angular/09-Consumos_servicos/09-Consumos_servicos.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>10. Mejoras Visuales <span class="badge teoria">Teoría</span></h3>
-                    <p>Animaciones, transiciones y efectos visuales avanzados.</p>
-                    <div class="content-links">
-                        <a href="angular/10-mejoras-vsuales/10-mejoras-vsuales.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>11. Firebase Integration <span class="badge teoria">Teoría</span></h3>
-                    <p>Integración con Firebase: Autenticación, Firestore y Hosting.</p>
-                    <div class="content-links">
-                        <a href="angular/11-firebase/11-firebase.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>12. Guards y Seguridad <span class="badge teoria">Teoría</span></h3>
-                    <p>Guards de rutas, autenticación y autorización en Angular.</p>
-                    <div class="content-links">
-                        <a href="angular/12-guards-seguridad-rutas/12-guards-seguridad-rutas.md" class="content-link">Ver Material</a>
-                    </div>
-                </div>
+            <!-- El contenido se genera dinámicamente desde render-modules.js -->
+            <div class="card-grid" id="modules-container">
+                <!-- Los módulos se cargan aquí dinámicamente -->
             </div>
         </div>
 
         <div class="section">
-            <h2>Prácticas y Ejercicios</h2>
+            <h2>Recursos de Aprendizaje</h2>
             
-            <div class="card-grid">
-                <div class="card content-item">
-                    <h3>Práctica 01: Instalación <span class="badge practica">Práctica</span></h3>
-                    <p>Instalar Angular CLI, crear proyecto inicial y configurar ambiente de desarrollo.</p>
-                    <div class="content-links">
-                        <a href="angular/01-instalacion_configuracio/01-instalacion_configuracio.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 02: Fundamentos <span class="badge practica">Práctica</span></h3>
-                    <p>Crear componentes, trabajar con templates y data binding.</p>
-                    <div class="content-links">
-                        <a href="angular/02-fundamentos/02-fundamentos-practica.html" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 03: Navegación <span class="badge practica">Práctica</span></h3>
-                    <p>Implementar sistema de rutas y navegación entre vistas.</p>
-                    <div class="content-links">
-                        <a href="angular/03-Navegacion/03-Navegacion.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 04: Formularios <span class="badge practica">Práctica</span></h3>
-                    <p>Crear y validar formularios reactivos y template-driven.</p>
-                    <div class="content-links">
-                        <a href="angular/04-Formularios/04-Formularios.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 05-06: UI Heurísticas <span class="badge practica">Práctica</span></h3>
-                    <p>Aplicar principios de usabilidad en componentes.</p>
-                    <div class="content-links">
-                        <a href="angular/05-UI-Heuristicas/05-UI-Heuristicas.md" class="content-link secondary">Teoría</a>
-                        <a href="angular/06-UI-Heuristicas-impl/06-UI-Heuristicas-impl.md" class="content-link">Implementación</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 07-08: Estilos <span class="badge practica">Práctica</span></h3>
-                    <p>Aplicar estilos, temas y componentes Material Design.</p>
-                    <div class="content-links">
-                        <a href="angular/07-Estilos/07-Estilos.md" class="content-link secondary">Estilos Básicos</a>
-                        <a href="angular/08-Estilos-Tema-Componentes/08-Estilos-Tema-Componentes.md" class="content-link">Temas y Componentes</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 09: Servicios HTTP <span class="badge practica">Práctica</span></h3>
-                    <p>Consumir APIs REST y manejar respuestas HTTP.</p>
-                    <div class="content-links">
-                        <a href="angular/09-Consumos_servicos/09-Consumos_servicos.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 10: Mejoras Visuales <span class="badge practica">Práctica</span></h3>
-                    <p>Implementar animaciones y transiciones.</p>
-                    <div class="content-links">
-                        <a href="angular/10-mejoras-vsuales/10-mejoras-vsuales.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 11: Firebase <span class="badge practica">Práctica</span></h3>
-                    <p>Integrar Firebase en tu aplicación Angular.</p>
-                    <div class="content-links">
-                        <a href="angular/11-firebase/11-firebase.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Práctica 12: Guards <span class="badge practica">Práctica</span></h3>
-                    <p>Implementar guards para proteger rutas.</p>
-                    <div class="content-links">
-                        <a href="angular/12-guards-seguridad-rutas/12-guards-seguridad-rutas.md" class="content-link secondary">Guía de Práctica</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Recursos Adicionales</h2>
-            
-            <div class="card-grid">
-                <div class="card content-item">
-                    <h3>Documentación de Referencia</h3>
-                    <p>Material adicional y documentación complementaria.</p>
-                    <div class="content-links">
-                        <a href="docs/angular-deploy.md" class="content-link">Deploy de Angular</a>
-                        <a href="docs/angular-obserbables-rx.md" class="content-link">Observables y RxJS</a>
-                        <a href="docs/05-heristicas.md" class="content-link">Heurísticas UI</a>
-                    </div>
-                </div>
-
-                <div class="card content-item">
-                    <h3>Gists de Ayuda</h3>
-                    <p>Guías rápidas y referencias útiles.</p>
-                    <div class="content-links">
-                        <a href="https://gist.github.com/PabloT18/efa4daa60d4782967187ce34cfe5771a" target="_blank" class="content-link">Guía Angular</a>
-                        <a href="https://gist.github.com/PabloT18/683e6d950b240f9620a98903cf92e87a" target="_blank" class="content-link">VS Code</a>
-                    </div>
-                </div>
+            <!-- El contenido se genera dinámicamente desde render-modules.js -->
+            <div class="card-grid" id="resources-container">
+                <!-- Los recursos se cargan aquí dinámicamente -->
             </div>
         </div>
 

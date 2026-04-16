@@ -286,11 +286,11 @@ footer {
 }
 
 .badge.teoria {
-    background: #17a2b8;
+    background: #1768af;
 }
 
 .badge.practica {
-    background: #28a745;
+    background: #1768af;
 }
 
 /* Enlaces de contenido */
@@ -302,18 +302,25 @@ footer {
 
 .content-link {
     display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
     background: var(--color-primary);
     color: white;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-lg);
+    border: 1px solid (--color-primary);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: background 0.3s ease;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
 }
 
 .content-link:hover {
     background: var(--color-primary-soft);
+    color: white;
+    border-color: var(--color-primary);
 }
+
+
+
 
 .content-link.secondary {
     background: var(--color-accent);
