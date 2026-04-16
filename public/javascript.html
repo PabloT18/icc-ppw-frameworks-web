@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Material y Prácticas | ICC PPW</title>
+    <link rel="stylesheet" href="styles/institutional.css">
+    <style>
+        /* Estilos específicos para JavaScript */
+        .content-item {
+            border-left: 4px solid #F7DF1E;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .content-item h3 {
+            color: var(--color-primary);
+        }
+
+        .content-link {
+            background: #F7DF1E;
+            color: #333;
+        }
+
+        .content-link:hover {
+            background: #D4B900;
+        }
+
+        .hero img {
+            filter: drop-shadow(0 4px 8px rgba(247, 223, 30, 0.3));
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <a href="index.html" class="back-btn">Volver al Inicio</a>
+
+        <div class="hero">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Logo">
+            <h1>JavaScript</h1>
+            <p>Material Conceptual y Prácticas</p>
+        </div>
+
+        <div class="section">
+            <h2>Material Conceptual</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>01. Introducción y Sintaxis <span class="badge teoria">Teoría</span></h3>
+                    <p>Fundamentos del lenguaje, variables, tipos de datos y operadores básicos de JavaScript.</p>
+                    <div class="content-links">
+                        <a href="../javascript/01-introduccion-sintaxis/01-introduccion-sintaxis.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>02. DOM Básico <span class="badge teoria">Teoría</span></h3>
+                    <p>Manipulación del DOM, selección de elementos y modificación de contenido.</p>
+                    <div class="content-links">
+                        <a href="../javascript/02-dom-basico/02-dom-basico.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>03. Eventos <span class="badge teoria">Teoría</span></h3>
+                    <p>Manejo de eventos del navegador y respuesta a interacciones del usuario.</p>
+                    <div class="content-links">
+                        <a href="../javascript/03-eventos/03-eventos.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>04. DOM Avanzado <span class="badge teoria">Teoría</span></h3>
+                    <p>Técnicas avanzadas de manipulación del DOM y patrones de diseño.</p>
+                    <div class="content-links">
+                        <a href="../javascript/04-dom-avanzado/04-dom-avanzado.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>05. Asincronía <span class="badge teoria">Teoría</span></h3>
+                    <p>Callbacks, Promesas, async/await y manejo de operaciones asíncronas.</p>
+                    <div class="content-links">
+                        <a href="../javascript/05-asincronia/05-asincronia.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>06. Fetch API <span class="badge teoria">Teoría</span></h3>
+                    <p>Consumo de APIs REST, peticiones HTTP y manejo de respuestas JSON.</p>
+                    <div class="content-links">
+                        <a href="../javascript/06-fetch-api/06-fetch-api.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>07. Storage <span class="badge teoria">Teoría</span></h3>
+                    <p>LocalStorage, SessionStorage y persistencia de datos en el navegador.</p>
+                    <div class="content-links">
+                        <a href="../javascript/07-storage/07-storage.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>08. Formularios y Validación <span class="badge practica">Práctica</span></h3>
+                    <p>Validación de formularios, expresiones regulares y sanitización de datos.</p>
+                    <div class="content-links">
+                        <a href="../javascript/08-formularios-validacion/08-formularios-validacion.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>09. Módulos y Estructura <span class="badge teoria">Teoría</span></h3>
+                    <p>ES Modules, organización de código y patrones de arquitectura de aplicaciones.</p>
+                    <div class="content-links">
+                        <a href="../javascript/09-modulos-estructura/09-modulos-estructura.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>10. Optimización y Buenas Prácticas <span class="badge teoria">Teoría</span></h3>
+                    <p>Performance, debugging, testing y mejores prácticas de desarrollo profesional.</p>
+                    <div class="content-links">
+                        <a href="../javascript/10-optimizacion-buenas-practicas/10-optimizacion-buenas-practicas.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>11. Proyecto Integrador <span class="badge practica">Práctica</span></h3>
+                    <p>Aplicación práctica de todos los conceptos aprendidos en un proyecto real.</p>
+                    <div class="content-links">
+                        <a href="../javascript/11-proyecto-integrador/11-proyecto-integrador.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Características de JavaScript</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Lenguaje Fundamental</h3>
+                    <p>JavaScript es el lenguaje de programación esencial para el desarrollo web moderno.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Versatilidad</h3>
+                    <p>Se ejecuta tanto en el navegador como en el servidor (Node.js).</p>
+                </div>
+
+                <div class="card">
+                    <h3>Asincronía</h3>
+                    <p>Manejo eficiente de operaciones asíncronas con Promesas y async/await.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Ecosistema Rico</h3>
+                    <p>Gran cantidad de librerías y frameworks disponibles para todo tipo de proyectos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Recursos de Aprendizaje</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Documentación Oficial</h3>
+                    <p>MDN Web Docs - Referencia completa y guías de JavaScript.</p>
+                    <div class="content-links">
+                        <a href="https://developer.mozilla.org/es/docs/Web/JavaScript" class="content-link" target="_blank">Visitar MDN</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>JavaScript.info</h3>
+                    <p>Tutorial moderno y completo de JavaScript desde lo básico hasta avanzado.</p>
+                    <div class="content-links">
+                        <a href="https://javascript.info" class="content-link" target="_blank">Ver Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Eloquent JavaScript</h3>
+                    <p>Libro gratuito sobre programación en JavaScript con ejercicios prácticos.</p>
+                    <div class="content-links">
+                        <a href="https://eloquentjavascript.net" class="content-link" target="_blank">Leer Libro</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>You Don't Know JS</h3>
+                    <p>Serie de libros profundos sobre los conceptos fundamentales de JavaScript.</p>
+                    <div class="content-links">
+                        <a href="https://github.com/getify/You-Dont-Know-JS" class="content-link" target="_blank">Ver en GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - JavaScript</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -4,7 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React - Material y Prácticas | ICC PPW</title>
+    <link rel="stylesheet" href="styles/institutional.css">
     <style>
+        /* Estilos específicos para React */
+        .content-item {
+            border-left: 4px solid #61DAFB;
+        }
+
+        .content-link {
+            background: #61DAFB;
+            color: #20232a;
+        }
+
+        .content-link:hover {
+            background: #21A1C4;
+            color: white;
+        }
+
+        .hero img {
+            filter: drop-shadow(0 4px 8px rgba(97, 218, 251, 0.3));
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <a href="index.html" class="back-btn">Volver al Inicio</a>
+
+        <div class="hero">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Logo">
+            <h1>React Framework</h1>
+            <p>Material y Proyectos de Estudiantes</p>
+        </div>
+
+        <div class="callout">
+            <h3>Información</h3>
+            <p>Esta sección está en desarrollo. El material de React será agregado próximamente.</p>
+            <p>Por ahora, puedes ver los proyectos de los estudiantes en las carpetas correspondientes.</p>
+        </div>
+
+        <div class="section">
+            <h2>Proyectos de Estudiantes</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>Ávila Cabrera</h3>
+                    <p>Proyecto de práctica en React</p>
+                    <div class="content-links">
+                        <a href="../react/avila_cabrera/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Gómez Valarezo</h3>
+                    <p>Proyecto de práctica en React</p>
+                    <div class="content-links">
+                        <a href="../react/gomez_valarezo/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Mantilla Quevedo</h3>
+                    <p>Proyecto de práctica en React</p>
+                    <div class="content-links">
+                        <a href="../react/mantilla_quevedo/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Vanegas Vanegas</h3>
+                    <p>Proyecto de práctica en React</p>
+                    <div class="content-links">
+                        <a href="../react/vanegas_vanegas/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Zúñiga</h3>
+                    <p>Proyecto de práctica en React</p>
+                    <div class="content-links">
+                        <a href="../react/zuniga_1/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Recursos de Aprendizaje</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>Documentación Oficial</h3>
+                    <p>Guías completas y referencias de React.</p>
+                    <div class="content-links">
+                        <a href="https://react.dev" class="content-link" target="_blank">Visitar Documentación</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>React Tutorial</h3>
+                    <p>Tutorial oficial interactivo de React.</p>
+                    <div class="content-links">
+                        <a href="https://react.dev/learn" class="content-link" target="_blank">Comenzar Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>React Hooks</h3>
+                    <p>Guía completa sobre Hooks en React.</p>
+                    <div class="content-links">
+                        <a href="https://react.dev/reference/react" class="content-link" target="_blank">Ver Hooks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - React Framework</p>
+        </footer>
+    </div>
+</body>
+</html>
         * {
             margin: 0;
             padding: 0;

@@ -4,7 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Material y Prácticas | ICC PPW</title>
+    <link rel="stylesheet" href="styles/institutional.css">
     <style>
+        /* Estilos específicos para Astro */
+        .content-item {
+            border-left: 4px solid #FF5D01;
+        }
+
+        .content-link {
+            background: #FF5D01;
+            color: white;
+        }
+
+        .content-link:hover {
+            background: #BC52EE;
+        }
+
+        .content-link.secondary {
+            background: #BC52EE;
+        }
+
+        .content-link.secondary:hover {
+            background: #FF5D01;
+        }
+
+        .hero img {
+            filter: drop-shadow(0 4px 8px rgba(255, 93, 1, 0.3));
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <a href="index.html" class="back-btn">Volver al Inicio</a>
+
+        <div class="hero">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" alt="Astro Logo">
+            <h1>Astro Framework</h1>
+            <p>Material Conceptual y Prácticas</p>
+        </div>
+
+        <div class="section">
+            <h2>Material Conceptual</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>01. Instalación y Configuración <span class="badge teoria">Teoría</span></h3>
+                    <p>Configuración del entorno, instalación de Astro CLI y creación del primer proyecto.</p>
+                    <div class="content-links">
+                        <a href="../astro/01-instalacion_configuracio-astro.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>02. Fundamentos <span class="badge teoria">Teoría</span></h3>
+                    <p>Componentes Astro, layouts, arquitectura de islas y conceptos fundamentales.</p>
+                    <div class="content-links">
+                        <a href="../astro/02-fundamentos-astro.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>03. Navegación <span class="badge teoria">Teoría</span></h3>
+                    <p>Sistema de rutas, páginas dinámicas y generación de sitios estáticos.</p>
+                    <div class="content-links">
+                        <a href="../astro/03-navegacion-astro.md" class="content-link">Material Teórico</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Características de Astro</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Zero JavaScript por defecto</h3>
+                    <p>Astro envía solo el JavaScript necesario al cliente, reduciendo el tamaño del bundle.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Arquitectura de Islas</h3>
+                    <p>Hidratación parcial solo donde se necesita interactividad, mejorando el rendimiento.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Framework Agnóstico</h3>
+                    <p>Usa React, Vue, Svelte o cualquier framework en el mismo proyecto sin problemas.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Optimización Automática</h3>
+                    <p>Optimización de imágenes, CSS y assets sin configuración adicional.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Recursos de Aprendizaje</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>Documentación Oficial</h3>
+                    <p>Guías completas y referencias de la documentación oficial de Astro.</p>
+                    <div class="content-links">
+                        <a href="https://docs.astro.build" class="content-link" target="_blank">Ver Documentación</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Temas y Plantillas</h3>
+                    <p>Colección oficial de temas y plantillas pre-construidas para Astro.</p>
+                    <div class="content-links">
+                        <a href="https://astro.build/themes" class="content-link" target="_blank">Explorar Temas</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Integraciones</h3>
+                    <p>Plugins y integraciones oficiales para extender Astro.</p>
+                    <div class="content-links">
+                        <a href="https://astro.build/integrations" class="content-link" target="_blank">Ver Integraciones</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Astro en GitHub</h3>
+                    <p>Repositorio oficial, código fuente y contribuciones de la comunidad.</p>
+                    <div class="content-links">
+                        <a href="https://github.com/withastro/astro" class="content-link" target="_blank">Ver en GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - Astro Framework</p>
+        </footer>
+    </div>
+</body>
+</html>
         * {
             margin: 0;
             padding: 0;

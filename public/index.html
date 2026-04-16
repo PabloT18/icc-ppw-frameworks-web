@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ===== CONFIGURACIÓN BÁSICA ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- ===== SEO BÁSICO ===== -->
+    <title>ICC - Frameworks Web | Programación y Plataformas Web</title>
+    <meta name="description" content="Material conceptual y guías prácticas sobre frameworks web modernos (JavaScript, Angular, React, Vue, Astro) para el curso de Programación y Plataformas Web de la Universidad Politécnica Salesiana.">
+    <meta name="keywords" content="frameworks web, javascript, angular, react, vue, astro, programación web, desarrollo web, universidad politécnica salesiana, ups, icc, tutorial">
+    <meta name="author" content="Pablo Torres - Universidad Politécnica Salesiana">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- ===== OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ===== -->
+    <meta property="og:title" content="ICC - Frameworks Web | Programación y Plataformas Web">
+    <meta property="og:description" content="Material conceptual y guías prácticas sobre frameworks web modernos para el curso de la Universidad Politécnica Salesiana.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/PabloT18/icc-ppw-frameworks-web">
+    <meta property="og:image" content="https://opengraph.githubassets.com/1/PabloT18/icc-ppw-frameworks-web">
+    <meta property="og:site_name" content="ICC - Frameworks Web">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ICC - Frameworks Web | Programación y Plataformas Web">
+    <meta name="twitter:description" content="Material conceptual y guías prácticas sobre frameworks web modernos (JavaScript, Angular, React, Vue, Astro).">
+    <meta name="twitter:image" content="https://opengraph.githubassets.com/1/PabloT18/icc-ppw-frameworks-web">
+    <meta name="twitter:creator" content="@PabloT18">
+    
+    <!-- ===== URL CANÓNICA ===== -->
+    <link rel="canonical" href="https://pablot18.github.io/icc-ppw-frameworks-web/">
+    
+    <!-- ===== COLORES DE TEMA (PWA/Mobile) ===== -->
+    <meta name="theme-color" content="#003772">
+    <meta name="msapplication-TileColor" content="#003772">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#003772">
+    
+    <!-- ===== FAVICON (opcional - descomentar cuando tengas los iconos) ===== -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+    
+    <!-- ===== ESTILOS ===== -->
+    <link rel="stylesheet" href="styles/institutional.css">
+    <style>
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .framework-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .framework-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .framework-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .framework-card h2 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+
+        .framework-card p {
+            font-size: 0.95rem;
+            color: var(--color-text-soft);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .framework-btn {
+            background: var(--color-primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .framework-btn:hover {
+            background: var(--color-primary-soft);
+        }
+
+        .angular-accent { border-top: 4px solid #DD0031; }
+        .react-accent { border-top: 4px solid #61DAFB; }
+        .vue-accent { border-top: 4px solid #42B883; }
+        .astro-accent { border-top: 4px solid #FF5D01; }
+        .javascript-accent { border-top: 4px solid #F7DF1E; }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--color-primary);
+            margin: 40px 0 20px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <div class="hero">
+            <h1 class="page-title">ICC - Frameworks Web</h1>
+            <p>Programación y Plataformas Web</p>
+            <p style="font-size: 0.95rem; margin-top: 10px;">Universidad Politécnica Salesiana</p>
+        </div>
+
+        <div class="section">
+            <p>Este repositorio contiene material conceptual y guías prácticas sobre frameworks web modernos para el curso de Programación y Plataformas Web.</p>
+            <p><strong>Contenido incluido:</strong></p>
+            <div class="list-box">
+                <ul>
+                    <li>Material conceptual organizado por framework y tema</li>
+                    <li>Guías paso a paso para cada práctica</li>
+                    <li>Instrucciones para proyectos independientes</li>
+                    <li>Recursos y ejemplos prácticos</li>
+                </ul>
+            </div>
+            <p style="margin-top: 15px;"><a href="https://github.com/PabloT18/icc-ppw-frameworks-web/tree/main">Ver Repositorio Proyecto completo</a></p>
+        </div>
+
+        <h2 class="page-subtitle">Lenguaje / Framework</h2>
+
+        <div class="frameworks-grid">
+            <a href="javascript.html" class="framework-card javascript-accent">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="framework-icon">
+                <h2>JavaScript</h2>
+                <p>Lenguaje de programación fundamental para el desarrollo web moderno.</p>
+                <span class="framework-btn">Ver Material</span>
+            </a>
+
+            <a href="angular.html" class="framework-card angular-accent">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular" class="framework-icon">
+                <h2>Angular</h2>
+                <p>Framework completo para aplicaciones web empresariales con TypeScript.</p>
+                <span class="framework-btn">Ver Material</span>
+            </a>
+
+            <a href="react.html" class="framework-card react-accent">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="framework-icon">
+                <h2>React</h2>
+                <p>Biblioteca de JavaScript para construir interfaces de usuario interactivas.</p>
+                <span class="framework-btn">Ver Material</span>
+            </a>
+
+            <a href="vue.html" class="framework-card vue-accent">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue" class="framework-icon">
+                <h2>Vue</h2>
+                <p>Framework progresivo para construir interfaces de usuario modernas.</p>
+                <span class="framework-btn">Ver Material</span>
+            </a>
+
+            <a href="astro.html" class="framework-card astro-accent">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" alt="Astro" class="framework-icon">
+                <h2>Astro</h2>
+                <p>Framework moderno para sitios web estáticos ultra-rápidos.</p>
+                <span class="framework-btn">Ver Material</span>
+            </a>
+
+            <a href="renderizado.html" class="framework-card">
+                <h2>Tipos de Renderizado</h2>
+                <p>CSR, SSR, SSG, ISR y más conceptos de renderizado web.</p>
+                <span class="framework-btn">Ver Contenido</span>
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>Enlaces Útiles</h2>
+            <div class="list-box">
+                <ul>
+                    <li><a href="https://github.com/PabloT18/icc-ppw-frameworks-web" target="_blank">Repositorio en GitHub</a></li>
+                    <li><a href="https://gist.github.com/PabloT18/d06b0843d8659dcf990d2c2b902231a9" target="_blank">Conceptos clave de Programación Web</a></li>
+                    <li><a href="https://gist.github.com/PabloT18/683e6d950b240f9620a98903cf92e87a" target="_blank">Guía de VS Code</a></li>
+                    <li><a href="https://gist.github.com/PabloT18/96343b6be1b5cfe237fe53e48eeeb6ef" target="_blank">Guía de Git y GitHub</a></li>
+                    <li><a href="https://gist.github.com/PabloT18/8c0728e24b14c1c63a879b819f628299" target="_blank">Guía de Node y PNPM</a></li>
+                    <li><a href="https://gist.github.com/PabloT18/efa4daa60d4782967187ce34cfe5771a" target="_blank">Guía de Angular</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Autor</h2>
+            <div class="card" style="max-width: 700px; margin: 0 auto; padding: 40px;">
+                <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+                    <div style="flex-shrink: 0;">
+                        <img src="https://avatars.githubusercontent.com/u/45208087?v=4" 
+                             alt="Pablo Torres" 
+                             style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--color-primary); object-fit: cover;">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="margin: 0 0 10px 0; color: var(--color-primary); font-size: 1.5rem;">Pablo Torres</h3>
+                        <p style="margin: 5px 0; color: var(--color-text-soft);">
+                            <strong>Docente</strong> - Programación y Plataformas Web
+                        </p>
+                        <p style="margin: 15px 0 20px 0; color: var(--color-text); line-height: 1.6;">
+                            Universidad Politécnica Salesiana<br>
+                            Ingeniería en Ciencias de la Computación
+                        </p>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://github.com/PabloT18" 
+                               target="_blank" 
+                               style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--color-primary); color: white; text-decoration: none; border-radius: var(--radius-md); font-size: 0.9rem; transition: background 0.3s ease;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="mailto:ptorres@ups.edu.ec" 
+                               style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--color-accent); color: var(--color-primary); text-decoration: none; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 600; transition: opacity 0.3s ease;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web</p>
+        </footer>
+    </div>
+</body>
+</html>

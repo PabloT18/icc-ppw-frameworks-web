@@ -4,7 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue - Material y Prácticas | ICC PPW</title>
+    <link rel="stylesheet" href="styles/institutional.css">
     <style>
+        /* Estilos específicos para Vue */
+        .content-item {
+            border-left: 4px solid #42B883;
+        }
+
+        .content-link {
+            background: #42B883;
+            color: white;
+        }
+
+        .content-link:hover {
+            background: #35495E;
+        }
+
+        .hero img {
+            filter: drop-shadow(0 4px 8px rgba(66, 184, 131, 0.3));
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <a href="index.html" class="back-btn">Volver al Inicio</a>
+
+        <div class="hero">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue Logo">
+            <h1>Vue Framework</h1>
+            <p>Material y Proyectos de Estudiantes</p>
+        </div>
+
+        <div class="callout">
+            <h3>Información</h3>
+            <p>Esta sección está en desarrollo. El material de Vue será agregado próximamente.</p>
+            <p>Por ahora, puedes ver los proyectos de los estudiantes en las carpetas correspondientes.</p>
+        </div>
+
+        <div class="section">
+            <h2>Proyectos de Estudiantes</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>Calle Torres</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="../vue/calle_torres/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Guamán Guanga</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="../vue/guaman_guanga/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Ramón Serrano</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="../vue/ramon_serrano/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Vascónez Morocho</h3>
+                    <p>Proyecto de práctica en Vue</p>
+                    <div class="content-links">
+                        <a href="../vue/vasconez_morocho/" class="content-link">Ver Proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Recursos de Aprendizaje</h2>
+            
+            <div class="card-grid">
+                <div class="card content-item">
+                    <h3>Documentación Oficial</h3>
+                    <p>Guías completas y referencias de Vue 3.</p>
+                    <div class="content-links">
+                        <a href="https://vuejs.org" class="content-link" target="_blank">Visitar Documentación</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Vue Tutorial</h3>
+                    <p>Tutorial oficial paso a paso de Vue.</p>
+                    <div class="content-links">
+                        <a href="https://vuejs.org/tutorial/" class="content-link" target="_blank">Comenzar Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Vue Router</h3>
+                    <p>Librería oficial de enrutamiento para Vue.</p>
+                    <div class="content-links">
+                        <a href="https://router.vuejs.org" class="content-link" target="_blank">Ver Vue Router</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Pinia</h3>
+                    <p>Gestión de estado oficial para Vue 3.</p>
+                    <div class="content-links">
+                        <a href="https://pinia.vuejs.org" class="content-link" target="_blank">Ver Pinia</a>
+                    </div>
+                </div>
+
+                <div class="card content-item">
+                    <h3>Vue Mastery</h3>
+                    <p>Cursos y tutoriales avanzados de Vue.</p>
+                    <div class="content-links">
+                        <a href="https://www.vuemastery.com" class="content-link" target="_blank">Explorar Cursos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Universidad Politécnica Salesiana - ICC</p>
+            <p>Programación y Plataformas Web - Vue Framework</p>
+        </footer>
+    </div>
+</body>
+</html>
         * {
             margin: 0;
             padding: 0;
