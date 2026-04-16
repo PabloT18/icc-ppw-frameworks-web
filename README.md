@@ -12,12 +12,13 @@
 
 ## Descripción general del proyecto
 
-Este repositorio contiene material conceptual y guías prácticas sobre frameworks web modernos (Angular, React, Vue, Astro, etc.) para el curso de Programación y Plataformas Web.
+Este repositorio contiene material conceptual y guías prácticas sobre frameworks web modernos (Javascript, Angular, React, Vue, Astro, etc.) para el curso de Programación y Plataformas Web.
 
 <div align="center">
 
 
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="80" alt="Javascript Logo">
+
 
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
  
