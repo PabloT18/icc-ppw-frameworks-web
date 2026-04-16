@@ -5,3 +5,8 @@
 .vscode/settings.json
 
 eva/*
+
+javascript/eva/*
+
+# Practicas js archivos por desarrollar
+javascript/solver/02-dom-basico/css/*

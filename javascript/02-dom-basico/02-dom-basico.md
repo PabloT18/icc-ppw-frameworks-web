@@ -98,33 +98,42 @@ const divs = document.getElementsByTagName('div');
 
 ---
 
-## 3. Explicacion Tecnica Detallada
+## 3. Explicacion Tecnica 
 
 ### Modificar contenido
 
 ```javascript
 const titulo = document.querySelector('#titulo');
 
-// textContent: solo texto, ignora HTML
+// textContent: solo texto, ignora HTML (RECOMENDADO)
 titulo.textContent = 'Nuevo titulo';
-
-// innerHTML: interpreta HTML (cuidado con XSS)
-titulo.innerHTML = 'Titulo <strong>importante</strong>';
 
 // innerText: similar a textContent pero respeta estilos CSS (display: none, etc.)
 titulo.innerText = 'Texto visible';
+
+// innerHTML: interpreta HTML (NO RECOMENDADO - riesgo de seguridad)
+// Solo usar con contenido estático confiable, NUNCA con datos de usuario
+titulo.innerHTML = 'Titulo <strong>importante</strong>';
 ```
 
-**Seguridad:** Nunca usar `innerHTML` con datos del usuario sin sanitizar. Puede causar ataques XSS (Cross-Site Scripting).
+**Seguridad - innerHTML es un riesgo:**
 
+`innerHTML` permite ataques XSS (Cross-Site Scripting) y debe evitarse en la mayoría de casos:
+```html
+<p id="titulo"></p>
+```
 ```javascript
-// PELIGROSO: nunca hacer esto con input del usuario
-const input = '<script>alert("XSS")</script>';
-elemento.innerHTML = input; // Ejecutaria el script
+const elemento = document.getElementById('titulo');
+const userInput = '<script>alert("XSS")</script>';
 
-// SEGURO: usar textContent para datos del usuario
-elemento.textContent = input; // Se muestra como texto plano
+//  Peligroso: interpreta el contenido como HTML
+elemento.innerHTML = userInput;
+
+//  Seguro: lo muestra como texto plano
+elemento.textContent = userInput;
 ```
+
+**Recomendación:** Definir la estructura HTML en el archivo `.html` y usar JS solo para actualizar el contenido con `textContent`. Esto prepara el código para frameworks modernos y mejora la seguridad.
 
 ### Modificar atributos
 
@@ -196,30 +205,63 @@ elemento.className = 'tarjeta activa'; // sobreescribe todo
 
 ### Crear elementos
 
+**Enfoque recomendado:** `createElement` + `textContent`
+
 ```javascript
 // Crear un nuevo elemento
 const nuevoParrafo = document.createElement('p');
 nuevoParrafo.textContent = 'Este parrafo fue creado con JavaScript';
 nuevoParrafo.classList.add('parrafo-nuevo');
 
-// Crear un elemento mas complejo
+// Crear un elemento más complejo
 const card = document.createElement('div');
 card.classList.add('card');
-card.innerHTML = `
-  <h3>Titulo de la card</h3>
-  <p>Descripcion de la card</p>
-  <button>Ver mas</button>
-`;
+
+const h3 = document.createElement('h3');
+h3.textContent = 'Titulo de la card';
+
+const p = document.createElement('p');
+p.textContent = 'Descripcion de la card';
+
+const button = document.createElement('button');
+button.textContent = 'Ver mas';
+
+// Ensamblar
+card.appendChild(h3);
+card.appendChild(p);
+card.appendChild(button);
 
 // Insertar en el DOM
 const contenedor = document.querySelector('#contenedor');
+contenedor.appendChild(card);
+```
 
-contenedor.appendChild(card);                         // al final
-contenedor.prepend(nuevoParrafo);                    // al inicio
-contenedor.insertBefore(card, contenedor.firstChild); // antes de un hijo
-contenedor.append(card, nuevoParrafo);               // multiples al final
+**Alternativa con innerHTML (no recomendada para datos dinámicos):**
+
+```javascript
+// Solo usar con contenido estático confiable
+const card = document.createElement('div');
+card.classList.add('card');
+card.innerHTML = `
+  <h3>Titulo estatico</h3>
+  <p>Descripcion estatica</p>
+  <button>Ver mas</button>
+`;
+```
+
+**Métodos de inserción en el DOM:**
+
+```javascript
+const contenedor = document.querySelector('#contenedor');
+const elemento = document.createElement('div');
+
+contenedor.appendChild(elemento);                         // al final
+contenedor.prepend(elemento);                             // al inicio
+contenedor.insertBefore(elemento, contenedor.firstChild); // antes de un hijo
+contenedor.append(elemento, nuevoParrafo);                // multiples al final
 
 // insertAdjacentHTML: insertar HTML en posiciones especificas
+//  Solo con contenido estático confiable
 contenedor.insertAdjacentHTML('beforeend', '<p>Al final</p>');
 contenedor.insertAdjacentHTML('afterbegin', '<p>Al inicio</p>');
 contenedor.insertAdjacentHTML('beforebegin', '<p>Antes del contenedor</p>');
@@ -320,17 +362,22 @@ function agregarItem() {
   const texto = inputItem.value.trim();
   if (texto === '') return;
 
+  // Crear estructura con createElement
   const li = document.createElement('li');
-  li.innerHTML = `
-    <span>${texto}</span>
-    <span class="eliminar">X</span>
-  `;
-
-  // Agregar evento de eliminar al boton X
-  li.querySelector('.eliminar').addEventListener('click', () => {
+  
+  const spanTexto = document.createElement('span');
+  spanTexto.textContent = texto; //  textContent, no innerHTML
+  
+  const spanEliminar = document.createElement('span');
+  spanEliminar.className = 'eliminar';
+  spanEliminar.textContent = 'X';
+  spanEliminar.addEventListener('click', () => {
     li.remove();
     actualizarContador();
   });
+
+  li.appendChild(spanTexto);
+  li.appendChild(spanEliminar);
 
   lista.appendChild(li);
   inputItem.value = '';
@@ -366,21 +413,41 @@ const productos = [
 
 function renderizarProductos(contenedorId, listaProductos) {
   const contenedor = document.getElementById(contenedorId);
-  contenedor.innerHTML = '';
+  contenedor.innerHTML = ''; // Limpiar contenedor
 
   listaProductos.forEach(producto => {
+    // Crear estructura de la tarjeta
     const card = document.createElement('div');
     card.classList.add('producto-card');
     card.dataset.id = producto.id;
     card.dataset.categoria = producto.categoria;
 
-    card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <p class="categoria">${producto.categoria}</p>
-      <p class="precio">$${producto.precio}</p>
-      <button class="btn-detalle">Ver detalle</button>
-    `;
+    // Crear elementos internos
+    const img = document.createElement('img');
+    img.src = producto.imagen;
+    img.alt = producto.nombre;
+
+    const h3 = document.createElement('h3');
+    h3.textContent = producto.nombre; // textContent
+
+    const pCategoria = document.createElement('p');
+    pCategoria.className = 'categoria';
+    pCategoria.textContent = producto.categoria;
+
+    const pPrecio = document.createElement('p');
+    pPrecio.className = 'precio';
+    pPrecio.textContent = `$${producto.precio}`;
+
+    const btnDetalle = document.createElement('button');
+    btnDetalle.className = 'btn-detalle';
+    btnDetalle.textContent = 'Ver detalle';
+
+    // Ensamblar tarjeta
+    card.appendChild(img);
+    card.appendChild(h3);
+    card.appendChild(pCategoria);
+    card.appendChild(pPrecio);
+    card.appendChild(btnDetalle);
 
     contenedor.appendChild(card);
   });
@@ -393,22 +460,25 @@ function renderizarProductos(contenedorId, listaProductos) {
 
 ### textContent vs innerHTML vs innerText
 
-| Propiedad | Lee HTML | Escribe HTML | Seguro (XSS) | Performance |
-|-----------|:---:|:---:|:---:|:---:|
-| `textContent` | No | No | Si | Rapido |
-| `innerHTML` | Si | Si | No | Medio |
-| `innerText` | No | No | Si | Lento (recalcula layout) |
+| Propiedad | Lee HTML | Escribe HTML | Seguro (XSS) | Performance | Uso recomendado |
+|-----------|:---:|:---:|:---:|:---:|:---:|
+| `textContent` | No | No | ✅ Si | Rapido | **Por defecto** |
+| `innerHTML` | Si | Si | ❌ No | Medio | Evitar / Solo HTML estatico |
+| `innerText` | No | No | ✅ Si | Lento (recalcula layout) | Cuando importa visibilidad CSS |
 
-### createElement vs innerHTML
+### createElement + textContent vs innerHTML
 
-| Aspecto | createElement + appendChild | innerHTML |
+| Aspecto | createElement + textContent | innerHTML |
 |---------|:---:|:---:|
-| Seguridad | Mas seguro | Riesgo XSS |
+| Seguridad | ✅ Más seguro | ⚠️ Riesgo XSS |
 | Performance (pocos) | Similar | Similar |
-| Performance (muchos) | Mas lento | Mas rapido |
-| Eventos existentes | Se preservan | Se pierden |
-| Legibilidad | Mas codigo | Mas conciso |
-| Uso recomendado | Datos del usuario | HTML estatico confiable |
+| Performance (muchos) | Optimizable (Fragment) | Más rápido |
+| Eventos existentes | ✅ Se preservan | ❌ Se pierden |
+| Legibilidad | Más código pero explícito | Más conciso |
+| Preparación para frameworks | ✅ Sí (separa estructura/contenido) | ❌ No (mezcla todo) |
+| Uso recomendado | **Por defecto** | Solo limpiar contenedores |
+
+**Mejor práctica:** Estructura con `createElement`, contenido con `textContent`. innerHTML solo para limpiar: `elemento.innerHTML = ''`
 
 ### Metodos de insercion
 
@@ -500,54 +570,267 @@ practica-02/
 
 El HTML debe tener:
 - Un encabezado con el titulo de la aplicacion
-- Un contenedor `<div id="app">` donde se renderizara todo el contenido dinamico
+- En body un contenedor `<div id="app">` donde se renderizara todo el contenido dinamico
 - El CSS enlazado y el JS con `defer`
+- Titulo: `Práctica 2 - DOM`
 
-### Paso 2: Crear datos de ejemplo
 
-En `app.js`, crear un array de objetos que represente una lista de elementos (por ejemplo: tareas, productos, contactos, peliculas). Cada objeto debe tener al menos 5 propiedades.
+### Paso 2: Crear estructura HTML y datos
 
-Ejemplo de estructura (el estudiante debe elegir su propio dominio):
+#### 2.1 Estructura HTML base
+
+En `index.html`, definir la estructura con elementos vacíos que se llenaran con JS:
+
+- Div info-estudiante
+
+  ![info-estudiante](assets/p2-1.png)
+
+- Div estadisticas
+
+  ![info-estadisticas](assets/p2-2.png)
+
+- Div filtros
+- Div contenedor-lista con filtro
+
+
+  ![info-estudiante](assets/p2-3.png)
+
+
+```html
+  <div id="app">
+
+    <div class="info-estudiante">
+      <h2>Información del Estudiante</h2>
+      <p><strong>Nombre:</strong> <span id="estudiante-nombre"></span></p>
+      <p><strong>Carrera:</strong> <span id="estudiante-carrera"></span></p>
+      <p><strong>Semestre:</strong> <span id="estudiante-semestre"></span></p>
+    </div>
+
+    <div class="estadisticas">
+      <h2>Estadísticas</h2>
+      <p><strong>Total:</strong> <span id="total-elementos"></span></p>
+      <p><strong>Activos:</strong> <span id="elementos-activos"></span></p>
+    </div>
+
+    <div class="filtros">
+      <button class="btn-filtro btn-filtro-activo" data-categoria="todas">Todas</button>
+      <button class="btn-filtro" data-categoria="Trabajo">Trabajo</button>
+      <button class="btn-filtro" data-categoria="Personal">Personal</button>
+      <button class="btn-filtro" data-categoria="Estudio">Estudio</button>
+    </div>
+
+    <div id="contenedor-lista">
+
+      <!-- Las tarjetas se insertarán aquí -->
+    </div>
+
+  </div>
+```
+
+#### 2.2 Datos en JavaScript
+
+En `app.js`, crear:
+- Información del estudiante (const)
+- Array de objetos con al menos 6 elementos y 5 propiedades cada uno
 
 ```javascript
+'use strict';
+
+// Información del estudiante
+const estudiante = {
+  nombre: 'Tu Nombre Completo',
+  carrera: 'Ingeniería de Sistemas',
+  semestre: 5
+};
+
+// Lista de elementos (elegir un dominio: tareas, productos, películas, etc.)
 const elementos = [
-  { id: 1, titulo: '...', descripcion: '...', categoria: '...', activo: true },
-  // al menos 6 elementos
+  { id: 1, titulo: 'Proyecto Web', descripcion: 'Terminar práctica JS', categoria: 'Estudio', prioridad: 'Alta', activo: true },
+  { id: 2, titulo: 'Comprar comida', descripcion: 'Ir al supermercado', categoria: 'Personal', prioridad: 'Media', activo: true },
+  { id: 3, titulo: 'Reunión', descripcion: 'Equipo de trabajo', categoria: 'Trabajo', prioridad: 'Alta', activo: false },
+  { id: 4, titulo: 'Leer libro', descripcion: 'Capítulo de JS', categoria: 'Estudio', prioridad: 'Baja', activo: true },
+  { id: 5, titulo: 'Ejercicio', descripcion: 'Salir a correr', categoria: 'Personal', prioridad: 'Media', activo: false },
+  { id: 6, titulo: 'Deploy', descripcion: 'Subir proyecto', categoria: 'Trabajo', prioridad: 'Alta', activo: true }
 ];
 ```
 
-### Paso 3: Renderizar la lista en el DOM
+### Paso 3: Actualizar información del estudiante
 
-Crear una funcion `renderizarLista(datos)` que:
-1. Seleccione el contenedor `#app`
-2. Limpie su contenido
-3. Cree una tarjeta (card) por cada elemento del array
-4. Cada tarjeta debe mostrar todas las propiedades del objeto
-5. Usar `createElement` y `classList.add` para estructurar las cards
-6. Usar `document.createDocumentFragment()` para optimizar
+Crear una función `mostrarInfoEstudiante()` que:
+1. Seleccione los elementos por ID usando `getElementById`
+2. Actualice su contenido con `textContent`
+3. Use template literals para formatear cuando sea necesario
 
-### Paso 4: Agregar funcionalidad de eliminar
+```javascript
+function mostrarInfoEstudiante() {
+  document.getElementById('estudiante-nombre').textContent = estudiante.nombre;
+  document.getElementById('estudiante-carrera').textContent = estudiante.carrera;
+  document.getElementById('estudiante-semestre').textContent = `${estudiante.semestre}° semestre`;
+}
+```
 
-Cada tarjeta debe tener un boton "Eliminar" que:
-1. Elimine el elemento del array original
-2. Vuelva a renderizar la lista
-3. Actualice un contador visible en la pagina
+### Paso 4: Renderizar la lista con enfoque híbrido
 
-### Paso 5: Agregar filtrado basico
+**Enfoque recomendado:** Crear la estructura HTML de cada tarjeta con `createElement`, luego llenar el contenido con `textContent`.
+
+```javascript
+function renderizarLista(datos) {
+  const contenedor = document.getElementById('contenedor-lista');
+  contenedor.innerHTML = '';
+
+  const fragment = document.createDocumentFragment();
+
+  datos.forEach(el => {
+
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = el.titulo;
+
+    const descripcion = document.createElement('p');
+    descripcion.textContent = el.descripcion;
+
+    const categoria = document.createElement('span');
+    categoria.textContent = el.categoria;
+    categoria.classList.add('badge', 'badge-categoria');
+
+    const prioridad = document.createElement('span');
+    prioridad.textContent = el.prioridad;
+    prioridad.classList.add('badge');
+    if (el.prioridad === 'Alta') {
+  prioridad.classList.add('prioridad-alta');
+} else if (el.prioridad === 'Media') {
+  prioridad.classList.add('prioridad-media');
+} else {
+  prioridad.classList.add('prioridad-baja');
+}
+
+    const estado = document.createElement('span');
+    estado.textContent = el.activo ? 'Activo' : 'Inactivo';
+    estado.classList.add('badge');
+    estado.classList.add(
+      el.activo ? 'estado-activo' : 'estado-inactivo'
+    );
+
+
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = 'Eliminar';
+    btnEliminar.classList.add('btn-eliminar');
+
+    btnEliminar.addEventListener('click', () => {
+      eliminarElemento(el.id);
+    });
+
+    card.appendChild(titulo);
+    card.appendChild(descripcion);
+    // CONTENEDOR DE BADGES
+    const badges = document.createElement('div');
+    badges.classList.add('badges');
+
+    badges.appendChild(categoria);
+    badges.appendChild(prioridad);
+    badges.appendChild(estado);
+
+    // ACCIONES
+    const acciones = document.createElement('div');
+    acciones.classList.add('card-actions');
+    acciones.appendChild(btnEliminar);
+
+    // ENSAMBLE FINAL
+    card.appendChild(titulo);
+    card.appendChild(descripcion);
+    card.appendChild(badges);
+    card.appendChild(acciones);
+
+    fragment.appendChild(card);
+  });
+
+  contenedor.appendChild(fragment);
+  actualizarEstadisticas();
+}
+```
+
+**Ventajas de este enfoque:**
+- ✅ Seguro: no usa innerHTML con datos
+- ✅ Prepara para frameworks (Angular, React trabajan con DOM existente)
+- ✅ Separa estructura (createElement) de contenido (textContent)
+- ✅ Facilita evaluación: se ve el manejo directo del DOM
+
+### Paso 5: Agregar funcionalidad de eliminar
+
+Implementar la función de eliminación:
+
+```javascript
+function eliminarElemento(id) {
+  const index = elementos.findIndex(el => el.id === id);
+  if (index !== -1) {
+    elementos.splice(index, 1);
+    renderizarLista(elementos);
+  }
+}
+
+function actualizarEstadisticas() {
+  const total = elementos.length;
+  const activos = elementos.filter(el => el.activo).length;
+  
+  document.getElementById('total-elementos').textContent = total;
+  document.getElementById('elementos-activos').textContent = activos;
+}
+```
+
+### Paso 6: Agregar filtrado básico
 
 Crear botones de filtro (por categoria u otra propiedad) que:
 1. Filtren el array con `.filter()`
 2. Rendericen solo los elementos filtrados
 3. Resalten visualmente el filtro activo usando `classList`
 
-### Paso 6: Estilos CSS
+```javascript
+function inicializarFiltros() {
+  const botones = document.querySelectorAll('.btn-filtro');
 
-Aplicar estilos para:
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      const categoria = btn.dataset.categoria;
+
+      document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('btn-filtro-activo'));
+      btn.classList.add('btn-filtro-activo');
+
+      if (categoria === 'todas') {
+        renderizarLista(elementos);
+      } else {
+        const filtrados = elementos.filter(e => e.categoria === categoria);
+        renderizarLista(filtrados);
+      }
+    });
+  });
+}
+```
+
+### Paso 7: Inicialización
+
+Al cargar la página, ejecutar:
+
+```javascript
+// Inicializar aplicación
+mostrarInfoEstudiante();
+renderizarLista(elementos);
+inicializarFiltros();
+```
+
+### Paso 8: Estilos CSS
+
+Aplicar estilos para conseguir el estio mas similar:
 - Layout con CSS Grid o Flexbox para las tarjetas
 - Hover effects en las tarjetas
 - Boton de eliminar con color rojo
 - Filtros activos resaltados
 - Responsive design basico
+
+
+![alt text](assets/p2-4.png)
 
 ---
 
@@ -576,33 +859,47 @@ Aplicar estilos para:
 
 ---
 
-## 9. Entregables
+### 9. Entregables
 
-- Repositorio GitHub con el codigo completo
-- Capturas de pantalla en la carpeta `assets/`
-- Archivo `.md` completado con evidencias
-- Codigo funcional sin errores en consola
+### 9.1 Estructura del repositorio
+
+El estudiante deberá subir su solución en GitHub respetando la siguiente estructura:
+
+/02-dom-basico
+  ├── index.html
+  ├── css/
+  │     └── styles.css
+  ├── js/
+  │     └── app.js
+  ├── assets/
+  │     ├── 01-vista-general.png
+  │     ├── 02-filtrado.png
+  │     └── ...
+  └── README.md
+
+---
+
+### 9.2 README (informe)
+
+Debe incluir:
+
+- Descripción breve de la solución
+- Fragmentos de código relevantes
+- Imágenes insertadas correctamente desde `/assets`
+
+#### 9.2.1 Código
+
+- Ejemplos de funciones principales:
+  - renderizado de la lista
+  - eliminación de elementos
+  - filtrado
+
+#### 9.2.2 Imágenes
+
+1. Vista general de la aplicación  
+2. Filtrado aplicado
 
 ---
 
-## Reglas
-
-- No usar frameworks (React, Angular, Vue, etc.)
-- Solo HTML + CSS + JavaScript puro
-- No usar librerias externas
-- No usar `document.write()`
-- Usar `textContent` en lugar de `innerHTML` cuando se insertan datos del usuario
-- Usar `querySelector` / `querySelectorAll` como selectores principales
-
----
-
-## Notas de Implementacion
-
-- El DOM se manipula despues de que el HTML se ha cargado (usar `defer` en el script)
-- `querySelectorAll` retorna un `NodeList` estatico, no se actualiza automaticamente
-- Cada modificacion al DOM puede causar un reflow/repaint, agrupar cambios cuando sea posible
-- Los data attributes (`data-*`) son utiles para almacenar metadata en elementos HTML
-
----
 
 
