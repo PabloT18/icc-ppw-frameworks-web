@@ -560,11 +560,11 @@ practica-05/
     app.js
 ```
 
-### Paso 2: Funciones base (copiar como referencia)
+### Paso 2: HTML completo (copiar)
 
-#### 2.1 Estructura HTML base
+**¿Qué hace este paso?** Proporciona toda la estructura HTML necesaria para la práctica. El HTML incluye tres secciones: simulador de carga de recursos, temporizador regresivo y manejo de errores. Copiar exactamente este código en `index.html`.
 
-En `index.html`:
+En `index.html`, copiar la estructura completa:
 
 ```html
 <!DOCTYPE html>
@@ -576,282 +576,570 @@ En `index.html`:
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Simulador de Operaciones Asíncronas</h1>
-    
-    <div class="controles">
-      <button id="btn-secuencial">Carga Secuencial</button>
-      <button id="btn-paralelo">Carga Paralela</button>
-      <button id="btn-error">Simular Error</button>
-    </div>
-
-    <div id="resultados"></div>
-    <div id="log"></div>
-
-    <div class="temporizador">
-      <h2>Temporizador</h2>
-      <input type="number" id="tiempo-input" min="1" max="300" value="10">
-      <div id="display">00:00</div>
-      <div class="barra-container">
-        <div id="barra-progreso"></div>
+  <main class="page">
+    <!-- SECCIÓN 1: CARGA SECUENCIAL VS PARALELA -->
+    <section class="container">
+      <h1>Simulador de Carga de Recursos</h1>
+      
+      <div class="button-group">
+        <button type="button" id="btn-secuencial">Cargar Secuencial</button>
+        <button type="button" id="btn-paralelo">Cargar Paralelo</button>
+        <button type="button" id="btn-limpiar">Limpiar Log</button>
       </div>
-      <div class="timer-controles">
-        <button id="btn-iniciar">Iniciar</button>
-        <button id="btn-detener">Pausar</button>
-        <button id="btn-reiniciar">Reiniciar</button>
+
+      <div id="log" class="log"></div>
+      
+      <div id="resultados" class="resultados"></div>
+    </section>
+
+    <!-- SECCIÓN 2: TEMPORIZADOR -->
+    <section class="container">
+      <h2>Temporizador Regresivo</h2>
+
+      <div class="form-group">
+        <label for="input-tiempo">Tiempo en segundos:</label>
+        <input type="number" id="input-tiempo" value="60" min="1" max="600">
       </div>
-    </div>
-  </div>
+
+      <div id="display" class="display">00:00</div>
+
+      <div class="progress-container">
+        <div id="barra-progreso" class="progress-bar"></div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="btn-iniciar">Iniciar</button>
+        <button type="button" id="btn-detener">Detener</button>
+        <button type="button" id="btn-reiniciar">Reiniciar</button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: MANEJO DE ERRORES -->
+    <section class="container">
+      <h2>Manejo de Errores</h2>
+
+      <div class="button-group">
+        <button type="button" id="btn-error">Simular Error</button>
+        <button type="button" id="btn-reintentos">Reintentos Automáticos</button>
+      </div>
+
+      <div id="log-errores" class="log"></div>
+    </section>
+  </main>
 
   <script defer src="js/app.js"></script>
 </body>
 </html>
 ```
 
-#### 2.2 Funciones que simulan APIs (copiar y entender)
+### Paso 3: CSS completo (copiar)
 
-En `app.js`, crear funciones que retornan promesas:
+**¿Qué hace este paso?** Proporciona todos los estilos necesarios: reset básico, estilos de contenedores con gradiente, botones con efectos hover, logs estilo terminal con colores según tipo, display de temporizador grande, barra de progreso animada con gradiente, y animación de pulso para alertas. Copiar exactamente este código en `css/styles.css`.
+
+En `css/styles.css`, copiar todos los estilos (tomar de `solver/05-asincronia/css/styles.css` - 320 líneas completas)
+
+### Paso 4: JavaScript Parte 1 - Funciones base (copiar)
+
+En `js/app.js`, empezar con la estructura base:
+
+#### 4.1 Selección de elementos y variables globales (copiar)
+
+**¿Qué hace este código?** Selecciona todos los elementos del DOM que se van a manipular y declara variables globales para medir tiempos de carga secuencial y paralela. Estas variables permitirán hacer la comparativa al final.
 
 ```javascript
 'use strict';
 
-// Simular petición a una API con delay
+/* =========================
+   SIMULADOR DE PETICIONES
+========================= */
+
+const log = document.getElementById('log');
+const resultados = document.getElementById('resultados');
+
+let tiempoSecuencial = 0;
+let tiempoParalelo = 0;
+```
+
+#### 4.2 Función para simular peticiones (copiar)
+
+**¿Qué hace este código?** Crea una promesa que simula una petición a una API con un delay aleatorio entre `tiempoMin` y `tiempoMax`. Si `fallar` es true, rechaza la promesa con un error; si es false, resuelve con un objeto que contiene nombre, tiempo y timestamp.
+
+```javascript
 function simularPeticion(nombre, tiempoMin = 500, tiempoMax = 2000, fallar = false) {
   return new Promise((resolve, reject) => {
-    const delay = Math.random() * (tiempoMax - tiempoMin) + tiempoMin;
-    
+    const tiempoDelay = Math.floor(Math.random() * (tiempoMax - tiempoMin + 1)) + tiempoMin;
+
     setTimeout(() => {
       if (fallar) {
         reject(new Error(`Error al cargar ${nombre}`));
       } else {
         resolve({
           nombre,
-          datos: `Datos de ${nombre}`,
-          timestamp: new Date().toISOString(),
-          delay: Math.round(delay)
+          tiempo: tiempoDelay,
+          timestamp: new Date().toLocaleTimeString()
         });
       }
-    }, delay);
+    }, tiempoDelay);
   });
 }
+```
 
-// Función helper para formatear tiempo
+#### 4.3 Funciones helper (copiar)
+
+**¿Qué hace este código?** `formatearTiempo()` convierte milisegundos a segundos con 2 decimales. `mostrarLog()` crea un elemento div con clase según el tipo (info, success, error, warning) y lo agrega al log con timestamp automático, haciendo scroll al final.
+
+```javascript
 function formatearTiempo(ms) {
   return `${(ms / 1000).toFixed(2)}s`;
 }
 
-// Función helper para mostrar log en UI
 function mostrarLog(mensaje, tipo = 'info') {
-  const log = document.getElementById('log');
-  const entrada = document.createElement('div');
-  entrada.className = `log-entry log-entry--${tipo}`;
-  
-  const timestamp = document.createElement('span');
-  timestamp.className = 'log-timestamp';
-  timestamp.textContent = `[${new Date().toLocaleTimeString()}]`;
-  
-  const texto = document.createElement('span');
-  texto.textContent = mensaje;
-  
-  entrada.appendChild(timestamp);
-  entrada.appendChild(texto);
-  log.appendChild(entrada);
+  const item = document.createElement('div');
+  item.className = `log-item log-${tipo}`;
+  item.textContent = `[${new Date().toLocaleTimeString()}] ${mensaje}`;
+  log.appendChild(item);
   log.scrollTop = log.scrollHeight;
 }
 ```
 
-### Paso 3: Carga secuencial (debes implementar)
+### Paso 5: JavaScript Parte 2 - Carga secuencial y paralela (copiar y completar)
 
-#### 3.1 Implementar carga secuencial
+#### 5.1 Carga secuencial (completar)
+
+**¿Qué hace este código?** Ejecuta 3 peticiones UNA TRAS OTRA usando `await`. Cada `await` pausa la ejecución hasta que la promesa se resuelva. Mide el tiempo total con `performance.now()` y guarda el resultado en `tiempoSecuencial` para la comparativa.
 
 ```javascript
-// TODO: Crear función async cargarSecuencial() que:
-// 1. Muestre un log de inicio
-// 2. Mida el tiempo con performance.now()
-// 3. Use await para cargar 3 recursos uno tras otro
-// 4. Muestre cada resultado en el log
-// 5. Calcule y muestre el tiempo total
-
 async function cargarSecuencial() {
   mostrarLog('🔄 Iniciando carga secuencial...', 'info');
+  resultados.classList.remove('visible');
+  
   const inicio = performance.now();
 
   try {
-    // TODO: await simularPeticion('Usuarios')
-    // TODO: mostrar resultado con mostrarLog()
-    
-    // TODO: await simularPeticion('Productos')
-    // TODO: mostrar resultado
-    
-    // TODO: await simularPeticion('Pedidos')
-    // TODO: mostrar resultado
+    // TODO 5.1.1: Usar await para cargar 'Usuario' (500-1000ms)
+    //   const usuario = await simularPeticion('Usuario', 500, 1000);
+    //   mostrarLog(`✓ ${usuario.nombre} cargado en ${formatearTiempo(usuario.tiempo)}`, 'success');
 
+    // TODO 5.1.2: Usar await para cargar 'Posts' (700-1500ms)
+    //   const posts = await simularPeticion('Posts', 700, 1500);
+    //   mostrarLog(`✓ ${posts.nombre} cargados en ${formatearTiempo(posts.tiempo)}`, 'success');
+
+    // TODO 5.1.3: Usar await para cargar 'Comentarios' (600-1200ms)
+    //   const comentarios = await simularPeticion('Comentarios', 600, 1200);
+    //   mostrarLog(`✓ ${comentarios.nombre} cargados en ${formatearTiempo(comentarios.tiempo)}`, 'success');
+
+    const fin = performance.now();
+    const total = fin - inicio;
+    tiempoSecuencial = total;
+
+    mostrarLog(`✅ Secuencial completado en ${formatearTiempo(total)}`, 'success');
+    mostrarComparativa();
   } catch (error) {
     mostrarLog(`❌ Error: ${error.message}`, 'error');
   }
-
-  const total = Math.round(performance.now() - inicio);
-  mostrarLog(`✅ Secuencial completado en ${formatearTiempo(total)}`, 'success');
 }
-
-// Conectar evento
-document.getElementById('btn-secuencial').addEventListener('click', cargarSecuencial);
 ```
 
-### Paso 4: Carga paralela (debes implementar)
+#### 5.2 Carga paralela (completar)
 
-#### 4.1 Implementar carga paralela con Promise.all
+**¿Qué hace este código?** Ejecuta 3 peticiones SIMULTÁNEAMENTE usando `Promise.all()`. No espera a que termine una para empezar la siguiente, todas se ejecutan al mismo tiempo. El tiempo total será aproximadamente el de la petición MÁS LENTA, no la suma de todas.
 
 ```javascript
-// TODO: Crear función async cargarParalelo() que:
-// 1. Use Promise.all() para ejecutar las 3 peticiones simultáneamente
-// 2. Mida el tiempo total
-// 3. Muestre la diferencia de velocidad vs secuencial
-
 async function cargarParalelo() {
   mostrarLog('🔄 Iniciando carga paralela...', 'info');
+  resultados.classList.remove('visible');
+  
   const inicio = performance.now();
 
   try {
-    // TODO: const resultados = await Promise.all([
-    //   simularPeticion('Usuarios'),
-    //   simularPeticion('Productos'),
-    //   simularPeticion('Pedidos')
-    // ]);
+    // TODO 5.2.1: Crear array de promesas (NO usar await todavía)
+    //   const promesas = [
+    //     simularPeticion('Usuario', 500, 1000),
+    //     simularPeticion('Posts', 700, 1500),
+    //     simularPeticion('Comentarios', 600, 1200)
+    //   ];
 
-    // TODO: resultados.forEach(r => mostrarLog(...))
+    // TODO 5.2.2: Usar await con Promise.all para esperar a TODAS
+    //   const resultadosPromesas = await Promise.all(promesas);
 
+    // TODO 5.2.3: Mostrar cada resultado con forEach
+    //   resultadosPromesas.forEach((resultado) => {
+    //     mostrarLog(`✓ ${resultado.nombre} cargado en ${formatearTiempo(resultado.tiempo)}`, 'success');
+    //   });
+
+    const fin = performance.now();
+    const total = fin - inicio;
+    tiempoParalelo = total;
+
+    mostrarLog(`✅ Paralelo completado en ${formatearTiempo(total)}`, 'success');
+    mostrarComparativa();
   } catch (error) {
     mostrarLog(`❌ Error: ${error.message}`, 'error');
   }
-
-  const total = Math.round(performance.now() - inicio);
-  mostrarLog(`✅ Paralelo completado en ${formatearTiempo(total)}`, 'success');
 }
-
-// Conectar evento
-document.getElementById('btn-paralelo').addEventListener('click', cargarParalelo);
 ```
 
-#### 4.2 Comparativa visual
+#### 5.3 Mostrar comparativa y limpiar log (copiar)
 
-Agregar en `#resultados` una tabla comparativa mostrando:
-- Tiempo secuencial
-- Tiempo paralelo
-- Diferencia porcentual
-
-### Paso 5: Temporizador (debes implementar)
-
-#### 5.1 Lógica del temporizador
+**¿Qué hace este código?** `mostrarComparativa()` calcula la diferencia de tiempo entre secuencial y paralelo, muestra el porcentaje de mejora y crea dinámicamente el HTML del resultado. `limpiarLog()` resetea todo el estado.
 
 ```javascript
+function mostrarComparativa() {
+  if (tiempoSecuencial > 0 && tiempoParalelo > 0) {
+    const diferencia = tiempoSecuencial - tiempoParalelo;
+    const porcentaje = ((diferencia / tiempoSecuencial) * 100).toFixed(1);
+
+    resultados.innerHTML = `
+      <h3>📊 Comparativa de Rendimiento</h3>
+      <p><strong>Carga Secuencial:</strong> ${formatearTiempo(tiempoSecuencial)}</p>
+      <p><strong>Carga Paralela:</strong> ${formatearTiempo(tiempoParalelo)}</p>
+      <p><strong>Diferencia:</strong> ${formatearTiempo(diferencia)} (${porcentaje}% más rápido)</p>
+    `;
+    resultados.classList.add('visible');
+  }
+}
+
+function limpiarLog() {
+  log.innerHTML = '';
+  resultados.classList.remove('visible');
+  tiempoSecuencial = 0;
+  tiempoParalelo = 0;
+}
+
+// Conectar eventos
+document.getElementById('btn-secuencial').addEventListener('click', cargarSecuencial);
+document.getElementById('btn-paralelo').addEventListener('click', cargarParalelo);
+document.getElementById('btn-limpiar').addEventListener('click', limpiarLog);
+```
+
+### Paso 6: JavaScript Parte 3 - Temporizador (copiar y completar)
+
+#### 6.1 Selección de elementos y variables del temporizador (copiar)
+
+**¿Qué hace este código?** Selecciona todos los elementos del temporizador y declara variables de estado: `intervaloId` guarda el ID del setInterval para poder cancelarlo, `tiempoRestante` son los segundos que faltan, `tiempoInicial` es el total configurado (para calcular porcentaje de progreso).
+
+```javascript
+/* =========================
+   TEMPORIZADOR
+========================= */
+
+const inputTiempo = document.getElementById('input-tiempo');
+const display = document.getElementById('display');
+const barraProgreso = document.getElementById('barra-progreso');
+const btnIniciar = document.getElementById('btn-iniciar');
+const btnDetener = document.getElementById('btn-detener');
+const btnReiniciar = document.getElementById('btn-reiniciar');
+
 let intervaloId = null;
 let tiempoRestante = 0;
+let tiempoInicial = 0;
+```
 
-// Función helper ya proporcionada arriba
-function formatearTiempo(segundos) {
+#### 6.2 Función para formatear tiempo del display (copiar)
+
+**¿Qué hace este código?** Convierte segundos totales a formato MM:SS. Usa `Math.floor()` para obtener minutos enteros, el operador módulo `%` para los segundos restantes, y `padStart(2, '0')` para agregar ceros a la izquierda (ejemplo: 5 → "05").
+
+```javascript
+function formatearTiempoDisplay(segundos) {
   const mins = Math.floor(segundos / 60).toString().padStart(2, '0');
   const segs = (segundos % 60).toString().padStart(2, '0');
   return `${mins}:${segs}`;
 }
+```
 
-// TODO: Crear función actualizarDisplay() que:
-// 1. Actualice #display con formatearTiempo(tiempoRestante)
-// 2. Calcule el porcentaje de progreso
-// 3. Actualice el ancho de #barra-progreso
+#### 6.3 Actualizar display y barra de progreso (completar)
 
+**¿Qué hace este código?** Actualiza el texto del display con el formato MM:SS. Calcula el porcentaje de progreso (cuánto ha avanzado de 0 a 100%) y actualiza el ancho de la barra. Si quedan 10 segundos o menos, agrega clase 'alerta' para cambiar colores a rojo.
+
+```javascript
 function actualizarDisplay() {
-  // Tu código aquí
+  // TODO 6.3.1: Actualizar el textContent del display
+  //   display.textContent = formatearTiempoDisplay(tiempoRestante);
+
+  if (tiempoInicial > 0) {
+    // TODO 6.3.2: Calcular porcentaje de progreso
+    //   const porcentaje = ((tiempoInicial - tiempoRestante) / tiempoInicial) * 100;
+    //   barraProgreso.style.width = `${porcentaje}%`;
+
+    // TODO 6.3.3: Agregar/quitar clase 'alerta' si quedan <= 10 segundos
+    //   if (tiempoRestante <= 10 && tiempoRestante > 0) {
+    //     display.classList.add('alerta');
+    //     barraProgreso.classList.add('alerta');
+    //   } else {
+    //     display.classList.remove('alerta');
+    //     barraProgreso.classList.remove('alerta');
+    //   }
+  }
 }
+```
 
-// TODO: Crear función iniciar() que:
-// 1. Verifique que no haya un intervalo activo
-// 2. Obtenga el tiempo del input
-// 3. Use setInterval para decrementar cada segundo
-// 4. Cuando llegue a 0, detenga y muestre alerta visual
+#### 6.4 Función iniciar (completar)
 
+**¿Qué hace este código?** Valida que no haya un intervalo activo ya, obtiene el tiempo del input, deshabilita botones para evitar múltiples intervalos, llama a `actualizarDisplay()` inmediatamente (no espera 1 segundo), y luego usa `setInterval()` para decrementar cada segundo. Cuando llega a 0, detiene automáticamente.
+
+```javascript
 function iniciar() {
-  // Tu código aquí
+  // TODO 6.4.1: Verificar que no haya intervalo activo
+  //   if (intervaloId) {
+  //     return;
+  //   }
+
+  // TODO 6.4.2: Obtener tiempo del input y validar
+  //   const tiempo = parseInt(inputTiempo.value);
+  //   if (isNaN(tiempo) || tiempo <= 0) {
+  //     alert('Ingresa un tiempo válido');
+  //     return;
+  //   }
+
+  // TODO 6.4.3: Inicializar variables y deshabilitar/habilitar botones
+  //   tiempoRestante = tiempo;
+  //   tiempoInicial = tiempo;
+  //   btnIniciar.disabled = true;
+  //   btnDetener.disabled = false;
+  //   inputTiempo.disabled = true;
+
+  // TODO 6.4.4: Actualizar display inmediatamente
+  //   actualizarDisplay();
+
+  // TODO 6.4.5: Crear intervalo que se ejecute cada 1000ms
+  //   intervaloId = setInterval(() => {
+  //     tiempoRestante--;
+  //     actualizarDisplay();
+  //
+  //     if (tiempoRestante <= 0) {
+  //       detener();
+  //       display.classList.add('alerta');
+  //       alert('⏰ ¡Tiempo terminado!');
+  //     }
+  //   }, 1000);
 }
+```
 
-// TODO: Crear función detener() que:
-// 1. Use clearInterval(intervaloId)
-// 2. Resetee intervaloId a null
+#### 6.5 Funciones detener y reiniciar (completar)
 
+**¿Qué hace este código?** `detener()` usa `clearInterval()` para cancelar el intervalo, resetea `intervaloId` a null, y habilita/deshabilita botones apropiadamente. `reiniciar()` llama a `detener()` primero y luego resetea todas las variables y la UI a su estado inicial.
+
+```javascript
 function detener() {
-  // Tu código aquí
+  // TODO 6.5.1: Verificar que haya un intervalo activo
+  //   if (intervaloId) {
+  //     clearInterval(intervaloId);
+  //     intervaloId = null;
+  //     btnIniciar.disabled = false;
+  //     btnDetener.disabled = true;
+  //     inputTiempo.disabled = false;
+  //   }
 }
-
-// TODO: Crear función reiniciar() que:
-// 1. Llame a detener()
-// 2. Resetee tiempoRestante a 0
-// 3. Resetee la UI (display y barra)
 
 function reiniciar() {
-  // Tu código aquí
+  // TODO 6.5.2: Llamar a detener() primero
+  //   detener();
+
+  // TODO 6.5.3: Resetear variables y UI
+  //   tiempoRestante = 0;
+  //   tiempoInicial = 0;
+  //   display.textContent = '00:00';
+  //   barraProgreso.style.width = '0%';
+  //   display.classList.remove('alerta');
+  //   barraProgreso.classList.remove('alerta');
 }
 
 // Conectar eventos
-document.getElementById('btn-iniciar').addEventListener('click', iniciar);
-document.getElementById('btn-detener').addEventListener('click', detener);
-document.getElementById('btn-reiniciar').addEventListener('click', reiniciar);
+btnIniciar.addEventListener('click', iniciar);
+btnDetener.addEventListener('click', detener);
+btnReiniciar.addEventListener('click', reiniciar);
+
+// Deshabilitar botón detener al inicio
+btnDetener.disabled = true;
 ```
 
-### Paso 6: Manejo de errores (debes implementar)
+### Paso 7: JavaScript Parte 4 - Manejo de errores (copiar y completar)
 
-#### 6.1 Simular error
+#### 7.1 Selección de elementos y función helper (copiar)
+
+**¿Qué hace este código?** Selecciona el log de errores y define `mostrarLogError()` que funciona igual que `mostrarLog()` pero escribe en el log de la sección de errores. Usamos una función separada para mantener logs independientes por sección.
 
 ```javascript
-// TODO: Crear función async simularError() que:
-// 1. Intente cargar con simularPeticion('API', 500, 1000, true)
-// 2. Capture el error con try/catch
-// 3. Muestre el error en la UI con mostrarLog()
+/* =========================
+   MANEJO DE ERRORES
+========================= */
 
+const logErrores = document.getElementById('log-errores');
+
+function mostrarLogError(mensaje, tipo = 'info') {
+  const item = document.createElement('div');
+  item.className = `log-item log-${tipo}`;
+  item.textContent = `[${new Date().toLocaleTimeString()}] ${mensaje}`;
+  logErrores.appendChild(item);
+  logErrores.scrollTop = logErrores.scrollHeight;
+}
+```
+
+#### 7.2 Simular error con try/catch (completar)
+
+**¿Qué hace este código?** Intenta ejecutar una promesa que SIEMPRE fallará (fallar=true). El bloque `try` nunca llegará al log de éxito porque la promesa será rechazada. El bloque `catch` captura el error y lo muestra en la UI sin romper la aplicación.
+
+```javascript
 async function simularError() {
-  mostrarLog('🔄 Intentando operación que fallará...', 'info');
-  
+  mostrarLogError('🔄 Intentando operación que fallará...', 'info');
+
   try {
-    const resultado = await simularPeticion('API Fallida', 500, 1000, true);
-    mostrarLog(`Éxito: ${resultado.nombre}`, 'success');
+    // TODO 7.2.1: Llamar simularPeticion con fallar=true
+    //   await simularPeticion('API', 500, 1000, true);
+    //   mostrarLogError('✓ Operación exitosa', 'success');
   } catch (error) {
-    // TODO: Mostrar error en la UI
-    mostrarLog(`${error.message}`, 'error');
+    // TODO 7.2.2: Capturar el error y mostrarlo
+    //   mostrarLogError(`❌ Error capturado: ${error.message}`, 'error');
+    //   mostrarLogError('ℹ️ El error fue manejado correctamente con try/catch', 'info');
   }
 }
-
-// Conectar evento
-document.getElementById('btn-error').addEventListener('click', simularError);
 ```
 
-#### 6.2 Reintentos automáticos (opcional)
+#### 7.3 Reintentos automáticos con backoff exponencial (completar)
+
+**¿Qué hace este código?** Intenta cargar un recurso hasta 3 veces. Si falla, espera un tiempo creciente antes de reintentar: 500ms, 1000ms, 2000ms (backoff exponencial con `Math.pow(2, i) * 500`). Registra cada intento en el log. Si todos fallan, lanza un error final.
 
 ```javascript
-// TODO: Crear función fetchConReintentos() que:
-// 1. Intente hasta 3 veces
-// 2. Espere más tiempo entre cada intento (backoff exponencial)
-// 3. Registre cada intento en el log
-
 async function fetchConReintentos(nombre, intentos = 3) {
-  for (let i = 0; i < intentos; i++) {
-    try {
-      mostrarLog(`Intento ${i + 1}/${intentos}...`, 'info');
-      // TODO: Implementar lógica de reintentos
-    } catch (error) {
-      // TODO: Si es el último intento, lanzar error
-      // TODO: Si no, esperar antes del siguiente intento
-    }
-  }
+  mostrarLogError(`🔄 Iniciando ${intentos} intentos para cargar ${nombre}...`, 'info');
+
+  // TODO 7.3.1: Crear loop for de 0 a intentos
+  //   for (let i = 0; i < intentos; i++) {
+  //     try {
+  //       mostrarLogError(`⏳ Intento ${i + 1}/${intentos}...`, 'info');
+  //       
+  //       // Simular petición con 50% de probabilidad de fallo
+  //       const resultado = await simularPeticion(nombre, 500, 1000, Math.random() > 0.5);
+  //       
+  //       mostrarLogError(`✓ Éxito en intento ${i + 1}: ${nombre} cargado`, 'success');
+  //       return resultado;
+  //     } catch (error) {
+  //       mostrarLogError(`❌ Intento ${i + 1} falló: ${error.message}`, 'error');
+  //       
+  //       // TODO 7.3.2: Si NO es el último intento, esperar con backoff exponencial
+  //       //   if (i < intentos - 1) {
+  //       //     const espera = Math.pow(2, i) * 500;
+  //       //     mostrarLogError(`⏰ Esperando ${espera}ms antes del siguiente intento...`, 'warning');
+  //       //     await new Promise(resolve => setTimeout(resolve, espera));
+  //       //   }
+  //     }
+  //   }
+
+  // TODO 7.3.3: Si llegamos aquí, todos los intentos fallaron
+  //   mostrarLogError(`💥 Todos los intentos fallaron para ${nombre}`, 'error');
+  //   throw new Error(`No se pudo cargar ${nombre} después de ${intentos} intentos`);
 }
+
+// Conectar eventos
+document.getElementById('btn-error').addEventListener('click', simularError);
+document.getElementById('btn-reintentos').addEventListener('click', () => {
+  fetchConReintentos('Recurso', 3).catch(() => {
+    mostrarLogError('ℹ️ Proceso de reintentos completado', 'info');
+  });
+});
 ```
 
-### Paso 7: Estilos CSS
+### Paso 8: Pruebas y verificación
 
-Aplicar estilos para:
-- Estados de los botones (activo, deshabilitado, hover)
-- Logs con colores según tipo (info, success, error)
-- Barra de progreso animada
-- Display del temporizador destacado
-- Transiciones suaves
+**¿Qué hace este paso?** Verificar que toda la funcionalidad asíncrona esté implementada correctamente antes de entregar. Sigue esta lista de verificación en orden.
+
+#### 8.1 Pruebas del simulador de carga
+
+1. **Carga secuencial:**
+   - Haz clic en "Cargar Secuencial"
+   - Observa el log: las 3 peticiones deben ejecutarse UNA TRAS OTRA (espera a que termine una para empezar la siguiente)
+   - El tiempo total debe ser aproximadamente la SUMA de los 3 tiempos individuales (4-6 segundos)
+
+2. **Carga paralela:**
+   - Haz clic en "Cargar Paralelo"
+   - Observa el log: las 3 peticiones deben ejecutarse SIMULTÁNEAMENTE
+   - El tiempo total debe ser aproximadamente el tiempo de la petición MÁS LENTA (1-2 segundos)
+
+3. **Comparativa:**
+   - Ejecuta AMBAS cargas (secuencial y luego paralelo, o viceversa)
+   - Debe aparecer el cuadro de "Comparativa de Rendimiento"
+   - La carga paralela debe ser 50-70% más rápida
+   - Verifica que los números coincidan con los mostrados en el log
+
+4. **Limpiar log:**
+   - Haz clic en "Limpiar Log"
+   - El log debe vaciarse completamente
+   - La comparativa debe desaparecer
+
+#### 8.2 Pruebas del temporizador
+
+1. **Iniciar temporizador:**
+   - Deja el valor por defecto (60 segundos) o cambia a 10 segundos
+   - Haz clic en "Iniciar"
+   - El display debe mostrar el tiempo en formato MM:SS
+   - La barra de progreso debe crecer de izquierda a derecha
+   - El botón "Iniciar" debe deshabilitarse
+   - El botón "Detener" debe habilitarse
+
+2. **Alerta de tiempo:**
+   - Configura 15 segundos
+   - Inicia el temporizador y espera hasta que queden 10 segundos o menos
+   - El display debe ponerse ROJO y hacer animación de pulso
+   - La barra también debe cambiar a rojo
+
+3. **Detener temporizador:**
+   - Inicia un temporizador
+   - Haz clic en "Detener" a mitad del tiempo
+   - El temporizador debe pausarse (no avanzar)
+   - Los botones deben volver a su estado normal
+
+4. **Reiniciar temporizador:**
+   - Inicia un temporizador y déjalo avanzar
+   - Haz clic en "Reiniciar"
+   - El display debe volver a "00:00"
+   - La barra debe volver a 0%
+   - Todas las clases de alerta deben removerse
+
+5. **Fin del temporizador:**
+   - Configura 5 segundos
+   - Deja que el temporizador llegue a 0
+   - Debe detenerse automáticamente
+   - Debe mostrar una alerta de navegador "⏰ ¡Tiempo terminado!"
+
+#### 8.3 Pruebas de manejo de errores
+
+1. **Simular error simple:**
+   - Haz clic en "Simular Error"
+   - Debe aparecer en el log: "Intentando operación que fallará..."
+   - Debe capturar el error y mostrar: "❌ Error capturado: Error al cargar API"
+   - Debe mostrar: "ℹ️ El error fue manejado correctamente con try/catch"
+   - NO debe haber errores en la consola (todo fue manejado)
+
+2. **Reintentos automáticos:**
+   - Haz clic en "Reintentos Automáticos"
+   - Debe mostrar: "Iniciando 3 intentos..."
+   - Observa el log: debe mostrar cada intento (1/3, 2/3, 3/3)
+   - Si un intento falla, debe mostrar el tiempo de espera antes del siguiente (500ms, 1000ms, 2000ms)
+   - Si tiene éxito en algún intento, debe detenerse y no hacer más intentos
+   - Si todos fallan, debe mostrar: "💥 Todos los intentos fallaron"
+
+#### 8.4 Pruebas técnicas
+
+1. **Consola sin errores:**
+   - Abre DevTools (F12) → pestaña Console
+   - Realiza todas las acciones anteriores
+   - NO debe haber errores en rojo en la consola
+
+2. **Promesas y async/await:**
+   - Abre DevTools → pestaña Sources
+   - Busca tu archivo `app.js`
+   - Verifica que uses `async/await` en lugar de `.then()`
+   - Verifica que uses `Promise.all()` en la carga paralela
+
+3. **setInterval y clearInterval:**
+   - Inicia el temporizador y ábrelo en Sources
+   - Detén el temporizador
+   - Verifica que NO queden intervalos activos (el display no debe seguir actualizándose)
+
+4. **Manejo de estados:**
+   - Intenta hacer clic en "Iniciar" múltiples veces seguidas
+   - Solo debe crearse UN intervalo (verifica que el botón se deshabilite)
+   - El tiempo no debe avanzar más rápido de lo normal
 
 ---
 

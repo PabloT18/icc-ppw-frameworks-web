@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5 - Asincronía</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="page">
+    <!-- SECCIÓN 1: CARGA SECUENCIAL VS PARALELA -->
+    <section class="container">
+      <h1>Simulador de Carga de Recursos</h1>
+      
+      <div class="button-group">
+        <button type="button" id="btn-secuencial">Cargar Secuencial</button>
+        <button type="button" id="btn-paralelo">Cargar Paralelo</button>
+        <button type="button" id="btn-limpiar">Limpiar Log</button>
+      </div>
+
+      <div id="log" class="log"></div>
+      
+      <div id="resultados" class="resultados"></div>
+    </section>
+
+    <!-- SECCIÓN 2: TEMPORIZADOR -->
+    <section class="container">
+      <h2>Temporizador Regresivo</h2>
+
+      <div class="form-group">
+        <label for="input-tiempo">Tiempo en segundos:</label>
+        <input type="number" id="input-tiempo" value="60" min="1" max="600">
+      </div>
+
+      <div id="display" class="display">00:00</div>
+
+      <div class="progress-container">
+        <div id="barra-progreso" class="progress-bar"></div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="btn-iniciar">Iniciar</button>
+        <button type="button" id="btn-detener">Detener</button>
+        <button type="button" id="btn-reiniciar">Reiniciar</button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: MANEJO DE ERRORES -->
+    <section class="container">
+      <h2>Manejo de Errores</h2>
+
+      <div class="button-group">
+        <button type="button" id="btn-error">Simular Error</button>
+        <button type="button" id="btn-reintentos">Reintentos Automáticos</button>
+      </div>
+
+      <div id="log-errores" class="log"></div>
+    </section>
+  </main>
+
+  <script defer src="js/app.js"></script>
+</body>
+</html>

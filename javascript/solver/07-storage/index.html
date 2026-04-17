@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 07 - Web Storage | Lista de Tareas</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header__title">📝 Lista de Tareas Persistente</h1>
+      <p class="header__subtitle">Práctica 7 - Web Storage API (localStorage)</p>
+    </header>
+
+    <!-- Selector de tema simple -->
+    <section class="theme-selector">
+      <button class="theme-btn theme-btn--active" data-theme="claro">☀️ Claro</button>
+      <button class="theme-btn" data-theme="oscuro">🌙 Oscuro</button>
+    </section>
+
+    <!-- Formulario para crear tarea -->
+    <section class="form-section">
+      <form class="task-form" id="form-tarea">
+        <div class="form-group">
+          <label for="input-tarea" class="form-label">Nueva Tarea</label>
+          <div class="form-input-group">
+            <input 
+              type="text" 
+              id="input-tarea" 
+              class="form-input" 
+              placeholder="Escribe una tarea..." 
+              maxlength="100"
+              required
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn--primary">
+              ➕ Agregar
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Mensaje de estado -->
+    <div id="mensaje-estado" class="mensaje oculto"></div>
+
+    <!-- Lista de tareas -->
+    <section class="tasks-section">
+      <ul class="tasks-list" id="lista-tareas">
+        <!-- Las tareas se renderizan aquí -->
+      </ul>
+    </section>
+
+    <!-- Botón limpiar todo -->
+    <section class="actions">
+      <button class="btn btn--danger" id="btn-limpiar">
+        🗑️ Limpiar Todo
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Práctica 07 - Web Storage | Los datos persisten al recargar</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

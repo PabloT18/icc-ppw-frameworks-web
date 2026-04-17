@@ -525,57 +525,685 @@ async function obtenerDatos(url, cacheClave) {
 
 ### Paso 1: Configurar el proyecto
 
+Crea la siguiente estructura de carpetas y archivos:
+
 ```
 practica-07/
-  index.html
-  css/
-    styles.css
-  js/
-    storage.js
-    app.js
+├── index.html
+├── css/
+│   └── styles.css
+└── js/
+    ├── storage.js
+    └── app.js
 ```
 
-### Paso 2: Crear el servicio de Storage
+**¿Qué vamos a construir?**
 
-En `storage.js`, implementar un objeto/modulo con operaciones CRUD sobre localStorage:
-- `getAll()` - leer todos los items
-- `create(item)` - agregar un item con ID unico
-- `update(id, cambios)` - actualizar un item
-- `delete(id)` - eliminar un item
-- `clear()` - eliminar todos
+Una lista de tareas simple que:
+- Persiste en `localStorage`
+- Permite agregar, eliminar y marcar como completadas
+- Guarda el tema seleccionado (claro/oscuro)
+- Todo se mantiene al recargar la página
 
-### Paso 3: Lista CRUD persistente
+---
 
-1. Formulario para agregar items (cualquier dominio: tareas, contactos, notas)
-2. Lista visual de items guardados
-3. Boton para marcar como completado/activo (toggle)
-4. Boton para eliminar con confirmacion
-5. Los datos deben sobrevivir al recargar la pagina
+### Paso 2: HTML completo (copiar)
 
-### Paso 4: Agregar edicion inline
+**¿Qué hace este código?**
 
-1. Al hacer click en "Editar", el texto se convierte en input editable
-2. Al presionar Enter o click fuera, se guarda el cambio
-3. Boton "Cancelar" para descartar
-4. El cambio se persiste en localStorage
+Estructura HTML simple con:
+- Selector de tema (2 botones)
+- Formulario para agregar tareas
+- Lista para mostrar tareas
+- Botón para limpiar todo
 
-### Paso 5: Selector de tema persistente
+**Archivo:** `index.html`
 
-1. Al menos 3 opciones de tema visual (claro, oscuro, otro)
-2. El tema seleccionado se guarda en localStorage
-3. Al recargar, se aplica el tema guardado
-4. Cambiar tema actualiza variables CSS custom
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 07 - Web Storage | Lista de Tareas</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header__title">📝 Lista de Tareas Persistente</h1>
+      <p class="header__subtitle">Práctica 7 - Web Storage API (localStorage)</p>
+    </header>
 
-### Paso 6: Estadisticas y exportar datos
+    <!-- Selector de tema simple -->
+    <section class="theme-selector">
+      <button class="theme-btn theme-btn--active" data-theme="claro">☀️ Claro</button>
+      <button class="theme-btn" data-theme="oscuro">🌙 Oscuro</button>
+    </section>
 
-1. Mostrar estadisticas: total, completados, pendientes
-2. Boton "Exportar" que descarga los datos como archivo JSON
-3. Boton "Importar" que lee un archivo JSON y carga los datos
-4. Informacion de espacio usado en Storage
+    <!-- Formulario para crear tarea -->
+    <section class="form-section">
+      <form class="task-form" id="form-tarea">
+        <div class="form-group">
+          <label for="input-tarea" class="form-label">Nueva Tarea</label>
+          <div class="form-input-group">
+            <input 
+              type="text" 
+              id="input-tarea" 
+              class="form-input" 
+              placeholder="Escribe una tarea..." 
+              maxlength="100"
+              required
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn--primary">
+              ➕ Agregar
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Mensaje de estado -->
+    <div id="mensaje-estado" class="mensaje oculto"></div>
+
+    <!-- Lista de tareas -->
+    <section class="tasks-section">
+      <ul class="tasks-list" id="lista-tareas">
+        <!-- Las tareas se renderizan aquí -->
+      </ul>
+    </section>
+
+    <!-- Botón limpiar todo -->
+    <section class="actions">
+      <button class="btn btn--danger" id="btn-limpiar">
+        🗑️ Limpiar Todo
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Práctica 07 - Web Storage | Los datos persisten al recargar</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+```
+
+---
+
+### Paso 3: CSS completo (copiar)
+
+**¿Qué hace este código?**
+
+Estilos básicos para la aplicación. Usa **CSS Variables** que serán modificadas dinámicamente por JavaScript para cambiar el tema.
+
+**Nota:** Copia el archivo completo de `solver/07-storage/css/styles.css` ya que el CSS es extenso pero simple (variables CSS, estilos de formulario, lista de tareas, botones y mensajes).
+
+---
+
+### Paso 4: JavaScript Parte 1 - Servicio de Storage (copiar y completar)
+
+**¿Qué hace este código?**
+
+Crea un objeto `TareaStorage` que **encapsula todas las operaciones de localStorage**. Este patrón se llama **Servicio** y separa la lógica de persistencia del resto de la aplicación.
+
+**Archivo:** `js/storage.js`
+
+#### 4.1: Estructura del servicio (copiar)
+
+```javascript
+'use strict';
+
+/* =========================
+   SERVICIO DE STORAGE
+========================= */
+
+const TareaStorage = {
+  CLAVE: 'tareas_lista',
+
+  /**
+   * Obtener todas las tareas desde localStorage
+   * @returns {Array} Array de tareas
+   */
+  getAll() {
+    try {
+      const datos = localStorage.getItem(this.CLAVE);
+      if (!datos) {
+        return [];
+      }
+      return JSON.parse(datos);
+    } catch (error) {
+      console.error('Error al leer tareas:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Guardar todas las tareas en localStorage
+   * @param {Array} tareas - Array de tareas
+   */
+  guardar(tareas) {
+    try {
+      localStorage.setItem(this.CLAVE, JSON.stringify(tareas));
+    } catch (error) {
+      console.error('Error al guardar tareas:', error);
+    }
+  },
+
+  // Los siguientes métodos se completan abajo...
+};
+```
+
+**¿Por qué este patrón?**
+- ✅ **Centraliza** todas las operaciones de Storage en un solo lugar
+- ✅ **Encapsula** los detalles de `JSON.stringify/parse`
+- ✅ **Maneja errores** en un solo lugar
+- ✅ **Reutilizable** en cualquier parte del código
+
+#### 4.2: Métodos CRUD (completar)
+
+Completa los siguientes métodos dentro del objeto `TareaStorage`:
+
+```javascript
+  /**
+   * TODO 4.2.1: Crear una nueva tarea
+   * @param {string} texto - Texto de la tarea
+   * @returns {Object} Tarea creada
+   */
+  crear(texto) {
+    // TODO 4.2.1.1: Obtener todas las tareas con this.getAll()
+    
+    // TODO 4.2.1.2: Crear objeto nueva tarea con:
+    //   - id: Date.now() (ID único usando timestamp)
+    //   - texto: texto.trim() (sin espacios al inicio/fin)
+    //   - completada: false
+    
+    // TODO 4.2.1.3: Agregar la nueva tarea al array con push()
+    
+    // TODO 4.2.1.4: Guardar el array actualizado con this.guardar(tareas)
+    
+    // TODO 4.2.1.5: Retornar el objeto nueva
+  },
+
+  /**
+   * TODO 4.2.2: Alternar estado completada/pendiente
+   * @param {number} id - ID de la tarea
+   */
+  toggleCompletada(id) {
+    // TODO 4.2.2.1: Obtener todas las tareas
+    
+    // TODO 4.2.2.2: Buscar la tarea con find() usando t => t.id === id
+    
+    // TODO 4.2.2.3: Si existe, invertir su propiedad completada (!tarea.completada)
+    
+    // TODO 4.2.2.4: Guardar el array actualizado
+  },
+
+  /**
+   * TODO 4.2.3: Eliminar una tarea
+   * @param {number} id - ID de la tarea
+   */
+  eliminar(id) {
+    // TODO 4.2.3.1: Obtener todas las tareas
+    
+    // TODO 4.2.3.2: Filtrar el array para excluir la tarea con ese id
+    //   const filtradas = tareas.filter(t => t.id !== id);
+    
+    // TODO 4.2.3.3: Guardar el array filtrado
+  },
+
+  /**
+   * TODO 4.2.4: Eliminar todas las tareas
+   */
+  limpiarTodo() {
+    // TODO 4.2.4.1: Usar localStorage.removeItem(this.CLAVE) para eliminar la clave completa
+  }
+```
+
+#### 4.3: Servicio de Tema (copiar)
+
+Agrega al final de `storage.js`:
+
+```javascript
+/* =========================
+   SERVICIO DE TEMA
+========================= */
+
+const TemaStorage = {
+  CLAVE: 'tema_app',
+
+  getTema() {
+    return localStorage.getItem(this.CLAVE) || 'claro';
+  },
+
+  setTema(tema) {
+    localStorage.setItem(this.CLAVE, tema);
+  }
+};
+```
+
+---
+
+### Paso 5: JavaScript Parte 2 - Renderizado con createElement (copiar y completar)
+
+**¿Qué hace este código?**
+
+Implementa funciones que **construyen elementos DOM usando la API createElement**. Esto es más seguro que `innerHTML` porque evita vulnerabilidades XSS.
+
+**Archivo:** `js/app.js`
+
+#### 5.1: Selección de elementos (copiar)
+
+```javascript
+'use strict';
+
+/* =========================
+   SELECCIÓN DE ELEMENTOS DOM
+========================= */
+
+const formTarea = document.getElementById('form-tarea');
+const inputTarea = document.getElementById('input-tarea');
+const listaTareas = document.getElementById('lista-tareas');
+const mensajeEstado = document.getElementById('mensaje-estado');
+const btnLimpiar = document.getElementById('btn-limpiar');
+const themeBtns = document.querySelectorAll('[data-theme]');
+
+/* =========================
+   ESTADO GLOBAL
+========================= */
+
+let tareas = []; // Array de tareas en memoria
+```
+
+#### 5.2: Función crear elemento de tarea (completar)
+
+**¿Por qué NO usar innerHTML?**
+
+```javascript
+// ❌ MAL - innerHTML puede causar problemas de seguridad
+function crearTareaInnerHTML(tarea) {
+  return `<li>${tarea.texto}</li>`; // Si texto contiene <script>, se ejecuta!
+}
+
+// ✅ BIEN - createElement es seguro
+function crearTarea(tarea) {
+  const li = document.createElement('li');
+  li.textContent = tarea.texto; // textContent escapa HTML automáticamente
+  return li;
+}
+```
+
+**Implementación completa:**
+
+```javascript
+/**
+ * TODO 5.2.1: Crear elemento de tarea con createElement
+ * @param {Object} tarea - { id, texto, completada }
+ * @returns {HTMLElement} Elemento <li>
+ */
+function crearElementoTarea(tarea) {
+  // Crear <li>
+  const li = document.createElement('li');
+  li.className = 'task-item';
+  li.dataset.id = tarea.id;
+  
+  if (tarea.completada) {
+    li.classList.add('task-item--completed');
+  }
+  
+  // TODO 5.2.1.1: Crear checkbox
+  //   const checkbox = document.createElement('input');
+  //   checkbox.type = 'checkbox';
+  //   checkbox.className = 'task-item__checkbox';
+  //   checkbox.checked = tarea.completada;
+  
+  // TODO 5.2.1.2: Crear span de texto
+  //   const span = document.createElement('span');
+  //   span.className = 'task-item__text';
+  //   span.textContent = tarea.texto;  // Usar textContent, NO innerHTML
+  
+  // TODO 5.2.1.3: Crear botón eliminar
+  //   const btnEliminar = document.createElement('button');
+  //   btnEliminar.className = 'btn btn--danger btn--small';
+  //   btnEliminar.textContent = '🗑️';
+  
+  // TODO 5.2.1.4: Crear contenedor de acciones
+  //   const divAcciones = document.createElement('div');
+  //   divAcciones.className = 'task-item__actions';
+  //   divAcciones.appendChild(btnEliminar);
+  
+  // TODO 5.2.1.5: Ensamblar todo
+  //   li.appendChild(checkbox);
+  //   li.appendChild(span);
+  //   li.appendChild(divAcciones);
+  
+  // TODO 5.2.1.6: Agregar event listeners
+  //   checkbox.addEventListener('change', () => toggleTarea(tarea.id));
+  //   btnEliminar.addEventListener('click', () => eliminarTarea(tarea.id));
+  
+  return li;
+}
+```
+
+#### 5.3: Función renderizar tareas (completar)
+
+```javascript
+/**
+ * TODO 5.3.1: Renderizar todas las tareas
+ */
+function renderizarTareas() {
+  // TODO 5.3.1.1: Limpiar la lista actual
+  //   listaTareas.innerHTML = '';
+  
+  // TODO 5.3.1.2: Si no hay tareas, mostrar mensaje vacío
+  //   if (tareas.length === 0) {
+  //     const divVacio = document.createElement('div');
+  //     divVacio.className = 'empty-state';
+  //     const p = document.createElement('p');
+  //     p.textContent = '🎉 No hay tareas. ¡Agrega una para comenzar!';
+  //     divVacio.appendChild(p);
+  //     listaTareas.appendChild(divVacio);
+  //     return;
+  //   }
+  
+  // TODO 5.3.1.3: Crear y agregar cada tarea
+  //   tareas.forEach(tarea => {
+  //     const elemento = crearElementoTarea(tarea);
+  //     listaTareas.appendChild(elemento);
+  //   });
+}
+```
+
+#### 5.4: Función mostrar mensaje (copiar)
+
+```javascript
+/**
+ * Mostrar mensaje temporal
+ * @param {string} texto - Texto del mensaje
+ * @param {string} tipo - 'success' o 'error'
+ */
+function mostrarMensaje(texto, tipo = 'success') {
+  mensajeEstado.textContent = texto;
+  mensajeEstado.className = `mensaje mensaje--${tipo}`;
+  mensajeEstado.classList.remove('oculto');
+  
+  setTimeout(() => {
+    mensajeEstado.classList.add('oculto');
+  }, 3000);
+}
+```
+
+---
+
+### Paso 6: JavaScript Parte 3 - Lógica de tareas (completar)
+
+**¿Qué hace este código?**
+
+Implementa las funciones que **interactúan con localStorage** para CRUD de tareas.
+
+#### 6.1: Cargar tareas (copiar)
+
+```javascript
+/**
+ * Cargar tareas desde localStorage
+ */
+function cargarTareas() {
+  tareas = TareaStorage.getAll();
+  renderizarTareas();
+}
+```
+
+#### 6.2: Agregar tarea (completar)
+
+```javascript
+/**
+ * TODO 6.2.1: Agregar nueva tarea
+ * @param {string} texto - Texto de la tarea
+ */
+function agregarTarea(texto) {
+  // TODO 6.2.1.1: Validar que no esté vacío
+  //   if (!texto.trim()) {
+  //     mostrarMensaje('El texto no puede estar vacío', 'error');
+  //     return;
+  //   }
+  
+  // TODO 6.2.1.2: Usar el servicio para crear la tarea
+  //   const nueva = TareaStorage.crear(texto);
+  
+  // TODO 6.2.1.3: Actualizar estado local leyendo desde localStorage
+  //   tareas = TareaStorage.getAll();
+  
+  // TODO 6.2.1.4: Re-renderizar la lista
+  //   renderizarTareas();
+  
+  // TODO 6.2.1.5: Mostrar mensaje de éxito
+  //   mostrarMensaje(`✓ Tarea "${nueva.texto}" agregada`);
+}
+```
+
+#### 6.3: Métodos auxiliares (completar)
+
+```javascript
+/**
+ * TODO 6.3.1: Alternar completada/pendiente
+ */
+function toggleTarea(id) {
+  // TODO 6.3.1.1: Usar TareaStorage.toggleCompletada(id)
+  
+  // TODO 6.3.1.2: Recargar tareas desde localStorage
+  
+  // TODO 6.3.1.3: Re-renderizar
+}
+
+/**
+ * TODO 6.3.2: Eliminar tarea
+ */
+function eliminarTarea(id) {
+  // TODO 6.3.2.1: Buscar la tarea para confirmar
+  //   const tarea = tareas.find(t => t.id === id);
+  
+  // TODO 6.3.2.2: Pedir confirmación
+  //   if (!confirm(`¿Eliminar "${tarea.texto}"?`)) return;
+  
+  // TODO 6.3.2.3: Usar TareaStorage.eliminar(id)
+  
+  // TODO 6.3.2.4: Recargar y re-renderizar
+  
+  // TODO 6.3.2.5: Mostrar mensaje
+}
+
+/**
+ * TODO 6.3.3: Limpiar todo
+ */
+function limpiarTodo() {
+  // TODO 6.3.3.1: Validar que haya tareas
+  
+  // TODO 6.3.3.2: Pedir confirmación
+  
+  // TODO 6.3.3.3: Usar TareaStorage.limpiarTodo()
+  
+  // TODO 6.3.3.4: Limpiar estado local y re-renderizar
+}
+```
+
+---
+
+### Paso 7: JavaScript Parte 4 - Tema y eventos (completar)
+
+#### 7.1: Aplicar tema (completar)
+
+```javascript
+/**
+ * TODO 7.1.1: Aplicar tema
+ * @param {string} nombreTema - 'claro' o 'oscuro'
+ */
+function aplicarTema(nombreTema) {
+  // TODO 7.1.1.1: Si es oscuro, aplicar variables CSS oscuras
+  //   if (nombreTema === 'oscuro') {
+  //     document.documentElement.style.setProperty('--bg-primary', '#1a1a2e');
+  //     document.documentElement.style.setProperty('--card-bg', '#16213e');
+  //     // ... más variables
+  //   } else {
+  //     // Tema claro (valores por defecto)
+  //   }
+  
+  // TODO 7.1.1.2: Actualizar botones activos
+  //   themeBtns.forEach(btn => {
+  //     btn.classList.toggle('theme-btn--active', btn.dataset.theme === nombreTema);
+  //   });
+  
+  // TODO 7.1.1.3: Guardar en localStorage
+  //   TemaStorage.setTema(nombreTema);
+}
+```
+
+#### 7.2: Eventos (copiar)
+
+```javascript
+/* =========================
+   EVENTOS
+========================= */
+
+// Evento: Submit del formulario
+formTarea.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const texto = inputTarea.value.trim();
+  agregarTarea(texto);
+  inputTarea.value = '';
+});
+
+// Evento: Limpiar todo
+btnLimpiar.addEventListener('click', limpiarTodo);
+
+// Evento: Cambiar tema
+themeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    aplicarTema(btn.dataset.theme);
+  });
+});
+```
+
+#### 7.3: Inicialización (copiar)
+
+```javascript
+/* =========================
+   INICIALIZACIÓN
+========================= */
+
+// Cargar tema guardado
+const temaGuardado = TemaStorage.getTema();
+aplicarTema(temaGuardado);
+
+// Cargar tareas desde localStorage
+cargarTareas();
+
+// Mensaje de bienvenida
+if (tareas.length === 0) {
+  mostrarMensaje('👋 Bienvenido! Agrega tu primera tarea', 'success');
+}
+```
+
+---
+
+### Paso 8: Pruebas
+
+1. **Agregar tareas:** Agrega 3-5 tareas
+2. **Recarga la página:** Verifica que las tareas siguen ahí (localStorage funciona)
+3. **Marcar completadas:** Marca algunas como completadas, recarga, verifica persistencia
+4. **Cambiar tema:** Cambia al tema oscuro, recarga, verifica que se mantuvo
+5. **Eliminar tareas:** Elimina algunas tareas
+6. **Limpiar todo:** Elimina todas las tareas
+7. **DevTools:** Abre DevTools > Application > Local Storage > tu dominio, verifica que ves las claves `tareas_lista` y `tema_app`
 
 ---
 
 ## 8. Resultados y Evidencias
+
+### Capturas requeridas
+
+1. **Lista con datos** - Tareas creadas visibles
+2. **Persistencia** - Recargar página y verificar que los datos persisten
+3. **Tema oscuro** - Cambio de tema aplicado
+4. **DevTools Application** - Local Storage mostrando datos guardados
+5. **Código** - Capturas de storage.js y app.js
+
+### Formato del Archivo de Evidencias
+
+```markdown
+### 1. Lista con datos persistentes
+![Lista](assets/01-lista.png)
+**Descripción:** Se crearon 5 tareas y al recargar persisten...
+
+### 2. DevTools - Local Storage
+![DevTools](assets/02-devtools.png)
+**Descripción:** En Application > Local Storage se ve `tareas_lista` con el JSON...
+```
+
+---
+
+## 9. Entregables
+
+- Repositorio GitHub con el código completo
+- Estructura de carpetas correcta
+- Servicio de Storage funcional (storage.js)
+- CRUD completo de tareas (app.js)
+- Persistencia de tema
+- Construcción con createElement (NO innerHTML)
+- Capturas de pantalla en `assets/`
+- Archivo `.md` con evidencias
+
+---
+
+## 10. Reglas
+
+- ✅ Solo HTML + CSS + JavaScript puro (no frameworks)
+- ✅ Usar el patrón de Servicio para Storage
+- ✅ Usar `JSON.stringify()` y `JSON.parse()` correctamente
+- ✅ Construcción del DOM con `createElement` (NO `innerHTML` para datos dinámicos)
+- ✅ Los datos deben persistir al recargar la página
+- ✅ Verificar que `localStorage.getItem()` no retorne `null` antes de parsear
+- ✅ Manejo de errores con `try/catch` en operaciones de Storage
+
+---
+
+## 11. Notas Importantes
+
+### Sobre localStorage
+
+- `localStorage.getItem('clave')` retorna `null` si no existe, NO `undefined`
+- `JSON.parse(null)` retorna `null` (no lanza error)
+- `JSON.parse('undefined')` SÍ lanza error
+- localStorage tiene límite de ~5-10MB por origen
+- En modo privado/incógnito, algunos navegadores bloquean localStorage
+
+### Sobre createElement vs innerHTML
+
+```javascript
+// ❌ NUNCA hagas esto con datos del usuario
+elemento.innerHTML = `<p>${datoDelUsuario}</p>`;
+// Si datoDelUsuario = "<script>alert('XSS')</script>", se ejecuta!
+
+// ✅ Siempre usa createElement y textContent
+const p = document.createElement('p');
+p.textContent = datoDelUsuario; // Seguro: escapa HTML automáticamente
+```
+
+### Sobre JSON
+
+- `Date` se serializa como string, al parsear NO vuelve a ser Date
+- Funciones y `undefined` se pierden al serializar
+- `NaN` e `Infinity` se convierten en `null`
+- Propiedades con valor `undefined` se omiten del JSON
+
+---
+
+
 
 ### Capturas requeridas
 

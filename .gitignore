@@ -11,3 +11,7 @@ javascript/eva/*
 # Practicas js archivos por desarrollar
 javascript/solver/02-dom-basico/css/*
 javascript/solver/03-eventos/js/*
+javascript/solver/05-asincronia/js/*
+javascript/solver/06-fetch-api/js/*
+javascript/solver/07-storage/js/*
+

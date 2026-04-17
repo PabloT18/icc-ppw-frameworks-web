@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 6 - Fetch API</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="page">
+    <!-- SECCIÓN 1: FORMULARIO -->
+    <section class="container">
+      <h1>Gestor de Posts</h1>
+      
+      <form id="form-post" class="form-post">
+        <input type="hidden" id="post-id">
+        
+        <div class="form-group">
+          <label for="titulo">Título *</label>
+          <input type="text" id="titulo" placeholder="Título del post" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contenido">Contenido *</label>
+          <textarea id="contenido" rows="4" placeholder="Contenido del post..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="btn-submit">Crear Post</button>
+          <button type="button" id="btn-cancelar" class="btn-secondary" style="display: none;">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- SECCIÓN 2: FILTROS Y BÚSQUEDA -->
+    <section class="container">
+      <div class="search-bar">
+        <input type="search" id="input-buscar" placeholder="Buscar posts...">
+        <button type="button" id="btn-buscar">Buscar</button>
+        <button type="button" id="btn-limpiar" class="btn-secondary">Limpiar</button>
+      </div>
+      
+      <div class="stats">
+        <p id="contador">Total: <strong>0</strong> posts</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: LISTA DE POSTS -->
+    <section class="container">
+      <h2>Posts</h2>
+      
+      <div id="lista-posts" class="lista-posts">
+        <!-- Los posts se renderizan aquí dinámicamente -->
+      </div>
+
+      <div id="mensaje-estado" class="mensaje-estado"></div>
+    </section>
+  </main>
+
+  <script defer src="js/apiService.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
+</html>
