@@ -841,7 +841,7 @@ Aplicar estilos para conseguir el estio mas similar:
 ### 8.1 Estructura del repositorio
 
 El estudiante deberá subir su solución en GitHub respetando la siguiente estructura:
-
+```bash
 /02-dom-basico
   ├── index.html
   ├── css/
@@ -853,7 +853,7 @@ El estudiante deberá subir su solución en GitHub respetando la siguiente estru
   │     ├── 02-filtrado.png
   │     └── ...
   └── README.md
-
+```
 ---
 
 ### 8.2 README (informe)
