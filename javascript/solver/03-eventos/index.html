@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 3 - Eventos en JavaScript</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="container">
+      <h1>Formulario de Contacto</h1>
+
+      <form id="formulario" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" placeholder="Tu nombre">
+          <p class="error-msg" id="error-nombre">El nombre es obligatorio y debe tener al menos 3 caracteres</p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" placeholder="tu@email.com">
+          <p class="error-msg" id="error-email">Ingresa un email válido</p>
+        </div>
+
+        <div class="form-group">
+          <label for="asunto">Asunto *</label>
+          <select id="asunto">
+            <option value="">Selecciona un asunto</option>
+            <option value="consulta">Consulta general</option>
+            <option value="soporte">Soporte técnico</option>
+            <option value="sugerencia">Sugerencia</option>
+          </select>
+          <p class="error-msg" id="error-asunto">Selecciona un asunto</p>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" rows="4" maxlength="300" placeholder="Tu mensaje..."></textarea>
+          <p class="char-count"><span id="chars">0</span>/300</p>
+          <p class="error-msg" id="error-mensaje">El mensaje es obligatorio y debe tener al menos 10 caracteres</p>
+        </div>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+      <div id="resultado"></div>
+    </section>
+
+    <section class="container">
+      <h2>Mis Tareas</h2>
+
+      <div class="input-group">
+        <input type="text" id="nueva-tarea" placeholder="Nueva tarea...">
+        <button type="button" id="btn-agregar" data-action="agregar">Agregar</button>
+      </div>
+
+      <ul id="lista-tareas"></ul>
+      <p id="contador-tareas">0 pendiente(s)</p>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

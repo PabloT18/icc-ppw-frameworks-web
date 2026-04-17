@@ -35,13 +35,13 @@ Archivo HTML                     Arbol DOM
 <html>                          document
   <head>                          |-- html
     <title>Mi pag</title>             |-- head
-  </head>                            |   |-- title
+  </head>                             |   |-- title
   <body>                              |       |-- "Mi pag"
     <h1>Hola</h1>                     |-- body
-    <p>Texto</p>                          |-- h1
+    <p>Texto</p>                         |-- h1
   </body>                                |   |-- "Hola"
 </html>                                  |-- p
-                                              |-- "Texto"
+                                             |-- "Texto"
 ```
 
 El objeto `document` es el punto de entrada a todo el arbol DOM.
@@ -834,34 +834,11 @@ Aplicar estilos para conseguir el estio mas similar:
 
 ---
 
-## 8. Resultados y Evidencias
 
-### Capturas requeridas
 
-1. **Estructura del proyecto** - Explorador de archivos con la organizacion 
-2. **Lista renderizada** - Pagina con todas las tarjetas visibles
-3. **Eliminacion de elemento** - Antes y despues de eliminar una tarjeta
-4. **Filtrado activo** - Vista filtrada por una categoria
-5. **Consola limpia** - DevTools mostrando que no hay errores
-6. **Codigo fuente** - Capturas de `app.js` mostrando las funciones principales
+## 8. Entregables
 
-### Formato del Archivo de Evidencias
-
-```markdown
-### 1. Lista renderizada
-![Lista](assets/01-lista-renderizada.png)
-**Descripcion:** Se muestran N tarjetas generadas dinamicamente...
-
-### 2. Eliminacion
-![Eliminar](assets/02-eliminacion.png)
-**Descripcion:** Al hacer click en eliminar, la tarjeta se remueve...
-```
-
----
-
-### 9. Entregables
-
-### 9.1 Estructura del repositorio
+### 8.1 Estructura del repositorio
 
 El estudiante deberá subir su solución en GitHub respetando la siguiente estructura:
 
@@ -879,7 +856,7 @@ El estudiante deberá subir su solución en GitHub respetando la siguiente estru
 
 ---
 
-### 9.2 README (informe)
+### 8.2 README (informe)
 
 Debe incluir:
 

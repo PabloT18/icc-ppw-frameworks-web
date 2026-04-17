@@ -560,43 +560,298 @@ practica-05/
     app.js
 ```
 
-### Paso 2: Crear funciones que simulen APIs
+### Paso 2: Funciones base (copiar como referencia)
 
-Crear al menos 3 funciones que retornen promesas con `setTimeout` (simular delay de red). Cada funcion debe:
-- Recibir parametros
-- Retornar datos diferentes
-- Incluir posibilidad de error aleatorio
+#### 2.1 Estructura HTML base
 
-### Paso 3: Implementar carga de datos
+En `index.html`:
 
-1. Crear un boton "Cargar datos"
-2. Al hacer click, mostrar un spinner/indicador de carga
-3. Ejecutar las funciones simuladas con `async/await`
-4. Mostrar los datos en el DOM cuando terminen
-5. Ocultar el spinner
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5 - Asincronía</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Simulador de Operaciones Asíncronas</h1>
+    
+    <div class="controles">
+      <button id="btn-secuencial">Carga Secuencial</button>
+      <button id="btn-paralelo">Carga Paralela</button>
+      <button id="btn-error">Simular Error</button>
+    </div>
 
-### Paso 4: Comparar secuencial vs paralelo
+    <div id="resultados"></div>
+    <div id="log"></div>
 
-1. Agregar dos botones: "Secuencial" y "Paralelo"
-2. El secuencial ejecuta las promesas una tras otra con `await`
-3. El paralelo usa `Promise.all`
-4. Mostrar el tiempo total de cada enfoque
-5. Visualizar la diferencia en la UI
+    <div class="temporizador">
+      <h2>Temporizador</h2>
+      <input type="number" id="tiempo-input" min="1" max="300" value="10">
+      <div id="display">00:00</div>
+      <div class="barra-container">
+        <div id="barra-progreso"></div>
+      </div>
+      <div class="timer-controles">
+        <button id="btn-iniciar">Iniciar</button>
+        <button id="btn-detener">Pausar</button>
+        <button id="btn-reiniciar">Reiniciar</button>
+      </div>
+    </div>
+  </div>
 
-### Paso 5: Implementar un temporizador
+  <script defer src="js/app.js"></script>
+</body>
+</html>
+```
 
-1. Input para definir tiempo en segundos
-2. Botones: Iniciar, Pausar, Reiniciar
-3. Display visual del tiempo restante
-4. Barra de progreso que se actualiza
-5. Alerta visual cuando termina
+#### 2.2 Funciones que simulan APIs (copiar y entender)
 
-### Paso 6: Manejo de errores
+En `app.js`, crear funciones que retornan promesas:
 
-1. Agregar un boton que simule una peticion fallida
-2. Capturar el error con `try/catch`
-3. Mostrar mensaje de error al usuario (no solo en consola)
-4. Implementar al menos un reintento automatico
+```javascript
+'use strict';
+
+// Simular petición a una API con delay
+function simularPeticion(nombre, tiempoMin = 500, tiempoMax = 2000, fallar = false) {
+  return new Promise((resolve, reject) => {
+    const delay = Math.random() * (tiempoMax - tiempoMin) + tiempoMin;
+    
+    setTimeout(() => {
+      if (fallar) {
+        reject(new Error(`Error al cargar ${nombre}`));
+      } else {
+        resolve({
+          nombre,
+          datos: `Datos de ${nombre}`,
+          timestamp: new Date().toISOString(),
+          delay: Math.round(delay)
+        });
+      }
+    }, delay);
+  });
+}
+
+// Función helper para formatear tiempo
+function formatearTiempo(ms) {
+  return `${(ms / 1000).toFixed(2)}s`;
+}
+
+// Función helper para mostrar log en UI
+function mostrarLog(mensaje, tipo = 'info') {
+  const log = document.getElementById('log');
+  const entrada = document.createElement('div');
+  entrada.className = `log-entry log-entry--${tipo}`;
+  
+  const timestamp = document.createElement('span');
+  timestamp.className = 'log-timestamp';
+  timestamp.textContent = `[${new Date().toLocaleTimeString()}]`;
+  
+  const texto = document.createElement('span');
+  texto.textContent = mensaje;
+  
+  entrada.appendChild(timestamp);
+  entrada.appendChild(texto);
+  log.appendChild(entrada);
+  log.scrollTop = log.scrollHeight;
+}
+```
+
+### Paso 3: Carga secuencial (debes implementar)
+
+#### 3.1 Implementar carga secuencial
+
+```javascript
+// TODO: Crear función async cargarSecuencial() que:
+// 1. Muestre un log de inicio
+// 2. Mida el tiempo con performance.now()
+// 3. Use await para cargar 3 recursos uno tras otro
+// 4. Muestre cada resultado en el log
+// 5. Calcule y muestre el tiempo total
+
+async function cargarSecuencial() {
+  mostrarLog('🔄 Iniciando carga secuencial...', 'info');
+  const inicio = performance.now();
+
+  try {
+    // TODO: await simularPeticion('Usuarios')
+    // TODO: mostrar resultado con mostrarLog()
+    
+    // TODO: await simularPeticion('Productos')
+    // TODO: mostrar resultado
+    
+    // TODO: await simularPeticion('Pedidos')
+    // TODO: mostrar resultado
+
+  } catch (error) {
+    mostrarLog(`❌ Error: ${error.message}`, 'error');
+  }
+
+  const total = Math.round(performance.now() - inicio);
+  mostrarLog(`✅ Secuencial completado en ${formatearTiempo(total)}`, 'success');
+}
+
+// Conectar evento
+document.getElementById('btn-secuencial').addEventListener('click', cargarSecuencial);
+```
+
+### Paso 4: Carga paralela (debes implementar)
+
+#### 4.1 Implementar carga paralela con Promise.all
+
+```javascript
+// TODO: Crear función async cargarParalelo() que:
+// 1. Use Promise.all() para ejecutar las 3 peticiones simultáneamente
+// 2. Mida el tiempo total
+// 3. Muestre la diferencia de velocidad vs secuencial
+
+async function cargarParalelo() {
+  mostrarLog('🔄 Iniciando carga paralela...', 'info');
+  const inicio = performance.now();
+
+  try {
+    // TODO: const resultados = await Promise.all([
+    //   simularPeticion('Usuarios'),
+    //   simularPeticion('Productos'),
+    //   simularPeticion('Pedidos')
+    // ]);
+
+    // TODO: resultados.forEach(r => mostrarLog(...))
+
+  } catch (error) {
+    mostrarLog(`❌ Error: ${error.message}`, 'error');
+  }
+
+  const total = Math.round(performance.now() - inicio);
+  mostrarLog(`✅ Paralelo completado en ${formatearTiempo(total)}`, 'success');
+}
+
+// Conectar evento
+document.getElementById('btn-paralelo').addEventListener('click', cargarParalelo);
+```
+
+#### 4.2 Comparativa visual
+
+Agregar en `#resultados` una tabla comparativa mostrando:
+- Tiempo secuencial
+- Tiempo paralelo
+- Diferencia porcentual
+
+### Paso 5: Temporizador (debes implementar)
+
+#### 5.1 Lógica del temporizador
+
+```javascript
+let intervaloId = null;
+let tiempoRestante = 0;
+
+// Función helper ya proporcionada arriba
+function formatearTiempo(segundos) {
+  const mins = Math.floor(segundos / 60).toString().padStart(2, '0');
+  const segs = (segundos % 60).toString().padStart(2, '0');
+  return `${mins}:${segs}`;
+}
+
+// TODO: Crear función actualizarDisplay() que:
+// 1. Actualice #display con formatearTiempo(tiempoRestante)
+// 2. Calcule el porcentaje de progreso
+// 3. Actualice el ancho de #barra-progreso
+
+function actualizarDisplay() {
+  // Tu código aquí
+}
+
+// TODO: Crear función iniciar() que:
+// 1. Verifique que no haya un intervalo activo
+// 2. Obtenga el tiempo del input
+// 3. Use setInterval para decrementar cada segundo
+// 4. Cuando llegue a 0, detenga y muestre alerta visual
+
+function iniciar() {
+  // Tu código aquí
+}
+
+// TODO: Crear función detener() que:
+// 1. Use clearInterval(intervaloId)
+// 2. Resetee intervaloId a null
+
+function detener() {
+  // Tu código aquí
+}
+
+// TODO: Crear función reiniciar() que:
+// 1. Llame a detener()
+// 2. Resetee tiempoRestante a 0
+// 3. Resetee la UI (display y barra)
+
+function reiniciar() {
+  // Tu código aquí
+}
+
+// Conectar eventos
+document.getElementById('btn-iniciar').addEventListener('click', iniciar);
+document.getElementById('btn-detener').addEventListener('click', detener);
+document.getElementById('btn-reiniciar').addEventListener('click', reiniciar);
+```
+
+### Paso 6: Manejo de errores (debes implementar)
+
+#### 6.1 Simular error
+
+```javascript
+// TODO: Crear función async simularError() que:
+// 1. Intente cargar con simularPeticion('API', 500, 1000, true)
+// 2. Capture el error con try/catch
+// 3. Muestre el error en la UI con mostrarLog()
+
+async function simularError() {
+  mostrarLog('🔄 Intentando operación que fallará...', 'info');
+  
+  try {
+    const resultado = await simularPeticion('API Fallida', 500, 1000, true);
+    mostrarLog(`Éxito: ${resultado.nombre}`, 'success');
+  } catch (error) {
+    // TODO: Mostrar error en la UI
+    mostrarLog(`${error.message}`, 'error');
+  }
+}
+
+// Conectar evento
+document.getElementById('btn-error').addEventListener('click', simularError);
+```
+
+#### 6.2 Reintentos automáticos (opcional)
+
+```javascript
+// TODO: Crear función fetchConReintentos() que:
+// 1. Intente hasta 3 veces
+// 2. Espere más tiempo entre cada intento (backoff exponencial)
+// 3. Registre cada intento en el log
+
+async function fetchConReintentos(nombre, intentos = 3) {
+  for (let i = 0; i < intentos; i++) {
+    try {
+      mostrarLog(`Intento ${i + 1}/${intentos}...`, 'info');
+      // TODO: Implementar lógica de reintentos
+    } catch (error) {
+      // TODO: Si es el último intento, lanzar error
+      // TODO: Si no, esperar antes del siguiente intento
+    }
+  }
+}
+```
+
+### Paso 7: Estilos CSS
+
+Aplicar estilos para:
+- Estados de los botones (activo, deshabilitado, hover)
+- Logs con colores según tipo (info, success, error)
+- Barra de progreso animada
+- Display del temporizador destacado
+- Transiciones suaves
 
 ---
 
@@ -604,60 +859,75 @@ Crear al menos 3 funciones que retornen promesas con `setTimeout` (simular delay
 
 ### Capturas requeridas
 
-1. **Carga de datos** - Spinner visible mientras carga, datos renderizados despues
-2. **Secuencial vs Paralelo** - Ambos resultados con tiempos visibles
-3. **Temporizador** - Funcionando con barra de progreso
-4. **Error manejado** - Mensaje de error mostrado en la UI
-5. **Consola** - Logs de las promesas ejecutandose
-6. **Codigo** - Capturas de funciones async/await y Promise.all
+1. **Estructura del proyecto** - Explorador de archivos
+2. **Carga secuencial** - Log mostrando las 3 peticiones ejecutándose una tras otra con tiempos
+3. **Carga paralela** - Log mostrando Promise.all ejecutando simultáneamente
+4. **Comparativa de tiempos** - Diferencia visible entre secuencial y paralelo
+5. **Temporizador funcionando** - Display y barra de progreso actualizándose
+6. **Manejo de errores** - Error capturado y mostrado en la UI
+7. **Consola limpia** - DevTools sin errores
+8. **Código fuente** - Capturas de async/await y Promise.all
 
-### Formato del Archivo de Evidencias
+### Formato del README
 
 ```markdown
-### 1. Carga de datos con spinner
-![Carga](assets/01-carga.png)
-**Descripcion:** Mientras se cargan los datos se muestra un spinner...
+### 1. Carga secuencial vs paralela
+![Comparativa](assets/01-comparativa.png)
+**Descripción:** La carga secuencial tomó 4.5s (suma de delays individuales), mientras que la paralela tomó 1.8s (el delay más largo)...
 
-### 2. Secuencial vs Paralelo
-![Comparativa](assets/02-comparativa.png)
-**Descripcion:** La carga secuencial tomo Xms y la paralela Yms...
+### 2. Temporizador en acción
+![Temporizador](assets/02-temporizador.png)
+**Descripción:** Temporizador de 30 segundos con barra de progreso actualizándose cada segundo...
+
+### 3. Manejo de errores
+![Error](assets/03-error.png)
+**Descripción:** Error capturado con try/catch y mostrado en la interfaz de usuario...
 ```
 
 ---
 
 ## 9. Entregables
 
-- Repositorio GitHub con el codigo completo
-- Funciones que retornan promesas (simulando APIs)
-- Implementacion con async/await y try/catch
-- Comparativa secuencial vs paralelo con tiempos visibles
-- Temporizador funcional
-- Capturas de pantalla en la carpeta `assets/`
-- Archivo `.md` completado con evidencias
+### 9.1 Estructura del repositorio
 
----
+El estudiante deberá subir su solución en GitHub respetando la siguiente estructura:
 
-## Reglas
+```
+/05-asincronia
+  ├── index.html
+  ├── css/
+  │     └── styles.css
+  ├── js/
+  │     └── app.js
+  ├── assets/
+  │     ├── 01-comparativa.png
+  │     ├── 02-temporizador.png
+  │     ├── 03-error.png
+  │     └── ...
+  └── README.md
+```
 
-- No usar frameworks
-- Solo HTML + CSS + JavaScript puro
-- Toda operacion asincrona debe usar async/await (no callbacks solos)
-- Todo error debe manejarse con try/catch
-- No usar `alert()` para mostrar resultados - usar el DOM
-- Las promesas simuladas deben tener delays reales (setTimeout)
+### 9.2 README (informe)
 
----
+Debe incluir:
 
-## Notas de Implementacion
+- **Descripción breve** del simulador implementado
+- **Fragmentos de código** de las funciones principales
+- **Imágenes** insertadas correctamente desde `/assets`
+- **Análisis** de la diferencia de tiempo entre carga secuencial y paralela
 
-- `async` hace que una funcion siempre retorne una promesa
-- `await` solo funciona dentro de funciones `async`
-- `await` pausa la ejecucion de esa funcion, no del hilo principal
-- `Promise.all()` falla si alguna promesa falla - usar `Promise.allSettled()` si se necesitan todos los resultados
-- `setTimeout` con 0ms no es inmediato, pasa por la Callback Queue
-- Las Microtasks (promesas) tienen prioridad sobre las Tasks (setTimeout)
-- `performance.now()` es mas preciso que `Date.now()` para medir tiempos
+#### 9.2.1 Código destacado
 
----
+Ejemplos de las funciones principales:
+- Función que retorna promesa con setTimeout
+- Carga secuencial con await consecutivos
+- Carga paralela con Promise.all
+- Manejo de errores con try/catch
+- Temporizador con setInterval
 
+#### 9.2.2 Capturas
+
+1. Comparativa secuencial vs paralelo con tiempos
+2. Temporizador funcionando con barra de progreso
+3. Error capturado y mostrado en UI
 

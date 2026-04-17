@@ -1,0 +1,230 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+    background: #f5f5f5;
+    color: #222;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f7df1e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(247, 223, 30, 0.2);
+}
+
+.error {
+    border-color: #e74c3c !important;
+}
+
+.error-msg {
+    display: none;
+    margin-top: 6px;
+    margin-bottom: 0;
+    color: #e74c3c;
+    font-size: 0.85rem;
+}
+
+.error-msg.visible {
+    display: block;
+}
+
+.char-count {
+    text-align: right;
+    color: #999;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    padding: 12px 16px;
+    background: #f7df1e;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #e6cf1a;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+form button[type="submit"] {
+    width: 100%;
+}
+
+#resultado {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #e8f5e9;
+    border-radius: 4px;
+    border: 1px solid #c8e6c9;
+}
+
+#resultado.visible {
+    display: block;
+}
+
+#resultado strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#resultado p {
+    margin: 6px 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+#btn-agregar {
+    min-width: 120px;
+}
+
+#lista-tareas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tarea-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fafafa;
+    margin-bottom: 10px;
+}
+
+.tarea-texto {
+    flex: 1;
+    cursor: pointer;
+}
+
+.tarea-item.completada .tarea-texto {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.btn-eliminar {
+    background: #e74c3c;
+    color: #fff;
+    padding: 8px 12px;
+}
+
+.btn-eliminar:hover {
+    background: #cf3f31;
+}
+
+.estado-vacio {
+    padding: 14px;
+    border: 1px dashed #bbb;
+    border-radius: 6px;
+    text-align: center;
+    color: #666;
+    background: #fcfcfc;
+}
+
+#contador-tareas {
+    margin-top: 12px;
+    color: #555;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    #btn-agregar {
+        width: 100%;
+    }
+
+    .tarea-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-eliminar {
+        width: 100%;
+    }
+}

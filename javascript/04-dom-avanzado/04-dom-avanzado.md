@@ -529,44 +529,303 @@ practica-04/
     datos.js
 ```
 
-### Paso 2: Definir los datos
+### Paso 2: Definir los datos (copiar y adaptar)
 
-En `datos.js`, crear un array con al menos 8 objetos que representen un dominio (peliculas, libros, recetas, videojuegos, etc.). Cada objeto debe tener al menos 6 propiedades incluyendo una categoria para filtrar.
+#### 2.1 Estructura de datos
 
-### Paso 3: Crear componentes reutilizables
+En `datos.js`, crear un array con al menos 8 objetos. Ejemplo con películas:
 
-En `componentes.js`, crear al menos 4 funciones-componente:
-1. **Card** - Tarjeta individual para mostrar un item
-2. **CardList** - Contenedor que renderiza multiples cards
-3. **FilterBar** - Barra de filtros por categoria
-4. **SearchBar** - Campo de busqueda
+```javascript
+// datos.js
+'use strict';
 
-Cada componente debe recibir datos como parametro y retornar HTML.
+const peliculas = [
+  {
+    id: 1,
+    titulo: 'Inception',
+    director: 'Christopher Nolan',
+    genero: 'Ciencia Ficcion',
+    year: 2010,
+    rating: 8.8,
+    poster: 'https://via.placeholder.com/200x300',
+    favorito: false
+  },
+  {
+    id: 2,
+    titulo: 'The Dark Knight',
+    director: 'Christopher Nolan',
+    genero: 'Accion',
+    year: 2008,
+    rating: 9.0,
+    poster: 'https://via.placeholder.com/200x300',
+    favorito: false
+  },
+  // ... agregar al menos 6 objetos más
+];
+```
 
-### Paso 4: Implementar filtrado y busqueda
+**Nota:** Puedes usar otro dominio (libros, recetas, videojuegos, etc.), pero debe tener al menos 6 propiedades incluyendo una categoría para filtrar.
 
-En `app.js`:
-1. Mantener un estado simple (`let filtroActivo`, `let busqueda`)
-2. Implementar filtrado por categoria
-3. Implementar busqueda por texto
-4. Re-renderizar la lista al cambiar filtro o busqueda
-5. Mostrar contador de resultados
+### Paso 3: Componentes base (copiar como referencia)
 
-### Paso 5: Agregar interacciones con event delegation
+#### 3.1 Estructura HTML base
 
-Con un solo `addEventListener` en `#app`:
-1. Click en filtros cambia la categoria
-2. Click en "favorito" alterna el estado visualmente
-3. Click en "eliminar" remueve el item
-4. Input en busqueda filtra en tiempo real
+En `index.html`:
 
-### Paso 6: Agregar un componente adicional
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 4 - Componentes</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
 
-Implementar uno de los siguientes:
-1. **Modal** - Se abre al hacer click en una card, muestra detalle completo
-2. **Tabs** - Organiza el contenido en pestanas
-3. **Accordion** - Secciones colapsables
-4. **Toast/Notificacion** - Mensaje temporal que aparece y desaparece
+  <script defer src="js/datos.js"></script>
+  <script defer src="js/componentes.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
+</html>
+```
+
+#### 3.2 Componente Card (ejemplo para copiar)
+
+En `componentes.js`, crear funciones que retornan HTML:
+
+```javascript
+// componentes.js
+'use strict';
+
+// Componente: Tarjeta individual
+function PeliculaCard(pelicula) {
+  const iconoFavorito = pelicula.favorito ? '★' : '☆';
+  
+  return `
+    <article class="card" data-id="${pelicula.id}" data-genero="${pelicula.genero}">
+      <img src="${pelicula.poster}" alt="${pelicula.titulo}" class="card__img">
+      <div class="card__body">
+        <h3 class="card__titulo">${pelicula.titulo}</h3>
+        <p class="card__director">${pelicula.director}</p>
+        <div class="card__info">
+          <span class="badge">${pelicula.genero}</span>
+          <span class="rating">⭐ ${pelicula.rating}</span>
+          <span class="year">${pelicula.year}</span>
+        </div>
+        <div class="card__actions">
+          <button data-action="favorito" data-id="${pelicula.id}">
+            ${iconoFavorito} Favorito
+          </button>
+          <button data-action="eliminar" data-id="${pelicula.id}">Eliminar</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+```
+
+### Paso 4: Componentes adicionales (debes implementar)
+
+#### 4.1 Componente FilterBar
+
+```javascript
+// TODO: Crear función FilterBar(generos, activo) que retorne:
+// - Un contenedor con botones para cada género
+// - Un botón "Todos" que esté activo por defecto
+// - Usar data-filtro en cada botón
+// - Agregar clase 'filtro-btn--activo' al filtro seleccionado
+
+function FilterBar(generos, activo) {
+  // Tu código aquí
+}
+```
+
+#### 4.2 Componente SearchBar
+
+```javascript
+// TODO: Crear función SearchBar() que retorne:
+// - Un input de búsqueda con placeholder
+// - Un botón de limpiar búsqueda (opcional)
+
+function SearchBar() {
+  return `
+    <div class="search-bar">
+      <input type="text" id="busqueda" placeholder="Buscar...">
+    </div>
+  `;
+}
+```
+
+#### 4.3 Componente ContadorResultados
+
+```javascript
+// TODO: Crear función que muestre "Mostrando X de Y elementos"
+
+function ContadorResultados(total, filtrados) {
+  // Tu código aquí
+}
+```
+
+### Paso 5: Lógica de renderizado (debes implementar)
+
+#### 5.1 Estado de la aplicación
+
+En `app.js`, definir el estado:
+
+```javascript
+// app.js
+'use strict';
+
+// Estado global
+let filtroActivo = 'todos';
+let busqueda = '';
+```
+
+#### 5.2 Función principal de renderizado
+
+```javascript
+// TODO: Crear función render() que:
+// 1. Obtenga los géneros únicos del array
+// 2. Filtre los datos según filtroActivo y busqueda
+// 3. Renderice toda la aplicación en #app usando los componentes
+
+function render() {
+  // 1. Obtener géneros únicos
+  const generos = [...new Set(peliculas.map(p => p.genero))];
+  
+  // 2. Filtrar datos
+  let datosFiltrados = peliculas;
+  
+  // TODO: Si filtroActivo !== 'todos', filtrar por género
+  
+  // TODO: Si busqueda no está vacía, filtrar por título
+  // Pista: usar includes() en minúsculas
+  
+  // 3. Renderizar
+  document.querySelector('#app').innerHTML = `
+    <h1>Catálogo de Películas</h1>
+    ${SearchBar()}
+    ${FilterBar(generos, filtroActivo)}
+    ${ContadorResultados(peliculas.length, datosFiltrados.length)}
+    <div class="grid">
+      ${datosFiltrados.map(p => PeliculaCard(p)).join('')}
+    </div>
+  `;
+}
+
+// Renderizar al cargar
+render();
+```
+
+### Paso 6: Event delegation (debes implementar)
+
+#### 6.1 Manejo de eventos con delegación
+
+```javascript
+// TODO: UN SOLO addEventListener en #app que maneje:
+
+document.querySelector('#app').addEventListener('click', (e) => {
+  // 1. Filtros
+  if (e.target.matches('[data-filtro]')) {
+    // TODO: Actualizar filtroActivo con e.target.dataset.filtro
+    // TODO: Llamar render()
+  }
+  
+  // 2. Favorito
+  if (e.target.matches('[data-action="favorito"]')) {
+    const id = Number(e.target.dataset.id);
+    // TODO: Encontrar la película en el array
+    // TODO: Cambiar pelicula.favorito = !pelicula.favorito
+    // TODO: Llamar render()
+  }
+  
+  // 3. Eliminar
+  if (e.target.matches('[data-action="eliminar"]')) {
+    const id = Number(e.target.dataset.id);
+    // TODO: Eliminar del array con findIndex + splice
+    // TODO: Llamar render()
+  }
+});
+```
+
+#### 6.2 Búsqueda en tiempo real
+
+```javascript
+// TODO: Agregar evento input en #busqueda
+// Usar event delegation en #app con evento 'input'
+
+document.querySelector('#app').addEventListener('input', (e) => {
+  if (e.target.id === 'busqueda') {
+    // TODO: Actualizar variable busqueda
+    // TODO: Llamar render()
+  }
+});
+```
+
+### Paso 7: Componente adicional (debes implementar)
+
+Elegir e implementar **al menos 1** de las siguientes opciones:
+
+#### Opción A: Modal de detalle
+
+```javascript
+// Componente Modal
+function Modal(pelicula) {
+  if (!pelicula) return '';
+  
+  return `
+    <div class="modal" id="modal">
+      <div class="modal__contenido">
+        <button class="modal__cerrar" data-action="cerrar-modal">×</button>
+        <h2>${pelicula.titulo}</h2>
+        <img src="${pelicula.poster}" alt="${pelicula.titulo}">
+        <p><strong>Director:</strong> ${pelicula.director}</p>
+        <p><strong>Género:</strong> ${pelicula.genero}</p>
+        <p><strong>Año:</strong> ${pelicula.year}</p>
+        <p><strong>Rating:</strong> ${pelicula.rating}</p>
+      </div>
+    </div>
+  `;
+}
+
+// TODO: Agregar data-action="ver-detalle" a las cards
+// TODO: En el event listener, detectar click en ver-detalle
+// TODO: Renderizar Modal dentro del #app o body
+```
+
+#### Opción B: Tabs de categorías
+
+```javascript
+// TODO: Crear componente Tabs que muestre pestañas
+// TODO: Al hacer click en una pestaña, mostrar solo ese contenido
+// TODO: Usar classList para marcar la pestaña activa
+```
+
+#### Opción C: Notificación toast
+
+```javascript
+function mostrarToast(mensaje) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = mensaje;
+  document.body.appendChild(toast);
+  
+  // TODO: Agregar clase 'toast--visible' después de un pequeño delay
+  // TODO: Remover el toast después de 3 segundos
+}
+
+// Llamar cuando se agregue a favoritos o se elimine
+```
+
+### Paso 8: Estilos CSS
+
+Aplicar estilos para:
+- Grid responsive para las cards
+- Estados hover y active en botones
+- Transiciones suaves
+- Estilos para el componente adicional (modal/tabs/toast)
 
 ---
 
@@ -574,57 +833,99 @@ Implementar uno de los siguientes:
 
 ### Capturas requeridas
 
-1. **Vista general** - Pagina con cards renderizadas y filtros visibles
-2. **Filtrado activo** - Vista con un filtro aplicado, contador actualizado
-3. **Busqueda** - Resultados filtrados por texto
-4. **Interaccion** - Favorito marcado, item eliminado
-5. **Componente adicional** - Modal, tabs, accordion o toast funcionando
-6. **Codigo fuente** - Capturas de los archivos `componentes.js` y `app.js`
-7. **Consola limpia** - DevTools sin errores
+1. **Estructura del proyecto** - Explorador de archivos con la organización
+2. **Vista general** - Página con cards renderizadas y filtros visibles
+3. **Filtrado activo** - Vista con un filtro aplicado, contador actualizado
+4. **Búsqueda** - Resultados filtrados por texto en tiempo real
+5. **Interacción favoritos** - Cards marcadas como favoritas
+6. **Componente adicional** - Modal, tabs o toast funcionando
+7. **Código fuente** - Capturas de `componentes.js` y `app.js`
+8. **Consola limpia** - DevTools sin errores
 
-### Formato del Archivo de Evidencias
+### Formato del README
 
 ```markdown
-### 1. Vista general con cards
-![Cards](assets/01-cards.png)
-**Descripcion:** Se renderizan N tarjetas con datos desde el array...
+### 1. Vista general del catálogo
+![Vista general](assets/01-vista-general.png)
+**Descripción:** Se renderizan N tarjetas dinámicamente desde el array de datos...
 
-### 2. Filtrado por categoria
-![Filtros](assets/02-filtrado.png)
-**Descripcion:** Al seleccionar la categoria X, se muestran solo...
+### 2. Sistema de filtrado
+![Filtrado](assets/02-filtrado.png)
+**Descripción:** Al seleccionar una categoría, se aplica el filtro y se actualiza el contador...
+
+### 3. Búsqueda en tiempo real
+![Búsqueda](assets/03-busqueda.png)
+**Descripción:** El input de búsqueda filtra los resultados mientras se escribe...
 ```
 
 ---
 
 ## 9. Entregables
 
-- Repositorio GitHub con el codigo completo
-- Al menos 3 archivos JS separados (datos, componentes, app)
-- Capturas de pantalla en la carpeta `assets/`
-- Archivo `.md` completado con evidencias
-- Codigo funcional sin errores en consola
+### 9.1 Estructura del repositorio
 
----
+El estudiante deberá subir su solución en GitHub respetando la siguiente estructura:
 
-## Reglas
+```
+/04-dom-avanzado
+  ├── index.html
+  ├── css/
+  │     └── styles.css
+  ├── js/
+  │     ├── datos.js
+  │     ├── componentes.js
+  │     └── app.js
+  ├── assets/
+  │     ├── 01-vista-general.png
+  │     ├── 02-filtrado.png
+  │     ├── 03-busqueda.png
+  │     ├── 04-componente-adicional.png
+  │     └── ...
+  └── README.md
+```
 
-- No usar frameworks
-- Solo HTML + CSS + JavaScript puro
-- Cada componente debe ser una funcion independiente
-- Usar event delegation (no agregar listeners a cada card)
-- Separar datos, componentes y logica en archivos distintos
-- Usar data attributes para almacenar IDs y acciones
+### 9.2 README (informe)
 
----
+Debe incluir:
 
-## Notas de Implementacion
+- **Descripción breve** del sistema implementado
+- **Fragmentos de código** de los componentes principales
+- **Imágenes** insertadas correctamente desde `/assets`
 
-- Los componentes con template literals son los mas legibles para HTML estatico
-- Siempre sanitizar datos del usuario antes de insertar con innerHTML
-- Event delegation es obligatorio: un solo listener en el contenedor padre
-- Los data attributes (`data-*`) permiten pasar informacion del HTML al JS
-- classList.toggle retorna `true` si agrego la clase, `false` si la quito
-- `document.createDocumentFragment()` mejora performance al agregar muchos nodos
+#### 9.2.1 Código destacado
+
+Ejemplos de las funciones principales:
+- Componente Card con template literals
+- Función render() con filtrado
+- Event delegation en acción
+- Componente adicional implementado
+
+#### 9.2.2 Capturas
+
+1. Vista general con todas las funcionalidades
+2. Sistema de filtrado funcionando
+3. Búsqueda en tiempo real
+4. Componente adicional (modal/tabs/toast)
+5. Consola sin errores
+
+### 9.3 Requisitos técnicos
+
+- ✅ Solo HTML + CSS + JavaScript puro (no frameworks)
+- ✅ Mínimo 3 archivos JS separados (datos, componentes, app)
+- ✅ Cada componente como función independiente
+- ✅ Event delegation (un solo listener en contenedor padre)
+- ✅ Data attributes para IDs y acciones
+- ✅ Código sin errores en consola
+
+### 9.4 Criterios de evaluación
+
+| Criterio | Puntos |
+|----------|:------:|
+| Componentes reutilizables correctamente implementados | 30% |
+| Sistema de filtrado y búsqueda funcional | 25% |
+| Event delegation correctamente aplicado | 20% |
+| Componente adicional (modal/tabs/toast) | 15% |
+| Código limpio, organizado y sin errores | 10% |
 
 ---
 
