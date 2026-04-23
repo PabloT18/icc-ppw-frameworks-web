@@ -1,0 +1,41 @@
+.loading {
+    font-weight: bold;
+    color: blue;
+    margin: 10px 0;
+}
+
+.oculto {
+    display: none;
+}
+
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+}
+
+.card-imagen img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+.card-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-contenido h3 {
+    margin: 0;
+}
+
+.card-contenido p {
+    margin: 0;
+}
