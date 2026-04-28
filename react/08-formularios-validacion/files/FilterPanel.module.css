@@ -1,0 +1,97 @@
+.panel {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.fila {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.inputError {
+    border-color: #dc2626;
+}
+
+.error {
+    font-size: 0.78rem;
+    color: #dc2626;
+}
+
+.select {
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: white;
+    cursor: pointer;
+}
+
+.range {
+    width: 100%;
+    accent-color: #2563eb;
+}
+
+.rangeLabel {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+}
+
+.botones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btnAplicar {
+    flex: 1;
+    padding: 0.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btnLimpiar {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
