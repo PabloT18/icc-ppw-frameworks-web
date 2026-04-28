@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimización y Buenas Prácticas - Demo Completa</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ARIA live region para anuncios -->
+  <div id="aria-live" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <div class="container">
+    <header class="header">
+      <h1>⚡ Optimización y Buenas Prácticas</h1>
+      <p>Demostración completa de técnicas de performance, accesibilidad y código limpio</p>
+      
+      <div class="header-actions">
+        <button id="btn-toggle-theme" class="btn-icon" aria-label="Cambiar tema">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <div class="theme-info">
+          <span id="theme-status">Tema: Auto</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Sección 1: Debounce Demo -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>1. Debounce - Búsqueda Optimizada</h2>
+          <p>Escribe para buscar. El debounce retrasa la búsqueda hasta que dejes de escribir.</p>
+        </div>
+
+        <div class="search-container">
+          <label for="search-debounce">
+            <span class="sr-only">Buscar posts</span>
+            <input 
+              type="search" 
+              id="search-debounce" 
+              placeholder="Buscar posts..."
+              aria-describedby="search-stats"
+            >
+          </label>
+          
+          <div id="search-stats" class="stats-bar">
+            <span>Ejecuciones: <strong id="debounce-count">0</strong></span>
+            <span id="search-status">Esperando búsqueda...</span>
+          </div>
+        </div>
+
+        <div id="search-results" class="results-container" role="region" aria-live="polite">
+          <!-- Resultados se renderizan aquí -->
+        </div>
+      </section>
+
+      <!-- Sección 2: Throttle Demo -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>2. Throttle - Scroll Tracking</h2>
+          <p>Scroll en la caja. El throttle limita las ejecuciones a intervalos regulares.</p>
+        </div>
+
+        <div class="stats-bar">
+          <span>Ejecuciones throttle: <strong id="throttle-count">0</strong></span>
+          <span>Posición: <strong id="scroll-position">0px</strong></span>
+          <span>Progreso: <strong id="scroll-progress">0%</strong></span>
+        </div>
+
+        <div id="scroll-area" class="scroll-area" tabindex="0" role="region" aria-label="Área de scroll">
+          <div class="scroll-content">
+            <p>📜 Scroll en esta área para ver throttle en acción</p>
+            <div style="height: 2000px; background: linear-gradient(to bottom, #e3f2fd, #1976d2);">
+              <p style="padding: 20px; color: white; text-align: center;">
+                Contenido largo para hacer scroll
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 3: Lazy Loading -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>3. Lazy Loading - Intersection Observer</h2>
+          <p>Las imágenes se cargan solo cuando están por ser visibles (100px antes).</p>
+        </div>
+
+        <div class="stats-bar">
+          <span>Imágenes cargadas: <strong id="images-loaded">0</strong> / <strong id="images-total">20</strong></span>
+        </div>
+
+        <div id="gallery" class="gallery">
+          <!-- Imágenes se generan dinámicamente -->
+        </div>
+      </section>
+
+      <!-- Sección 4: Infinite Scroll -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>4. Infinite Scroll</h2>
+          <p>La lista carga automáticamente más items al hacer scroll hasta el final.</p>
+        </div>
+
+        <div class="stats-bar">
+          <span>Página actual: <strong id="current-page">1</strong></span>
+          <span>Items cargados: <strong id="items-count">0</strong></span>
+        </div>
+
+        <div id="posts-list" class="posts-list">
+          <!-- Posts se cargan dinámicamente -->
+        </div>
+        
+        <div id="sentinel" style="height: 1px;"></div>
+        
+        <div id="loader" class="loader" style="display: none;">
+          <div class="spinner"></div>
+          <p>Cargando más items...</p>
+        </div>
+      </section>
+
+      <!-- Sección 5: Responsive con matchMedia -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>5. Responsive - matchMedia</h2>
+          <p>Detecta el tamaño de pantalla y preferencias del sistema.</p>
+        </div>
+
+        <div class="device-info">
+          <div class="info-card">
+            <h3>📱 Tipo de dispositivo</h3>
+            <p id="device-type">Detectando...</p>
+          </div>
+
+          <div class="info-card">
+            <h3>🖥️ Resolución</h3>
+            <p id="screen-resolution">-</p>
+          </div>
+
+          <div class="info-card">
+            <h3>🎨 Preferencia de tema</h3>
+            <p id="system-theme">-</p>
+          </div>
+
+          <div class="info-card">
+            <h3>♿ Preferencia de movimiento</h3>
+            <p id="motion-preference">-</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 6: Accesibilidad Demo -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>6. Accesibilidad</h2>
+          <p>Navegación con teclado, ARIA, focus management y anuncios.</p>
+        </div>
+
+        <div class="a11y-demos">
+          <div class="demo-card">
+            <h3>Modal accesible</h3>
+            <p>Usa Tab, Shift+Tab para navegar. Escape para cerrar.</p>
+            <button id="btn-open-modal" class="btn-primary">Abrir Modal</button>
+          </div>
+
+          <div class="demo-card">
+            <h3>Formulario con validación</h3>
+            <form id="demo-form" novalidate>
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input 
+                  type="text" 
+                  id="nombre" 
+                  required 
+                  aria-required="true"
+                  aria-describedby="nombre-error"
+                >
+                <div id="nombre-error" class="error-mensaje" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required 
+                  aria-required="true"
+                  aria-describedby="email-error"
+                >
+                <div id="email-error" class="error-mensaje" role="alert"></div>
+              </div>
+
+              <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+          </div>
+
+          <div class="demo-card">
+            <h3>Contador con anuncios</h3>
+            <p>Los cambios se anuncian a lectores de pantalla.</p>
+            <div class="counter-controls">
+              <button id="btn-decrement" class="btn-secondary" aria-label="Decrementar contador">-</button>
+              <span id="counter" aria-live="polite" aria-atomic="true" class="counter-value">0</span>
+              <button id="btn-increment" class="btn-secondary" aria-label="Incrementar contador">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 7: Performance Monitoring -->
+      <section class="demo-section">
+        <div class="section-header">
+          <h2>7. Performance Monitoring</h2>
+          <p>Medición de tiempos de ejecución con Performance API.</p>
+        </div>
+
+        <div class="performance-stats">
+          <div class="stat-card">
+            <h4>Tiempo de búsqueda</h4>
+            <p id="perf-search">-</p>
+          </div>
+          <div class="stat-card">
+            <h4>Tiempo de render</h4>
+            <p id="perf-render">-</p>
+          </div>
+          <div class="stat-card">
+            <h4>Reflows detectados</h4>
+            <p id="perf-reflows">0</p>
+          </div>
+        </div>
+
+        <button id="btn-benchmark" class="btn-primary">Ejecutar Benchmark</button>
+        <div id="benchmark-results" class="benchmark-results"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal accesible -->
+  <div id="modal-overlay" class="modal-overlay" style="display: none;" aria-hidden="true">
+    <div 
+      id="modal" 
+      class="modal" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-header">
+        <h2 id="modal-title">Modal Accesible</h2>
+        <button 
+          id="btn-close-modal" 
+          class="btn-close" 
+          aria-label="Cerrar modal"
+        >
+          ✕
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Este modal implementa buenas prácticas de accesibilidad:</p>
+        <ul>
+          <li>Focus trap (Tab/Shift+Tab navega solo dentro del modal)</li>
+          <li>Escape cierra el modal</li>
+          <li>Focus retorna al botón que lo abrió</li>
+          <li>Atributos ARIA apropiados</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-modal-action" class="btn-primary">Acción</button>
+        <button id="btn-modal-cancel" class="btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Min Example - Debounce y Throttle</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ Optimización - Min Example</h1>
+    <p class="subtitle">Demostración básica de Debounce y Throttle</p>
+
+    <!-- Demo 1: Debounce -->
+    <div class="demo">
+      <h2>1. Debounce</h2>
+      <p>
+        Escribe en el campo. El debounce <strong>retrasa</strong> la ejecución hasta que 
+        dejes de escribir por <code>300ms</code>.
+      </p>
+      
+      <input 
+        type="search" 
+        id="search-debounce" 
+        placeholder="Buscar..."
+      >
+      
+      <div class="stats">
+        Sin debounce: <strong id="count-sin-debounce">0</strong> ejecuciones<br>
+        Con debounce: <strong id="count-con-debounce">0</strong> ejecuciones
+      </div>
+    </div>
+
+    <!-- Demo 2: Throttle -->
+    <div class="demo">
+      <h2>2. Throttle</h2>
+      <p>
+        Haz scroll en la caja. El throttle <strong>limita</strong> las ejecuciones a 
+        máximo 1 cada <code>200ms</code>.
+      </p>
+      
+      <div id="scroll-box" class="scroll-box">
+        <div class="scroll-content">
+          <p>📜 Contenido largo para hacer scroll</p>
+        </div>
+      </div>
+      
+      <div class="stats">
+        Sin throttle: <strong id="count-sin-throttle">0</strong> ejecuciones<br>
+        Con throttle: <strong id="count-con-throttle">0</strong> ejecuciones<br>
+        Posición: <strong id="scroll-position">0px</strong>
+      </div>
+    </div>
+
+    <!-- Explicación -->
+    <div class="demo" style="border-left-color: #2e7d32;">
+      <h2>💡 Diferencia clave</h2>
+      <p>
+        <strong>Debounce:</strong> Ejecuta <em>después</em> de que el usuario deja de disparar eventos.<br>
+        ✅ Ideal para: búsqueda en tiempo real, autocompletado, resize window
+      </p>
+      <p>
+        <strong>Throttle:</strong> Ejecuta <em>durante</em> los eventos a intervalos regulares.<br>
+        ✅ Ideal para: scroll tracking, mouse move, game loops
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

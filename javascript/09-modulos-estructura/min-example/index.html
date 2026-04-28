@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Ejemplo - Módulos ES6</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Ejemplo Mínimo de ES Modules</h1>
+
+    <div class="info">
+      <h3>¿Qué son los ES Modules?</h3>
+      <p>
+        Los módulos ES6 permiten organizar el código en archivos separados y reutilizables.
+        Este ejemplo usa <strong>import/export</strong> para dividir la lógica en módulos.
+      </p>
+    </div>
+
+    <form id="form-usuario">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <button type="submit">Agregar Usuario</button>
+    </form>
+
+    <div id="resultados"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

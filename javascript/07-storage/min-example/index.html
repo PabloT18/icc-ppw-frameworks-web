@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Storage - Lista de Tareas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Mi Lista de Tareas</h1>
+
+  <div class="formulario">
+    <input 
+      type="text" 
+      id="input-tarea" 
+      placeholder="Escribe una tarea..."
+      autocomplete="off"
+    >
+    <button id="btn-agregar">Agregar</button>
+  </div>
+
+  <div id="lista-tareas" class="lista-tareas"></div>
+
+  <button id="btn-limpiar" class="btn-limpiar">Limpiar todo</button>
+
+  <script src="app.js"></script>
+</body>
+</html>

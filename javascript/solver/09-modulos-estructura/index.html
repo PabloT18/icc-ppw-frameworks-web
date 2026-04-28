@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 9 - Módulos y Estructura</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="page">
+    <!-- SECCIÓN 1: ENCABEZADO -->
+    <header class="header">
+      <div class="container">
+        <h1>Gestión de Productos</h1>
+        <p class="subtitle">Inventario con ES Modules</p>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 2: FORMULARIO -->
+    <section class="container">
+      <div class="form-container">
+        <h2>Agregar Producto</h2>
+        
+        <form id="form-producto" class="form-producto">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre del producto *</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ej: Laptop HP" 
+                required>
+              <div class="error-mensaje"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoría *</label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Seleccionar...</option>
+                <option value="electronica">Electrónica</option>
+                <option value="ropa">Ropa</option>
+                <option value="alimentos">Alimentos</option>
+                <option value="hogar">Hogar</option>
+                <option value="deportes">Deportes</option>
+              </select>
+              <div class="error-mensaje"></div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="precio">Precio (USD) *</label>
+              <input 
+                type="number" 
+                id="precio" 
+                name="precio" 
+                placeholder="0.00" 
+                step="0.01"
+                min="0" 
+                required>
+              <div class="error-mensaje"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="stock">Stock *</label>
+              <input 
+                type="number" 
+                id="stock" 
+                name="stock" 
+                placeholder="0" 
+                min="0" 
+                required>
+              <div class="error-mensaje"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea 
+              id="descripcion" 
+              name="descripcion" 
+              rows="3"
+              placeholder="Descripción opcional del producto"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">
+              Guardar Producto
+            </button>
+            <button type="button" id="btn-cancelar" class="btn-secondary">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: FILTROS Y BÚSQUEDA -->
+    <section class="container">
+      <div class="filter-bar">
+        <div class="search-group">
+          <input 
+            type="text" 
+            id="search" 
+            placeholder="Buscar por nombre..."
+            class="search-input">
+        </div>
+
+        <div class="filter-group">
+          <select id="filter-categoria" class="filter-select">
+            <option value="">Todas las categorías</option>
+            <option value="electronica">Electrónica</option>
+            <option value="ropa">Ropa</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="hogar">Hogar</option>
+            <option value="deportes">Deportes</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <select id="filter-stock" class="filter-select">
+            <option value="">Todo el stock</option>
+            <option value="disponible">Con stock</option>
+            <option value="bajo">Stock bajo (< 10)</option>
+            <option value="agotado">Agotado</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: ESTADÍSTICAS -->
+    <section class="container">
+      <div id="stats-container" class="stats-container">
+        <!-- Generado por JavaScript -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: LISTA DE PRODUCTOS -->
+    <section class="container">
+      <div class="products-header">
+        <h2>Productos</h2>
+        <div class="sort-controls">
+          <label>Ordenar por:</label>
+          <select id="sort-by" class="sort-select">
+            <option value="nombre">Nombre</option>
+            <option value="precio">Precio</option>
+            <option value="stock">Stock</option>
+            <option value="fecha">Fecha</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="products-container" class="products-grid">
+        <!-- Generado por JavaScript -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: MODAL (oculto inicialmente) -->
+    <div id="modal-detalle" class="modal" style="display: none;">
+      <!-- Generado por JavaScript -->
+    </div>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

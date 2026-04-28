@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.formulario {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+#input-tarea {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#btn-agregar {
+    padding: 12px 24px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#btn-agregar:hover {
+    background: #38a169;
+}
+
+.lista-tareas {
+    max-width: 500px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-height: 200px;
+}
+
+.item-tarea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background 0.2s;
+}
+
+.item-tarea:hover {
+    background: #f7fafc;
+}
+
+.item-tarea:last-child {
+    border-bottom: none;
+}
+
+.item-tarea.completada {
+    opacity: 0.6;
+}
+
+.item-tarea.completada .texto-tarea {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+.texto-tarea {
+    cursor: pointer;
+    flex: 1;
+    user-select: none;
+}
+
+.btn-eliminar {
+    background: #f56565;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+.btn-eliminar:hover {
+    background: #e53e3e;
+}
+
+.vacio {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+.btn-limpiar {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    background: #ed8936;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-limpiar:hover {
+    background: #dd6b20;
+}
+
+.btn-limpiar:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}

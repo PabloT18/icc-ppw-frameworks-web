@@ -107,8 +107,42 @@ function renderizar(lista) {
     const nombre = document.createElement('h3');
     nombre.textContent = item.name;
 
-    const ocupacion = document.createElement('p');
-    ocupacion.textContent = item.occupation || 'Sin ocupación';
+    const ocupacion = document.createElement('div');
+    ocupacion.className = 'card-frases';
+
+    const frases = Array.isArray(item.phrases)
+             ? item.phrases.slice(0, 3) 
+             : [];
+
+    // if (frases.length > 0) {
+    //   const lista = document.createElement('ul');
+
+    //   frases.forEach(frase => {
+    //     const li = document.createElement('li');
+    //     li.textContent = frase;
+    //     lista.appendChild(li);
+    //   });
+
+    //   ocupacion.appendChild(lista);
+    // } else {
+    //   const sinFrases = document.createElement('p');
+    //   sinFrases.textContent = 'Sin frases';
+    //   ocupacion.appendChild(sinFrases);
+    // }
+
+
+    if (frases.length > 0) {
+        frases.forEach(item=>{
+            const frase = document.createElement('p');
+            frase.textContent = item;
+            ocupacion.appendChild(frase);
+        }
+        );
+    }else{
+        ocupacion.textContent = "Sin frases";
+    }
+
+
 
     bloqueTexto.appendChild(nombre);
     bloqueTexto.appendChild(ocupacion);
