@@ -44,28 +44,62 @@ El repositorio está organizado de la siguiente manera:
 ```
 /angular
    ├── 01-instalacion-configuracion/
-   │   └── 01-instalacion-configuracion.md
-   ├── 02-fundamentos/
-   │   ├── 02-fundamentos.md
-   │   └── 02-fundamentos-practica.md
+   ├── 02-fundamentos-angular/
    ├── 03-navegacion/
-   │   └── 03-navegacion.md
-   ├── 04-formularios/
-   │   └── 04-formularios.md
-   └── ...
+   ├── 04-formularios-reactivos/
+   ├── 05-estilos-layout-tailwind/
+   ├── 06-temas-componentes-ui/
+   ├── 07-consumo-servicios-http/
+   ├── 08-mejoras-visuales-usabilidad/
+   ├── 09-firebase-autenticacion/
+   ├── 10-guards-seguridad-rutas/
+   ├── 11-deploy/
+   ├── A1-ui-heuristicas/
+   ├── A2-ui-heuristicas-impl/
+   └── docs/
+       ├── A-heuristicas.md
+       ├── angular-deploy.md
+       └── angular-obserbables-rx.md
 /react
    ├── 01-instalacion-configuracion/
-   │   └── 01-instalacion-configuracion.md
-   ├── 02-fundamentos/
-   │   └── 02-fundamentos.md
-   └── ...
-/vue
-   ├── 01-instalacion-configuracion/
-   │   └── 01-instalacion-configuracion.md
-   ├── 02-fundamentos/
-   │   └── 02-fundamentos.md
-   └── ...
+   ├── 02-fundamentos-react/
+   ├── 03-componentes-props-estilos/
+   ├── 04-eventos-estado-useState/
+   ├── 05-renderizado-listas-condicionales/
+   ├── 06-efectos-useEffect-fetch/
+   ├── 07-custom-hooks/
+   ├── 08-formularios-validacion/
+   ├── 09-rutas-layouts-react-router/
+   ├── 10-context-api-estado-global/
+   ├── 11-consumo-datos-cache-tanstack-query/
+   ├── 12-optimizacion-renderizado/
+   ├── 13-autenticacion-rutas-protegidas/
+   ├── 14-testing-vitest-react-testing-library/
+   ├── 15-deploy/
+   ├── A1-zustand-estado-global-avanzado/
+   ├── A2-redux-toolkit/
+   ├── A3-panel-administrativo-productos/
+   ├── A4-carga-archivos/
+   └── A5-mern-calendar/
 /astro
+   ├── 01-instalacion-configuracion/
+   ├── 02-fundamentos-astro/
+   ├── 03-rutas-layouts-navegacion/
+   ├── 04-componentes-props-estilos/
+   ├── 05-rutas-dinamicas-paginacion/
+   ├── 06-contenido-markdown-collections/
+   ├── 07-consumo-datos-build-time/
+   ├── 08-interactividad-localstorage/
+   ├── 09-formularios-endpoints/
+   ├── 10-ssr-middleware/
+   ├── 11-autenticacion-proteccion-rutas/
+   ├── 12-seo-accesibilidad-rendimiento/
+   ├── 13-deploy/
+   ├── A1-islands-integraciones/
+   ├── A2-rss-feed/
+   ├── A3-astro-db-server-actions/
+   └── A4-ecommerce-carrito-nanostores/
+/vue
    ├── 01-instalacion-configuracion/
    │   └── 01-instalacion-configuracion.md
    ├── 02-fundamentos/

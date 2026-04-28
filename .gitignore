@@ -16,3 +16,7 @@ javascript/solver/06-fetch-api/js/*
 javascript/solver/07-storage/js/*
 
 RESPangular/*
+.core/docs/promt-angular.md
+.core/docs/promt-astro.md
+.core/docs/promt-vue.md
+.core/docs/promt-reac.md
