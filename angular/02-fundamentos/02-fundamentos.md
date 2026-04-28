@@ -889,11 +889,7 @@ El archivo `README.md` en la raíz de tu proyecto debe incluir:
 ## Descripción
 Proyecto de prácticas del curso de Programación y Plataformas Web usando Angular 21.
 
-## Prácticas Realizadas
-- Práctica 01: Instalación y Configuración
-- Práctica 02: Fundamentos
-- Práctica 03: Navegación
-- Práctica 04: Formularios
+
 
 ## Aplicación Desplegada
 
