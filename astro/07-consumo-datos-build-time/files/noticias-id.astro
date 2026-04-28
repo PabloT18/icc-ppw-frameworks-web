@@ -1,0 +1,76 @@
+---
+// src/pages/noticias/[id].astro
+// Módulo 07 — Detalle de noticia generada en build time
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPosts, getUserById, capitalizarTitulo } from "../../lib/api";
+import type { Post, User } from "../../lib/api";
+
+export async function getStaticPaths() {
+    const posts = await getPosts(20);
+    return posts.map((post) => ({
+        params: { id: String(post.id) },
+        props: { post },
+    }));
+}
+
+interface Props {
+    post: Post;
+}
+
+const { post } = Astro.props;
+const titulo = capitalizarTitulo(post.title);
+
+// Intentamos obtener el autor; si falla, continuamos con nombre genérico
+let autor: User | null = null;
+try {
+    autor = await getUserById(post.userId);
+} catch {
+    console.warn(`[build] No se pudo obtener usuario ${post.userId}`);
+}
+---
+
+<BaseLayout titulo={titulo}>
+    <nav class="breadcrumb"><a href="/noticias">← Noticias</a></nav>
+
+    <article class="noticia">
+        <h1>{titulo}</h1>
+        <p class="meta">
+            Por <strong>{autor ? autor.name : `Usuario #${post.userId}`}</strong
+            >
+            {
+                autor && (
+                    <>
+                        {" "}
+                        ·{" "}
+                        <a
+                            href={`https://${autor.website}`}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            {autor.website}
+                        </a>
+                    </>
+                )
+            }
+        </p>
+        <div class="cuerpo">
+            <p>{post.body}</p>
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+    .noticia {
+        max-width: 680px;
+    }
+    .meta {
+        color: var(--color-text-muted, #aaa);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    .cuerpo p {
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+</style>

@@ -1,0 +1,79 @@
+---
+// src/pages/index.astro
+// Módulo 01 — Instalación y Configuración
+// Estado inicial del proyecto Astro Campus
+
+const titulo = "Astro Campus";
+const descripcion =
+    "Portal de contenido construido con Astro, módulo a módulo.";
+const modulos = [
+    { id: "01", titulo: "Instalación y Configuración", completado: true },
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{titulo}</title>
+        <style>
+            body {
+                font-family: system-ui, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+                background: #0f0f0f;
+                color: #e8e8e8;
+            }
+            h1 {
+                color: #ff5d01;
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            p {
+                color: #aaa;
+                line-height: 1.6;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin-top: 2rem;
+            }
+            li {
+                padding: 0.75rem 1rem;
+                border: 1px solid #333;
+                border-radius: 0.5rem;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            .check {
+                color: #22c55e;
+                font-weight: bold;
+            }
+            .num {
+                color: #ff5d01;
+                font-size: 0.85rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>{titulo}</h1>
+            <p>{descripcion}</p>
+
+            <ul>
+                {
+                    modulos.map((m) => (
+                        <li>
+                            <span class="num">M{m.id}</span>
+                            <span>{m.titulo}</span>
+                            {m.completado && <span class="check">✓</span>}
+                        </li>
+                    ))
+                }
+            </ul>
+        </main>
+    </body>
+</html>

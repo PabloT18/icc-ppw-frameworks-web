@@ -1,0 +1,98 @@
+---
+// src/pages/noticias/index.astro
+// Módulo 07 — Listado de noticias con datos de build time
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPosts, capitalizarTitulo } from "../../lib/api";
+
+let posts = [];
+let error = null;
+
+try {
+    posts = await getPosts(9);
+} catch (err) {
+    error = err instanceof Error ? err.message : "Error al cargar noticias";
+    console.error("[build] noticias/index:", error);
+}
+---
+
+<BaseLayout titulo="Noticias">
+    <h1>Noticias</h1>
+    <p class="fuente">
+        Datos desde JSONPlaceholder API (generados en build time)
+    </p>
+
+    {
+        error ? (
+            <div class="error-box">
+                <p>⚠️ No se pudieron cargar las noticias: {error}</p>
+            </div>
+        ) : (
+            <div class="grid">
+                {posts.map((post) => (
+                    <article class="card">
+                        <h2>
+                            <a href={`/noticias/${post.id}`}>
+                                {capitalizarTitulo(post.title)}
+                            </a>
+                        </h2>
+                        <p>{post.body.slice(0, 100)}…</p>
+                        <a href={`/noticias/${post.id}`} class="leer-mas">
+                            Leer más →
+                        </a>
+                    </article>
+                ))}
+            </div>
+        )
+    }
+</BaseLayout>
+
+<style>
+    .fuente {
+        font-size: 0.85rem;
+        color: var(--color-text-muted, #aaa);
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+    .error-box {
+        background: rgba(248, 113, 113, 0.1);
+        border: 1px solid var(--color-error, #f87171);
+        border-radius: var(--radius-md, 0.5rem);
+        padding: 1rem;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    .card {
+        background: var(--color-bg-card, #1a1a1a);
+        border: 1px solid var(--color-border, #333);
+        border-radius: var(--radius-md, 0.5rem);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .card h2 {
+        font-size: 1rem;
+        margin: 0;
+    }
+    .card h2 a {
+        color: var(--color-text, #e8e8e8);
+        text-decoration: none;
+    }
+    .card h2 a:hover {
+        color: var(--color-brand, #ff5d01);
+    }
+    .card p {
+        font-size: 0.9rem;
+        color: var(--color-text-muted, #aaa);
+        margin: 0;
+        flex: 1;
+    }
+    .leer-mas {
+        font-size: 0.85rem;
+        color: var(--color-brand, #ff5d01);
+    }
+</style>

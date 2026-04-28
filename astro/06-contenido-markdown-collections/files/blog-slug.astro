@@ -1,0 +1,90 @@
+---
+// src/pages/blog/[slug].astro
+// Módulo 06 — Detalle de post del blog
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog", ({ data }) => !data.draft);
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout titulo={post.data.titulo} descripcion={post.data.descripcion}>
+    <nav class="breadcrumb"><a href="/blog">← Blog</a></nav>
+
+    <article class="post">
+        <header>
+            <h1>{post.data.titulo}</h1>
+            <p class="meta">
+                Por {post.data.autor} —
+                <time datetime={post.data.fecha.toISOString()}>
+                    {
+                        post.data.fecha.toLocaleDateString("es-EC", {
+                            dateStyle: "long",
+                        })
+                    }
+                </time>
+            </p>
+            <div class="etiquetas">
+                {
+                    post.data.etiquetas.map((tag) => (
+                        <span class="tag">{tag}</span>
+                    ))
+                }
+            </div>
+        </header>
+        <div class="contenido">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+    .post {
+        max-width: 720px;
+    }
+    .post header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border, #333);
+    }
+    .meta {
+        color: var(--color-text-muted, #aaa);
+        font-size: 0.9rem;
+    }
+    .etiquetas {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+    }
+    .tag {
+        background: var(--color-bg-card, #1a1a1a);
+        border: 1px solid var(--color-border, #333);
+        padding: 0.15rem 0.5rem;
+        border-radius: var(--radius-full, 9999px);
+        font-size: 0.75rem;
+        color: var(--color-text-muted, #aaa);
+    }
+    .contenido {
+        line-height: 1.8;
+    }
+    .contenido h2 {
+        color: var(--color-brand, #ff5d01);
+        margin-top: 2rem;
+    }
+    .contenido code {
+        background: var(--color-bg-card, #1a1a1a);
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+        font-family: monospace;
+    }
+</style>

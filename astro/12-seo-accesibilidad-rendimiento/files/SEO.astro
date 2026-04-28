@@ -1,0 +1,36 @@
+---
+// src/components/SEO.astro
+// Módulo 12 — Componente centralizado de meta tags SEO
+
+interface Props {
+    titulo: string;
+    descripcion?: string;
+    imagen?: string;
+    url?: string;
+    tipo?: "website" | "article";
+}
+
+const {
+    titulo,
+    descripcion = "Plataforma de recursos de programación web moderna.",
+    imagen = "/og-default.jpg",
+    url = Astro.url.href,
+    tipo = "website",
+} = Astro.props;
+
+const tituloPagina = `${titulo} | Astro Campus`;
+---
+
+<title>{tituloPagina}</title>
+<meta name="description" content={descripcion} />
+
+<meta property="og:title" content={tituloPagina} />
+<meta property="og:description" content={descripcion} />
+<meta property="og:image" content={imagen} />
+<meta property="og:url" content={url} />
+<meta property="og:type" content={tipo} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={tituloPagina} />
+<meta name="twitter:description" content={descripcion} />
+<meta name="twitter:image" content={imagen} />

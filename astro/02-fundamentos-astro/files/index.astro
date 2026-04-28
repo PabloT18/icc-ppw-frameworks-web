@@ -1,0 +1,97 @@
+---
+// src/pages/index.astro
+// Módulo 02 — Fundamentos: usando componentes con props
+import RecursoCard from "../components/RecursoCard.astro";
+
+const titulo = "Astro Campus";
+const descripcion =
+    "Portal de contenido construido con Astro, módulo a módulo.";
+
+const recursos = [
+    {
+        titulo: "Documentación oficial de Astro",
+        url: "https://docs.astro.build/es/",
+        descripcion: "Referencia completa del framework Astro.",
+    },
+    {
+        titulo: "MDN Web Docs",
+        url: "https://developer.mozilla.org/es/",
+        descripcion: "Referencia de HTML, CSS y JavaScript.",
+    },
+    {
+        titulo: "Can I use",
+        url: "https://caniuse.com/",
+        descripcion: "Compatibilidad de APIs web en navegadores.",
+    },
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{titulo}</title>
+    </head>
+    <body>
+        <main>
+            <h1>{titulo}</h1>
+            <p class="desc">{descripcion}</p>
+
+            <section>
+                <h2>Recursos</h2>
+                {
+                    recursos.map((r) => (
+                        <RecursoCard
+                            titulo={r.titulo}
+                            url={r.url}
+                            descripcion={r.descripcion}
+                        />
+                    ))
+                }
+            </section>
+
+            <nav>
+                <a href="/about">Acerca del proyecto →</a>
+            </nav>
+        </main>
+    </body>
+</html>
+
+<style is:global>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    body {
+        font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: #0f0f0f;
+        color: #e8e8e8;
+    }
+    h1 {
+        color: #ff5d01;
+        font-size: 2rem;
+        margin-bottom: 0.25rem;
+    }
+    h2 {
+        color: #ccc;
+        font-size: 1.25rem;
+        margin-top: 2rem;
+    }
+    .desc {
+        color: #aaa;
+        margin-bottom: 1.5rem;
+    }
+    a {
+        color: #ff5d01;
+    }
+    nav {
+        margin-top: 2rem;
+    }
+</style>

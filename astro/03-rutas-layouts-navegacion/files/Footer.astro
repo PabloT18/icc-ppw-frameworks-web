@@ -1,0 +1,21 @@
+---
+// src/components/Footer.astro
+// Módulo 03 — Pie de página con año dinámico generado en servidor
+
+const anio = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <p>© {anio} Astro Campus — Programación y Plataformas Web</p>
+</footer>
+
+<style>
+    .site-footer {
+        border-top: 1px solid #1e1e1e;
+        padding: 1rem 2rem;
+        text-align: center;
+        color: #555;
+        font-size: 0.85rem;
+        background: #0a0a0a;
+    }
+</style>

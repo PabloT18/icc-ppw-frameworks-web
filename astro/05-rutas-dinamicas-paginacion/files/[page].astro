@@ -1,0 +1,99 @@
+---
+// src/pages/recursos/[page].astro
+// Módulo 05 — Listado paginado de recursos
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RecursoCard from "../../components/RecursoCard.astro";
+import { recursos } from "../../data/recursos";
+
+export function getStaticPaths({ paginate }) {
+    return paginate(recursos, { pageSize: 3 });
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout titulo={`Recursos — Página ${page.currentPage}`}>
+    <h1>Recursos</h1>
+    <p class="total">Total: {recursos.length} recursos</p>
+
+    <div class="lista">
+        {
+            page.data.map((r) => (
+                <a href={`/recursos/${r.slug}`} class="recurso-link">
+                    <RecursoCard
+                        titulo={r.titulo}
+                        url={r.url}
+                        descripcion={r.descripcion}
+                    />
+                </a>
+            ))
+        }
+    </div>
+
+    <nav class="paginacion" aria-label="Paginación">
+        {
+            page.url.prev ? (
+                <a href={page.url.prev} class="btn">
+                    ← Anterior
+                </a>
+            ) : (
+                <span class="btn disabled">← Anterior</span>
+            )
+        }
+        <span class="info">Página {page.currentPage} de {page.total}</span>
+        {
+            page.url.next ? (
+                <a href={page.url.next} class="btn">
+                    Siguiente →
+                </a>
+            ) : (
+                <span class="btn disabled">Siguiente →</span>
+            )
+        }
+    </nav>
+</BaseLayout>
+
+<style>
+    .total {
+        color: var(--color-text-muted, #aaa);
+        margin-bottom: 1.5rem;
+    }
+    .lista {
+        margin: 1rem 0;
+    }
+    .recurso-link {
+        text-decoration: none;
+        display: block;
+    }
+    .paginacion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border, #333);
+    }
+    .info {
+        color: var(--color-text-muted, #aaa);
+        font-size: 0.9rem;
+    }
+    .btn {
+        color: var(--color-brand, #ff5d01);
+        text-decoration: none;
+        border: 1px solid var(--color-brand, #ff5d01);
+        padding: 0.4rem 1rem;
+        border-radius: var(--radius-md, 0.5rem);
+        font-size: 0.9rem;
+        transition: background 0.2s;
+    }
+    .btn:hover {
+        background: var(--color-brand, #ff5d01);
+        color: #fff;
+    }
+    .btn.disabled {
+        color: var(--color-border, #333);
+        border-color: var(--color-border, #333);
+        cursor: not-allowed;
+    }
+</style>

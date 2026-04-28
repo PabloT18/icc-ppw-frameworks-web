@@ -1,0 +1,121 @@
+/* src/styles/global.css */
+/* Módulo 04 — Tokens de diseño para Astro Campus */
+
+:root {
+    /* Colores */
+    --color-brand: #FF5D01;
+    --color-bg: #0f0f0f;
+    --color-bg-card: #1a1a1a;
+    --color-bg-header: #0a0a0a;
+    --color-text: #e8e8e8;
+    --color-text-muted: #aaa;
+    --color-border: #333;
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #f87171;
+    --color-info: #60a5fa;
+
+    /* Radios de borde */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+
+    /* Sombras */
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+    /* Tipografía */
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+
+    /* Espaciado */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+}
+
+/* Reset mínimo */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-8);
+    width: 100%;
+}
+
+/* Tipografía base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+h1 {
+    color: var(--color-brand);
+    font-size: var(--font-size-2xl);
+}
+
+h2 {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xl);
+    margin-top: var(--space-8);
+}
+
+a {
+    color: var(--color-brand);
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+code {
+    font-family: var(--font-mono);
+    background: var(--color-bg-card);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+}
+
+ul,
+ol {
+    padding-left: var(--space-6);
+}
+
+li {
+    margin-bottom: var(--space-2);
+}

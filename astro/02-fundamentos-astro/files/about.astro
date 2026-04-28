@@ -1,0 +1,119 @@
+---
+// src/pages/about.astro
+// Módulo 02 — Fundamentos: segunda página del proyecto
+const titulo = "Acerca de Astro Campus";
+const descripcion =
+    "Proyecto incremental para aprender Astro en el contexto del curso de Programación y Plataformas Web.";
+
+const equipo = [{ nombre: "Pablo Torres", rol: "Docente", github: "PabloT18" }];
+
+const modoProduccion = import.meta.env.PROD;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{titulo} — Astro Campus</title>
+    </head>
+    <body>
+        <main>
+            <h1>{titulo}</h1>
+            <p>{descripcion}</p>
+
+            <h2>Equipo</h2>
+            <ul>
+                {
+                    equipo.map((p) => (
+                        <li>
+                            <strong>{p.nombre}</strong> — {p.rol}
+                            {" · "}
+                            <a
+                                href={`https://github.com/${p.github}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                GitHub
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            {
+                modoProduccion && (
+                    <p class="badge prod">Versión de producción activa.</p>
+                )
+            }
+            {
+                !modoProduccion && (
+                    <p class="badge dev">
+                        Modo desarrollo — usa <code>pnpm build</code> para
+                        producción.
+                    </p>
+                )
+            }
+
+            <nav>
+                <a href="/">← Inicio</a>
+            </nav>
+        </main>
+    </body>
+</html>
+
+<style is:global>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    body {
+        font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: #0f0f0f;
+        color: #e8e8e8;
+    }
+    h1 {
+        color: #ff5d01;
+        font-size: 2rem;
+    }
+    h2 {
+        color: #ccc;
+        margin-top: 1.5rem;
+    }
+    a {
+        color: #ff5d01;
+    }
+    li {
+        margin-bottom: 0.5rem;
+    }
+    .badge {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+    }
+    .prod {
+        background: #14532d;
+        color: #22c55e;
+    }
+    .dev {
+        background: #451a03;
+        color: #f59e0b;
+    }
+    code {
+        font-family: monospace;
+        background: #1a1a1a;
+        padding: 0.1rem 0.4rem;
+        border-radius: 3px;
+    }
+    nav {
+        margin-top: 2rem;
+    }
+</style>

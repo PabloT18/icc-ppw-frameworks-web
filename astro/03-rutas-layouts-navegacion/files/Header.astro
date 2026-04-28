@@ -1,0 +1,74 @@
+---
+// src/components/Header.astro
+// Módulo 03 — Barra de navegación con indicador de ruta activa
+
+const rutaActual = Astro.url.pathname;
+
+const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/about", label: "Acerca" },
+];
+---
+
+<header class="site-header">
+    <div class="logo">
+        <a href="/">🚀 Astro Campus</a>
+    </div>
+    <nav aria-label="Navegación principal">
+        {
+            navLinks.map((link) => (
+                <a
+                    href={link.href}
+                    class:list={[
+                        "nav-link",
+                        { activo: rutaActual === link.href },
+                    ]}
+                    aria-current={rutaActual === link.href ? "page" : undefined}
+                >
+                    {link.label}
+                </a>
+            ))
+        }
+    </nav>
+</header>
+
+<style>
+    .site-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #1e1e1e;
+        background: #0a0a0a;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    .logo a {
+        color: #ff5d01;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    nav {
+        display: flex;
+        gap: 1.5rem;
+    }
+    .nav-link {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 0.95rem;
+        padding: 0.25rem 0;
+        border-bottom: 2px solid transparent;
+        transition:
+            color 0.2s,
+            border-color 0.2s;
+    }
+    .nav-link:hover {
+        color: #e8e8e8;
+    }
+    .nav-link.activo {
+        color: #ff5d01;
+        border-bottom-color: #ff5d01;
+    }
+</style>

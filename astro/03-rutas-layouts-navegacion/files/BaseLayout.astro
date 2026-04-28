@@ -1,0 +1,76 @@
+---
+// src/layouts/BaseLayout.astro
+// Módulo 03 — Layout base compartido por todas las páginas
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    titulo: string;
+    descripcion?: string;
+}
+
+const { titulo, descripcion = "Portal de contenido Astro Campus" } =
+    Astro.props;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={descripcion} />
+        <title>{titulo} — Astro Campus</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style is:global>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    body {
+        font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+        background: #0f0f0f;
+        color: #e8e8e8;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        flex: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        width: 100%;
+    }
+    h1 {
+        color: #ff5d01;
+        margin-bottom: 0.5rem;
+    }
+    h2 {
+        color: #ccc;
+        margin-top: 2rem;
+    }
+    a {
+        color: #ff5d01;
+    }
+    ul {
+        padding-left: 1.25rem;
+    }
+    li {
+        margin-bottom: 0.5rem;
+    }
+</style>

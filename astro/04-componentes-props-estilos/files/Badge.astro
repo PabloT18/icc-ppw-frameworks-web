@@ -1,0 +1,41 @@
+---
+// src/components/Badge.astro
+// Módulo 04 — Badge de categoría con variantes usando class:list
+
+interface Props {
+    texto: string;
+    variante?: "info" | "exito" | "advertencia" | "error";
+}
+
+const { texto, variante = "info" } = Astro.props;
+---
+
+<span class:list={["badge", `badge-${variante}`]}>{texto}</span>
+
+<style>
+    .badge {
+        display: inline-block;
+        padding: 0.2rem 0.65rem;
+        border-radius: var(--radius-full, 9999px);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .badge-info {
+        background: #1e3a5f;
+        color: #60a5fa;
+    }
+    .badge-exito {
+        background: #14532d;
+        color: #22c55e;
+    }
+    .badge-advertencia {
+        background: #451a03;
+        color: #f59e0b;
+    }
+    .badge-error {
+        background: #450a0a;
+        color: #f87171;
+    }
+</style>

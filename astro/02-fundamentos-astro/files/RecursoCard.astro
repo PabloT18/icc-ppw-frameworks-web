@@ -1,0 +1,51 @@
+---
+// src/components/RecursoCard.astro
+// Componente reutilizable para mostrar un recurso o enlace externo
+// Módulo 02 — Fundamentos de Astro
+
+interface Props {
+    titulo: string;
+    url: string;
+    descripcion?: string;
+}
+
+const { titulo, url, descripcion = "Sin descripción" } = Astro.props;
+---
+
+<div class="card">
+    <h3>
+        <a href={url} target="_blank" rel="noopener noreferrer">{titulo}</a>
+    </h3>
+    <p>{descripcion}</p>
+</div>
+
+<style>
+    .card {
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background: #1a1a1a;
+        transition: border-color 0.2s;
+    }
+    .card:hover {
+        border-color: #ff5d01;
+    }
+    h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+    }
+    a {
+        color: #ff5d01;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    p {
+        color: #aaa;
+        font-size: 0.875rem;
+        margin: 0;
+        line-height: 1.5;
+    }
+</style>

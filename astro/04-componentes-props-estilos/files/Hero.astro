@@ -1,0 +1,56 @@
+---
+// src/components/Hero.astro
+// Módulo 04 — Componente de sección hero con props tipados
+
+interface Props {
+    titulo: string;
+    subtitulo?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+}
+
+const {
+    titulo,
+    subtitulo = "Portal de contenido construido con Astro",
+    ctaLabel = "Ver recursos",
+    ctaHref = "#recursos",
+} = Astro.props;
+---
+
+<section class="hero">
+    <h1>{titulo}</h1>
+    {subtitulo && <p class="subtitulo">{subtitulo}</p>}
+    <a href={ctaHref} class="cta">{ctaLabel}</a>
+</section>
+
+<style>
+    .hero {
+        padding: var(--space-16, 4rem) 0 var(--space-12, 3rem);
+        text-align: center;
+    }
+    .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        color: var(--color-brand, #ff5d01);
+        margin-bottom: var(--space-4, 1rem);
+    }
+    .subtitulo {
+        font-size: 1.1rem;
+        color: var(--color-text-muted, #aaa);
+        max-width: 520px;
+        margin: 0 auto var(--space-8, 2rem);
+        line-height: 1.7;
+    }
+    .cta {
+        display: inline-block;
+        background: var(--color-brand, #ff5d01);
+        color: #fff;
+        padding: 0.75rem 2rem;
+        border-radius: var(--radius-md, 0.5rem);
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s;
+    }
+    .cta:hover {
+        opacity: 0.85;
+    }
+</style>
