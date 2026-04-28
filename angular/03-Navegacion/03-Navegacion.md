@@ -1,3 +1,148 @@
+# Programación y Plataformas Web
+
+# Frameworks Web: Angular 21
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
+</div>
+
+## 03. Navegación
+
+### Autor
+
+**Pablo Torres**  
+📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)  
+💻 GitHub: [PabloT18](https://github.com/PabloT18)
+
+---
+
+## 1. Objetivo del tema
+
+Incorporar navegación moderna al proyecto incremental usando `provideRouter`, `RouterLink`, `RouterOutlet`, rutas por feature y una estructura lista para crecer hacia guards y lazy loading.
+
+---
+
+## 2. Explicación conceptual
+
+Angular no navega como un sitio HTML tradicional. En una SPA el usuario cambia de vista sin recargar todo el documento, y el router decide qué componente renderizar según la URL.
+
+| Navegación tradicional | Navegación Angular |
+|---|---|
+| `href` provoca recarga completa | `routerLink` cambia la vista sin recargar |
+| el estado del frontend puede perderse | el estado puede mantenerse entre vistas |
+| la estructura depende de páginas físicas | la estructura depende de rutas configuradas |
+
+### Conceptos mínimos
+
+- ruta
+- parámetro de ruta
+- redirección
+- `RouterOutlet`
+- `RouterLink`
+- ruta comodín
+
+---
+
+## 3. Fundamento técnico
+
+### 3.1 `provideRouter`
+
+El router se registra como provider global.
+
+```ts
+providers: [provideRouter(routes)]
+```
+
+### 3.2 `RouterOutlet`
+
+`RouterOutlet` define el lugar donde Angular renderiza la vista activa.
+
+```ts
+imports: [RouterOutlet]
+```
+
+### 3.3 `RouterLink`
+
+Es la forma recomendada de navegar desde plantillas.
+
+```html
+<a routerLink="/profile">Ir al perfil</a>
+```
+
+### 3.4 Parámetros de ruta
+
+Los parámetros permiten reutilizar una misma página para diferentes datos.
+
+```ts
+{
+  path: 'students/:id',
+  component: StudentDetailPage,
+}
+```
+
+### 3.5 Diseño del router para el proyecto incremental
+
+En este curso conviene mantener una raíz simple y luego ir agregando features. Todavía no hace falta introducir guards ni lazy routes como tema central, pero sí dejar la arquitectura preparada.
+
+---
+
+## 4. Ejemplos de código
+
+### Ejemplo 1: shell con navegación básica
+
+```html
+<nav>
+  <a routerLink="/">Inicio</a>
+  <a routerLink="/profile">Perfil</a>
+  <a routerLink="/students">Estudiantes</a>
+</nav>
+
+<router-outlet />
+```
+
+### Ejemplo 2: ruta con parámetro
+
+```ts
+export const routes: Routes = [
+  {
+    path: 'students/:id',
+    component: StudentDetailPage,
+  },
+];
+```
+
+---
+
+## 5. Buenas prácticas
+
+- Mantén las rutas cerca de las features que representan.
+- Usa nombres de path claros y consistentes.
+- Deja una ruta comodín para navegación inválida.
+- Usa `routerLink` en lugar de `href` para vistas internas.
+- Diseña la estructura pensando en guards futuros.
+
+---
+
+## 6. Errores comunes
+
+- Usar `href` para rutas internas del proyecto.
+- Duplicar lógica de navegación en varios componentes.
+- No prever una ruta comodín.
+- Acoplar la UI de navegación a una sola página difícil de escalar.
+- Introducir guards o auth en el mismo módulo sin separar responsabilidades.
+
+---
+
+## 7. Relación con el proyecto incremental
+
+Este módulo convierte la base creada en 01 y 02 en una aplicación navegable. A partir de aquí el proyecto ya tiene más de una vista, lo que permite que formularios, estilos, servicios y guards se monten sobre rutas reales.
+
+---
+
+## 8. Referencias recomendadas
+
+- Documentación oficial del router: https://angular.dev/guide/routing
+- [angular/docs/A-heuristicas.md](../docs/A-heuristicas.md)
 # Programación y Plataformas Web 
 
 # Frameworks Web: Angular
