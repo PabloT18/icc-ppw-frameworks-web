@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Mejorar el proyecto `ppw-nuxt-intro` de A1 con meta tags completos (Open Graph + Twitter Cards + JSON-LD), y crear server routes con Nitro para no exponer la URL de la API externa directamente al cliente.
 

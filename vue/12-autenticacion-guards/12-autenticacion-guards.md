@@ -68,7 +68,7 @@ router.beforeEach((to, from) => {
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Store de autenticación
 

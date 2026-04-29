@@ -136,7 +136,7 @@ const categoria = route.query.categoria  // 'laptops'
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### History modes
 

@@ -67,7 +67,7 @@ export const onRequest = defineMiddleware(({ cookies, url, redirect, locals }, n
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Generación de token de sesión
 

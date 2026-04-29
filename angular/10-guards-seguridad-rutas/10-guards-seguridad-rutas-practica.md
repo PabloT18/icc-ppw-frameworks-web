@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Aplicar guards funcionales al proyecto `ppw-angular-21` para proteger rutas privadas, controlar el acceso a login y sincronizar la navegación con el estado real de sesión.
 
@@ -43,7 +43,7 @@ La carpeta [angular/10-guards-seguridad-rutas/files](files/README.md) queda list
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Auth guard funcional
 
@@ -73,31 +73,31 @@ export const authGuard: CanActivateFn = () => {
 
 Implementar el guard que protege rutas privadas.
 
-Explicación técnica: el guard evita repetir validación de sesión dentro de cada página.
+Explicación: el guard evita repetir validación de sesión dentro de cada página.
 
 ### Paso 2. Crear `guestGuard`
 
 Proteger la ruta de login para que un usuario autenticado no vuelva a entrar a ella innecesariamente.
 
-Explicación técnica: así se controla tanto el acceso privado como el acceso para visitantes.
+Explicación: así se controla tanto el acceso privado como el acceso para visitantes.
 
 ### Paso 3. Actualizar rutas
 
 Aplicar guards a rutas como favoritos, formulario privado o panel personal.
 
-Explicación técnica: la estructura de rutas del proyecto ya expresa reglas reales de acceso.
+Explicación: la estructura de rutas del proyecto ya expresa reglas reales de acceso.
 
 ### Paso 4. Ajustar navbar
 
 Mostrar enlaces distintos según haya sesión activa o no.
 
-Explicación técnica: la navegación visible debe coincidir con las reglas del router.
+Explicación: la navegación visible debe coincidir con las reglas del router.
 
 ### Paso 5. Probar redirecciones
 
 Intentar entrar a rutas privadas sin autenticación y verificar redirección a login.
 
-Explicación técnica: no basta con configurar guards; hay que validar el flujo real.
+Explicación: no basta con configurar guards; hay que validar el flujo real.
 
 ---
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Construir un panel de administración con layout de sidebar, tabla de productos con paginación, y operaciones CRUD usando modales. Los datos provienen de la FakeStore API; las operaciones de escritura (crear/editar/eliminar) se simulan localmente sin persistencia real.
 

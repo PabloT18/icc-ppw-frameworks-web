@@ -18,7 +18,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Integrar Firebase Authentication y Firestore al proyecto `ppw-angular-21` para permitir login, logout y persistencia básica de favoritos o registros por usuario.
 
@@ -46,7 +46,7 @@ La carpeta [angular/09-firebase-autenticacion/files](files/README.md) queda list
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Instalar dependencias
 
@@ -69,37 +69,37 @@ pnpm ng add @angular/fire
 
 Ejecutar el asistente y registrar Authentication y Firestore.
 
-Explicación técnica: esta configuración debe quedar centralizada para que auth y persistencia no dependan de hacks locales.
+Explicación: esta configuración debe quedar centralizada para que auth y persistencia no dependan de hacks locales.
 
 ### Paso 2. Crear `AuthService`
 
 Encapsular login, logout y estado de sesión.
 
-Explicación técnica: el resto del proyecto debe depender de un servicio de auth, no de llamadas sueltas a Firebase.
+Explicación: el resto del proyecto debe depender de un servicio de auth, no de llamadas sueltas a Firebase.
 
 ### Paso 3. Crear `LoginPage`
 
 Construir una pantalla mínima con formulario reactivo para email y password.
 
-Explicación técnica: se reutiliza el enfoque de formularios ya aprendido, ahora en un flujo de autenticación real.
+Explicación: se reutiliza el enfoque de formularios ya aprendido, ahora en un flujo de autenticación real.
 
 ### Paso 4. Mostrar estado de sesión en el navbar
 
 Actualizar el shell para mostrar acciones diferentes según exista usuario autenticado.
 
-Explicación técnica: el estado de auth ya empieza a afectar navegación y experiencia global.
+Explicación: el estado de auth ya empieza a afectar navegación y experiencia global.
 
 ### Paso 5. Crear persistencia de favoritos
 
 Guardar en Firestore un subconjunto de personajes favoritos asociado al usuario autenticado.
 
-Explicación técnica: se enseña a persistir datos propios del usuario, no solo a iniciar sesión.
+Explicación: se enseña a persistir datos propios del usuario, no solo a iniciar sesión.
 
 ### Paso 6. Verificar reglas mínimas de Firestore
 
 Confirmar que solo usuarios autenticados pueden leer o escribir los datos del módulo.
 
-Explicación técnica: este paso conecta autenticación con seguridad real de datos.
+Explicación: este paso conecta autenticación con seguridad real de datos.
 
 ---
 

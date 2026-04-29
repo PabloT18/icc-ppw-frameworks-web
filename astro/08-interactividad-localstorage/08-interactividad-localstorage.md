@@ -75,7 +75,7 @@ const existe = localStorage.getItem('clave') !== null;
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Patrón: selector seguro con TypeScript
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Crear el proyecto Vue base que se usará durante todo el curso. Al finalizar esta práctica tendrás un proyecto Vue 3 con Vite y TypeScript corriendo en modo desarrollo, con la estructura limpia lista para comenzar a construir.
 

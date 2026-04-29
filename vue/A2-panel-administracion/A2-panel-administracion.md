@@ -62,7 +62,7 @@ Un modal es un componente que se renderiza sobre el contenido principal. En Vue 
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Componente modal genérico
 

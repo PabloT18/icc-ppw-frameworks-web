@@ -99,7 +99,7 @@ Las tres secciones (frontmatter, template, style) son opcionales. El frontmatter
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Ciclo de vida de Astro
 

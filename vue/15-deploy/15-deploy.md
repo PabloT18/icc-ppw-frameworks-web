@@ -72,7 +72,7 @@ Para Netlify/Vercel en dominio propio, `base: '/'` (valor por defecto).
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### SPA Routing en servidores estáticos
 

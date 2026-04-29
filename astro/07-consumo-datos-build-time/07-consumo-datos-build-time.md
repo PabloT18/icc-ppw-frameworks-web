@@ -51,7 +51,7 @@ FRONTMATTER (servidor / build time):
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Patrón básico de fetch en frontmatter
 

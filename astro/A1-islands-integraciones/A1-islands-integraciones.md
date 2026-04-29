@@ -46,7 +46,7 @@ La Arquitectura de Islas (Islands Architecture) es el patrón central de Astro: 
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Integrar React en Astro
 

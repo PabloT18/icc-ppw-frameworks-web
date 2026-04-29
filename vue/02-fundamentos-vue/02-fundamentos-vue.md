@@ -102,7 +102,7 @@ Las expresiones dentro de `{{ }}` son JavaScript puro. Se puede usar cualquier e
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### `ref`: reactividad para valores primitivos
 

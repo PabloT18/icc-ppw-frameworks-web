@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Crear un formulario para agregar productos al catálogo con validación reactiva, feedback visual y manejo del submit. Al finalizar, el usuario podrá agregar nuevos productos que aparecerán en la grilla del catálogo.
 

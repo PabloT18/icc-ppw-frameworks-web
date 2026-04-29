@@ -18,7 +18,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Incorporar DaisyUI o una capa equivalente de componentes visuales para construir navbar, footer y cards reutilizables dentro del proyecto `ppw-angular-21`.
 
@@ -47,7 +47,7 @@ La carpeta [angular/06-temas-componentes-ui/files](files/README.md) queda lista 
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Activar DaisyUI
 
@@ -70,37 +70,37 @@ La carpeta [angular/06-temas-componentes-ui/files](files/README.md) queda lista 
 
 Agregar DaisyUI al proyecto.
 
-Explicación técnica: la librería se apoya en Tailwind, por lo que se monta encima de la base visual ya creada.
+Explicación: la librería se apoya en Tailwind, por lo que se monta encima de la base visual ya creada.
 
 ### Paso 2. Crear `AppNavbar`
 
 Construir un navbar reusable con enlaces a Home, Profile, Students y Formulario.
 
-Explicación técnica: el navbar deja de ser HTML incrustado y se convierte en componente compartido.
+Explicación: el navbar deja de ser HTML incrustado y se convierte en componente compartido.
 
 ### Paso 3. Crear `AppFooter`
 
 Agregar un footer simple con información del proyecto y del curso.
 
-Explicación técnica: el footer consolida el layout general y evita duplicación.
+Explicación: el footer consolida el layout general y evita duplicación.
 
 ### Paso 4. Crear `DashboardCard`
 
 Definir una card reusable para accesos rápidos o métricas simples.
 
-Explicación técnica: es el primer componente visual genérico del proyecto y servirá después para estados de dashboard o resumen.
+Explicación: es el primer componente visual genérico del proyecto y servirá después para estados de dashboard o resumen.
 
 ### Paso 5. Integrar componentes al shell
 
 Actualizar `app.ts` para mostrar navbar y footer alrededor del `router-outlet`.
 
-Explicación técnica: el shell se convierte en layout de aplicación, no solo en contenedor visual.
+Explicación: el shell se convierte en layout de aplicación, no solo en contenedor visual.
 
 ### Paso 6. Aplicar componentes visuales en Home
 
 Usar `DashboardCard` o componentes DaisyUI para mejorar los accesos principales.
 
-Explicación técnica: la HomePage se transforma en interfaz de entrada coherente al sistema visual.
+Explicación: la HomePage se transforma en interfaz de entrada coherente al sistema visual.
 
 ---
 

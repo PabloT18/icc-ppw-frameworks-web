@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Agregar navegación real al proyecto `ppw-angular-21` mediante un shell simple, nuevas páginas y rutas con parámetros para dejar el proyecto preparado para formularios y guards.
 
@@ -44,7 +44,7 @@ La carpeta [angular/03-navegacion/files](files/README.md) queda preparada para a
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Shell principal con navegación
 
@@ -93,7 +93,7 @@ export const routes: Routes = [
 
 Actualizar `app.ts` para incluir enlaces con `RouterLink`.
 
-Explicación técnica: se define un layout mínimo reutilizable que seguirá creciendo en módulos posteriores.
+Explicación: se define un layout mínimo reutilizable que seguirá creciendo en módulos posteriores.
 
 ### Paso 2. Crear la página `StudentsPage`
 
@@ -107,7 +107,7 @@ readonly students = [
 ];
 ```
 
-Explicación técnica: aún no se consumen datos externos; se trabaja con estado local para concentrarse en navegación.
+Explicación: aún no se consumen datos externos; se trabaja con estado local para concentrarse en navegación.
 
 ### Paso 3. Navegar al detalle por parámetro
 
@@ -119,7 +119,7 @@ Dentro de la plantilla de estudiantes agregar enlaces.
 }
 ```
 
-Explicación técnica: la sintaxis de array es la forma segura de construir rutas con parámetros dinámicos.
+Explicación: la sintaxis de array es la forma segura de construir rutas con parámetros dinámicos.
 
 ### Paso 4. Crear `StudentDetailPage`
 
@@ -133,19 +133,19 @@ private route = inject(ActivatedRoute);
 readonly id = this.route.snapshot.paramMap.get('id');
 ```
 
-Explicación técnica: en esta primera versión basta con `snapshot`; más adelante se puede reaccionar a cambios de parámetros.
+Explicación: en esta primera versión basta con `snapshot`; más adelante se puede reaccionar a cambios de parámetros.
 
 ### Paso 5. Enlazar la HomePage con la nueva sección
 
 Agregar un acceso visible hacia la sección de estudiantes.
 
-Explicación técnica: la home deja de ser una página estática y pasa a funcionar como portal de navegación interna.
+Explicación: la home deja de ser una página estática y pasa a funcionar como portal de navegación interna.
 
 ### Paso 6. Verificar fallback de ruta inválida
 
 Entrar manualmente a una ruta inexistente y confirmar la redirección.
 
-Explicación técnica: esto asegura navegación robusta y evita estados muertos.
+Explicación: esto asegura navegación robusta y evita estados muertos.
 
 ---
 

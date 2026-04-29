@@ -18,7 +18,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Aplicar TailwindCSS al proyecto `ppw-angular-21` para construir un shell responsive, tarjetas base y una estructura visual coherente en Home, Profile y Students.
 
@@ -46,7 +46,7 @@ La carpeta [angular/05-estilos-layout-tailwind/files](files/README.md) queda lis
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Activar estilos globales base
 
@@ -76,37 +76,37 @@ body {
 
 Instalar y dejar operativo Tailwind en `styles.css`.
 
-Explicación técnica: este cambio afecta todo el proyecto, por eso se hace antes de seguir componiendo vistas.
+Explicación: este cambio afecta todo el proyecto, por eso se hace antes de seguir componiendo vistas.
 
 ### Paso 2. Estilizar el shell principal
 
 Convertir el `app.ts` en un contenedor central con padding, ancho máximo y fondo general.
 
-Explicación técnica: el shell deja de ser solo un punto de montaje y empieza a controlar experiencia visual global.
+Explicación: el shell deja de ser solo un punto de montaje y empieza a controlar experiencia visual global.
 
 ### Paso 3. Rehacer la HomePage como panel simple
 
 Usar grid y cards para mostrar accesos rápidos a Profile, Students y Formulario.
 
-Explicación técnica: la HomePage pasa a ser dashboard de navegación útil.
+Explicación: la HomePage pasa a ser dashboard de navegación útil.
 
 ### Paso 4. Estilizar ProfilePage
 
 Organizar datos personales y habilidades en bloques con cards y espaciado consistente.
 
-Explicación técnica: se demuestra cómo usar Tailwind para mejorar legibilidad sin crear CSS pesado.
+Explicación: se demuestra cómo usar Tailwind para mejorar legibilidad sin crear CSS pesado.
 
 ### Paso 5. Estilizar StudentsPage
 
 Maquetar el listado con grid o stack responsivo y separar visualmente acciones principales.
 
-Explicación técnica: el layout debe responder tanto en móvil como en escritorio.
+Explicación: el layout debe responder tanto en móvil como en escritorio.
 
 ### Paso 6. Revisar breakpoints
 
 Probar que al menos Home y Students cambian de disposición entre móvil y pantallas medianas.
 
-Explicación técnica: no basta con “verse bien” en una resolución fija.
+Explicación: no basta con “verse bien” en una resolución fija.
 
 ---
 

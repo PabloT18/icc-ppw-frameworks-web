@@ -77,7 +77,7 @@ const items = ["HTML", "CSS", "JavaScript"];
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Estilos en Astro
 

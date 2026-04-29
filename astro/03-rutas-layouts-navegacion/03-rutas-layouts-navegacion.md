@@ -105,7 +105,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Navegación en Astro: HTML puro
 

@@ -115,7 +115,7 @@ El componente raíz. Todo lo que el usuario ve parte desde aquí.
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Crear un proyecto con `pnpm create vite`
 

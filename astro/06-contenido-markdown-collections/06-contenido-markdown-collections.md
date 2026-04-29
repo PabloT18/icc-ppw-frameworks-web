@@ -104,7 +104,7 @@ const { Content } = await post.render();
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Diferencia: `src/pages/` vs `src/content/`
 

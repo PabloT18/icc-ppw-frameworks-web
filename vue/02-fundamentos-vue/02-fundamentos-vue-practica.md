@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Aplicar los conceptos fundamentales de Vue 3 directamente en el proyecto. Al finalizar esta práctica, `App.vue` tendrá estado reactivo con `ref`, funciones básicas y el template mostrará datos dinámicos usando interpolación.
 

@@ -75,7 +75,7 @@ expect(spy).toHaveBeenCalledTimes(n)     // Mock llamado n veces
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Configuración de Vitest
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Implementar un componente de subida de imágenes con previsualización instantánea usando `URL.createObjectURL`, validación de tipo y tamaño, barra de progreso simulada, soporte drag & drop, y el composable `useFileUpload`.
 

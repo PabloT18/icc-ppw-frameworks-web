@@ -69,7 +69,7 @@ const { count, incrementar, decrementar } = useContador(10)
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Encapsular estado y lógica
 

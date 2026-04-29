@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Refactorizar el proyecto `ppw-vue-app` para aplicar las mejores prácticas de estructura y optimización. Sin agregar nuevas funcionalidades, se mejora la organización del código, el rendimiento de carga y la accesibilidad básica.
 

@@ -98,7 +98,7 @@ Los tokens se usan en componentes: `color: var(--color-brand)`.
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Organización de estilos en Astro
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Agregar interactividad real al proyecto con directivas Vue, binding dinámico y comunicación entre componentes mediante emits. Al finalizar, el usuario podrá agregar productos al carrito desde `ProductCard` y `App.vue` mostrará el resumen del carrito.
 

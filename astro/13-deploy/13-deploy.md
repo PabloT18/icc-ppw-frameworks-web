@@ -67,7 +67,7 @@ pnpm astro add netlify
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Deploy estático en Netlify (drag & drop)
 

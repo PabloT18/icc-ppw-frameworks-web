@@ -79,7 +79,7 @@ const model = defineModel<string>()
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Formularios con `reactive`
 

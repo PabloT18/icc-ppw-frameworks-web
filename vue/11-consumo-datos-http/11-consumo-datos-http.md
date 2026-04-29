@@ -57,7 +57,7 @@ Para proyectos de producción, Axios es la elección más común por sus interce
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Instalación de Axios
 

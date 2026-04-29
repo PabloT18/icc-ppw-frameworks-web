@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Reemplazar las funciones de cálculo del catálogo y el carrito por `computed` properties. Agregar búsqueda en tiempo real con `watch` y mostrar un resumen de precios reactivo en el carrito.
 

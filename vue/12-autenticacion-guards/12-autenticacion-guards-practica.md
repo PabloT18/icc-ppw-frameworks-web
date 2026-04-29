@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Implementar autenticación simulada con un formulario de login, un store de autenticación con persistencia, y guards en Vue Router para proteger la vista del carrito. Al finalizar, solo los usuarios autenticados podrán acceder al carrito.
 

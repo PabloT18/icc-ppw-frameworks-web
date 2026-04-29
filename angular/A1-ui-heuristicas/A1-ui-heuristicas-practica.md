@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Realizar una auditoría heurística sobre una interfaz separada del proyecto incremental principal, documentando hallazgos por cada heurística relevante.
 

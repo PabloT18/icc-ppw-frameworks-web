@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Crear el proyecto incremental `ppw-angular-21` con Angular 21, routing habilitado y una estructura inicial preparada para continuar el resto de módulos sin rehacer la base.
 
@@ -44,7 +44,7 @@ En esta fase la carpeta [angular/01-instalacion-configuracion/files](files/READM
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Crear el proyecto
 
@@ -103,7 +103,7 @@ export const routes: Routes = [
 ];
 ```
 
-Explicación técnica: esta ruta base garantiza que más adelante se puedan agregar nuevas páginas sin romper el arranque inicial.
+Explicación: esta ruta base garantiza que más adelante se puedan agregar nuevas páginas sin romper el arranque inicial.
 
 ### Paso 3. Crear la página inicial
 
@@ -125,7 +125,7 @@ import { Component } from '@angular/core';
 export class HomePage {}
 ```
 
-Explicación técnica: el curso parte desde componentes standalone para no depender de `AppModule`.
+Explicación: el curso parte desde componentes standalone para no depender de `AppModule`.
 
 ### Paso 4. Simplificar `app.ts`
 
@@ -148,7 +148,7 @@ import { RouterOutlet } from '@angular/router';
 export class App {}
 ```
 
-Explicación técnica: se deja el componente raíz lo más pequeño posible para que las páginas controlen el contenido real.
+Explicación: se deja el componente raíz lo más pequeño posible para que las páginas controlen el contenido real.
 
 ### Paso 5. Ajustar estilos globales
 
@@ -170,7 +170,7 @@ body {
 }
 ```
 
-Explicación técnica: todavía no se introduce Tailwind. Aquí solo se fija una base visual neutra.
+Explicación: todavía no se introduce Tailwind. Aquí solo se fija una base visual neutra.
 
 ### Paso 6. Registrar la configuración global
 
@@ -186,7 +186,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-Explicación técnica: este provider se convertirá en el punto de extensión para HTTP, guards y otras capacidades futuras.
+Explicación: este provider se convertirá en el punto de extensión para HTTP, guards y otras capacidades futuras.
 
 ---
 

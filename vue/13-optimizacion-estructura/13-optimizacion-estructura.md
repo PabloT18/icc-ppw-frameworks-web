@@ -73,7 +73,7 @@ const GraficoVentas = defineAsyncComponent({
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Estructura de carpetas recomendada
 

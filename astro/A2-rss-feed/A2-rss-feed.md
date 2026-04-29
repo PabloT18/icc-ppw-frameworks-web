@@ -55,7 +55,7 @@ Astro tiene soporte nativo para generar feeds RSS con el paquete `@astrojs/rss`.
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Instalar `@astrojs/rss`
 

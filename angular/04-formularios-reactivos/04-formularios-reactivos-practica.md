@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Agregar al proyecto `ppw-angular-21` un formulario reactivo moderno para registrar estudiantes, con tipado fuerte, validaciones reutilizables y mensajes de error claros.
 
@@ -43,7 +43,7 @@ La carpeta [angular/04-formularios-reactivos/files](files/README.md) queda prepa
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Ruta del formulario
 
@@ -82,13 +82,13 @@ export class StudentsFormPage {
 
 Crear `StudentsFormPage` como componente standalone y registrarlo en las rutas.
 
-Explicación técnica: el formulario ya vive en una ruta real del proyecto, no en un ejemplo aislado.
+Explicación: el formulario ya vive en una ruta real del proyecto, no en un ejemplo aislado.
 
 ### Paso 2. Construir el `FormGroup` con `nonNullable`
 
 Copiar la estructura base y verificar que los controles no trabajen con `null`.
 
-Explicación técnica: este cambio reduce errores de tipado y hace más predecible el manejo del formulario.
+Explicación: este cambio reduce errores de tipado y hace más predecible el manejo del formulario.
 
 ### Paso 3. Crear el template con `formControlName`
 
@@ -113,7 +113,7 @@ Explicación técnica: este cambio reduce errores de tipado y hace más predecib
 </form>
 ```
 
-Explicación técnica: el template solo enlaza controles; la estructura y validación viven en TypeScript.
+Explicación: el template solo enlaza controles; la estructura y validación viven en TypeScript.
 
 ### Paso 4. Mostrar errores con una función auxiliar
 
@@ -125,13 +125,13 @@ Agregar una función para devolver mensajes por campo y mostrarla con `@if`.
 }
 ```
 
-Explicación técnica: este patrón reduce duplicación y mejora mantenibilidad.
+Explicación: este patrón reduce duplicación y mejora mantenibilidad.
 
 ### Paso 5. Agregar un validador reutilizable
 
 Crear `only-letters.validator.ts` y aplicarlo al campo nombre.
 
-Explicación técnica: cuando una regla tiene semántica propia, debe salir del componente.
+Explicación: cuando una regla tiene semántica propia, debe salir del componente.
 
 ### Paso 6. Implementar `save()`
 
@@ -151,13 +151,13 @@ save() {
 }
 ```
 
-Explicación técnica: `getRawValue()` devuelve el modelo tipado completo del formulario.
+Explicación: `getRawValue()` devuelve el modelo tipado completo del formulario.
 
 ### Paso 7. Agregar acceso desde la lista de estudiantes
 
 Incluir un enlace o botón visible hacia `/students/new`.
 
-Explicación técnica: el formulario se integra al flujo de navegación ya existente.
+Explicación: el formulario se integra al flujo de navegación ya existente.
 
 ---
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Migrar el estado del carrito del composable `useCarrito` a un Pinia store con persistencia automática en localStorage. Al finalizar, cualquier componente de la aplicación podrá acceder al carrito sin prop-drilling ni refs compartidas manualmente.
 

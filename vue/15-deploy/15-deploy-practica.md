@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Publicar el proyecto `ppw-vue-app` en Netlify o Vercel de forma que sea accesible desde cualquier navegador, con SPA routing configurado correctamente y variables de entorno de producción.
 

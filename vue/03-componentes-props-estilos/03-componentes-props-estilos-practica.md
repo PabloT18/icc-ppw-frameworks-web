@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Descomponer la UI del proyecto en componentes reutilizables. Al finalizar, el proyecto tendrá una tarjeta de producto (`ProductCard`) y una tarjeta contenedora genérica (`BaseCard`), ambas funcionando con props tipadas y estilos scoped.
 

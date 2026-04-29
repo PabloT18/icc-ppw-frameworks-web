@@ -138,7 +138,7 @@ form.usuario = 'ana@mail.com' // en script (sin .value)
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Binding de clase dinámico
 

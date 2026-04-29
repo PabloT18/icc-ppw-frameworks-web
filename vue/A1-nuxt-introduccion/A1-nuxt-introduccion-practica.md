@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Crear un proyecto Nuxt 3 desde cero que consuma la FakeStore API usando `useFetch`, con enrutamiento automático por archivos, meta tags con `useSeoMeta`, y un layout compartido entre páginas.
 

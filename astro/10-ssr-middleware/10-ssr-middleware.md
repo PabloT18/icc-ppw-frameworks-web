@@ -80,7 +80,7 @@ Astro.cookies.delete('session-id', { path: '/' });
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Configurar SSR con modo `server`
 

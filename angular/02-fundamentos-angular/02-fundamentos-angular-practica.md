@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Extender el proyecto `ppw-angular-21` para practicar componentes standalone, binding, signals, `computed`, `@if`, `@for` y `@switch` sobre una feature real y no sobre fragmentos desconectados.
 
@@ -42,7 +42,7 @@ La carpeta [angular/02-fundamentos-angular/files](files/README.md) queda reserva
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Registrar una nueva ruta
 
@@ -95,7 +95,7 @@ export class ProfilePage {
 
 Crear la estructura `features/profile/pages` y el componente `ProfilePage`.
 
-Explicación técnica: desde este módulo se enseña a organizar por feature y no por tipo de archivo global.
+Explicación: desde este módulo se enseña a organizar por feature y no por tipo de archivo global.
 
 ### Paso 2. Mostrar datos básicos con interpolación
 
@@ -106,7 +106,7 @@ Agregar en la plantilla el nombre completo y la edad.
 <p>Edad: {{ age() }}</p>
 ```
 
-Explicación técnica: la plantilla lee signals llamándolas como función.
+Explicación: la plantilla lee signals llamándolas como función.
 
 ### Paso 3. Agregar actualización de estado
 
@@ -124,7 +124,7 @@ changeData() {
 <button type="button" (click)="changeData()">Cambiar datos</button>
 ```
 
-Explicación técnica: `set()` reemplaza el valor completo de la signal.
+Explicación: `set()` reemplaza el valor completo de la signal.
 
 ### Paso 4. Renderizar habilidades con `@for`
 
@@ -140,7 +140,7 @@ Explicación técnica: `set()` reemplaza el valor completo de la signal.
 }
 ```
 
-Explicación técnica: `@empty` también sería válido, pero aquí se refuerza primero la lectura combinada de `@if` y `@for`.
+Explicación: `@empty` también sería válido, pero aquí se refuerza primero la lectura combinada de `@if` y `@for`.
 
 ### Paso 5. Crear una categoría de edad con `@switch`
 
@@ -178,7 +178,7 @@ readonly ageCategory = computed(() => {
 
 Agregar un enlace visible desde la página inicial hacia `/profile`.
 
-Explicación técnica: esto prepara el terreno para el módulo 03, donde la navegación será el foco principal.
+Explicación: esto prepara el terreno para el módulo 03, donde la navegación será el foco principal.
 
 ---
 

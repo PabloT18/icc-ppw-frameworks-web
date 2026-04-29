@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Conectar el proyecto `ppw-angular-21` a una API pública para listar personajes, agregando un servicio HTTP robusto, tipado fuerte y estados de carga, error y vacío.
 
@@ -44,7 +44,7 @@ La carpeta [angular/07-consumo-servicios-http/files](files/README.md) queda list
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Registrar `HttpClient`
 
@@ -83,19 +83,19 @@ export interface SimpsonsResponse {
 
 Agregar modelos, servicio y página para aislar el acceso remoto de otras features.
 
-Explicación técnica: se conserva la organización por feature incluso cuando aparece la capa HTTP.
+Explicación: se conserva la organización por feature incluso cuando aparece la capa HTTP.
 
 ### Paso 2. Implementar el servicio
 
 Crear `SimpsonsService` con `inject(HttpClient)` y un método `getCharacters(page: number)`.
 
-Explicación técnica: la URL base y el acceso remoto quedan encapsulados.
+Explicación: la URL base y el acceso remoto quedan encapsulados.
 
 ### Paso 3. Crear la página consumidora
 
 Definir un estado mínimo para loading, error y personajes.
 
-Explicación técnica: no se enseña solo la petición, sino el comportamiento completo de la pantalla.
+Explicación: no se enseña solo la petición, sino el comportamiento completo de la pantalla.
 
 ### Paso 4. Renderizar loading y error
 
@@ -107,19 +107,19 @@ Explicación técnica: no se enseña solo la petición, sino el comportamiento c
 }
 ```
 
-Explicación técnica: el usuario no debe depender de la consola para entender fallos.
+Explicación: el usuario no debe depender de la consola para entender fallos.
 
 ### Paso 5. Renderizar datos en cards o tabla
 
 Mostrar personajes usando `@for` y componentes visuales creados en módulos previos.
 
-Explicación técnica: el consumo HTTP se integra con la UI ya existente, no vive aislado.
+Explicación: el consumo HTTP se integra con la UI ya existente, no vive aislado.
 
 ### Paso 6. Agregar ruta y acceso desde el navbar
 
 Incluir la nueva vista dentro del flujo principal del proyecto.
 
-Explicación técnica: desde aquí la aplicación ya tiene una sección alimentada por datos remotos.
+Explicación: desde aquí la aplicación ya tiene una sección alimentada por datos remotos.
 
 ---
 

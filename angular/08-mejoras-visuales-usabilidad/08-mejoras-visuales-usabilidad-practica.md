@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Mejorar la experiencia de navegación y de consumo de datos del proyecto `ppw-angular-21` incorporando feedback visual, estados vacíos, error banners y paginación reutilizable.
 
@@ -44,7 +44,7 @@ La carpeta [angular/08-mejoras-visuales-usabilidad/files](files/README.md) queda
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Resaltado de ruta activa
 
@@ -71,37 +71,37 @@ readonly pageList = computed(() => Array.from({ length: this.pages() }, (_, inde
 
 Aplicar `routerLinkActive` a los enlaces principales.
 
-Explicación técnica: la navegación deja de ser solo funcional y pasa a comunicar ubicación actual.
+Explicación: la navegación deja de ser solo funcional y pasa a comunicar ubicación actual.
 
 ### Paso 2. Crear `ErrorBanner`
 
 Construir un componente visual simple para errores reutilizables.
 
-Explicación técnica: así los errores dejan de resolverse con bloques repetidos en cada página.
+Explicación: así los errores dejan de resolverse con bloques repetidos en cada página.
 
 ### Paso 3. Crear `EmptyState`
 
 Diseñar un componente para listas sin resultados.
 
-Explicación técnica: una lista vacía sin contexto suele percibirse como falla, no como estado válido.
+Explicación: una lista vacía sin contexto suele percibirse como falla, no como estado válido.
 
 ### Paso 4. Crear `Pagination`
 
 Agregar un componente que reciba total de páginas y página actual.
 
-Explicación técnica: la paginación se encapsula como comportamiento compartido y prepara futuras mejoras con query params.
+Explicación: la paginación se encapsula como comportamiento compartido y prepara futuras mejoras con query params.
 
 ### Paso 5. Integrar estados en `SimpsonsPage`
 
 Mostrar loading, error, empty state y lista de resultados usando los componentes creados.
 
-Explicación técnica: se centraliza la UX de datos remotos.
+Explicación: se centraliza la UX de datos remotos.
 
 ### Paso 6. Revisar consistencia visual y usabilidad
 
 Comprobar que mensajes, espaciado y acciones sean coherentes con el sistema visual ya definido.
 
-Explicación técnica: una mejora UX no debe romper consistencia previa.
+Explicación: una mejora UX no debe romper consistencia previa.
 
 ---
 

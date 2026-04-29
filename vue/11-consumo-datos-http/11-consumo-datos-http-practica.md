@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Reemplazar los datos simulados por una conexión real a la FakeStore API usando Axios. Al finalizar, el catálogo de productos se cargará desde una API pública con manejo correcto de estados de carga y error.
 

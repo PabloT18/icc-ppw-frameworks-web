@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Construir una aplicación de notas full-stack usando Nuxt 3 con Nitro como backend. Se implementará un CRUD completo con persistencia en memoria, API REST en `server/api/`, y la UI consumiendo la API con `useFetch` y `$fetch`.
 

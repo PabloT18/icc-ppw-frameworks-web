@@ -85,7 +85,7 @@ form?.addEventListener('submit', async (e) => {
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Activar modo híbrido para endpoints con POST
 

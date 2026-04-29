@@ -47,7 +47,7 @@ Si Vue es el motor, Nuxt es el auto completo: incluye Vue Router, manejo de head
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Instalación
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Extraer la lógica del carrito y los filtros del catálogo a composables reutilizables. Al finalizar, `App.vue` estará significativamente simplificado y la lógica de negocio vivirá en archivos dedicados.
 

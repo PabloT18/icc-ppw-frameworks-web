@@ -40,7 +40,7 @@ Astro DB es la solución de base de datos integrada en Astro: un wrapper sobre l
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Configurar Astro DB
 

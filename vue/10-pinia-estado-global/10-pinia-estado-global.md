@@ -110,7 +110,7 @@ const { incrementar, reiniciar } = store
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### `storeToRefs` vs desestructuración directa
 

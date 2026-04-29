@@ -126,7 +126,7 @@ import './assets/main.css'   // estilos globales
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Registrar y usar un componente
 

@@ -46,7 +46,7 @@ Todas las islas que importan el mismo store comparten el mismo estado — sin `p
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Instalación
 

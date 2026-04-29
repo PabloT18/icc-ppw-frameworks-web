@@ -122,7 +122,7 @@ A diferencia de `v-if`, `v-show` **siempre renderiza el elemento** pero controla
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Patrón de estado de carga: loading / error / empty / data
 

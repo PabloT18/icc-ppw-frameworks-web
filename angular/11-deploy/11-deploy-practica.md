@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Construir y publicar el proyecto `ppw-angular-21` usando GitHub Pages como destino principal de despliegue académico.
 
@@ -42,7 +42,7 @@ La carpeta [angular/11-deploy/files](files/README.md) queda lista para almacenar
 
 ---
 
-## 5. Código que el estudiante debe copiar inicialmente
+## 5. Código inicial
 
 ### 5.1 Instalar herramienta de despliegue
 
@@ -68,7 +68,7 @@ pnpm ng add angular-cli-ghpages
 
 Configurar `baseHref` y `deployUrl` con el nombre real del repositorio.
 
-Explicación técnica: esto permite que la app resuelva correctamente sus rutas y assets en GitHub Pages.
+Explicación: esto permite que la app resuelva correctamente sus rutas y assets en GitHub Pages.
 
 ### Paso 2. Generar build de producción
 
@@ -76,7 +76,7 @@ Explicación técnica: esto permite que la app resuelva correctamente sus rutas 
 pnpm ng build --configuration production
 ```
 
-Explicación técnica: el build de producción es la validación previa obligatoria antes de publicar.
+Explicación: el build de producción es la validación previa obligatoria antes de publicar.
 
 ### Paso 3. Publicar con `angular-cli-ghpages`
 
@@ -84,19 +84,19 @@ Explicación técnica: el build de producción es la validación previa obligato
 pnpm exec angular-cli-ghpages --dir=dist/ppw-angular-21/browser
 ```
 
-Explicación técnica: GitHub Pages publicará el contenido compilado, no el código fuente TypeScript.
+Explicación: GitHub Pages publicará el contenido compilado, no el código fuente TypeScript.
 
 ### Paso 4. Verificar la URL pública
 
 Abrir la URL publicada y recorrer rutas importantes de la aplicación.
 
-Explicación técnica: el éxito del deploy no se mide solo por una consola sin errores, sino por el funcionamiento real del sitio publicado.
+Explicación: el éxito del deploy no se mide solo por una consola sin errores, sino por el funcionamiento real del sitio publicado.
 
 ### Paso 5. Documentar la URL final en el README
 
 Agregar el enlace público del proyecto.
 
-Explicación técnica: así el repositorio y la evidencia del estudiante quedan alineados.
+Explicación: así el repositorio y la evidencia del estudiante quedan alineados.
 
 ---
 

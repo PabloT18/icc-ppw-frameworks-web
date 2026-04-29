@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Convertir el proyecto de una SPA de una sola vista a una aplicación multi-página con Vue Router. Se crearán vistas separadas para el catálogo, el carrito y la página principal, unidas por un layout con barra de navegación.
 

@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Reemplazar el código repetido de tarjetas de productos en `App.vue` por iteración con `v-for`, agregar filtros con `v-if`/`v-show`, y manejar correctamente los estados vacío y de carga simulada.
 

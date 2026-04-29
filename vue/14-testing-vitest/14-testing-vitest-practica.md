@@ -15,7 +15,7 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## Objetivo Práctico
+## Objetivo
 
 Configurar Vitest en el proyecto `ppw-vue-app` y escribir tests unitarios para utilidades, composables, stores y un componente. Al finalizar, el proyecto tendrá una suite de tests básica que se puede ejecutar con `pnpm test`.
 

@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Objetivo práctico
+## 1. Objetivo
 
 Implementar mejoras de usabilidad sobre un proyecto separado, basándose en los hallazgos obtenidos en A1.
 

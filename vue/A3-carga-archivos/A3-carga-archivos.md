@@ -53,7 +53,7 @@ reader.readAsDataURL(file)
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### Input de archivo y acceso a los archivos
 

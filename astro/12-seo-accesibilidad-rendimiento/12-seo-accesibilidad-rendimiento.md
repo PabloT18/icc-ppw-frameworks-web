@@ -89,7 +89,7 @@ Añade transiciones suaves entre páginas (tipo SPA) sin JavaScript adicional.
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Componente `SEO.astro`
 

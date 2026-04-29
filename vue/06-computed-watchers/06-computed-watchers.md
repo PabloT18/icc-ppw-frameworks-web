@@ -105,7 +105,7 @@ watchEffect(() => {
 
 ---
 
-## 3. Explicación Técnica Detallada
+## 3. Explicación
 
 ### `computed` con getter y setter
 

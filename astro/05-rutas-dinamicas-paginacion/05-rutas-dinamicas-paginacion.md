@@ -80,7 +80,7 @@ La URL generada es: `/recursos/1`, `/recursos/2`, etc.
 
 ---
 
-## 3. Explicación Técnica
+## 3. Explicación
 
 ### Flujo completo de una ruta dinámica
 
