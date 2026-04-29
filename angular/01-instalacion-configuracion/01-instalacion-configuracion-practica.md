@@ -1,18 +1,18 @@
-# Programación y Plataformas Web
+# Programacion y Plataformas Web
 
-# Frameworks Web: Angular 21
+# Angular para Desarrollo Web
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
 </div>
 
-## 01. Instalación y Configuración - Práctica
+## Modulo 1: Instalacion y Configuracion del Entorno - Practica
 
-### Autor
+### Autores
 
 **Pablo Torres**  
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+ptorresp@ups.edu.ec  
+GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
@@ -49,8 +49,9 @@ En esta fase la carpeta [angular/01-instalacion-configuracion/files](files/READM
 ### 5.1 Crear el proyecto
 
 ```bash
-pnpm create @angular@latest ppw-angular-21
+ng new ppw-angular-21 --routing --style=scss --ssr=false
 cd ppw-angular-21
+pnpm install
 pnpm start
 ```
 
@@ -114,7 +115,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
-  standalone: true,
   template: `
     <section>
       <h1>PPW Angular 21</h1>
@@ -137,24 +137,22 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet],
-  template: `
-    <main class="app-shell">
-      <router-outlet />
-    </main>
-  `,
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  title = 'ppw-angular-21';
+}
 ```
 
 Explicación: se deja el componente raíz lo más pequeño posible para que las páginas controlen el contenido real.
 
 ### Paso 5. Ajustar estilos globales
 
-Agregar un estilo global mínimo en `src/styles.css`.
+Agregar un estilo global minimo en `src/styles.scss`.
 
-```css
+```scss
 :root {
   font-family: Inter, system-ui, sans-serif;
   color: #172033;
@@ -170,23 +168,26 @@ body {
 }
 ```
 
-Explicación: todavía no se introduce Tailwind. Aquí solo se fija una base visual neutra.
+Explicacion: todavia no se introduce Tailwind. Aqui solo se fija una base visual neutra.
 
-### Paso 6. Registrar la configuración global
+### Paso 6. Registrar la configuracion global
 
-Verificar que `app.config.ts` usa el router moderno.
+Verificar que `app.config.ts` usa el router moderno con deteccion de cambios optimizada.
 
 ```ts
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)],
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+  ],
 };
 ```
 
-Explicación: este provider se convertirá en el punto de extensión para HTTP, guards y otras capacidades futuras.
+Explicacion: `provideZoneChangeDetection` optimiza la deteccion de cambios agrupando eventos. Este archivo sera el punto de extension para HTTP, guards y otras capacidades futuras.
 
 ---
 
