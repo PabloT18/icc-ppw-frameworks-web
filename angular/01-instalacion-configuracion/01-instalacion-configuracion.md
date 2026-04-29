@@ -1,119 +1,210 @@
-# Programación y Plataformas Web
+# Programacion y Plataformas Web
 
-# Frameworks Web: Angular 21
+# Angular para Desarrollo Web
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
 </div>
 
-## 01. Instalación y Configuración
+## Modulo 1: Instalacion y Configuracion del Entorno
 
-### Autor
+### Autores
 
 **Pablo Torres**  
-📧 [ptorresp@ups.edu.ec](mailto:ptorresp@ups.edu.ec)  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
+ptorresp@ups.edu.ec  
+GitHub: [PabloT18](https://github.com/PabloT18)
 
 ---
 
-## 1. Objetivo del tema
+## 1. Objetivo del Modulo
 
-Configurar un proyecto base con Angular 21 que sirva como punto de partida para todo el recorrido incremental del bloque Angular. Desde este módulo se fija la línea técnica del curso: standalone components, router moderno, tipado fuerte y una estructura de proyecto preparada para crecer sin rehacer la base en cada práctica.
+Configurar el entorno de desarrollo necesario para trabajar con Angular, crear un proyecto con Angular CLI usando TypeScript, entender la estructura inicial generada y dejar el proyecto listo para comenzar el desarrollo incremental que se construira a lo largo de todos los modulos.
 
 ---
 
-## 2. Explicación conceptual
+## 2. Explicacion Conceptual
 
-Angular 21 permite trabajar con una arquitectura más ligera que la clásica basada en `AppModule`. En lugar de comenzar con módulos raíz grandes, el enfoque moderno se apoya en:
+### Que es Angular?
 
-- componentes standalone
-- configuración centralizada con `app.config.ts`
-- rutas con `provideRouter`
-- servicios registrados con providers funcionales
-- una estructura de features más fácil de mantener
+Angular es un **framework completo para construir aplicaciones web**. Fue creado por Google en 2016 (version 2, reescritura total del antiguo AngularJS) y es actualmente uno de los frameworks mas utilizados en entornos enterprise.
 
-### ¿Qué problema resuelve una buena configuración inicial?
+A diferencia de React o Vue, Angular es un framework opinionated: incluye todo lo que necesitas desde el inicio (router, cliente HTTP, formularios, inyeccion de dependencias, herramientas de testing) sin necesidad de elegir bibliotecas externas.
 
-| Sin configuración base | Con configuración base moderna |
+### Por que usar Angular?
+
+| Caracteristica | Descripcion |
 |---|---|
-| Cada práctica redefine la estructura | Todas las prácticas continúan sobre el mismo proyecto |
-| Se mezclan componentes, páginas y utilidades | La estructura separa responsabilidades desde el inicio |
-| Queda código legacy con `AppModule` o patrones mezclados | Se parte desde Angular 21 con standalone y providers modernos |
-| Se vuelve difícil desplegar o escalar | El proyecto queda listo para navegación, formularios y servicios |
+| Framework completo | Incluye router, HttpClient, formularios reactivos y DI sin configuracion extra |
+| TypeScript nativo | El proyecto se genera directamente en TypeScript; no es opcional |
+| Angular CLI | Generador de codigo que crea componentes, servicios, guards, pipes con un comando |
+| Arquitectura escalable | Convenciones claras para proyectos grandes con muchos modulos y equipos |
+| Demanda laboral | Muy usado en proyectos enterprise, bancos, gobiernos y grandes empresas |
+| Standalone components | Desde Angular 17+, cada componente puede existir sin un NgModule padre |
+
+### Angular vs otros frameworks
+
+| Aspecto | Vanilla JS | React | Angular | Vue | Astro |
+|---|---|---|---|---|---|
+| Tipo | Lenguaje | Biblioteca de UI | Framework completo | Framework progresivo | Framework multi-renderizado |
+| Curva de aprendizaje | Baja (base) | Media | Alta | Media-baja | Media |
+| Estructura del proyecto | Manual | Flexible | Opinionated (convenciones fuertes) | Semi-opinionado | Semi-opinionado |
+| Manejo del DOM | Manual | Virtual DOM | Change Detection + Signals | Virtual DOM | Islas de interactividad |
+| Estado | Manual | Hooks (useState) | Signals / RxJS | ref / reactive | useState (islands) |
+| Rutas | Manual | React Router (externa) | Angular Router (incluida) | Vue Router (incluida) | Sistema de archivos |
+| Formularios | Manual | Bibliotecas externas | Reactive Forms (incluido) | VeeValidate (externa) | Limitado |
+| Cliente HTTP | Manual | fetch / axios (externos) | HttpClient (incluido) | axios (externo) | fetch nativo |
+| Recomendado para | Aprender fundamentos | SPAs y apps dinamicas | Proyectos enterprise | Apps medianas a grandes | Sitios con contenido estatico |
+
+### Que es Angular CLI?
+
+**Angular CLI** (`@angular/cli`) es la herramienta de linea de comandos oficial de Angular. Sus responsabilidades principales son:
+
+- **Crear proyectos**: genera la estructura inicial con todas las configuraciones correctas
+- **Generar piezas**: crea componentes, servicios, guards, pipes, modulos con `ng generate`
+- **Servir en desarrollo**: levanta un servidor con recarga automatica (`ng serve`)
+- **Construir para produccion**: compila, minifica y optimiza la aplicacion (`ng build`)
+- **Ejecutar tests**: corre pruebas unitarias y e2e
+
+### Evolucion de Angular: de NgModule a Standalone
+
+Antes de Angular 14, todo componente debia pertenecer a un `NgModule`. Esto generaba boilerplate innecesario en proyectos pequenos.
+
+| Enfoque | Descripcion | Recomendado |
+|---|---|---|
+| NgModule (clasico) | Componentes agrupados en modulos; cada modulo declara sus imports | No (legacy) |
+| Standalone (moderno) | Cada componente declara sus propios imports directamente | Si (Angular 17+) |
+
+Desde Angular 17 el modo standalone es el default. En este curso usamos Angular 21 con standalone desde el inicio.
+
+### Por que pnpm?
+
+**pnpm** es un gestor de paquetes alternativo a npm y yarn. Sus ventajas:
+
+- Instala mas rapido que npm
+- Usa un almacen global de paquetes (no duplica en `node_modules`)
+- Ahorra espacio en disco cuando hay multiples proyectos
+- Comandos compatibles con npm (`pnpm add`, `pnpm install`, `pnpm run dev`)
 
 ---
 
-## 3. Fundamento técnico
+## 3. Fundamento Tecnico
 
-### 3.1 Angular CLI como generador de la base
+### Herramientas necesarias
 
-Angular CLI crea una base de proyecto con convenciones útiles para desarrollo, compilación y despliegue. Para este curso conviene que el proyecto nazca con routing y stylesheet consistente.
+| Herramienta | Version recomendada | Verificar con |
+|---|---|---|
+| Node.js | >= 18.x LTS | `node --version` |
+| pnpm | >= 9.x | `pnpm --version` |
+| Angular CLI | >= 21.x | `ng version` |
+| Git | Cualquier version reciente | `git --version` |
+| VS Code | Ultima version estable | — |
+
+### Instalar Angular CLI globalmente
 
 ```bash
-pnpm create @angular@latest
+pnpm add -g @angular/cli
 ```
 
-Si se usa `ng new`, la idea es equivalente: crear una aplicación limpia y coherente con Angular 21.
+Verificar la instalacion:
 
-### 3.2 Standalone components
-
-El enfoque standalone reduce fricción porque cada componente declara sus imports directamente y no depende de un módulo agregado para existir.
-
-```ts
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  template: `<h1>Hola Angular 21</h1>`,
-})
-export class App {}
+```bash
+ng version
 ```
 
-### 3.3 Configuración con `app.config.ts`
+### Crear proyecto con Angular CLI
 
-La configuración global vive en un archivo pequeño donde se registran router, cliente HTTP, animaciones o providers globales.
+```bash
+ng new ppw-angular-21 --routing --style=scss --ssr=false
+cd ppw-angular-21
+pnpm install
+```
+
+Los argumentos significan:
+
+- `ppw-angular-21` → nombre del proyecto y carpeta creada
+- `--routing` → genera `app.routes.ts` con el router configurado desde el inicio
+- `--style=scss` → usa SCSS como preprocesador de estilos
+- `--ssr=false` → desactiva Server-Side Rendering (no necesario para este curso)
+
+Despues de crear el proyecto, instalar dependencias con pnpm:
+
+```bash
+pnpm install
+```
+
+### Estructura inicial del proyecto
+
+```
+ppw-angular-21/
+├── public/                    # Archivos estaticos servidos directamente
+│   └── favicon.ico
+├── src/                       # Codigo fuente
+│   ├── app/
+│   │   ├── app.config.ts      # Configuracion global (providers, router, HTTP)
+│   │   ├── app.routes.ts      # Definicion de rutas de la aplicacion
+│   │   ├── app.ts             # Componente raiz
+│   │   └── app.html           # Template del componente raiz
+│   ├── index.html             # HTML principal (unico en una SPA)
+│   ├── main.ts                # Punto de entrada de la aplicacion
+│   └── styles.scss            # Estilos globales
+├── .editorconfig
+├── .gitignore
+├── angular.json               # Configuracion del workspace de Angular CLI
+├── package.json               # Dependencias y scripts
+├── tsconfig.app.json          # Configuracion TypeScript para la app
+├── tsconfig.json              # Configuracion TypeScript base
+└── tsconfig.spec.json         # Configuracion TypeScript para tests
+```
+
+### El archivo `main.ts`
 
 ```ts
-import { ApplicationConfig } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+
+bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+```
+
+- `bootstrapApplication`: arranca la aplicacion standalone sin un NgModule raiz
+- `App`: componente raiz que contendra toda la aplicacion
+- `appConfig`: objeto de configuracion con todos los providers globales
+
+### El archivo `app.config.ts`
+
+```ts
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)],
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+  ],
 };
 ```
 
-### 3.4 Estructura inicial recomendada
+Este archivo reemplaza el rol del `AppModule` de versiones antiguas. Aqui se registran todos los providers globales:
 
-```text
-src/
-  app/
-    app.config.ts
-    app.routes.ts
-    app.ts
-    core/
-    shared/
-    features/
-      home/
-        pages/
+| Provider | Funcion |
+|---|---|
+| `provideZoneChangeDetection` | Optimiza la deteccion de cambios con coalescencia de eventos |
+| `provideRouter(routes)` | Registra el router con las rutas definidas en `app.routes.ts` |
+| `provideHttpClient()` | Se agregara cuando se necesite consumir APIs REST |
+| `provideAnimations()` | Se agregara cuando se usen animaciones de Angular Material |
+
+### El archivo `app.routes.ts`
+
+```ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [];
 ```
 
-Esta estructura evita que el proyecto crezca de forma caótica. `core` concentra servicios transversales, `shared` reutiliza piezas comunes y `features` organiza la funcionalidad del negocio.
+Aqui se definen todas las rutas de la aplicacion. Se expandira en el modulo de navegacion.
 
-### 3.5 Decisiones que se fijan desde este módulo
-
-- usar `pnpm` como gestor principal
-- trabajar con standalone components
-- centralizar rutas en `app.routes.ts`
-- mantener tipado fuerte en TypeScript
-- evitar generar código no usado solo por costumbre
-
----
-
-## 4. Ejemplos de código
-
-### Ejemplo 1: raíz mínima con router outlet
+### El componente raiz `app.ts`
 
 ```ts
 import { Component } from '@angular/core';
@@ -121,65 +212,129 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet],
-  template: `
-    <main class="app-shell">
-      <router-outlet />
-    </main>
-  `,
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  title = 'ppw-angular-21';
+}
 ```
 
-### Ejemplo 2: rutas iniciales
+- `standalone: true` ya no es necesario escribirlo en Angular 19+; los componentes son standalone por default
+- `imports: [RouterOutlet]` declara que este componente usa el outlet del router
+- `selector: 'app-root'` coincide con `<app-root>` en `index.html`
 
-```ts
-import { Routes } from '@angular/router';
-import { HomePage } from './features/home/pages/home-page';
+### Scripts disponibles (`package.json`)
 
-export const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
-];
+```json
+{
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  }
+}
 ```
 
+| Script | Comando | Descripcion |
+|---|---|---|
+| Desarrollo | `pnpm start` o `pnpm ng serve` | Levanta el servidor en `http://localhost:4200` con recarga automatica |
+| Build | `pnpm build` | Compila y genera `/dist` para produccion |
+| Watch | `pnpm watch` | Recompila al guardar cambios (modo desarrollo continuo) |
+| Test | `pnpm test` | Ejecuta pruebas unitarias con Karma y Jasmine |
+
+### Configuracion del workspace (`angular.json`)
+
+El archivo `angular.json` controla como Angular CLI construye, sirve y prueba la aplicacion. Las claves mas importantes:
+
+| Clave | Descripcion |
+|---|---|
+| `projects.[nombre].architect.build` | Configuracion del build de produccion (presupuestos de tamano, assets) |
+| `projects.[nombre].architect.serve` | Configuracion del servidor de desarrollo (puerto, proxy) |
+| `projects.[nombre].architect.test` | Configuracion del runner de tests |
+| `budgets` | Limites de tamano del bundle; alerta si el build los supera |
+
+### Estructura recomendada para el proyecto incremental
+
+Una vez creado el proyecto, organizar `src/app/` de la siguiente forma antes de comenzar el modulo 2:
+
+```
+src/
+  app/
+    app.config.ts
+    app.routes.ts
+    app.ts
+    app.html
+    app.scss
+    core/               # Servicios transversales (auth, interceptors, guards globales)
+    shared/             # Componentes, pipes y directivas reutilizables
+    features/           # Funcionalidad de negocio organizada por feature
+      home/
+        pages/
+          home-page.ts
+```
+
+Esta separacion evita que el proyecto crezca de forma caotica y es la convencion mas usada en proyectos Angular reales.
+
 ---
 
-## 5. Buenas prácticas
+## 4. Buenas Practicas
 
-- Define desde el inicio el nombre del proyecto guía y úsalo en todo el tutorial.
-- No mezcles ejemplos viejos con `AppModule` si el curso está orientado a Angular 21.
-- Crea una estructura incremental real; no reinicies el proyecto en cada módulo.
-- Mantén la configuración mínima al principio y agrega providers conforme el proyecto los necesite.
-- Documenta cualquier decisión global que afecte a módulos futuros.
-
----
-
-## 6. Errores comunes
-
-- Crear un proyecto nuevo en cada práctica en lugar de continuar el mismo.
-- Generar componentes en cualquier carpeta sin una convención clara.
-- Mezclar `href` y navegación tradicional antes de tener router configurado.
-- Copiar configuración de versiones antiguas de Angular sin revisar si sigue vigente.
-- No dejar listo el proyecto para crecer y luego reorganizar todo a mitad del curso.
+- **Usar Angular CLI para todo**: no crear archivos de componentes a mano; usar `ng generate component` para mantener consistencia.
+- **No volver a `NgModule`**: el modo standalone es el estandar desde Angular 17. No mezclar ambos enfoques en el mismo proyecto.
+- **Mantener `app.config.ts` limpio**: agregar providers solo cuando se necesiten; no registrar todo desde el inicio.
+- **Usar SCSS**: permite variables, anidamiento y mixins que CSS plano no ofrece.
+- **Commitear el boilerplate antes de modificar**: el primer commit debe ser el proyecto limpio generado por CLI.
+- **Un solo proyecto incremental**: no crear un proyecto nuevo para cada practica; continuar siempre el mismo.
+- **Tipado fuerte siempre**: evitar `any`; definir interfaces para todos los datos del dominio.
 
 ---
 
-## 7. Relación con el proyecto incremental
+## 5. Errores Comunes
 
-Este módulo crea la base del proyecto `ppw-angular-21`, que será extendido en todos los temas siguientes. Lo que aquí se configure debe seguir vigente cuando se agreguen navegación, formularios, estilos, servicios HTTP, autenticación y guards.
+| Error | Causa | Solucion |
+|---|---|---|
+| `command not found: ng` | Angular CLI no instalado globalmente | `pnpm add -g @angular/cli` |
+| `command not found: pnpm` | pnpm no instalado | `npm install -g pnpm` |
+| Puerto 4200 ocupado | Otro proceso usa el puerto | `pnpm ng serve --port 4201` |
+| `Cannot find module '@angular/core'` | Dependencias no instaladas | `pnpm install` dentro de la carpeta del proyecto |
+| Componente no se muestra | No se agrego al `imports` del componente padre | Agregar el componente al array `imports` del padre |
+| Error de version de Node | Node demasiado antiguo | Instalar Node >= 18 LTS desde nodejs.org |
+| `NG0100: ExpressionChangedAfterItHasBeenCheckedError` | Mutacion del estado en un ciclo de deteccion de cambios | Mover la logica a `ngOnInit` o usar `signal()` |
 
 ---
 
-## 8. Referencias recomendadas
+## 6. Relacion con el Proyecto Incremental
 
-- [angular/docs/angular-deploy.md](../docs/angular-deploy.md)
-- Documentación oficial de Angular: https://angular.dev
-- Guía oficial de instalación: https://angular.dev/installation
+Este modulo establece la base del proyecto **ppw-angular-21** que se construira durante todos los modulos. Al finalizar este modulo, el proyecto tiene:
+
+- Estructura de carpetas inicial con `core/`, `shared/` y `features/`
+- Servidor de desarrollo funcionando en `localhost:4200`
+- TypeScript configurado
+- Router registrado en `app.config.ts`
+- Boilerplate limpio listo para el modulo 2
+
+Cada modulo posterior agrega funcionalidad a este mismo proyecto sin crear uno nuevo.
+
+> Ver solucion de referencia en: `angular/solver/ppw-angular-21/`
+
+---
+
+## 7. Parte Practica
+
+> Ver guia de practica en: `01-instalacion-configuracion-practica.md`
+
+[Ir a la guia de practica del modulo](./01-instalacion-configuracion-practica.md)
+
+---
+
+## 8. Referencias
+
+- [Documentacion oficial de Angular](https://angular.dev)
+- [Angular CLI](https://angular.dev/tools/cli)
+- [Guia oficial de instalacion](https://angular.dev/installation)
+- [Standalone components en Angular](https://angular.dev/guide/components)
+- [Sitio oficial de pnpm](https://pnpm.io)

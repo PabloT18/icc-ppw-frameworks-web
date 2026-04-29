@@ -93,7 +93,7 @@ Responder de esta manera:
 | Initialize a new git repository? | Yes (opcional) |
 | TypeScript? | Yes - strict |
 
-> Captura pendiente: proceso de creación con el asistente interactivo.
+![Proceso de creación del proyecto con el asistente CLI](assets/01-instalacion.png)
 
 ---
 
@@ -118,7 +118,7 @@ Adapter             None
 Integrations        None
 ```
 
-> Captura pendiente: salida de `pnpm astro info` en la terminal.
+![Salida del comando `pnpm astro info`](assets/01-astro-info.png)
 
 ---
 
@@ -204,7 +204,7 @@ pnpm dev
 
 Abrir en el navegador: `http://localhost:4321`
 
-> Captura pendiente: página de inicio de Astro Campus corriendo en `localhost:4321`.
+![Sitio corriendo en `http://localhost:4321`](assets/01-localhost.png)
 
 ---
 
@@ -219,7 +219,7 @@ pnpm preview
 
 La salida del build muestra cuántas páginas se generaron y el tamaño de cada archivo.
 
-> Captura pendiente: salida de `pnpm build` con estadísticas de páginas generadas.
+![Salida del build de producción](assets/01-build.png)
 
 ---
 
