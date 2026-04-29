@@ -298,7 +298,17 @@ Cada modulo posterior agrega funcionalidad a este mismo proyecto sin crear uno n
 
 ---
 
-## 7. Referencias
+## 7. Parte Práctica
+
+> Ver guía de práctica en: `01-instalacion-configuracion-practica.md`
+
+[Ir a la guia de práctica del modulo](./01-instalacion-configuracion-practica.md)
+
+
+---
+
+
+## 8. Referencias
 
 - [Documentacion oficial de React](https://react.dev)
 - [Documentacion de Vite](https://vite.dev)
