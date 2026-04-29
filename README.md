@@ -101,10 +101,25 @@ El repositorio está organizado de la siguiente manera:
    └── A4-ecommerce-carrito-nanostores/
 /vue
    ├── 01-instalacion-configuracion/
-   │   └── 01-instalacion-configuracion.md
-   ├── 02-fundamentos/
-   │   └── 02-fundamentos.md
-   └── ...
+   ├── 02-fundamentos-vue/
+   ├── 03-componentes-props/
+   ├── 04-eventos-estado/
+   ├── 05-computed-watch/
+   ├── 06-listas-condicionales/
+   ├── 07-formularios-validacion/
+   ├── 08-composables/
+   ├── 09-rutas-layouts-navegacion/
+   ├── 10-pinia-estado-global/
+   ├── 11-consumo-datos-http/
+   ├── 12-autenticacion-guards/
+   ├── 13-optimizacion-estructura/
+   ├── 14-testing-vitest/
+   ├── 15-deploy/
+   ├── A1-nuxt-introduccion/
+   ├── A2-panel-administrativo/
+   ├── A3-carga-archivos/
+   ├── A4-ssr-seo-nuxt/
+   └── A5-proyecto-fullstack/
 /docs
    ├── angular-deploy.md
    ├── angular-observables-rx.md
@@ -139,25 +154,27 @@ Cada estudiante debe crear **su propio proyecto independiente** en el framework 
 
 #### Para Angular:
 ```bash
-ng new mi-proyecto-angular
+pnpm dlx @angular/cli@latest new mi-proyecto-angular
 cd mi-proyecto-angular
 ```
 
-#### Para React:
+#### Para React (Vite + TypeScript):
 ```bash
-npx create-react-app mi-proyecto-react
+pnpm create vite@latest mi-proyecto-react -- --template react-ts
 cd mi-proyecto-react
+pnpm install
 ```
 
 #### Para Vue:
 ```bash
-npm init vue@latest mi-proyecto-vue
+pnpm create vue@latest mi-proyecto-vue
 cd mi-proyecto-vue
+pnpm install
 ```
 
 #### Para Astro:
 ```bash
-npm create astro@latest mi-proyecto-astro
+pnpm create astro@latest mi-proyecto-astro
 cd mi-proyecto-astro
 ```
 
@@ -263,8 +280,6 @@ Las evidencias de cada práctica se encuentran en la carpeta [`evidencias/`](./e
 
 \```bash
 # Instalar dependencias
-npm install
-# o
 pnpm install
 \```
 
@@ -272,16 +287,16 @@ pnpm install
 
 \```bash
 # Para Angular
-ng serve
+pnpm ng serve
 
 # Para React
-npm start
+pnpm dev
 
 # Para Vue
-npm run dev
+pnpm dev
 
 # Para Astro
-npm run dev
+pnpm dev
 \```
 
 ## Autor
