@@ -72,9 +72,7 @@ npm install -g pnpm
 git --version
 ```
 
-Debe mostrar cualquier version reciente.
 
-> Captura pendiente: terminal mostrando las tres versiones correctamente.
 
 ---
 
@@ -92,17 +90,22 @@ El comando mostrara un menu interactivo. Seleccionar:
 
 1. **Select a framework:** `React`
 2. **Select a variant:** `TypeScript`
+3. **Install with pnpm and start now?** Yes
 
 **¿Que hace este comando?**
 - `pnpm create vite` invoca el scaffolding oficial de Vite
 - `react-store` es el nombre del proyecto y la carpeta que se creara
 - En versiones recientes de Vite, el menu interactivo reemplaza al flag `--template`
 
+
+![alt text](assets/01-create.png)
+
+Ya deja ejecutando el proyecto por lo que se debe cancelca con `Ctrl +C`
+
 Al terminar, entrar a la carpeta e instalar dependencias:
 
 ```bash
 cd react-store
-pnpm install
 ```
 
 Levantar el servidor de desarrollo para verificar que funciona:
@@ -113,7 +116,7 @@ pnpm dev
 
 Abrir el navegador en `http://localhost:5173`. Debe aparecer la pagina de bienvenida de Vite + React.
 
-> Captura pendiente: navegador mostrando la pagina inicial de Vite + React.
+![alt text](assets/01-page.png)
 
 Detener el servidor con `Ctrl + C`.
 
@@ -285,7 +288,7 @@ El navegador debe mostrar:
 - Fondo gris claro
 - Texto "ReactStore" y "Proyecto en construccion..."
 
-> Captura pendiente: navegador con el proyecto limpio mostrando "ReactStore".
+![> Captura pendiente: navegador con el proyecto limpio mostrando "ReactStore".](assets/02-store-page.png)
 
 Verificar que no hay errores en la consola del navegador (`F12` → Console).
 
