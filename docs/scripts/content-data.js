@@ -149,7 +149,7 @@ window.frameworksData = {
         number: '01',
         title: 'Instalación y Configuración',
         description: 'Proyecto base incremental con Angular 21, standalone y router moderno.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/01-instalacion-configuracion/01-instalacion-configuracion.md' },
           { text: 'Práctica', url: '../angular/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
@@ -159,7 +159,7 @@ window.frameworksData = {
         number: '02',
         title: 'Fundamentos de Angular',
         description: 'Standalone, signals, computed y control flow moderno en Angular 21.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/02-fundamentos-angular/02-fundamentos-angular.md' },
           { text: 'Práctica', url: '../angular/02-fundamentos-angular/02-fundamentos-angular-practica.md' }
@@ -169,7 +169,7 @@ window.frameworksData = {
         number: '03',
         title: 'Navegación',
         description: 'Router moderno, shell principal y rutas parametrizadas.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/03-navegacion/03-navegacion.md' },
           { text: 'Práctica', url: '../angular/03-navegacion/03-navegacion-practica.md' }
@@ -179,7 +179,7 @@ window.frameworksData = {
         number: '04',
         title: 'Formularios Reactivos',
         description: 'Reactive Forms modernos con tipado fuerte y validadores reutilizables.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/04-formularios-reactivos/04-formularios-reactivos.md' },
           { text: 'Práctica', url: '../angular/04-formularios-reactivos/04-formularios-reactivos-practica.md' }
@@ -189,7 +189,7 @@ window.frameworksData = {
         number: '05',
         title: 'Estilos y Layout con Tailwind',
         description: 'Layout responsive, tipografía y composición visual base con TailwindCSS.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/05-estilos-layout-tailwind/05-estilos-layout-tailwind.md' },
           { text: 'Práctica', url: '../angular/05-estilos-layout-tailwind/05-estilos-layout-tailwind-practica.md' }
@@ -199,7 +199,7 @@ window.frameworksData = {
         number: '06',
         title: 'Temas y Componentes UI',
         description: 'Sistema visual, DaisyUI y componentes reutilizables para la interfaz.',
-        type: 'practica',
+
         links: [
           { text: 'Material', url: '../angular/06-temas-componentes-ui/06-temas-componentes-ui.md' },
           { text: 'Práctica', url: '../angular/06-temas-componentes-ui/06-temas-componentes-ui-practica.md' }
@@ -209,7 +209,7 @@ window.frameworksData = {
         number: '07',
         title: 'Consumo de Servicios HTTP',
         description: 'HttpClient, servicios tipados y estados de carga/error en UI.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/07-consumo-servicios-http/07-consumo-servicios-http.md' },
           { text: 'Práctica', url: '../angular/07-consumo-servicios-http/07-consumo-servicios-http-practica.md' }
@@ -219,7 +219,7 @@ window.frameworksData = {
         number: '08',
         title: 'Mejoras Visuales y Usabilidad',
         description: 'Feedback visual, paginación, estados vacíos y mejoras de experiencia de usuario.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad.md' },
           { text: 'Práctica', url: '../angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad-practica.md' }
@@ -229,7 +229,7 @@ window.frameworksData = {
         number: '09',
         title: 'Firebase y Autenticación',
         description: 'Autenticación, Firestore y persistencia por usuario en la nube.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/09-firebase-autenticacion/09-firebase-autenticacion.md' },
           { text: 'Práctica', url: '../angular/09-firebase-autenticacion/09-firebase-autenticacion-practica.md' }
@@ -239,7 +239,7 @@ window.frameworksData = {
         number: '10',
         title: 'Guards y Seguridad de Rutas',
         description: 'Rutas protegidas, guards funcionales y navegación condicionada por sesión.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas.md' },
           { text: 'Práctica', url: '../angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas-practica.md' }
@@ -249,24 +249,37 @@ window.frameworksData = {
         number: '11',
         title: 'Deploy',
         description: 'Build de producción y publicación del proyecto incremental.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../angular/11-deploy/11-deploy.md' },
           { text: 'Práctica', url: '../angular/11-deploy/11-deploy-practica.md' }
         ]
       },
+      
+    ],
+    addons:[
+
       {
-        number: '12',
-        title: 'Track Heurístico',
-        description: 'Evaluación e implementación heurística como proyecto separado del recorrido principal.',
-        type: 'practica',
+        number: 'A1',
+        title: 'Heurísticas de Usabilidad',
+                description: 'Evaluación e implementación heurística como proyecto separado del recorrido principal.',
+
+        type: 'Addon',
         links: [
-          { text: 'A1 Material', url: '../angular/A1-ui-heuristicas/A1-ui-heuristicas.md' },
-          { text: 'A1 Práctica', url: '../angular/A1-ui-heuristicas/A1-ui-heuristicas-practica.md' },
-          { text: 'A2 Material', url: '../angular/A2-ui-heuristicas-impl/A2-ui-heuristicas-impl.md' },
-          { text: 'A2 Práctica', url: '../angular/A2-ui-heuristicas-impl/A2-ui-heuristicas-impl-practica.md' }
+          { text: 'Material', url:url_git+ '/angular/A1-ui-heuristicas/A1-ui-heuristicas.md' },
+          { text: 'Práctica', url:url_git+ '/angular/A1-ui-heuristicas/A1-ui-heuristicas-practica.md' }
         ]
-      }
+      },
+        {
+        number: 'A2',
+        title: 'Heurísticas de Usabilidad',
+        description: 'Evaluación e implementación heurística como proyecto separado del recorrido principal.',
+        type: 'Addon',
+        links: [
+          { text: 'Material', url:url_git+ '/angular/A2-ui-heuristicas-impl/A2-ui-heuristicas-impl.md' },
+          { text: 'Práctica', url:url_git+ '/angular/A2-ui-heuristicas-impl/A2-ui-heuristicas-impl-practica.md' }
+        ]
+      },
     ],
     resources: [
       {
@@ -303,7 +316,7 @@ window.frameworksData = {
         number: '01',
         title: 'Instalación y Configuración',
         description: 'Entorno de desarrollo, proyecto astro-campus y primeros pasos con Astro v5.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/01-instalacion-configuracion/01-instalacion-configuracion.md' },
           { text: 'Práctica', url: '../astro/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
@@ -313,7 +326,7 @@ window.frameworksData = {
         number: '02',
         title: 'Fundamentos de Astro',
         description: 'Componentes .astro, frontmatter, props, slots y primeras páginas.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/02-fundamentos-astro/02-fundamentos-astro.md' },
           { text: 'Práctica', url: '../astro/02-fundamentos-astro/02-fundamentos-astro-practica.md' }
@@ -323,7 +336,7 @@ window.frameworksData = {
         number: '03',
         title: 'Rutas, Layouts y Navegación',
         description: 'Sistema de archivos como rutas, BaseLayout, Header, Footer y página 404.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion.md' },
           { text: 'Práctica', url: '../astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion-practica.md' }
@@ -333,7 +346,7 @@ window.frameworksData = {
         number: '04',
         title: 'Componentes, Props y Estilos',
         description: 'Props tipadas con TypeScript, scoped styles, variables CSS y sistema de tokens.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/04-componentes-props-estilos/04-componentes-props-estilos.md' },
           { text: 'Práctica', url: '../astro/04-componentes-props-estilos/04-componentes-props-estilos-practica.md' }
@@ -343,7 +356,7 @@ window.frameworksData = {
         number: '05',
         title: 'Rutas Dinámicas y Paginación',
         description: 'getStaticPaths, slugs, paginación con paginate() y páginas de detalle.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion.md' },
           { text: 'Práctica', url: '../astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion-practica.md' }
@@ -353,7 +366,7 @@ window.frameworksData = {
         number: '06',
         title: 'Contenido Markdown y Collections',
         description: 'Content Collections, esquemas Zod, frontmatter tipado y renderizado de Markdown.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/06-contenido-markdown-collections/06-contenido-markdown-collections.md' },
           { text: 'Práctica', url: '../astro/06-contenido-markdown-collections/06-contenido-markdown-collections-practica.md' }
@@ -363,7 +376,7 @@ window.frameworksData = {
         number: '07',
         title: 'Consumo de Datos en Build Time',
         description: 'fetch() en frontmatter, datos de APIs externas y generación estática de páginas.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/07-consumo-datos-build-time/07-consumo-datos-build-time.md' },
           { text: 'Práctica', url: '../astro/07-consumo-datos-build-time/07-consumo-datos-build-time-practica.md' }
@@ -373,7 +386,7 @@ window.frameworksData = {
         number: '08',
         title: 'Interactividad y LocalStorage',
         description: 'Scripts del cliente, localStorage, favoritos sin framework y define:vars.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/08-interactividad-localstorage/08-interactividad-localstorage.md' },
           { text: 'Práctica', url: '../astro/08-interactividad-localstorage/08-interactividad-localstorage-practica.md' }
@@ -383,7 +396,7 @@ window.frameworksData = {
         number: '09',
         title: 'Formularios y Endpoints',
         description: 'API Routes, modo hybrid, validación de formularios y respuestas JSON.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/09-formularios-endpoints/09-formularios-endpoints.md' },
           { text: 'Práctica', url: '../astro/09-formularios-endpoints/09-formularios-endpoints-practica.md' }
@@ -393,7 +406,7 @@ window.frameworksData = {
         number: '10',
         title: 'SSR y Middleware',
         description: 'Modo server, Node adapter, defineMiddleware, Astro.locals y endpoints SSR.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/10-ssr-middleware/10-ssr-middleware.md' },
           { text: 'Práctica', url: '../astro/10-ssr-middleware/10-ssr-middleware-practica.md' }
@@ -403,7 +416,7 @@ window.frameworksData = {
         number: '11',
         title: 'Autenticación y Protección de Rutas',
         description: 'Login con cookies httpOnly, validación en middleware y rutas protegidas.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas.md' },
           { text: 'Práctica', url: '../astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas-practica.md' }
@@ -413,7 +426,7 @@ window.frameworksData = {
         number: '12',
         title: 'SEO, Accesibilidad y Rendimiento',
         description: 'Meta tags, Open Graph, landmarks ARIA, View Transitions y skip links.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento.md' },
           { text: 'Práctica', url: '../astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento-practica.md' }
@@ -423,17 +436,18 @@ window.frameworksData = {
         number: '13',
         title: 'Deploy',
         description: 'Build de producción, netlify.toml y publicación en Netlify o Cloudflare Pages.',
-        type: 'teoria',
+        
         links: [
           { text: 'Material', url: '../astro/13-deploy/13-deploy.md' },
           { text: 'Práctica', url: '../astro/13-deploy/13-deploy-practica.md' }
         ]
-      },
+      },],
+    addons:[
       {
         number: 'A1',
         title: 'Islands Architecture e Integraciones',
         description: 'Directivas client:*, integración React y barra de búsqueda como isla.',
-        type: 'practica',
+        type: 'Addon',
         links: [
           { text: 'Material', url: '../astro/A1-islands-integraciones/A1-islands-integraciones.md' },
           { text: 'Práctica', url: '../astro/A1-islands-integraciones/A1-islands-integraciones-practica.md' }
@@ -443,7 +457,7 @@ window.frameworksData = {
         number: 'A2',
         title: 'RSS Feed',
         description: 'Generación de feed RSS con @astrojs/rss y autodiscovery en el layout.',
-        type: 'practica',
+        type: 'Addon',
         links: [
           { text: 'Material', url: '../astro/A2-rss-feed/A2-rss-feed.md' },
           { text: 'Práctica', url: '../astro/A2-rss-feed/A2-rss-feed-practica.md' }
@@ -453,7 +467,7 @@ window.frameworksData = {
         number: 'A3',
         title: 'Astro DB y Server Actions',
         description: 'Base de datos libSQL integrada, Server Actions con Zod y sistema de likes.',
-        type: 'practica',
+        type: 'Addon',
         links: [
           { text: 'Material', url: '../astro/A3-astro-db-server-actions/A3-astro-db-server-actions.md' },
           { text: 'Práctica', url: '../astro/A3-astro-db-server-actions/A3-astro-db-server-actions-practica.md' }
@@ -463,7 +477,7 @@ window.frameworksData = {
         number: 'A4',
         title: 'E-commerce: Carrito con NanoStores',
         description: 'Estado compartido entre islas React con NanoStores y carrito de compras.',
-        type: 'practica',
+        type: 'Addon',
         links: [
           { text: 'Material', url: '../astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores.md' },
           { text: 'Práctica', url: '../astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores-practica.md' }
@@ -522,216 +536,223 @@ window.frameworksData = {
         number: '01',
         title: 'Instalación y Configuración',
         description: 'Proyecto ReactStore con Vite, React 19, TypeScript y pnpm. Estructura de carpetas y configuración inicial.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/01-instalacion-configuracion/01-instalacion-configuracion.md' },
-          { text: 'Práctica', url: '../react/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
+          { text: 'Material', url:url_git+ '/react/01-instalacion-configuracion/01-instalacion-configuracion.md' },
+          { text: 'Práctica', url:url_git+ '/react/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
         ]
       },
       {
         number: '02',
         title: 'Fundamentos de React',
         description: 'JSX, componentes funcionales, props, renderizado condicional y CSS Modules.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/02-fundamentos-react/02-fundamentos-react.md' },
-          { text: 'Práctica', url: '../react/02-fundamentos-react/02-fundamentos-react-practica.md' }
+          { text: 'Material', url:url_git+ '/react/02-fundamentos-react/02-fundamentos-react.md' },
+          { text: 'Práctica', url:url_git+ '/react/02-fundamentos-react/02-fundamentos-react-practica.md' }
         ]
       },
       {
         number: '03',
         title: 'Componentes, Props y Estilos',
         description: 'Composición de componentes, tipado de props con TypeScript y sistema de estilos con CSS Modules.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/03-componentes-props-estilos/03-componentes-props-estilos.md' },
-          { text: 'Práctica', url: '../react/03-componentes-props-estilos/03-componentes-props-estilos-practica.md' }
+          { text: 'Material', url:url_git+ '/react/03-componentes-props-estilos/03-componentes-props-estilos.md' },
+          { text: 'Práctica', url:url_git+ '/react/03-componentes-props-estilos/03-componentes-props-estilos-practica.md' }
         ]
       },
       {
         number: '04',
         title: 'Eventos y Estado con useState',
         description: 'Manejo de eventos, estado local con useState y patrones de actualización inmutable.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/04-eventos-estado-useState/04-eventos-estado-useState.md' },
-          { text: 'Práctica', url: '../react/04-eventos-estado-useState/04-eventos-estado-useState-practica.md' }
+          { text: 'Material', url:url_git+ '/react/04-eventos-estado-useState/04-eventos-estado-useState.md' },
+          { text: 'Práctica', url:url_git+ '/react/04-eventos-estado-useState/04-eventos-estado-useState-practica.md' }
         ]
       },
       {
         number: '05',
         title: 'Renderizado de Listas y Condicionales',
         description: 'Renderizado de listas con map, claves, renderizado condicional y componentes de estado vacío.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/05-renderizado-listas-condicionales/05-renderizado-listas-condicionales.md' },
-          { text: 'Práctica', url: '../react/05-renderizado-listas-condicionales/05-renderizado-listas-condicionales-practica.md' }
+          { text: 'Material', url:url_git+ '/react/05-renderizado-listas-condicionales/05-renderizado-listas-condicionales.md' },
+          { text: 'Práctica', url:url_git+ '/react/05-renderizado-listas-condicionales/05-renderizado-listas-condicionales-practica.md' }
         ]
       },
       {
         number: '06',
         title: 'Efectos y Fetch con useEffect',
         description: 'Ciclo de vida con useEffect, consumo de APIs, estados de carga/error y limpieza de efectos.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/06-efectos-useEffect-fetch/06-efectos-useEffect-fetch.md' },
-          { text: 'Práctica', url: '../react/06-efectos-useEffect-fetch/06-efectos-useEffect-fetch-practica.md' }
+          { text: 'Material', url:url_git+ '/react/06-efectos-useEffect-fetch/06-efectos-useEffect-fetch.md' },
+          { text: 'Práctica', url:url_git+ '/react/06-efectos-useEffect-fetch/06-efectos-useEffect-fetch-practica.md' }
         ]
       },
       {
         number: '07',
         title: 'Custom Hooks',
         description: 'Extracción de lógica reutilizable en hooks personalizados, useProducts y useProductDetail.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/07-custom-hooks/07-custom-hooks.md' },
-          { text: 'Práctica', url: '../react/07-custom-hooks/07-custom-hooks-practica.md' }
+          { text: 'Material', url:url_git+ '/react/07-custom-hooks/07-custom-hooks.md' },
+          { text: 'Práctica', url:url_git+ '/react/07-custom-hooks/07-custom-hooks-practica.md' }
         ]
       },
       {
         number: '08',
         title: 'Formularios y Validación',
         description: 'Formularios controlados, validación con React Hook Form y manejo de errores por campo.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/08-formularios-validacion/08-formularios-validacion.md' },
-          { text: 'Práctica', url: '../react/08-formularios-validacion/08-formularios-validacion-practica.md' }
+          { text: 'Material', url:url_git+ '/react/08-formularios-validacion/08-formularios-validacion.md' },
+          { text: 'Práctica', url:url_git+ '/react/08-formularios-validacion/08-formularios-validacion-practica.md' }
         ]
       },
       {
         number: '09',
         title: 'Rutas, Layouts y React Router',
         description: 'Navegación con React Router v7, rutas anidadas, layouts compartidos y páginas de error.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/09-rutas-layouts-react-router/09-rutas-layouts-react-router.md' },
-          { text: 'Práctica', url: '../react/09-rutas-layouts-react-router/09-rutas-layouts-react-router-practica.md' }
+          { text: 'Material', url:url_git+ '/react/09-rutas-layouts-react-router/09-rutas-layouts-react-router.md' },
+          { text: 'Práctica', url:url_git+ '/react/09-rutas-layouts-react-router/09-rutas-layouts-react-router-practica.md' }
         ]
       },
       {
         number: '10',
         title: 'Context API y Estado Global',
         description: 'Estado compartido con Context API, FavoritesContext, AuthContext y rutas protegidas.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/10-context-api-estado-global/10-context-api-estado-global.md' },
-          { text: 'Práctica', url: '../react/10-context-api-estado-global/10-context-api-estado-global-practica.md' }
+          { text: 'Material', url:url_git+ '/react/10-context-api-estado-global/10-context-api-estado-global.md' },
+          { text: 'Práctica', url:url_git+ '/react/10-context-api-estado-global/10-context-api-estado-global-practica.md' }
         ]
       },
       {
         number: '11',
         title: 'Consumo de Datos y Caché con TanStack Query',
         description: 'Fetching declarativo, caché inteligente, paginación y sincronización con useQuery.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/11-consumo-datos-cache-tanstack-query/11-consumo-datos-cache-tanstack-query.md' },
-          { text: 'Práctica', url: '../react/11-consumo-datos-cache-tanstack-query/11-consumo-datos-cache-tanstack-query-practica.md' }
+          { text: 'Material', url:url_git+ '/react/11-consumo-datos-cache-tanstack-query/11-consumo-datos-cache-tanstack-query.md' },
+          { text: 'Práctica', url:url_git+ '/react/11-consumo-datos-cache-tanstack-query/11-consumo-datos-cache-tanstack-query-practica.md' }
         ]
       },
       {
         number: '12',
         title: 'Optimización del Renderizado',
         description: 'memo, useMemo, useCallback, lazy loading, Suspense y análisis con bundle visualizer.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/12-optimizacion-renderizado/12-optimizacion-renderizado.md' },
-          { text: 'Práctica', url: '../react/12-optimizacion-renderizado/12-optimizacion-renderizado-practica.md' }
+          { text: 'Material', url:url_git+ '/react/12-optimizacion-renderizado/12-optimizacion-renderizado.md' },
+          { text: 'Práctica', url:url_git+ '/react/12-optimizacion-renderizado/12-optimizacion-renderizado-practica.md' }
         ]
       },
       {
         number: '13',
         title: 'Autenticación y Rutas Protegidas',
         description: 'Login con JWT, AuthContext, PrivateRoute, persistencia de sesión y logout.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/13-autenticacion-rutas-protegidas/13-autenticacion-rutas-protegidas.md' },
-          { text: 'Práctica', url: '../react/13-autenticacion-rutas-protegidas/13-autenticacion-rutas-protegidas-practica.md' }
+          { text: 'Material', url:url_git+ '/react/13-autenticacion-rutas-protegidas/13-autenticacion-rutas-protegidas.md' },
+          { text: 'Práctica', url:url_git+ '/react/13-autenticacion-rutas-protegidas/13-autenticacion-rutas-protegidas-practica.md' }
         ]
       },
       {
         number: '14',
         title: 'Testing con Vitest y React Testing Library',
         description: 'Tests unitarios y de integración con Vitest, RTL, mocks y cobertura de código.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/14-testing-vitest-react-testing-library/14-testing-vitest-react-testing-library.md' },
-          { text: 'Práctica', url: '../react/14-testing-vitest-react-testing-library/14-testing-vitest-react-testing-library-practica.md' }
+          { text: 'Material', url:url_git+ '/react/14-testing-vitest-react-testing-library/14-testing-vitest-react-testing-library.md' },
+          { text: 'Práctica', url:url_git+ '/react/14-testing-vitest-react-testing-library/14-testing-vitest-react-testing-library-practica.md' }
         ]
       },
       {
         number: '15',
         title: 'Deploy',
         description: 'Build de producción, SPA routing, deploy en Netlify y Vercel con variables de entorno.',
-        type: 'teoria',
+        
         links: [
-          { text: 'Material', url: '../react/15-deploy/15-deploy.md' },
-          { text: 'Práctica', url: '../react/15-deploy/15-deploy-practica.md' }
+          { text: 'Material', url:url_git+ '/react/15-deploy/15-deploy.md' },
+          { text: 'Práctica', url:url_git+ '/react/15-deploy/15-deploy-practica.md' }
         ]
       },
-      {
+     
+    ],
+    addons:[
+       {
         number: 'A1',
         title: 'Zustand: Estado Global Avanzado',
         description: 'Gestión de estado con Zustand, middleware persist y devtools, migración desde Context API.',
-        type: 'practica',
+        type: 'Addon',
         links: [
-          { text: 'Material', url: '../react/A1-zustand-estado-global-avanzado/A1-zustand-estado-global-avanzado.md' },
-          { text: 'Práctica', url: '../react/A1-zustand-estado-global-avanzado/A1-zustand-estado-global-avanzado-practica.md' }
+          { text: 'Material', url:url_git+ '/react/A1-zustand-estado-global-avanzado/A1-zustand-estado-global-avanzado.md' },
+          { text: 'Práctica', url:url_git+ '/react/A1-zustand-estado-global-avanzado/A1-zustand-estado-global-avanzado-practica.md' }
         ]
       },
       {
         number: 'A2',
         title: 'Redux Toolkit',
         description: 'Estado centralizado con RTK, createSlice, createAsyncThunk y RTK DevTools.',
-        type: 'practica',
+        type: 'Addon',
         links: [
-          { text: 'Material', url: '../react/A2-redux-toolkit/A2-redux-toolkit.md' },
-          { text: 'Práctica', url: '../react/A2-redux-toolkit/A2-redux-toolkit-practica.md' }
+          { text: 'Material', url:url_git+ '/react/A2-redux-toolkit/A2-redux-toolkit.md' },
+          { text: 'Práctica', url:url_git+ '/react/A2-redux-toolkit/A2-redux-toolkit-practica.md' }
         ]
       },
       {
         number: 'A3',
         title: 'Panel Administrativo de Productos',
         description: 'CRUD completo con TanStack Query, mutaciones optimistas, tabla con orden y paginación.',
-        type: 'practica',
+        type: 'Addon',
         links: [
-          { text: 'Material', url: '../react/A3-panel-administrativo-productos/A3-panel-administrativo-productos.md' },
-          { text: 'Práctica', url: '../react/A3-panel-administrativo-productos/A3-panel-administrativo-productos-practica.md' }
+          { text: 'Material', url:url_git+ '/react/A3-panel-administrativo-productos/A3-panel-administrativo-productos.md' },
+          { text: 'Práctica', url:url_git+ '/react/A3-panel-administrativo-productos/A3-panel-administrativo-productos-practica.md' }
         ]
       },
       {
         number: 'A4',
         title: 'Carga de Archivos',
         description: 'Componente ImageUploader con drag & drop, validación de tipo/tamaño y previews.',
-        type: 'practica',
+        type: 'Addon',
         links: [
-          { text: 'Material', url: '../react/A4-carga-archivos/A4-carga-archivos.md' },
-          { text: 'Práctica', url: '../react/A4-carga-archivos/A4-carga-archivos-practica.md' }
+          { text: 'Material', url:url_git+ '/react/A4-carga-archivos/A4-carga-archivos.md' },
+          { text: 'Práctica', url:url_git+ '/react/A4-carga-archivos/A4-carga-archivos-practica.md' }
         ]
       },
       {
         number: 'A5',
         title: 'Calendario de Eventos',
         description: 'Mini calendario mensual con date-fns, eventos persistidos en localStorage y modal CRUD.',
-        type: 'practica',
+        type: 'Addon',
         links: [
-          { text: 'Material', url: '../react/A5-mern-calendar/A5-mern-calendar.md' },
-          { text: 'Práctica', url: '../react/A5-mern-calendar/A5-mern-calendar-practica.md' }
+          { text: 'Material', url:url_git+ '/react/A5-mern-calendar/A5-mern-calendar.md' },
+          { text: 'Práctica', url:url_git+ '/react/A5-mern-calendar/A5-mern-calendar-practica.md' }
         ]
       }
     ],
+
     resources: [
       {
         title: 'Documentación Oficial',
+        type: 'externo',
         description: 'Guías completas y referencias de React',
         url: 'https://react.dev'
       },
       {
         title: 'React Tutorial',
+        type: 'externo',
         description: 'Tutorial interactivo oficial de React',
         url: 'https://react.dev/learn'
       },
       {
         title: 'React en GitHub',
+        type: 'externo',
         description: 'Repositorio oficial y código fuente',
         url: 'https://github.com/facebook/react'
       }
@@ -742,70 +763,221 @@ window.frameworksData = {
     name: 'Vue',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg',
     color: '#42B883',
-    description: 'Material y Proyectos de Estudiantes',
+    description: 'Material Conceptual y Prácticas',
     modules: [
       {
         number: '01',
-        title: 'Calle Torres',
-        description: 'Proyecto de práctica en Vue',
-        type: 'practica',
+        title: 'Instalación y Configuración',
+        description: 'Proyecto ppw-vue-app con Vite, Vue 3, TypeScript y pnpm. Composition API y estructura base.',
         links: [
-          { text: 'Ver Proyecto', url: '../vue/calle_torres/' }
+          { text: 'Teoría', url: url_git+'vue/01-instalacion-configuracion/01-instalacion-configuracion.md' },
+          { text: 'Práctica', url: url_git+'vue/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
         ]
       },
       {
         number: '02',
-        title: 'Guamán Guanga',
-        description: 'Proyecto de práctica en Vue',
-        type: 'practica',
+        title: 'Fundamentos de Vue',
+        description: 'Composition API, ref, reactive, computed, watch y template syntax con script setup.',
         links: [
-          { text: 'Ver Proyecto', url: '../vue/guaman_guanga/' }
+          { text: 'Teoría', url: url_git+'vue/02-fundamentos-vue/02-fundamentos-vue.md' },
+          { text: 'Práctica', url: url_git+'vue/02-fundamentos-vue/02-fundamentos-vue-practica.md' }
         ]
       },
       {
         number: '03',
-        title: 'Ramón Serrano',
-        description: 'Proyecto de práctica en Vue',
-        type: 'practica',
+        title: 'Componentes y Props',
+        description: 'defineProps, defineEmits, v-model en componentes, slots y comunicación padre-hijo.',
         links: [
-          { text: 'Ver Proyecto', url: '../vue/ramon_serrano/' }
+          { text: 'Teoría', url: url_git+'vue/03-componentes-props/03-componentes-props.md' },
+          { text: 'Práctica', url: url_git+'vue/03-componentes-props/03-componentes-props-practica.md' }
         ]
       },
       {
         number: '04',
-        title: 'Vascónez Morocho',
-        description: 'Proyecto de práctica en Vue',
-        type: 'practica',
+        title: 'Estilos y Layout',
+        description: 'Scoped styles, CSS modules, variables CSS, layouts y diseño responsive.',
         links: [
-          { text: 'Ver Proyecto', url: '../vue/vasconez_morocho/' }
+          { text: 'Teoría', url: url_git+'vue/04-estilos-layout/04-estilos-layout.md' },
+          { text: 'Práctica', url: url_git+'vue/04-estilos-layout/04-estilos-layout-practica.md' }
+        ]
+      },
+      {
+        number: '05',
+        title: 'Directivas y Renderizado',
+        description: 'v-if, v-show, v-for con key, v-bind, v-on y renderizado condicional y de listas.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/05-directivas-renderizado/05-directivas-renderizado.md' },
+          { text: 'Práctica', url: url_git+'vue/05-directivas-renderizado/05-directivas-renderizado-practica.md' }
+        ]
+      },
+      {
+        number: '06',
+        title: 'Formularios y Validación',
+        description: 'v-model, modificadores, validación reactiva y patrones de formulario reutilizables.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/06-formularios-validacion/06-formularios-validacion.md' },
+          { text: 'Práctica', url: url_git+'vue/06-formularios-validacion/06-formularios-validacion-practica.md' }
+        ]
+      },
+      {
+        number: '07',
+        title: 'Composables',
+        description: 'Extracción de lógica reutilizable en composables: useCarrito, useFiltros, useLocalStorage.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/07-composables/07-composables.md' },
+          { text: 'Práctica', url: url_git+'vue/07-composables/07-composables-practica.md' }
+        ]
+      },
+      {
+        number: '08',
+        title: 'Vue Router',
+        description: 'Enrutamiento SPA, rutas dinámicas, rutas anidadas, navegación programática y RouterLink.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/08-vue-router/08-vue-router.md' },
+          { text: 'Práctica', url: url_git+'vue/08-vue-router/08-vue-router-practica.md' }
+        ]
+      },
+      {
+        number: '09',
+        title: 'Pinia: Estado Global',
+        description: 'Stores con Pinia, storeToRefs, pinia-plugin-persistedstate y estado compartido entre vistas.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/09-pinia-estado-global/09-pinia-estado-global.md' },
+          { text: 'Práctica', url: url_git+'vue/09-pinia-estado-global/09-pinia-estado-global-practica.md' }
+        ]
+      },
+      {
+        number: '10',
+        title: 'Ciclo de Vida y Watchers',
+        description: 'Hooks de ciclo de vida, watch, watchEffect y patrones para datos asíncronos.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/10-ciclo-vida-watchers/10-ciclo-vida-watchers.md' },
+          { text: 'Práctica', url: url_git+'vue/10-ciclo-vida-watchers/10-ciclo-vida-watchers-practica.md' }
+        ]
+      },
+      {
+        number: '11',
+        title: 'Consumo de Datos HTTP',
+        description: 'Axios, instancia configurada, interceptores, variables de entorno VITE_ y servicios tipados.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/11-consumo-datos-http/11-consumo-datos-http.md' },
+          { text: 'Práctica', url: url_git+'vue/11-consumo-datos-http/11-consumo-datos-http-practica.md' }
+        ]
+      },
+      {
+        number: '12',
+        title: 'Autenticación y Guards',
+        description: 'Login simulado con JWT, useAuthStore en Pinia, router.beforeEach y rutas protegidas.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/12-autenticacion-guards/12-autenticacion-guards.md' },
+          { text: 'Práctica', url: url_git+'vue/12-autenticacion-guards/12-autenticacion-guards-practica.md' }
+        ]
+      },
+      {
+        number: '13',
+        title: 'Optimización y Estructura',
+        description: 'Lazy loading de rutas, utilidades de formato, accesibilidad con ARIA y buenas prácticas.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/13-optimizacion-estructura/13-optimizacion-estructura.md' },
+          { text: 'Práctica', url: url_git+'vue/13-optimizacion-estructura/13-optimizacion-estructura-practica.md' }
+        ]
+      },
+      {
+        number: '14',
+        title: 'Testing con Vitest',
+        description: 'Vitest, @vue/test-utils, happy-dom, tests de composables, stores y componentes.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/14-testing-vitest/14-testing-vitest.md' },
+          { text: 'Práctica', url: url_git+'vue/14-testing-vitest/14-testing-vitest-practica.md' }
+        ]
+      },
+      {
+        number: '15',
+        title: 'Deploy',
+        description: 'Build de producción con Vite, manualChunks, SPA routing y deploy en Netlify y Vercel.',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/15-deploy/15-deploy.md' },
+          { text: 'Práctica', url: url_git+'vue/15-deploy/15-deploy-practica.md' }
+        ]
+      }
+    ],
+    addons: [
+      {
+        number: 'A1',
+        title: 'Introducción a Nuxt 3',
+        description: 'Proyecto ppw-nuxt-intro: SSR, enrutamiento por archivos, useFetch y useSeoMeta.',
+        type: 'Addon',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/A1-nuxt-introduccion/A1-nuxt-introduccion.md' },
+          { text: 'Práctica', url: url_git+'vue/A1-nuxt-introduccion/A1-nuxt-introduccion-practica.md' }
+        ]
+      },
+      {
+        number: 'A2',
+        title: 'Panel Administrativo',
+        description: 'Dashboard con sidebar, tabla de datos, paginación y CRUD completo con modales.',
+        type: 'Addon',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/A2-panel-administrativo/A2-panel-administrativo.md' },
+          { text: 'Práctica', url: url_git+'vue/A2-panel-administrativo/A2-panel-administrativo-practica.md' }
+        ]
+      },
+      {
+        number: 'A3',
+        title: 'Carga de Archivos',
+        description: 'Input file, URL.createObjectURL para preview, validación, drag & drop y barra de progreso.',
+        type: 'Addon',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/A3-carga-archivos/A3-carga-archivos.md' },
+          { text: 'Práctica', url: url_git+'vue/A3-carga-archivos/A3-carga-archivos-practica.md' }
+        ]
+      },
+      {
+        number: 'A4',
+        title: 'SSR, SEO y Rutas de Servidor',
+        description: 'Nuxt Nitro server routes como proxy, Open Graph, Twitter Cards y JSON-LD estructurado.',
+        type: 'Addon',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/A4-ssr-seo-nuxt/A4-ssr-seo-nuxt.md' },
+          { text: 'Práctica', url: url_git+'vue/A4-ssr-seo-nuxt/A4-ssr-seo-nuxt-practica.md' }
+        ]
+      },
+      {
+        number: 'A5',
+        title: 'Proyecto Full-Stack con Nuxt',
+        description: 'App de notas full-stack: Nuxt + Nitro CRUD API con useStorage, sin backend separado.',
+        type: 'Addon',
+        links: [
+          { text: 'Teoría', url: url_git+'vue/A5-proyecto-fullstack/A5-proyecto-fullstack.md' },
+          { text: 'Práctica', url: url_git+'vue/A5-proyecto-fullstack/A5-proyecto-fullstack-practica.md' }
         ]
       }
     ],
     resources: [
       {
         title: 'Documentación Oficial',
-        description: 'Guías completas y referencias de Vue',
+        description: 'Guías completas y referencias de Vue 3',
         url: 'https://vuejs.org'
       },
       {
-        title: 'Vue School',
-        description: 'Cursos y tutoriales de Vue',
-        url: 'https://vueschool.io'
+        title: 'Pinia',
+        description: 'Gestión de estado oficial para Vue 3',
+        url: 'https://pinia.vuejs.org'
       },
       {
-        title: 'Vue Mastery',
-        description: 'Plataforma de aprendizaje Vue',
-        url: 'https://www.vuemastery.com'
+        title: 'Vue Router',
+        description: 'Router oficial de Vue con composables',
+        url: 'https://router.vuejs.org'
       },
       {
-        title: 'Vuetify',
-        description: 'Framework de componentes Material Design',
-        url: 'https://vuetifyjs.com'
+        title: 'Nuxt 3',
+        description: 'Framework full-stack basado en Vue 3',
+        url: 'https://nuxt.com'
       },
       {
-        title: 'Vue en GitHub',
-        description: 'Repositorio oficial y código fuente',
-        url: 'https://github.com/vuejs/core'
+        title: 'Vite',
+        description: 'Herramienta de build ultrarrápida para Vue',
+        url: 'https://vitejs.dev'
       }
     ]
   }

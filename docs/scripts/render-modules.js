@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Renderizar contenido
   renderModules(data.modules);
+  if(data.addons){
+    renderModulesComplementarios(data.addons);
+  }
   renderResources(data.resources);
   
   // Renderizar features si existen (caso Astro)
@@ -50,6 +53,8 @@ function renderModules(modules = []) {
   container.appendChild(fragment);
 }
 
+
+
 // ===== FUNCIÓN AUXILIAR PARA CREAR CARD DE MÓDULO =====
 function createModuleCard(module) {
   const card = document.createElement('div');
@@ -60,9 +65,9 @@ function createModuleCard(module) {
   title.textContent = `${module.number}. ${module.title} `;
   
   const badge = document.createElement('span');
-  badge.className = `badge ${module.type}`;
-  badge.textContent = module.type === 'teoria' ? 'Teoría' : 'Práctica';
-  title.appendChild(badge);
+  badge.className = `badge teoria`;
+  badge.textContent = module.type === 'teoria' ? 'Teoría' : module.type;
+  if(module.type)title.appendChild(badge);
   
   // Descripción
   const description = document.createElement('p');
@@ -87,6 +92,8 @@ function createModuleCard(module) {
   
   return card;
 }
+
+
 
 // ===== FUNCIÓN PARA RENDERIZAR RECURSOS =====
 function renderResources(resources = []) {
@@ -180,4 +187,24 @@ function createFeatureCard(feature) {
   card.appendChild(description);
   
   return card;
+}
+
+
+// ===== FUNCIÓN PARA RENDERIZAR MÓDULOS Complementarios =====
+function renderModulesComplementarios(modules = []) {
+  const container = document.getElementById('modules-container-complementarios');
+  if (!container) return;
+  
+  // Limpiar contenedor
+  container.replaceChildren();
+  
+  // Crear fragment para mejor rendimiento
+  const fragment = document.createDocumentFragment();
+  
+  modules.forEach(module => {
+    const card = createModuleCard(module);
+    fragment.appendChild(card);
+  });
+  
+  container.appendChild(fragment);
 }
