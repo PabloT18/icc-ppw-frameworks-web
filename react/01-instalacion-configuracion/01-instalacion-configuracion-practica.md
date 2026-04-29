@@ -85,13 +85,18 @@ Debe mostrar cualquier version reciente.
 Desde la carpeta de trabajo del curso, ejecutar:
 
 ```bash
-pnpm create vite react-store -- --template react-ts
+pnpm create vite react-store
 ```
+
+El comando mostrara un menu interactivo. Seleccionar:
+
+1. **Select a framework:** `React`
+2. **Select a variant:** `TypeScript`
 
 **¿Que hace este comando?**
 - `pnpm create vite` invoca el scaffolding oficial de Vite
 - `react-store` es el nombre del proyecto y la carpeta que se creara
-- `--template react-ts` selecciona la plantilla de React con TypeScript
+- En versiones recientes de Vite, el menu interactivo reemplaza al flag `--template`
 
 Al terminar, entrar a la carpeta e instalar dependencias:
 
