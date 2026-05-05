@@ -26,7 +26,7 @@ export function UsuarioCard(usuario) {
   titulo.textContent = capitalize(usuario.nombre);
 
   const email = document.createElement('p');
-  email.textContent = `📧 ${usuario.email}`;
+  email.textContent = `correo ${usuario.email}`;
 
   const id = document.createElement('p');
   id.textContent = `ID: ${usuario.id}`;

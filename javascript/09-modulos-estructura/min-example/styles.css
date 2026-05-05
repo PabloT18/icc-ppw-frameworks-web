@@ -7,7 +7,7 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #003772 0%, #07508E 100%);
   min-height: 100vh;
 }
 
@@ -54,7 +54,7 @@ input:focus {
 button {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #07508E 0%, #003772 100%);
   color: white;
   border: none;
   border-radius: 8px;
