@@ -94,5 +94,5 @@ form.addEventListener('submit', (e) => {
    INICIALIZACIÓN
 ========================= */
 
-console.log('✅ Módulos cargados correctamente');
-console.log('📦 Usuarios importados:', usuarios);
+console.log('Módulos cargados correctamente');
+console.log('Usuarios importados:', usuarios);
