@@ -222,13 +222,12 @@ O puden usar el Angular Schematics
 ### Código del componente
 
 ```typescript
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-interfaz-page',
   standalone: true,
   templateUrl: './interfaz-page.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InterfazPage {}
 ```

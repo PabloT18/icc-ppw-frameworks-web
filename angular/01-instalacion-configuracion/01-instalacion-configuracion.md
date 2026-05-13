@@ -114,7 +114,7 @@ ng version
 ### Crear proyecto con Angular CLI
 
 ```bash
-ng new ppw-angular-21 --routing --style=scss --ssr=false
+ng new ppw-angular-21 --routing --style=css --ssr=false
 cd ppw-angular-21
 pnpm install
 ```
@@ -123,7 +123,7 @@ Los argumentos significan:
 
 - `ppw-angular-21` → nombre del proyecto y carpeta creada
 - `--routing` → genera `app.routes.ts` con el router configurado desde el inicio
-- `--style=scss` → usa SCSS como preprocesador de estilos
+- `--style=css` → usa CSS como formato de estilos
 - `--ssr=false` → desactiva Server-Side Rendering (no necesario para este curso)
 
 Despues de crear el proyecto, instalar dependencias con pnpm:
@@ -146,7 +146,7 @@ ppw-angular-21/
 │   │   └── app.html           # Template del componente raiz
 │   ├── index.html             # HTML principal (unico en una SPA)
 │   ├── main.ts                # Punto de entrada de la aplicacion
-│   └── styles.scss            # Estilos globales
+│   └── styles.css             # Estilos globales
 ├── .editorconfig
 ├── .gitignore
 ├── angular.json               # Configuracion del workspace de Angular CLI
@@ -173,13 +173,13 @@ bootstrapApplication(App, appConfig).catch((err) => console.error(err));
 ### El archivo `app.config.ts`
 
 ```ts
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
   ],
 };
@@ -189,7 +189,7 @@ Este archivo reemplaza el rol del `AppModule` de versiones antiguas. Aqui se reg
 
 | Provider | Funcion |
 |---|---|
-| `provideZoneChangeDetection` | Optimiza la deteccion de cambios con coalescencia de eventos |
+| `provideBrowserGlobalErrorListeners` | Proporciona manejadores globales de errores en el navegador |
 | `provideRouter(routes)` | Registra el router con las rutas definidas en `app.routes.ts` |
 | `provideHttpClient()` | Se agregara cuando se necesite consumir APIs REST |
 | `provideAnimations()` | Se agregara cuando se usen animaciones de Angular Material |
@@ -212,9 +212,10 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrl: './app.css',
 })
 export class App {
   title = 'ppw-angular-21';
@@ -222,8 +223,37 @@ export class App {
 ```
 
 - `standalone: true` ya no es necesario escribirlo en Angular 19+; los componentes son standalone por default
-- `imports: [RouterOutlet]` declara que este componente usa el outlet del router
+- `imports: [RouterOutlet]` declara que este componente usa `<router-outlet>`
 - `selector: 'app-root'` coincide con `<app-root>` en `index.html`
+
+### Que es `<router-outlet>`?
+
+`<router-outlet />` es un placeholder en la plantilla HTML que Angular usa para renderizar contenido dinamicamente. Aunque a primera vista parezca estar vacío, `RouterOutlet` es fundamental en Angular porque:
+
+1. **En esta etapa (setup)**: el outlet está vacío porque `app.routes.ts` no tiene rutas definidas
+2. **En etapas posteriores**: el outlet mostrará diferentes componentes según la URL actual (HomePage, ProfilePage, etc.)
+
+### Flujo de arranque: `index.html` → `app.ts` → `app.html`
+
+```
+1. index.html contiene: <app-root />
+   ↓
+2. app.ts (componente raiz) se carga y renderiza app.html
+   ↓
+3. app.html renderiza: <router-outlet />
+   ↓
+4. Cuando haya rutas, RouterOutlet mostrará el componente de esa ruta
+```
+
+Por ahora el flujo parece innecesario, pero esta arquitectura es la que Angular necesita para cambiar componentes sin recargar la página.
+
+### Estilos globales en `src/styles.css`
+
+En Angular, los estilos definidos en `src/styles.css` son globales y aplican a toda la aplicación.
+
+- `:root` corresponde al elemento `<html>` y sirve para definir estilos base globales (tipografía, color de texto, fondo).
+- `body` es el contenedor principal visible de la página; normalmente se usa `margin: 0` para eliminar el margen por defecto del navegador.
+- `.app-shell` es una clase de layout usada en `app.html` para envolver el contenido principal; por ejemplo, con `min-height: 100vh` y `padding` para dar estructura inicial.
 
 ### Scripts disponibles (`package.json`)
 
@@ -268,7 +298,7 @@ src/
     app.routes.ts
     app.ts
     app.html
-    app.scss
+    app.css
     core/               # Servicios transversales (auth, interceptors, guards globales)
     shared/             # Componentes, pipes y directivas reutilizables
     features/           # Funcionalidad de negocio organizada por feature
@@ -286,7 +316,7 @@ Esta separacion evita que el proyecto crezca de forma caotica y es la convencion
 - **Usar Angular CLI para todo**: no crear archivos de componentes a mano; usar `ng generate component` para mantener consistencia.
 - **No volver a `NgModule`**: el modo standalone es el estandar desde Angular 17. No mezclar ambos enfoques en el mismo proyecto.
 - **Mantener `app.config.ts` limpio**: agregar providers solo cuando se necesiten; no registrar todo desde el inicio.
-- **Usar SCSS**: permite variables, anidamiento y mixins que CSS plano no ofrece.
+- **Usar CSS al inicio**: simplifica el arranque del curso y evita complejidad de preprocesadores en los primeros modulos.
 - **Commitear el boilerplate antes de modificar**: el primer commit debe ser el proyecto limpio generado por CLI.
 - **Un solo proyecto incremental**: no crear un proyecto nuevo para cada practica; continuar siempre el mismo.
 - **Tipado fuerte siempre**: evitar `any`; definir interfaces para todos los datos del dominio.

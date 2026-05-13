@@ -18,29 +18,23 @@ GitHub: [PabloT18](https://github.com/PabloT18)
 
 ## Objetivo
 
-Crear el proyecto incremental `ppw-angular-21` con Angular 21, routing habilitado y una estructura inicial preparada para continuar el resto de módulos sin rehacer la base.
+Crear el proyecto incremental `ppw-angular-21` con Angular 21, setup inicial limpio y estructura de carpetas preparada para crecer en módulos posteriores **sin configurar rutas ni navegación**.
 
 ---
 
 ## Contexto de la práctica
 
-Esta práctica no es un ejercicio aislado. El proyecto que se crea aquí será el mismo que crecerá en los módulos 02, 03, 04 y posteriores. Por eso la meta no es solo “hacer que corra”, sino dejar una base limpia y mantenible.
+Esta práctica no es un ejercicio aislado. El proyecto que se crea aquí será el mismo que crecerá en los módulos 02, 03, 04 y posteriores. En este módulo **solo hacemos el setup base**; la navegación y rutas vienen en el módulo 03.
 
 ---
 
 ## Archivos que se van a modificar
 
 - `src/app/app.config.ts`
-- `src/app/app.routes.ts`
 - `src/app/app.ts`
+- `src/app/app.html`
 - `src/styles.css`
-- `src/app/features/home/pages/home-page.ts`
 
----
-
-## Archivos base desde `files`
-
-En esta fase la carpeta [angular/01-instalacion-configuracion/files](files/README.md) queda preparada para alojar los archivos base de arranque del proyecto. La práctica usa esa estructura como referencia de qué piezas deben existir.
 
 ---
 
@@ -49,11 +43,12 @@ En esta fase la carpeta [angular/01-instalacion-configuracion/files](files/READM
 ### Crear el proyecto
 
 ```bash
-ng new ppw-angular-21 --routing --style=scss --ssr=false
+ng new ppw-angular-21 --routing --style=css --ssr=false
 cd ppw-angular-21
 pnpm install
 pnpm start
 ```
+
 
 ### Estructura mínima esperada
 
@@ -62,11 +57,12 @@ src/
   app/
     app.config.ts
     app.routes.ts
+    app.css
     app.ts
-    features/
-      home/
-        pages/
-          home-page.ts
+    app.html
+  index.html
+  main.ts
+  styles.css
 ```
 
 ---
@@ -79,82 +75,14 @@ Comprueba que Angular CLI y el proyecto se ejecutan correctamente.
 
 ```bash
 ng version
-pnpm start
+ng serve -o
 ```
 
 Validación técnica: el navegador debe abrir la aplicación sin errores de compilación.
 
-### Paso 2. Configurar `app.routes.ts`
+### Paso 2: Limpiar la plantilla por defecto
 
-Copiar una configuración mínima de rutas.
-
-```ts
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-home-page',
-  template: `
-    <section>
-      <h1>PPW Angular 21</h1>
-      <p>Proyecto incremental listo para crecer.</p>
-    </section>
-  `,
-})
-export class HomePage {}
-```
-
-La separacion en `features/` evita que el proyecto crezca de forma caotica. Cada modulo futuro agregara su propia carpeta dentro de `features/`.
-
----
-
-## Paso 6: Configurar `app.routes.ts`
-
-**Que hace este paso?** Define la ruta inicial que conecta la URL raiz `/` con `HomePage`. Esta configuracion se expandira en el modulo de navegacion.
-
-Reemplazar el contenido de `src/app/app.routes.ts`:
-
-```ts
-import { Routes } from '@angular/router';
-import { HomePage } from './features/home/pages/home-page';
-
-export const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
-];
-```
-
-La ruta `**` redirige cualquier URL desconocida a la pagina de inicio, evitando pantallas en blanco.
-
----
-
-## Paso 7: Simplificar `app.ts`
-
-**Que hace este paso?** Deja el componente raiz lo mas pequeno posible. Las paginas son las que controlan el contenido real.
-
-Reemplazar el contenido de `src/app/app.ts`:
-
-```ts
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
-})
-export class App {
-  title = 'ppw-angular-21';
-}
-```
-
-Reemplazar el contenido de `src/app/app.html`:
+Angular CLI genera un `app.html` con mucho contenido de demostración. Reemplazar con una estructura mínima:
 
 ```html
 <main class="app-shell">
@@ -162,17 +90,47 @@ Reemplazar el contenido de `src/app/app.html`:
 </main>
 ```
 
-`RouterOutlet` es el punto donde Angular renderiza el componente que corresponde a la ruta activa.
+**Que hace esto**: `<router-outlet>` es el placeholder donde Angular renderizará componentes cuando el router esté configurado. Por ahora está vacío, pero está listo para cuando se implemente navegación.
 
 ---
 
-## Paso 8: Ajustar estilos globales
+
+
+## Paso 3: Verificar el componente raiz en `app.ts`
+
+**Que hace este paso?** Confirmar que `app.ts` viene con `RouterOutlet` importado y queda listo para renderizar rutas en modulos posteriores.
+
+Verificar que `src/app/app.ts` tenga esta estructura (viene generada por defecto):
+
+```ts
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  title = 'ppw-angular-21';
+}
+```
+
+**Por qué importa `RouterOutlet`?** Aunque ahora no se use para navegación, `RouterOutlet` es el mecanismo que Angular usará más adelante para renderizar diferentes componentes. Importarlo desde el inicio garantiza que el proyecto está listo.
+
+---
+
+## Paso 4: Ajustar estilos globales
 
 **Que hace este paso?** Establece una base visual neutra para toda la aplicacion. Tailwind se incorporara en el modulo de estilos.
 
-Reemplazar el contenido de `src/styles.scss`:
+En Angular, `src/styles.css` aplica estilos globales a toda la app (no solo a un componente). Por eso aqui definimos selectores base:
 
-```scss
+Reemplazar el contenido de `src/styles.css`:
+
+```css
 :root {
   font-family: Inter, system-ui, sans-serif;
   color: #172033;
@@ -185,47 +143,60 @@ body {
 
 .app-shell {
   min-height: 100vh;
+  padding: 2rem;
 }
 ```
 
+### Como funciona cada estilo
+
+- `:root`
+  Es el elemento raiz del documento HTML (`<html>`). Lo usamos para definir estilos base compartidos en toda la aplicacion, como tipografia, color de texto y color de fondo global.
+
+- `body`
+  Es el contenedor principal visible de la pagina. Con `margin: 0` quitamos el margen por defecto del navegador para que el layout no tenga espacios no controlados.
+
+- `.app-shell`
+  Es la clase del contenedor principal en `app.html`.
+  - `min-height: 100vh` hace que ocupe al menos toda la altura de la ventana.
+  - `padding: 2rem` agrega espacio interno para que el contenido no quede pegado a los bordes.
+
 ---
 
-## Paso 9: Verificar `app.config.ts`
+## Paso 5: Verificar `app.config.ts`
 
-**Que hace este paso?** Confirma que la configuracion global incluye `provideZoneChangeDetection`, que es la version generada por Angular CLI 21 y que se usara como punto de extension para modulos futuros.
+**Que hace este paso?** Confirma que la configuración global está en su estado por defecto, lista para extensión en futuros módulos.
 
-Verificar que `src/app/app.config.ts` tenga este contenido:
+Verificar que `src/app/app.config.ts` tenga este contenido (generado por CLI):
 
 ```ts
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
+
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-  ],
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes)
+  ]
 };
 ```
 
-En modulos siguientes se agregaran `provideHttpClient()` y otros providers en este mismo array.
+**Nota**: Este es el estado por defecto que genera Angular CLI. El archivo `app.routes.ts` existe pero está vacío. Esto no genera errores; simplemente significa que no hay rutas configuradas aún.
 
 ---
 
-## Paso 10: Verificar el resultado final
+## Paso 6: Verificar el resultado final
 
 **Que hace este paso?** Confirma que todos los cambios funcionan juntos antes de hacer el commit.
 
 ```bash
-pnpm start
+ng serve -o
 ```
 
 Abrir en el navegador: `http://localhost:4200`
 
-La pagina de bienvenida de Angular debe haber sido reemplazada por el contenido de `HomePage`.
-
-![Pagina HomePage funcionando en localhost:4200](assets/01-home-page.png)
+Debe renderizar `<router-outlet />` sin errores (está vacío porque no hay rutas, pero no hay errores de compilación).
 
 ---
 
@@ -236,22 +207,21 @@ La pagina de bienvenida de Angular debe haber sido reemplazada por el contenido 
 - [ ] `ng version` muestra Angular CLI >= 21
 - [ ] La carpeta `ppw-angular-21/` fue creada con la estructura correcta
 - [ ] `pnpm start` inicia sin errores de compilacion
-- [ ] `http://localhost:4200` muestra el contenido de `HomePage` (no la pagina de bienvenida de Angular)
-- [ ] La ruta `/` renderiza el titulo "PPW Angular 21"
-- [ ] Una ruta inexistente redirige a `/`
+- [ ] `http://localhost:4200` carga sin errores (aunque esté vacío en navegador)
+- [ ] `app.config.ts` importa `provideRouter(routes)` por defecto
+- [ ] `app.routes.ts` existe pero está vacío (`export const routes: Routes = []`)
 - [ ] No existe `AppModule` en el proyecto
 
 ---
 
 ## Entregables
 
-- Repositorio GitHub con el proyecto `ppw-angular-21` en su estado inicial
-- Archivo `README.md` en el repositorio indicando el proposito del proyecto
+- Repositorio GitHub con el proyecto `ppw-angular-21` en estado limpio
+- Archivo `README.md` indicando el propósito del proyecto
 - Capturas de pantalla en `evidencias/assets/`:
-  1. `01-ng-version.png` — salida de `ng version` en la terminal
-  2. `01-ng-new.png` — proceso de creacion del proyecto con Angular CLI
-  3. `01-app-inicio.png` — pagina de bienvenida de Angular antes de modificar
-  4. `01-home-page.png` — `HomePage` funcionando en `localhost:4200`
+  1. `01-ng-version.png` — salida de `ng version` en terminal
+  2. `01-ng-new.png` — proceso de creación del proyecto
+  3. `01-proyecto-limpio.png` — navegador con `http://localhost:4200` vacío pero sin errores
 
 ---
 
@@ -262,11 +232,11 @@ git add .
 git commit -m "feat: inicializar proyecto base ppw-angular-21"
 
 git add .
-git commit -m "feat: crear estructura de features y home-page inicial"
+git commit -m "feat: limpiar template default y dejar estructura mínima"
 
 git add .
-git commit -m "feat: configurar router con ruta raiz y wildcard"
+git commit -m "feat: configurar estilos globales"
 
 git add .
-git commit -m "END: Practica 01 - Instalacion y Configuracion completada"
+git commit -m "END: Practica 01 - Setup inicial completado"
 ```
