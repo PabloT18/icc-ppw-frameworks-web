@@ -29,12 +29,10 @@ function validarCampo(campo) {
   const valor = campo.value.trim();
   const nombre = campo.name;
   let error = '';
-
   // Validar required (obligatorio)
   if (campo.hasAttribute('required') && !valor) {
     error = 'Este campo es obligatorio';
   }
-
   // Validaciones específicas por campo
   if (!error && valor) {
     if (nombre === 'nombre') {
@@ -44,13 +42,11 @@ function validarCampo(campo) {
         error = 'Solo letras y espacios';
       }
     }
-
     if (nombre === 'email') {
       if (!REGEX.email.test(valor)) {
         error = 'Email inválido';
       }
     }
-
     if (nombre === 'password') {
       if (valor.length < 8) {
         error = 'Mínimo 8 caracteres';
@@ -63,7 +59,6 @@ function validarCampo(campo) {
       }
     }
   }
-
   // Mostrar u ocultar error
   if (error) {
     mostrarError(campo, error);
@@ -105,6 +100,8 @@ function limpiarError(campo) {
   if (errorDiv) {
     errorDiv.textContent = '';
   }
+  validarCampo(campo);
+  
 }
 
 
