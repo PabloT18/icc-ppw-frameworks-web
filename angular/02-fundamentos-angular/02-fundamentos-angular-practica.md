@@ -18,21 +18,32 @@
 
 ## 1. Objetivo
 
-Extender el proyecto `ppw-angular-21` para practicar componentes standalone, binding, signals, `computed`, `@if`, `@for` y `@switch` sobre una feature real y no sobre fragmentos desconectados.
+Extender el proyecto `ppw-angular-21` para practicar creacion y composicion de componentes standalone reutilizables usando una sola ruta inicial. Se aplicaran signals, `computed`, `@if` y `@for` sin entrar aun en navegacion multipagina.
 
 ---
 
 ## 2. Contexto de la práctica
 
-Partimos del proyecto creado en el módulo 01. En esta práctica se crea una feature `profile` con una página simple que representa información personal, habilidades y proyectos. El objetivo es usar estado local moderno y renderizado declarativo.
+Partimos del proyecto limpio creado en el modulo 01, que ya incluye el router base configurado. En este modulo trabajamos con **una sola ruta inicial** (`/`) y construimos una pantalla compuesta por componentes reutilizables:
+
+- `AppHeaderComponent`
+- `AppHeroComponent`
+
+No se crea `ProfilePage`, no se agregan rutas adicionales y no se trabaja navegacion avanzada.
 
 ---
 
 ## 3. Archivos que se van a modificar
 
 - `src/app/app.routes.ts`
-- `src/app/features/home/pages/home-page.ts`
-- `src/app/features/profile/pages/profile-page.ts`
+- `src/app/app.ts`
+- `src/app/app.html`
+- `src/app/components/app-header/header.ts`
+- `src/app/components/app-header/header.html`
+- `src/app/components/app-header/header.css`
+- `src/app/components/app-hero/hero.ts`
+- `src/app/components/app-hero/hero.html`
+- `src/app/components/app-hero/hero.css`
 
 ---
 
@@ -40,173 +51,289 @@ Partimos del proyecto creado en el módulo 01. En esta práctica se crea una fea
 
 La carpeta [angular/02-fundamentos-angular/files](files/README.md) queda reservada para los archivos base de esta feature. El flujo recomendado es tomar esos archivos como punto de partida y completarlos dentro del proyecto del estudiante.
 
+Estructura objetivo para esta practica:
+
+```text
+src/app/
+  components/
+    header/
+      app-header.ts
+      app-header.html
+      app-header.css
+    hero/
+      app-hero.ts
+      app-hero.html
+      app-hero.css
+
+```
+
 ---
 
 ## 5. Código inicial
 
-### 5.1 Registrar una nueva ruta
+
+### 5.1Verificar `app.ts`
 
 ```ts
-import { Routes } from '@angular/router';
-import { HomePage } from './features/home/pages/home-page';
-import { ProfilePage } from './features/profile/pages/profile-page';
-
-export const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-  },
-  {
-    path: 'profile',
-    component: ProfilePage,
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
-];
-```
-
-### 5.2 Estructura base del componente
-
-```ts
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-profile-page',
-  standalone: true,
-  templateUrl: './profile-page.html',
+  selector: 'app-root',
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
 })
-export class ProfilePage {
-  readonly firstName = signal('Juan');
-  readonly lastName = signal('Pérez');
-  readonly age = signal(30);
-  readonly skills = signal(['Angular', 'TypeScript', 'HTML']);
-
-  readonly fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
+export class App {
+  title = 'ppw-angular-21';
 }
+```
+
+### 5.3 Verificar `app.html`
+
+```html
+<main class="app-shell">
+  <router-outlet />
+</main>
 ```
 
 ---
 
 ## 6. Pasos incrementales
 
-### Paso 1. Crear la feature `profile`
+### Paso 1. Crear `AppHeaderComponent` standalone
 
-Crear la estructura `features/profile/pages` y el componente `ProfilePage`.
-
-Explicación: desde este módulo se enseña a organizar por feature y no por tipo de archivo global.
-
-### Paso 2. Mostrar datos básicos con interpolación
-
-Agregar en la plantilla el nombre completo y la edad.
-
-```html
-<h1>{{ fullName() }}</h1>
-<p>Edad: {{ age() }}</p>
-```
-
-Explicación: la plantilla lee signals llamándolas como función.
-
-### Paso 3. Agregar actualización de estado
-
-Crear un botón para cambiar datos personales.
+Crear `src/app/features/home/components/header/header.ts`:
 
 ```ts
-changeData() {
-  this.firstName.set('Ana');
-  this.lastName.set('González');
-  this.age.set(22);
+import { Component, computed, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class AppHeaderComponent {
+  readonly brand = signal('PPW Angular 21');
+  readonly showInfo = signal(false);
+  readonly toggleLabel = computed(() => (this.showInfo() ? 'Ocultar info' : 'Mostrar info'));
+
+  toggleInfo(): void {
+    this.showInfo.update((value) => !value);
+  }
+
+  changeBrand(): void {
+    this.brand.update((b) => b + '!');
+  }
+
+  resetBrand(): void {
+    this.brand.set('PPW Angular 21');
+  }
 }
 ```
 
+Explicacion del estado en `AppHeaderComponent`:
+
+- `brand` es una `signal` con el titulo del encabezado. Se lee en la plantilla como `brand()`.
+- `showInfo` es una `signal<boolean>` que controla si se muestra o no el texto informativo.
+- `toggleLabel` es un `computed` derivado de `showInfo`; cambia automaticamente entre "Mostrar info" y "Ocultar info" sin escribir logica duplicada en el HTML.
+- `toggleInfo()` usa `update()` para invertir el valor actual de `showInfo` (`true`/`false`) en cada clic.
+- `changeBrand()` usa `update()` para modificar el valor actual de `brand` concatenando un carácter.
+- `resetBrand()` usa `set()` para restaurar `brand` a su valor inicial directamente, sin depender del valor previo.
+
+Crear `src/app/features/home/components/header/header.html`:
+
 ```html
-<button type="button" (click)="changeData()">Cambiar datos</button>
+<header class="header">
+  <h1>{{ brand() | uppercase }}</h1>
+  <div class="actions">
+    <button type="button" (click)="toggleInfo()">
+      {{ toggleLabel() }}
+    </button>
+    <button type="button" (click)="changeBrand()">Modificar título</button>
+    <button type="button" (click)="resetBrand()" [disabled]="brand() === 'PPW Angular 21'">
+      Restaurar título
+    </button>
+  </div>
+
+  @if (showInfo()) {
+    <p>Curso PPW - Angular 21 (Standalone)</p>
+  }
+</header>
 ```
 
-Explicación: `set()` reemplaza el valor completo de la signal.
+Crear `src/app/features/home/components/header/header.css`:
 
-### Paso 4. Renderizar habilidades con `@for`
+```css
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  width: fit-content;
+}
+```
+
+Explicacion: en este componente se practican `signal`, `computed`, `@if`, `update()`, `set()`, property binding `[disabled]` y el pipe `uppercase`.
+
+### Paso 2. Crear `AppHeroComponent` standalone
+
+Crear `src/app/features/home/components/hero/hero.ts`:
+
+```ts
+import { Component, computed, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-hero',
+  templateUrl: './hero.html',
+  styleUrl: './hero.css',
+})
+export class AppHeroComponent {
+  readonly title = signal('Componentes Standalone Reutilizables');
+  readonly topics = signal(['signals', 'computed', '@if', '@for', '@switch', 'pipes']);
+  readonly subtitle = computed(() => `Temas activos: ${this.topics().length}`);
+  readonly viewMode = signal<'lista' | 'resumen'>('lista');
+
+  toggleMode(): void {
+    this.viewMode.update((m) => (m === 'lista' ? 'resumen' : 'lista'));
+  }
+}
+```
+
+Crear `src/app/features/home/components/hero/hero.html`:
 
 ```html
-@if (skills().length > 0) {
-  <ul>
-    @for (skill of skills(); track skill) {
-      <li>{{ skill }}</li>
+<section class="hero">
+  <h2>{{ title() | uppercase }}</h2>
+  <p>{{ subtitle() }}</p>
+
+  <button type="button" (click)="toggleMode()">Vista: {{ viewMode() }}</button>
+
+  @switch (viewMode()) {
+    @case ('lista') {
+      <ul>
+        @for (item of topics(); track item) {
+          <li>{{ item }}</li>
+        } @empty {
+          <p>No hay temas registrados.</p>
+        }
+      </ul>
     }
-  </ul>
-} @else {
-  <p>No hay habilidades registradas.</p>
+    @case ('resumen') {
+      <p>Total de temas: <strong>{{ topics().length }}</strong></p>
+    }
+  }
+</section>
+```
+
+Explicacion: en este componente se practican `signal`, `computed`, `@for` con `@empty`, `@switch` y el pipe `uppercase`.
+
+Crear `src/app/features/home/components/hero/hero.css`:
+
+```css
+.hero {
+  border: 1px solid #d7deea;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+ul {
+  margin: 0.75rem 0 0;
 }
 ```
 
-Explicación: `@empty` también sería válido, pero aquí se refuerza primero la lectura combinada de `@if` y `@for`.
 
-### Paso 5. Crear una categoría de edad con `@switch`
 
-Agregar un `computed` o método simple para clasificar la edad.
+### Paso 4. Renderizar usando el router existente
 
-```ts
-readonly ageCategory = computed(() => {
-  const value = this.age();
+Verificar que:
 
-  if (value < 18) return 'minor';
-  if (value < 30) return 'young';
-  if (value < 60) return 'adult';
-  return 'senior';
-});
-```
+- `app.routes.ts` mantiene la ruta inicial por defecto (sin navegacion multipagina)
+- `app.ts` mantiene `RouterOutlet` en `imports`
+- `app.html` renderiza `<router-outlet />`
 
-```html
-@switch (ageCategory()) {
-  @case ('minor') {
-    <p>Menor de edad</p>
-  }
-  @case ('young') {
-    <p>Joven</p>
-  }
-  @case ('adult') {
-    <p>Adulto</p>
-  }
-  @default {
-    <p>Senior</p>
-  }
-}
-```
-
-### Paso 6. Enlazar la HomePage con la nueva feature
-
-Agregar un enlace visible desde la página inicial hacia `/profile`.
-
-Explicación: esto prepara el terreno para el módulo 03, donde la navegación será el foco principal.
+Explicacion: se usa router, pero sin navegacion multipagina.
 
 ---
 
-## 7. Validaciones esperadas
+### Paso 5. Usar los componentes creados en `app.ts` y `app.html`
 
-- La ruta `/profile` renderiza correctamente.
-- El botón actualiza nombre y edad.
-- La lista de habilidades se muestra con `@for`.
-- La categoría cambia según la edad.
-- No se usan `*ngIf` o `*ngFor` como enfoque principal.
+En este modulo, para practicar composicion directa de componentes standalone, vamos a renderizar `AppHeaderComponent` y `AppHeroComponent` desde la raiz.
 
-Placeholder sugerido de captura: `assets/02-profile-page.png`
+Actualizar `src/app/app.ts`:
+
+```ts
+import { Component } from '@angular/core';
+import { AppHeaderComponent } from './components/app-header/header';
+import { AppHeroComponent } from './components/app-hero/hero';
+
+@Component({
+  selector: 'app-root',
+  imports: [AppHeaderComponent, AppHeroComponent],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  title = 'ppw-angular-21';
+}
+```
+
+Explicacion de `app.ts`:
+
+- Se importan los dos componentes standalone creados en pasos anteriores.
+- En `imports` del decorador se registran para poder usarlos en la plantilla de `App`.
+- Ya no necesitamos `RouterOutlet` para esta practica puntual de composicion.
+
+Actualizar `src/app/app.html`:
+
+```html
+<main class="app-shell">
+  <app-header />
+  <router-outlet />
+  <app-hero />
+</main>
+```
+
+Probar tambien
+
+
+```html
+  <app-header />
+  <main class="app-shell">
+    <router-outlet />
+  </main>
+  <app-hero />
+```
+
+Explicacion de `app.html`:
+
+- `<app-header />` renderiza el encabezado con `signal`, `computed` y `@if`.
+- `<app-hero />` renderiza la seccion principal con `signal`, `computed` y `@for`.
+- Esta composicion permite validar los fundamentos sin introducir navegacion avanzada todavia.
+
+---
+
+## 7. Entregables
+
+1. Crear componente `app-footer`
+2. Agregar el componente a la pagina
+3. Usar 5 pipes en este componente.
 
 ---
 
 ## 8. Entregables
 
-- Feature `profile` creada.
-- Uso correcto de signals y `computed`.
-- Uso correcto de `@if`, `@for` y `@switch`.
-- Enlace visible entre la página inicial y la nueva página.
+- Captura de pagina principal desplegada donde se visualice los componentes
 
 ---
 
 ## 9. Commits sugeridos
 
 ```bash
-git commit -m "feat: agregar feature profile con signals"
-git commit -m "feat: usar control flow moderno en profile page"
-git commit -m "refactor: organizar fundamentos por feature"
+git commit -m "feat: crear componentes standalone header y hero"
+git commit -m "Add: Practica 02 - Fundamentos Angular completado"
 ```
