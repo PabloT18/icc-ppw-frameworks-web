@@ -18,61 +18,61 @@
 
 ## 1. Objetivo
 
-Transformar el proyecto `ppw-angular-21` para agregar navegación real mediante routing, parámetros dinámicos y un shell de navegación que prepara el proyecto para formularios y guards.
+Convertir la composición local del módulo 02 en una navegación real por rutas, reutilizando los componentes ya creados (`AppHeaderComponent` y `AppHeroComponent`) dentro de una `HomePage` y agregando la feature `students` con parámetro dinámico.
 
 ---
 
-## 2. Contexto de la práctica
+## 2. Contexto de continuidad con módulo 02
 
-Hasta el módulo 02, el proyecto solo tenía la página ProfilePage sin navegación. En este módulo:
-- Creamos `HomePage` (que ya no se crea en módulo 01)
-- Creamos `StudentsPage` con listado y `StudentDetailPage` con parámetro dinámico
-- Configuramos el router para cambiar entre estas páginas sin recargar
-- Agregamos un shell de navegación superior
+Esta práctica parte del estado final del módulo 02:
 
----
+- Ya existen componentes standalone reutilizables (`header` y `hero`) con `signal`, `computed`, `@if`, `@for`, `@switch`, pipes y binding.
+- La app aún no está organizada por páginas navegables.
+- Ahora moveremos esa UI a una página de inicio enrutable (`HomePage`) y activaremos navegación con Router.
 
-## 3. Archivos que se van a modificar
-
-- `src/app/app.routes.ts` (crear y configurar rutas)
-- `src/app/app.config.ts` (verificar que `provideRouter` está configurado)
-- `src/app/app.ts` (actualizar para usar `RouterOutlet`)
-- `src/app/app.html` (agregar header con navegación)
-- `src/app/features/home/pages/home-page.ts` (crear componente)
-- `src/app/features/students/pages/students-page.ts` (crear componente)
-- `src/app/features/students/pages/student-detail-page.ts` (crear componente)
+> Importante: esta práctica no requiere rehacer los componentes del módulo 02; se reutilizan tal como quedaron.
 
 ---
 
-## 4. Archivos base desde `files`
+## 3. Archivos que se van a crear o modificar
 
-La carpeta [angular/03-navegacion/files](files/README.md) queda preparada para alojar el shell y los archivos base de la feature `students`.
+- `src/app/app.routes.ts` (configurar rutas)
+- `src/app/app.ts` (usar `RouterLink` y `RouterOutlet`)
+- `src/app/app.html` (shell de navegación)
+- `src/app/features/home/pages/home-page.ts` (crear página de inicio reutilizando header/hero)
+- `src/app/features/home/pages/home-page.html` (plantilla de inicio)
+- `src/app/features/students/pages/students-page.ts` (crear listado)
+- `src/app/features/students/pages/student-detail-page.ts` (crear detalle dinámico)
 
 ---
 
-## 5. Código inicial
+## 4. Estructura esperada
 
-### 5.1 Crear `app.routes.ts`
-
-En `src/app/app.routes.ts` (archivo nuevo):
-
-```ts
-import { Routes } from '@angular/router';
-import { HomePage } from './features/home/pages/home-page';
-import { ProfilePage } from './features/profile/pages/profile-page';
-import { StudentsPage } from './features/students/pages/students-page';
-import { StudentDetailPage } from './features/students/pages/student-detail-page';
-
-export const routes: Routes = [
-  { path: '', component: HomePage },
-  { path: 'profile', component: ProfilePage },
-  { path: 'students', component: StudentsPage },
-  { path: 'students/:id', component: StudentDetailPage },
-  { path: '**', redirectTo: '' },
-];
+```text
+src/app/
+  app.routes.ts
+  app.ts
+  app.html
+  features/
+    home/
+      pages/
+        home-page.ts
+        home-page.html
+    students/
+      pages/
+        students-page.ts
+        student-detail-page.ts
 ```
 
-### 5.2 Actualizar `app.config.ts`
+Si en el módulo 02 tus componentes `header` y `hero` quedaron en otra ruta, ajusta únicamente los imports de `home-page.ts`.
+
+---
+
+## 5. Estado base recomendado antes de empezar
+
+### 5.1 Verificar `app.config.ts`
+
+Debe conservar el router registrado:
 
 ```ts
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
@@ -87,110 +87,99 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-### 5.3 Actualizar `app.ts` con navegación
+### 5.2 Verificar que tus componentes de módulo 02 existan
 
-```ts
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+- `AppHeaderComponent`
+- `AppHeroComponent`
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterLink, RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
-})
-export class App {
-  title = 'ppw-angular-21';
-}
-```
-
-### 5.4 Actualizar `app.html` con barra de navegación
-
-```html
-<header>
-  <nav>
-    <a routerLink="/">Inicio</a>
-    <a routerLink="/profile">Perfil</a>
-    <a routerLink="/students">Estudiantes</a>
-  </nav>
-</header>
-
-<main class="app-shell">
-  <router-outlet />
-</main>
-```
+No se modifican en esta práctica, solo se reutilizan.
 
 ---
 
 ## 6. Pasos incrementales
 
-### Paso 1. Crear `app.routes.ts`
+### Paso 1. Crear/actualizar `app.routes.ts`
 
-Este es el primer archivo que necesita el router. Define todas las rutas de la aplicación: HomePage, ProfilePage, StudentsPage, y el detalle de estudiante con parámetro dinámico `:id`.
+```ts
+import { Routes } from '@angular/router';
+import { HomePage } from './features/home/pages/home-page';
+import { StudentsPage } from './features/students/pages/students-page';
+import { StudentDetailPage } from './features/students/pages/student-detail-page';
 
-Explicación: el comodín `**` redirige cualquier ruta inválida a `/` para mantener la navegación robusta.
+export const routes: Routes = [
+  { path: '', component: HomePage },
+  { path: 'students', component: StudentsPage },
+  { path: 'students/:id', component: StudentDetailPage },
+  { path: '**', redirectTo: '' },
+];
+```
 
-### Paso 2. Agregar `provideRouter` en `app.config.ts`
+Explicación:
 
-Actualizar el provider de configuración global para incluir el router con las rutas del paso anterior.
+- `''` apunta a la página principal.
+- `students` muestra un listado.
+- `students/:id` reutiliza una vista para cualquier estudiante.
+- `**` evita rutas rotas y redirige al inicio.
 
-Explicación: esto es lo que hace que Angular reconozca las rutas y sea capaz de cambiar componentes al navegar.
+### Paso 2. Crear `HomePage` reutilizando componentes del módulo 02
 
-### Paso 3. Reemplazar `ProfilePage` con `RouterOutlet` en `app.ts`
-
-Ahora `app.ts` no renderiza una página fija, sino que deja que el router elija qué componente mostrar según la URL.
-
-Explicación: `RouterOutlet` es el placeholder donde el router renderiza el componente correcto.
-
-### Paso 4. Agregar el shell de navegación en `app.html`
-
-Crear un `<header>` con `<nav>` y enlaces usando `routerLink`.
-
-Explicación: `routerLink` es la forma Angular de navegar sin recargar la página; es lo equivalente a `<a href>` pero reactivo.
-
-### Paso 5. Crear `HomePage`
-
-Crear en `src/app/features/home/pages/home-page.ts` el componente de inicio (no se creó en módulo 01):
+Crear `src/app/features/home/pages/home-page.ts`:
 
 ```ts
 import { Component } from '@angular/core';
+import { AppHeaderComponent } from '../components/header/header';
+import { AppHeroComponent } from '../components/hero/hero';
 
 @Component({
   selector: 'app-home-page',
-  standalone: true,
-  template: `
-    <section>
-      <h1>PPW Angular 21</h1>
-      <p>Proyecto incremental con navegación funcional.</p>
-    </section>
-  `,
+  imports: [AppHeaderComponent, AppHeroComponent],
+  templateUrl: './home-page.html',
 })
 export class HomePage {}
 ```
 
-### Paso 6. Crear `StudentsPage`
+Crear `src/app/features/home/pages/home-page.html`:
 
-Crear en `src/app/features/students/pages/students-page.ts` una página con listado de estudiantes:
+```html
+<section class="home-page">
+  <app-header />
+  <app-hero />
+</section>
+```
+
+Explicación:
+
+- El contenido que antes estaba montado en la raíz de la app ahora vive dentro de una página enrutable.
+- Esto mantiene la continuidad del módulo 02 sin perder lo construido.
+
+### Paso 3. Crear `StudentsPage`
+
+Crear `src/app/features/students/pages/students-page.ts`:
 
 ```ts
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-students-page',
-  standalone: true,
   imports: [RouterLink],
   template: `
-    <h1>Estudiantes</h1>
-    <ul>
-      @for (student of students(); track student.id) {
-        <li>
-          <a [routerLink]="['/students', student.id]">{{ student.name }}</a>
-        </li>
-      }
-    </ul>
+    <section>
+      <h1>Estudiantes</h1>
+      <p>Selecciona un estudiante para ver su detalle.</p>
+
+      <ul>
+        @for (student of students(); track student.id) {
+          <li>
+            <a [routerLink]="['/students', student.id]">
+              {{ student.name }}
+            </a>
+          </li>
+        } @empty {
+          <li>No hay estudiantes disponibles.</li>
+        }
+      </ul>
+    </section>
   `,
 })
 export class StudentsPage {
@@ -202,20 +191,29 @@ export class StudentsPage {
 }
 ```
 
-### Paso 7. Crear `StudentDetailPage`
+Explicación:
 
-Crear en `src/app/features/students/pages/student-detail-page.ts` una página que lea el parámetro `:id`:
+- Se mantiene la sintaxis de control de flujo moderna (`@for`, `@empty`).
+- Se usa `[routerLink]` con sintaxis array para componer ruta + parámetro dinámico.
+
+### Paso 4. Crear `StudentDetailPage`
+
+Crear `src/app/features/students/pages/student-detail-page.ts`:
 
 ```ts
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-student-detail-page',
-  standalone: true,
+  imports: [RouterLink],
   template: `
-    <h1>Detalle del Estudiante</h1>
-    <p>ID: {{ id }}</p>
+    <section>
+      <h1>Detalle del estudiante</h1>
+      <p>ID recibido por la ruta: <strong>{{ id }}</strong></p>
+
+      <a routerLink="/students">Volver al listado</a>
+    </section>
   `,
 })
 export class StudentDetailPage {
@@ -224,35 +222,69 @@ export class StudentDetailPage {
 }
 ```
 
-### Paso 8. Verificar navegación completa
+Explicación:
 
-Comprobar que:
-- Los enlaces de la barra de navegación cambian de página sin recargar.
-- `/students` muestra el listado.
-- `/students/1` carga el detalle del estudiante 1.
-- Una ruta inválida redirige a `/`.
+- `ActivatedRoute` permite leer parámetros definidos en `app.routes.ts`.
+- `snapshot.paramMap.get('id')` obtiene el valor de `:id`.
+
+### Paso 5. Actualizar `app.ts` como shell de navegación
+
+Actualizar `src/app/app.ts`:
+
+```ts
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App {
+  title = 'ppw-angular-21';
+}
+```
+
+### Paso 6. Actualizar `app.html`
+
+```html
+<header class="app-nav">
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a routerLink="/students" routerLinkActive="active">Estudiantes</a>
+  </nav>
+</header>
+
+<main class="app-shell">
+  <router-outlet />
+</main>
+```
+
+Explicación:
+
+- `routerLink` cambia de vista sin recarga.
+- `routerLinkActive` permite identificar visualmente la opción activa.
+- `<router-outlet />` renderiza la página actual.
 
 ---
 
 ## 7. Validaciones esperadas
 
-- La barra de navegación aparece en todas las páginas.
-- `/` muestra HomePage.
-- `/profile` muestra ProfilePage.
-- `/students` muestra el listado de estudiantes.
-- `/students/1` carga el detalle del estudiante 1.
-- Una ruta inválida redirige a `/`.
-- La navegación interna no recarga toda la página.
+- `/` renderiza `HomePage` con los componentes del módulo 02 (`header` y `hero`).
+- `/students` muestra el listado.
+- `/students/1` muestra detalle con `id = 1`.
+- Si escribes una URL inválida, redirige a `/`.
+- La navegación ocurre sin recarga completa del navegador.
 
 ---
 
 ## 8. Entregables
 
-- `app.routes.ts` completamente configurado con todas las rutas.
-- `app.config.ts` actualizacdo con `provideRouter(routes)`.
-- Shell principal en `app.ts` y `app.html` con navegación funcional.
-- Feature `students` con listado y detalle parametrizado.
-- Redirección comodín (`**` → `/`) funcionando.
+1. Router funcional con `HomePage`, `StudentsPage` y `StudentDetailPage`.
+2. `HomePage` reutilizando componentes creados en módulo 02.
+3. Ruta dinámica funcionando con `ActivatedRoute`.
+4. Shell de navegación con `routerLink` y `routerLinkActive`.
 
 ---
 
@@ -260,14 +292,14 @@ Comprobar que:
 
 ```bash
 git add .
-git commit -m "feat: crear app.routes.ts con rutas base"
+git commit -m "feat: configurar rutas base para navegacion"
 
 git add .
-git commit -m "feat: agregar shell con navegación usando RouterLink"
+git commit -m "feat: crear home-page reutilizando componentes del modulo 02"
 
 git add .
-git commit -m "feat: crear feature students con rutas parametrizadas"
+git commit -m "feat: agregar feature students con ruta parametrica"
 
 git add .
-git commit -m "END: Practica 03 - Navegación y Router completados"
+git commit -m "END: Practica 03 - Navegacion completada"
 ```

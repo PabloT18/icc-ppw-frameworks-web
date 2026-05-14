@@ -16,522 +16,250 @@
 
 ---
 
-## 1. Objetivo del tema
+## 1. ¿Qué es la navegación en Angular?
 
-Incorporar navegación moderna al proyecto incremental usando `provideRouter`, `RouterLink`, `RouterOutlet`, rutas por feature y una estructura lista para crecer hacia guards y lazy loading.
+La navegación en Angular es el mecanismo que permite cambiar de vista según la URL sin recargar toda la página. En lugar de cargar un documento HTML distinto por cada clic, Angular mantiene una sola aplicación activa (SPA) y renderiza componentes diferentes dentro de una zona dinámica de la interfaz.
+
+Esto permite:
+
+- Transiciones de vista más rápidas
+- Mejor continuidad del estado en frontend
+- Arquitecturas modulares por features
+- Escalabilidad hacia guards, lazy loading y layouts anidados
 
 ---
 
-## 2. Explicación conceptual
+## 2. Características principales del Router en Angular 21
 
-Angular no navega como un sitio HTML tradicional. En una SPA el usuario cambia de vista sin recargar todo el documento, y el router decide qué componente renderizar según la URL.
+1. **Registro declarativo de rutas**: se define un arreglo tipado `Routes` en `app.routes.ts`.
+2. **Integración global por providers**: se habilita con `provideRouter(routes)` en `app.config.ts`.
+3. **Renderizado dinámico**: `<router-outlet>` inserta el componente activo según la URL.
+4. **Navegación declarativa**: `routerLink` permite cambiar de ruta desde templates.
+5. **Navegación programática**: `Router.navigate()` permite navegar desde TypeScript.
+6. **Soporte de rutas dinámicas**: parámetros como `students/:id` reutilizan una misma vista con datos distintos.
 
-| Navegación tradicional | Navegación Angular |
+| Característica | Enfoque en Angular 21 |
 |---|---|
-| `href` provoca recarga completa | `routerLink` cambia la vista sin recargar |
-| el estado del frontend puede perderse | el estado puede mantenerse entre vistas |
-| la estructura depende de páginas físicas | la estructura depende de rutas configuradas |
-
-### Conceptos mínimos
-
-- ruta
-- parámetro de ruta
-- redirección
-- `RouterOutlet`
-- `RouterLink`
-- ruta comodín
+| Definición de rutas | `export const routes: Routes = [...]` |
+| Registro global | `provideRouter(routes)` |
+| Render de vistas | `<router-outlet />` |
+| Links internos | `routerLink` |
+| Params dinámicos | `:id`, `:slug`, etc. |
+| Fallback | ruta comodín `**` |
 
 ---
 
-## 3. Fundamento técnico
+## 3. Conceptos fundamentales del router
 
-### 3.1 `provideRouter`
-
-El router se registra como provider global.
-
-```ts
-providers: [provideRouter(routes)]
-```
-
-### 3.2 `RouterOutlet`
-
-`RouterOutlet` define el lugar donde Angular renderiza la vista activa.
-
-```ts
-imports: [RouterOutlet]
-```
-
-### 3.3 `RouterLink`
-
-Es la forma recomendada de navegar desde plantillas.
-
-```html
-<a routerLink="/profile">Ir al perfil</a>
-```
-
-### 3.4 Parámetros de ruta
-
-Los parámetros permiten reutilizar una misma página para diferentes datos.
-
-```ts
-{
-  path: 'students/:id',
-  component: StudentDetailPage,
-}
-```
-
-### 3.5 Diseño del router para el proyecto incremental
-
-En este curso conviene mantener una raíz simple y luego ir agregando features. Todavía no hace falta introducir guards ni lazy routes como tema central, pero sí dejar la arquitectura preparada.
+| Concepto | Descripción | Ejemplo |
+|---|---|---|
+| **Ruta** | Regla que asocia un `path` con un componente | `{ path: 'students', component: StudentsPage }` |
+| **Ruta raíz** | URL base de la aplicación (`/`) | `{ path: '', component: HomePage }` |
+| **Ruta dinámica** | Ruta con parámetro | `{ path: 'students/:id', component: StudentDetailPage }` |
+| **Redirección** | Reenvía una ruta a otra | `{ path: '**', redirectTo: '' }` |
+| **RouterOutlet** | Placeholder donde se renderiza la vista activa | `<router-outlet />` |
+| **RouterLink** | Directiva para navegar sin recargar | `<a routerLink="/students">Estudiantes</a>` |
 
 ---
 
-## 4. Ejemplos de código
+## 4. Estructura de archivos para navegación
 
-### Ejemplo 1: shell con navegación básica
+En un proyecto Angular moderno, la navegación mínima involucra estos archivos:
 
-```html
-<nav>
-  <a routerLink="/">Inicio</a>
-  <a routerLink="/profile">Perfil</a>
-  <a routerLink="/students">Estudiantes</a>
-</nav>
+- `app.routes.ts`: declara rutas.
+- `app.config.ts`: registra router globalmente.
+- `app.ts`: importa directivas de navegación para la plantilla raíz.
+- `app.html`: incluye barra de navegación y `<router-outlet />`.
+- `features/**/pages/*.ts`: componentes de página asociados a rutas.
 
-<router-outlet />
-```
+---
 
-### Ejemplo 2: ruta con parámetro
+## 5. El archivo app.routes.ts en navegación real
+
+`app.routes.ts` concentra el mapa de vistas de la aplicación:
 
 ```ts
+import { Routes } from '@angular/router';
+import { HomePage } from './features/home/pages/home-page';
+import { StudentsPage } from './features/students/pages/students-page';
+import { StudentDetailPage } from './features/students/pages/student-detail-page';
+
 export const routes: Routes = [
-  {
-    path: 'students/:id',
-    component: StudentDetailPage,
-  },
+  { path: '', component: HomePage },
+  { path: 'students', component: StudentsPage },
+  { path: 'students/:id', component: StudentDetailPage },
+  { path: '**', redirectTo: '' },
 ];
 ```
 
----
+### Qué representa cada ruta
 
-## 5. Buenas prácticas
-
-- Mantén las rutas cerca de las features que representan.
-- Usa nombres de path claros y consistentes.
-- Deja una ruta comodín para navegación inválida.
-- Usa `routerLink` en lugar de `href` para vistas internas.
-- Diseña la estructura pensando en guards futuros.
-
----
-
-## 6. Errores comunes
-
-- Usar `href` para rutas internas del proyecto.
-- Duplicar lógica de navegación en varios componentes.
-- No prever una ruta comodín.
-- Acoplar la UI de navegación a una sola página difícil de escalar.
-- Introducir guards o auth en el mismo módulo sin separar responsabilidades.
+| Ruta | Significado |
+|---|---|
+| `''` | Página de inicio |
+| `'students'` | Listado de estudiantes |
+| `'students/:id'` | Detalle de estudiante según parámetro |
+| `'**'` | Captura rutas inválidas y redirige |
 
 ---
 
-## 7. Relación con el proyecto incremental
+## 6. Registro global con provideRouter
 
-Este módulo convierte la base creada en 01 y 02 en una aplicación navegable. A partir de aquí el proyecto ya tiene más de una vista, lo que permite que formularios, estilos, servicios y guards se monten sobre rutas reales.
+El arreglo de rutas no funciona por sí solo: debe registrarse en `app.config.ts`.
+
+```ts
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+  ],
+};
+```
+
+Sin `provideRouter(routes)`, Angular no interpreta cambios de URL ni renderiza rutas.
 
 ---
 
-## 8. Referencias recomendadas
+## 7. RouterOutlet: punto de renderizado dinámico
 
-- Documentación oficial del router: https://angular.dev/guide/routing
-- [angular/docs/A-heuristicas.md](../docs/A-heuristicas.md)
-# Programación y Plataformas Web 
+`<router-outlet />` define la zona donde se muestra el componente activo.
 
-# Frameworks Web: Angular
+```html
+<header>
+  <nav>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/students">Estudiantes</a>
+  </nav>
+</header>
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
-</div>
+<main class="app-shell">
+  <router-outlet />
+</main>
+```
 
-## Práctica 3: Navegación en Angular
+Flujo:
 
-### Autores
-
-**Pablo Torres**  
-📧 ptorersp@ups.edu.ec  
-💻 GitHub: [PabloT18](https://github.com/PabloT18)
-
-
-
-
-
-
+1. Cambia la URL (clic o navegación programática).
+2. Router compara la URL con `routes`.
+3. Encuentra coincidencia y crea el componente.
+4. Inserta ese componente dentro de `<router-outlet />`.
 
 ---
 
-##  Navegación en Angular
+## 8. RouterLink y tipos de navegación en templates
 
-La navegación en Angular es fundamentalmente diferente a la navegación tradicional en HTML. Mientras que en HTML usamos etiquetas `<a href="">`, en Angular utilizamos la directiva `routerLink` para crear aplicaciones de una sola página (SPA) que no requieren recargar la página completa.
+### Sintaxis directa (string)
 
-## ¿Por qué NO usar `href` tradicional?
-
-### Navegación Tradicional con `href`:
 ```html
-<!-- Esto RECARGA toda la página -->
-<a href="/perfil">Ir al Perfil</a>
-<a href="/productos">Ver Productos</a>
+<a routerLink="/students">Estudiantes</a>
 ```
 
-**Problemas:**
-- ✗ Recarga completa de la página
-- ✗ Pérdida del estado de la aplicación
-- ✗ Mayor tiempo de carga
-- ✗ Experiencia de usuario interrumpida
+Útil para rutas fijas.
 
-###  Navegación con `routerLink`:
+### Sintaxis con binding (array)
+
 ```html
-<!-- Esto SOLO cambia el contenido, sin recargar -->
-<a routerLink="/perfil">Ir al Perfil</a>
-<a routerLink="/productos">Ver Productos</a>
+<a [routerLink]="['/students', student.id]">Ver detalle</a>
 ```
 
-**Ventajas:**
-- ✓ Navegación instantánea
-- ✓ Preserva el estado de la aplicación
-- ✓ Mejor experiencia de usuario
-- ✓ Aplicación de una sola página (SPA)
+Útil para rutas dinámicas, composición con variables y mayor control.
 
-## ¿Qué son las Directivas?
+### routerLinkActive
 
-Las **directivas** son instrucciones especiales que le dicen a Angular cómo modificar el DOM (Document Object Model). En Angular existen tres tipos:
+Permite marcar visualmente la opción activa:
 
-### 1. **Directivas de Componente**
-```typescript
-@Component({
-  selector: 'app-home'  // Esta es una directiva de componente
-})
-```
-
-### 2. **Directivas Estructurales** (Angular 20+)
 ```html
-<!-- Control Flow moderno -->
-@if (usuario) {
-  <p>Bienvenido {{ usuario.nombre }}</p>
-}
-
-@for (producto of productos; track producto.id) {
-  <div>{{ producto.nombre }}</div>
-}
+<a routerLink="/students" routerLinkActive="active">Estudiantes</a>
 ```
 
-### 3. **Directivas de Atributo**
-```html
-<!-- routerLink es una directiva de atributo -->
-<a routerLink="/inicio">Inicio</a>
-<div [ngClass]="{'activo': isActive}">Contenido</div>
+---
+
+## 9. Parámetros de ruta y ActivatedRoute
+
+Los parámetros permiten reutilizar una misma página para múltiples entidades.
+
+Ruta:
+
+```ts
+{ path: 'students/:id', component: StudentDetailPage }
 ```
 
-##  RouterLink: Tipos de Sintaxis
+Lectura del parámetro en el componente:
 
-Angular ofrece dos formas principales de usar `routerLink`:
-
-### 1. **Sintaxis de String Simple**
-```html
-<a routerLink="/">Home</a>
-<a routerLink="/productos">Productos</a>
-<a routerLink="/contacto">Contacto</a>
-```
-
-**Características:**
-- ✓ Sintaxis más simple
-- ✓ Ideal para rutas estáticas
-- ✓ Fácil de leer y escribir
-
-### 2. **Sintaxis de Array (Binding)**
-```html
-<a [routerLink]="['/perfil']">Perfil</a>
-<a [routerLink]="['/usuario', usuarioId]">Ver Usuario</a>
-<a [routerLink]="['/productos', 'categoria', categoriaId]">Categoría</a>
-```
-
-**Características:**
-- ✓ Permite pasar parámetros dinámicos
-- ✓ Más flexible para rutas complejas
-- ✓ Ideal para rutas con variables
-
-## 💡 Ejemplos Prácticos
-
-### Ejemplo 1: Navegación Básica
-```typescript
-// app.component.ts
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+```ts
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  template: `
-    <nav>
-      <h2>Mi Aplicación Angular</h2>
-      <ul>
-        <li><a routerLink="/">🏠 Inicio</a></li>
-        <li><a routerLink="/productos">📦 Productos</a></li>
-        <li><a routerLink="/contacto">📞 Contacto</a></li>
-      </ul>
-    </nav>
-    
-    <!-- Aquí se renderizan los componentes según la ruta -->
-    <router-outlet></router-outlet>
-  `,
-  styles: [`
-    nav {
-      background: #f0f0f0;
-      padding: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
-    
-    a {
-      text-decoration: none;
-      color: #007bff;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-    }
-    
-    a:hover {
-      background: #e9ecef;
-    }
-  `]
+  selector: 'app-student-detail-page',
+  template: `<p>ID: {{ id }}</p>`,
 })
-export class AppComponent {
-  title = 'navegacion-ejemplo';
+export class StudentDetailPage {
+  private route = inject(ActivatedRoute);
+  readonly id = this.route.snapshot.paramMap.get('id');
 }
 ```
 
-### Ejemplo 2: Navegación con Parámetros
-```typescript
-// productos.component.ts
-import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+---
 
-@Component({
-  selector: 'app-productos',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  template: `
-    <h2>Lista de Productos</h2>
-    
-    @for (producto of productos(); track producto.id) {
-      <div class="producto-card">
-        <h3>{{ producto.nombre }}</h3>
-        <p>{{ producto.descripcion }}</p>
-        <p><strong>Precio: ${{ producto.precio }}</strong></p>
-        
-        <!-- Navegación con parámetros usando sintaxis de array -->
-        <a [routerLink]="['/producto', producto.id]">
-          Ver Detalles
-        </a>
-      </div>
-    }
-  `,
-  styles: [`
-    .producto-card {
-      border: 1px solid #dee2e6;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 8px;
-    }
-    
-    .producto-card a {
-      background: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    
-    .producto-card a:hover {
-      background: #0056b3;
-    }
-  `]
-})
-export class ProductosComponent {
-  productos = signal([
-    { id: 1, nombre: 'Laptop', descripcion: 'Laptop Gaming', precio: 1200 },
-    { id: 2, nombre: 'Mouse', descripcion: 'Mouse Inalámbrico', precio: 25 },
-    { id: 3, nombre: 'Teclado', descripcion: 'Teclado Mecánico', precio: 80 }
-  ]);
-}
-```
+## 10. Navegación programática con Router
 
-## Diferencias Clave: String vs Array
+Cuando la navegación depende de lógica TypeScript (validaciones, acciones, flujos), se usa `Router`:
 
-| Aspecto | Sintaxis String | Sintaxis Array |
-|---------|----------------|----------------|
-| **Formato** | `routerLink="/ruta"` | `[routerLink]="['/ruta']"` |
-| **Parámetros** | No soporta |  `['/ruta', parametro]` |
-| **Variables** | Solo texto fijo |  Puede usar variables |
-| **Complejidad** | Simple | Más flexible |
-
-### Ejemplos Comparativos:
-
-```html
-<!--  String: Ideal para rutas fijas -->
-<a routerLink="/">Inicio</a>
-<a routerLink="/productos">Productos</a>
-<a routerLink="/contacto">Contacto</a>
-
-<!--  Array: Ideal para rutas dinámicas -->
-<a [routerLink]="['/perfil']">Mi Perfil</a>
-<a [routerLink]="['/usuario', usuario.id]">Ver Usuario: {{ usuario.nombre }}</a>
-<a [routerLink]="['/producto', producto.id, 'reviews']">Reviews del Producto</a>
-
-<!-- Ejemplo con múltiples parámetros -->
-<a [routerLink]="['/categoria', categoria.id, 'producto', producto.id]">
-  Ver Producto en Categoría
-</a>
-```
-
-## 🚀 RouterLink Activo
-
-Para destacar el enlace activo, Angular proporciona `routerLinkActive`:
-
-```html
-<nav>
-  <a routerLink="/" 
-     routerLinkActive="active" 
-     [routerLinkActiveOptions]="{exact: true}">
-    Inicio
-  </a>
-  
-  <a routerLink="/productos" 
-     routerLinkActive="active">
-    Productos
-  </a>
-  
-  <a routerLink="/contacto" 
-     routerLinkActive="active">
-    Contacto
-  </a>
-</nav>
-
-<style>
-.active {
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-}
-</style>
-```
-
-## 📱 Navegación Programática
-
-También podemos navegar desde el código TypeScript:
-
-```typescript
+```ts
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-ejemplo',
-  template: `
-    <button (click)="irAProductos()">Ver Productos</button>
-    <button (click)="irAProducto(123)">Ver Producto 123</button>
-  `
+  selector: 'app-example',
+  template: `<button (click)="goToStudents()">Ir a estudiantes</button>`,
 })
-export class EjemploComponent {
+export class ExampleComponent {
   private router = inject(Router);
-  
-  irAProductos() {
-    this.router.navigate(['/productos']);
-  }
-  
-  irAProducto(id: number) {
-    this.router.navigate(['/producto', id]);
+
+  goToStudents(): void {
+    this.router.navigate(['/students']);
   }
 }
 ```
 
+---
 
+## 11. Buenas prácticas
 
-## Resumen
+- Diseñar rutas por features (`home`, `students`, `profile`, etc.).
+- Mantener `path` claros, cortos y consistentes.
+- Usar siempre ruta comodín (`**`) para URLs inválidas.
+- Preferir `routerLink` sobre `href` para rutas internas.
+- Evitar lógica compleja de navegación en templates; moverla a TypeScript.
+- Mantener una página de inicio simple como punto de entrada estable.
 
-1. **RouterLink** es una directiva de Angular que permite navegación SPA
-2. **No usar `href`** porque recarga la página completa
-3. **Sintaxis String**: Simple, para rutas fijas (`routerLink="/inicio"`)
-4. **Sintaxis Array**: Flexible, para rutas con parámetros (`[routerLink]="['/perfil']"`)
-5. **RouterLinkActive**: Para destacar enlaces activos
-6. **Navegación programática**: Usando el servicio Router
+---
 
-La navegación en Angular es mucho más eficiente y proporciona una mejor experiencia de usuario comparada con la navegación tradicional HTML.
+## 12. Errores comunes
 
-## Implementación Práctica
+- Intentar navegar con `href` y recargar toda la SPA.
+- Olvidar `provideRouter(routes)` en `app.config.ts`.
+- No colocar `<router-outlet />` en la plantilla raíz.
+- Declarar rutas sin fallback y dejar URLs inválidas sin manejo.
+- Mezclar rutas de páginas y componentes UI sin criterio de arquitectura.
 
-Sigue estos pasos para implementar la navegación en tu proyecto Angular:
+---
 
-### Paso 1: Crear las Páginas Principales
+## 13. Relación con el proyecto incremental
 
-#### 1.1 Crear ProyectosPage
+Este módulo transforma los fundamentos del módulo 02 (componentes, signals, control de flujo y binding) en una aplicación con múltiples vistas navegables. La navegación es la base para módulos posteriores donde se trabajará formularios, servicios HTTP, guards y autenticación.
 
-#### 1.2 Crear ProyectosDosPage
+---
 
+## 14. Referencias
 
-### Paso 2: Configurar las Rutas
-
-
-### Paso 3: Agregar al Navbar
-
-### Paso 4: Crear Componentes para Proyectos y separarlos en componentes indivuduals
-
-#### 4.1 Crear Componente para Agregar Proyectos
-
-#### 4.2 Crear Componente para Lista de Proyectos
-
-
-### Paso 5: Implementar la Página de Proyectos
-
-### Paso 6: Implementar la Página ProyectosDos
-
-
-## Capturas de Implementación
-
-### 1. Configuración de Rutas (app.routes.ts)
-*[Insertar código del archivo app.routes.ts mostrando la configuración de rutas]*
-
-### 2. Navegación con RouterLink
-*[Insertar código del template HTML mostrando ambos tipos de sintaxis de routerLink]*
-
-### 3. Componente con Navegación
-*[Insertar código del código TypeScript del componente con navegación]*
-
-### 4. Aplicación Funcionando
-*[Insertar captura de la aplicación en el navegador mostrando la navegación entre diferentes vistas]*
-
-
-
-
-
-
-
-##  Enlaces del Proyecto
-
-- **Repositorio GitHub**: [Enlace al repositorio]
-- **GitHub Pages**: [Enlace a la aplicación desplegada]
-
-
-##  Notas de Implementación
-
-- Usé Angular 20+ con sintaxis moderna
-- Implementé tanto navegación estática como dinámica
-- Agregué estilos para mejorar la experiencia de usuario
-- Utilicé signals para el manejo de estado moderno
-- Apliqué las mejores prácticas de navegación SPA 
-
+- Documentación oficial del Router: https://angular.dev/guide/routing
+- Definir rutas: https://angular.dev/guide/routing/define-routes
+- RouterLink: https://angular.dev/guide/routing/navigate-to-routes
+- Leer parámetros de ruta: https://angular.dev/guide/routing/read-route-state
+- RouterOutlet: https://angular.dev/api/router/RouterOutlet
