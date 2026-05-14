@@ -91,6 +91,7 @@ export const appConfig: ApplicationConfig = {
 
 - `AppHeaderComponent`
 - `AppHeroComponent`
+- `AppFooter`
 
 No se modifican en esta práctica, solo se reutilizan.
 
