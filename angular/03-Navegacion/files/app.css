@@ -1,0 +1,45 @@
+/*
+  :host representa el componente principal de la aplicación.
+
+  Este bloque convierte al componente raíz en un contenedor vertical
+  que ocupa como mínimo toda la altura de la pantalla.
+*/
+:host {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+  Contenedor principal del contenido de cada página.
+
+  Este <main> contiene el router-outlet, por lo tanto aquí se mostrará
+  el componente correspondiente a la ruta activa.
+
+  flex: 1 permite que el contenido principal ocupe el espacio disponible
+  entre el header y el footer.
+
+  No afecta directamente al header ni al footer, ya que ambos están fuera
+  del <main>.
+*/
+.app-shell {
+    flex: 1;
+    width: 100%;
+
+    /*
+      Limita el ancho máximo del contenido para mejorar la legibilidad
+      en pantallas grandes.
+    */
+    max-width: 900px;
+
+    /*
+      Centra el contenido horizontalmente dentro de la pantalla.
+    */
+    margin: 0 auto;
+
+    /*
+      Agrega espacio interno para que el contenido no quede pegado
+      a los bordes.
+    */
+    padding: 1.5rem 1rem;
+}

@@ -1,0 +1,43 @@
+.detail-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.detail-page__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #172033;
+}
+
+/* Caja que destaca el dato clave: borde izquierdo de acento */
+.detail-page__id {
+    font-size: 1.1rem;
+    color: #172033;
+    background: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #dfe5ef;
+    border-left: 4px solid #0f4c81;
+}
+
+/* Botón de retorno con estilo "outline" */
+.btn-back {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: #0f4c81;
+    border: 2px solid #0f4c81;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    width: fit-content;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* "Fill effect": al hacer hover el botón se rellena de azul */
+.btn-back:hover {
+    background: #0f4c81;
+    border-color: #0f4c81;
+    color: #ffffff;
+}

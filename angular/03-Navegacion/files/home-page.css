@@ -1,0 +1,35 @@
+/* Apila el hero y el botón verticalmente con espacio entre ellos */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Centra el botón horizontalmente */
+.home-page__actions {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+/* Botón de acción principal */
+.btn-primary {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: #0f4c81;
+    border: 2px solid #0f4c81;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    width: fit-content;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    /* Animación suave al hacer hover */
+}
+
+/* Tono más oscuro al pasar el cursor (feedback visual) */
+.btn-primary:hover {
+    background: #0f4c81;
+    border-color: #0f4c81;
+    color: #ffffff;
+}

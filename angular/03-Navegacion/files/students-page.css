@@ -1,0 +1,50 @@
+.students-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.students-page__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #172033;
+}
+
+.students-page__subtitle {
+    color: #5f6b7a;
+}
+
+/* Elimina bullets y padding por defecto del <ul> */
+.students-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* display: block hace que toda el área del ítem sea clickeable */
+.students-list__item a {
+    display: block;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    border: 1px solid #dfe5ef;
+    border-radius: 6px;
+    color: #0f4c81;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.students-list__item a:hover {
+    background: #eef5ff;
+    border-color: #9fc5f8;
+    color: #0b3a66;
+}
+
+/* Diferencia visualmente el estado vacío del contenido real */
+.students-empty {
+    color: #7a8696;
+    font-style: italic;
+}

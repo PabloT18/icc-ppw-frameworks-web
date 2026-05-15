@@ -408,53 +408,7 @@ export class App {
 
 #### `app.css`
 
-```css
-/*
-  :host representa el componente principal de la aplicación.
-
-  Este bloque convierte al componente raíz en un contenedor vertical
-  que ocupa como mínimo toda la altura de la pantalla.
-*/
-:host {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/*
-  Contenedor principal del contenido de cada página.
-
-  Este <main> contiene el router-outlet, por lo tanto aquí se mostrará
-  el componente correspondiente a la ruta activa.
-
-  flex: 1 permite que el contenido principal ocupe el espacio disponible
-  entre el header y el footer.
-
-  No afecta directamente al header ni al footer, ya que ambos están fuera
-  del <main>.
-*/
-.app-shell {
-    flex: 1;
-    width: 100%;
-
-    /*
-      Limita el ancho máximo del contenido para mejorar la legibilidad
-      en pantallas grandes.
-    */
-    max-width: 900px;
-
-    /*
-      Centra el contenido horizontalmente dentro de la pantalla.
-    */
-    margin: 0 auto;
-
-    /*
-      Agrega espacio interno para que el contenido no quede pegado
-      a los bordes.
-    */
-    padding: 1.5rem 1rem;
-}
-```
+> Ver archivo: [files/app.css](files/app.css)
 
 **¿Por qué este patrón?**
 -  **Header y footer en el shell** garantiza que aparezcan en todas las páginas sin repetir código en cada componente de ruta.
@@ -521,43 +475,7 @@ La `HomePage` es la vista de inicio. Muestra el `AppHeroComponent` del módulo 0
 
 #### `home-page.css`
 
-```css
-/* Apila el hero y el botón verticalmente con espacio entre ellos */
-.home-page {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-/* Centra el botón horizontalmente */
-.home-page__actions {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-}
-
-/* Botón de acción principal */
-.btn-primary {
-    display: inline-block;
-    padding: 0.6rem 1.25rem;
-    background: transparent;
-    color: #0f4c81;
-    border: 2px solid #0f4c81;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    width: fit-content;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    /* Animación suave al hacer hover */
-}
-
-/* Tono más oscuro al pasar el cursor (feedback visual) */
-.btn-primary:hover {
-    background: #0f4c81;
-    border-color: #0f4c81;
-    color: #ffffff;
-}
-```
+> Ver archivo: [files/home-page.css](files/home-page.css)
 
 **¿Qué hace cada regla?**
 - `flex-direction: column; gap: 2rem` — Apila verticalmente el hero y las acciones con espacio generoso entre ellos.
@@ -623,58 +541,7 @@ Lista de estudiantes con enlaces declarativos a su detalle. Cada componente tien
 
 #### `students-page.css`
 
-```css
-.students-page {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.students-page__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #172033;
-}
-
-.students-page__subtitle {
-    color: #5f6b7a;
-}
-
-/* Elimina bullets y padding por defecto del <ul> */
-.students-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-/* display: block hace que toda el área del ítem sea clickeable */
-.students-list__item a {
-    display: block;
-    padding: 0.75rem 1rem;
-    background: #ffffff;
-    border: 1px solid #dfe5ef;
-    border-radius: 6px;
-    color: #0f4c81;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.students-list__item a:hover {
-    background: #eef5ff;
-    border-color: #9fc5f8;
-    color: #0b3a66;
-}
-
-/* Diferencia visualmente el estado vacío del contenido real */
-.students-empty {
-    color: #7a8696;
-    font-style: italic;
-}
-```
+> Ver archivo: [files/students-page.css](files/students-page.css)
 
 **¿Qué hace cada regla clave?**
 - `list-style: none; padding: 0` — Quita el bullet y el padding por defecto del `<ul>`.
@@ -737,51 +604,7 @@ Vista de detalle para un estudiante concreto, identificado por el parámetro `:i
 
 #### `student-detail-page.css`
 
-```css
-.detail-page {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
-
-.detail-page__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #172033;
-}
-
-/* Caja que destaca el dato clave: borde izquierdo de acento */
-.detail-page__id {
-    font-size: 1.1rem;
-    color: #172033;
-    background: #ffffff;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    border: 1px solid #dfe5ef;
-    border-left: 4px solid #0f4c81;
-}
-
-/* Botón de retorno con estilo "outline" */
-.btn-back {
-    display: inline-block;
-    padding: 0.6rem 1.25rem;
-    background: transparent;
-    color: #0f4c81;
-    border: 2px solid #0f4c81;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    width: fit-content;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-
-/* "Fill effect": al hacer hover el botón se rellena de azul */
-.btn-back:hover {
-    background: #0f4c81;
-    border-color: #0f4c81;
-    color: #ffffff;
-}
-```
+> Ver archivo: [files/student-detail-page.css](files/student-detail-page.css)
 
 **¿Qué hace cada regla clave?**
 - `border-left: 4px solid #c3002f` — Acento que destaca el dato principal sin un fondo llamativo.
