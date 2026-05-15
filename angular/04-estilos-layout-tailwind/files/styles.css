@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand: #0f4c81;
+    --color-brand-strong: #0b3a66;
+    --color-surface: #ffffff;
+    --breakpoint-xs: 30rem;
+    --breakpoint-3xl: 120rem;
+}
+
+@layer base {
+    body {
+        @apply bg-slate-100 text-slate-900 antialiased;
+    }
+}
