@@ -151,8 +151,8 @@ window.frameworksData = {
         description: 'Proyecto base incremental con Angular 21, standalone y router moderno.',
         
         links: [
-          { text: 'Material', url: '../angular/01-instalacion-configuracion/01-instalacion-configuracion.md' },
-          { text: 'Práctica', url: '../angular/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
+          { text: 'Material', url: url_git+'angular/01-instalacion-configuracion/01-instalacion-configuracion.md' },
+          { text: 'Práctica', url: url_git+'angular/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
         ]
       },
       {
@@ -161,8 +161,8 @@ window.frameworksData = {
         description: 'Standalone, signals, computed y control flow moderno en Angular 21.',
         
         links: [
-          { text: 'Material', url: '../angular/02-fundamentos-angular/02-fundamentos-angular.md' },
-          { text: 'Práctica', url: '../angular/02-fundamentos-angular/02-fundamentos-angular-practica.md' }
+          { text: 'Material', url: url_git+'angular/02-fundamentos-angular/02-fundamentos-angular.md' },
+          { text: 'Práctica', url: url_git+'angular/02-fundamentos-angular/02-fundamentos-angular-practica.md' }
         ]
       },
       {
@@ -171,28 +171,28 @@ window.frameworksData = {
         description: 'Router moderno, shell principal y rutas parametrizadas.',
         
         links: [
-          { text: 'Material', url: '../angular/03-navegacion/03-navegacion.md' },
-          { text: 'Práctica', url: '../angular/03-navegacion/03-navegacion-practica.md' }
+          { text: 'Material', url: url_git+'angular/03-navegacion/03-navegacion.md' },
+          { text: 'Práctica', url: url_git+'angular/03-navegacion/03-navegacion-practica.md' }
         ]
       },
       {
         number: '04',
-        title: 'Formularios Reactivos',
-        description: 'Reactive Forms modernos con tipado fuerte y validadores reutilizables.',
-        
-        links: [
-          { text: 'Material', url: '../angular/04-formularios-reactivos/04-formularios-reactivos.md' },
-          { text: 'Práctica', url: '../angular/04-formularios-reactivos/04-formularios-reactivos-practica.md' }
-        ]
-      },
-      {
-        number: '05',
         title: 'Estilos y Layout con Tailwind',
         description: 'Layout responsive, tipografía y composición visual base con TailwindCSS.',
         
         links: [
-          { text: 'Material', url: '../angular/05-estilos-layout-tailwind/05-estilos-layout-tailwind.md' },
-          { text: 'Práctica', url: '../angular/05-estilos-layout-tailwind/05-estilos-layout-tailwind-practica.md' }
+          { text: 'Material', url: url_git+'angular/04-estilos-layout-tailwind/05-estilos-layout-tailwind.md' },
+          { text: 'Práctica', url: url_git+'angular/04-estilos-layout-tailwind/05-estilos-layout-tailwind-practica.md' }
+        ]
+      },
+      {
+        number: '05',
+        title: 'Formularios Reactivos',
+        description: 'Reactive Forms modernos con tipado fuerte y validadores reutilizables.',
+        
+        links: [
+          { text: 'Material', url: url_git+'angular/05-formularios-reactivos/04-formularios-reactivos.md' },
+          { text: 'Práctica', url: url_git+'angular/05-formularios-reactivos/04-formularios-reactivos-practica.md' }
         ]
       },
       {
@@ -201,8 +201,8 @@ window.frameworksData = {
         description: 'Sistema visual, DaisyUI y componentes reutilizables para la interfaz.',
 
         links: [
-          { text: 'Material', url: '../angular/06-temas-componentes-ui/06-temas-componentes-ui.md' },
-          { text: 'Práctica', url: '../angular/06-temas-componentes-ui/06-temas-componentes-ui-practica.md' }
+          { text: 'Material', url: url_git+'angular/06-temas-componentes-ui/06-temas-componentes-ui.md' },
+          { text: 'Práctica', url: url_git+'angular/06-temas-componentes-ui/06-temas-componentes-ui-practica.md' }
         ]
       },
       {
@@ -211,8 +211,8 @@ window.frameworksData = {
         description: 'HttpClient, servicios tipados y estados de carga/error en UI.',
         
         links: [
-          { text: 'Material', url: '../angular/07-consumo-servicios-http/07-consumo-servicios-http.md' },
-          { text: 'Práctica', url: '../angular/07-consumo-servicios-http/07-consumo-servicios-http-practica.md' }
+          { text: 'Material', url: url_git+'angular/07-consumo-servicios-http/07-consumo-servicios-http.md' },
+          { text: 'Práctica', url: url_git+'angular/07-consumo-servicios-http/07-consumo-servicios-http-practica.md' }
         ]
       },
       {
@@ -221,8 +221,8 @@ window.frameworksData = {
         description: 'Feedback visual, paginación, estados vacíos y mejoras de experiencia de usuario.',
         
         links: [
-          { text: 'Material', url: '../angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad.md' },
-          { text: 'Práctica', url: '../angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad-practica.md' }
+          { text: 'Material', url: url_git+'angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad.md' },
+          { text: 'Práctica', url: url_git+'angular/08-mejoras-visuales-usabilidad/08-mejoras-visuales-usabilidad-practica.md' }
         ]
       },
       {
@@ -231,8 +231,8 @@ window.frameworksData = {
         description: 'Autenticación, Firestore y persistencia por usuario en la nube.',
         
         links: [
-          { text: 'Material', url: '../angular/09-firebase-autenticacion/09-firebase-autenticacion.md' },
-          { text: 'Práctica', url: '../angular/09-firebase-autenticacion/09-firebase-autenticacion-practica.md' }
+          { text: 'Material', url: url_git+'angular/09-firebase-autenticacion/09-firebase-autenticacion.md' },
+          { text: 'Práctica', url: url_git+'angular/09-firebase-autenticacion/09-firebase-autenticacion-practica.md' }
         ]
       },
       {
@@ -241,8 +241,8 @@ window.frameworksData = {
         description: 'Rutas protegidas, guards funcionales y navegación condicionada por sesión.',
         
         links: [
-          { text: 'Material', url: '../angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas.md' },
-          { text: 'Práctica', url: '../angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas-practica.md' }
+          { text: 'Material', url: url_git+'angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas.md' },
+          { text: 'Práctica', url: url_git+'angular/10-guards-seguridad-rutas/10-guards-seguridad-rutas-practica.md' }
         ]
       },
       {
@@ -251,8 +251,8 @@ window.frameworksData = {
         description: 'Build de producción y publicación del proyecto incremental.',
         
         links: [
-          { text: 'Material', url: '../angular/11-deploy/11-deploy.md' },
-          { text: 'Práctica', url: '../angular/11-deploy/11-deploy-practica.md' }
+          { text: 'Material', url: url_git+'angular/11-deploy/11-deploy.md' },
+          { text: 'Práctica', url: url_git+'angular/11-deploy/11-deploy-practica.md' }
         ]
       },
       
@@ -318,8 +318,8 @@ window.frameworksData = {
         description: 'Entorno de desarrollo, proyecto astro-campus y primeros pasos con Astro v5.',
         
         links: [
-          { text: 'Material', url: '../astro/01-instalacion-configuracion/01-instalacion-configuracion.md' },
-          { text: 'Práctica', url: '../astro/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
+          { text: 'Material', url: url_git+'astro/01-instalacion-configuracion/01-instalacion-configuracion.md' },
+          { text: 'Práctica', url: url_git+'astro/01-instalacion-configuracion/01-instalacion-configuracion-practica.md' }
         ]
       },
       {
@@ -328,8 +328,8 @@ window.frameworksData = {
         description: 'Componentes .astro, frontmatter, props, slots y primeras páginas.',
         
         links: [
-          { text: 'Material', url: '../astro/02-fundamentos-astro/02-fundamentos-astro.md' },
-          { text: 'Práctica', url: '../astro/02-fundamentos-astro/02-fundamentos-astro-practica.md' }
+          { text: 'Material', url: url_git+'astro/02-fundamentos-astro/02-fundamentos-astro.md' },
+          { text: 'Práctica', url: url_git+'astro/02-fundamentos-astro/02-fundamentos-astro-practica.md' }
         ]
       },
       {
@@ -338,8 +338,8 @@ window.frameworksData = {
         description: 'Sistema de archivos como rutas, BaseLayout, Header, Footer y página 404.',
         
         links: [
-          { text: 'Material', url: '../astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion.md' },
-          { text: 'Práctica', url: '../astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion-practica.md' }
+          { text: 'Material', url: url_git+'astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion.md' },
+          { text: 'Práctica', url: url_git+'astro/03-rutas-layouts-navegacion/03-rutas-layouts-navegacion-practica.md' }
         ]
       },
       {
@@ -348,8 +348,8 @@ window.frameworksData = {
         description: 'Props tipadas con TypeScript, scoped styles, variables CSS y sistema de tokens.',
         
         links: [
-          { text: 'Material', url: '../astro/04-componentes-props-estilos/04-componentes-props-estilos.md' },
-          { text: 'Práctica', url: '../astro/04-componentes-props-estilos/04-componentes-props-estilos-practica.md' }
+          { text: 'Material', url: url_git+'astro/04-componentes-props-estilos/04-componentes-props-estilos.md' },
+          { text: 'Práctica', url: url_git+'astro/04-componentes-props-estilos/04-componentes-props-estilos-practica.md' }
         ]
       },
       {
@@ -358,8 +358,8 @@ window.frameworksData = {
         description: 'getStaticPaths, slugs, paginación con paginate() y páginas de detalle.',
         
         links: [
-          { text: 'Material', url: '../astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion.md' },
-          { text: 'Práctica', url: '../astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion-practica.md' }
+          { text: 'Material', url: url_git+'astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion.md' },
+          { text: 'Práctica', url: url_git+'astro/05-rutas-dinamicas-paginacion/05-rutas-dinamicas-paginacion-practica.md' }
         ]
       },
       {
@@ -368,8 +368,8 @@ window.frameworksData = {
         description: 'Content Collections, esquemas Zod, frontmatter tipado y renderizado de Markdown.',
         
         links: [
-          { text: 'Material', url: '../astro/06-contenido-markdown-collections/06-contenido-markdown-collections.md' },
-          { text: 'Práctica', url: '../astro/06-contenido-markdown-collections/06-contenido-markdown-collections-practica.md' }
+          { text: 'Material', url: url_git+'astro/06-contenido-markdown-collections/06-contenido-markdown-collections.md' },
+          { text: 'Práctica', url: url_git+'astro/06-contenido-markdown-collections/06-contenido-markdown-collections-practica.md' }
         ]
       },
       {
@@ -378,8 +378,8 @@ window.frameworksData = {
         description: 'fetch() en frontmatter, datos de APIs externas y generación estática de páginas.',
         
         links: [
-          { text: 'Material', url: '../astro/07-consumo-datos-build-time/07-consumo-datos-build-time.md' },
-          { text: 'Práctica', url: '../astro/07-consumo-datos-build-time/07-consumo-datos-build-time-practica.md' }
+          { text: 'Material', url: url_git+'astro/07-consumo-datos-build-time/07-consumo-datos-build-time.md' },
+          { text: 'Práctica', url: url_git+'astro/07-consumo-datos-build-time/07-consumo-datos-build-time-practica.md' }
         ]
       },
       {
@@ -388,8 +388,8 @@ window.frameworksData = {
         description: 'Scripts del cliente, localStorage, favoritos sin framework y define:vars.',
         
         links: [
-          { text: 'Material', url: '../astro/08-interactividad-localstorage/08-interactividad-localstorage.md' },
-          { text: 'Práctica', url: '../astro/08-interactividad-localstorage/08-interactividad-localstorage-practica.md' }
+          { text: 'Material', url: url_git+'astro/08-interactividad-localstorage/08-interactividad-localstorage.md' },
+          { text: 'Práctica', url: url_git+'astro/08-interactividad-localstorage/08-interactividad-localstorage-practica.md' }
         ]
       },
       {
@@ -398,8 +398,8 @@ window.frameworksData = {
         description: 'API Routes, modo hybrid, validación de formularios y respuestas JSON.',
         
         links: [
-          { text: 'Material', url: '../astro/09-formularios-endpoints/09-formularios-endpoints.md' },
-          { text: 'Práctica', url: '../astro/09-formularios-endpoints/09-formularios-endpoints-practica.md' }
+          { text: 'Material', url: url_git+'astro/09-formularios-endpoints/09-formularios-endpoints.md' },
+          { text: 'Práctica', url: url_git+'astro/09-formularios-endpoints/09-formularios-endpoints-practica.md' }
         ]
       },
       {
@@ -408,8 +408,8 @@ window.frameworksData = {
         description: 'Modo server, Node adapter, defineMiddleware, Astro.locals y endpoints SSR.',
         
         links: [
-          { text: 'Material', url: '../astro/10-ssr-middleware/10-ssr-middleware.md' },
-          { text: 'Práctica', url: '../astro/10-ssr-middleware/10-ssr-middleware-practica.md' }
+          { text: 'Material', url: url_git+'astro/10-ssr-middleware/10-ssr-middleware.md' },
+          { text: 'Práctica', url: url_git+'astro/10-ssr-middleware/10-ssr-middleware-practica.md' }
         ]
       },
       {
@@ -418,8 +418,8 @@ window.frameworksData = {
         description: 'Login con cookies httpOnly, validación en middleware y rutas protegidas.',
         
         links: [
-          { text: 'Material', url: '../astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas.md' },
-          { text: 'Práctica', url: '../astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas-practica.md' }
+          { text: 'Material', url: url_git+'astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas.md' },
+          { text: 'Práctica', url: url_git+'astro/11-autenticacion-proteccion-rutas/11-autenticacion-proteccion-rutas-practica.md' }
         ]
       },
       {
@@ -428,8 +428,8 @@ window.frameworksData = {
         description: 'Meta tags, Open Graph, landmarks ARIA, View Transitions y skip links.',
         
         links: [
-          { text: 'Material', url: '../astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento.md' },
-          { text: 'Práctica', url: '../astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento-practica.md' }
+          { text: 'Material', url: url_git+'astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento.md' },
+          { text: 'Práctica', url: url_git+'astro/12-seo-accesibilidad-rendimiento/12-seo-accesibilidad-rendimiento-practica.md' }
         ]
       },
       {
@@ -438,8 +438,8 @@ window.frameworksData = {
         description: 'Build de producción, netlify.toml y publicación en Netlify o Cloudflare Pages.',
         
         links: [
-          { text: 'Material', url: '../astro/13-deploy/13-deploy.md' },
-          { text: 'Práctica', url: '../astro/13-deploy/13-deploy-practica.md' }
+          { text: 'Material', url: url_git+'astro/13-deploy/13-deploy.md' },
+          { text: 'Práctica', url: url_git+'astro/13-deploy/13-deploy-practica.md' }
         ]
       },],
     addons:[
@@ -449,8 +449,8 @@ window.frameworksData = {
         description: 'Directivas client:*, integración React y barra de búsqueda como isla.',
         type: 'Addon',
         links: [
-          { text: 'Material', url: '../astro/A1-islands-integraciones/A1-islands-integraciones.md' },
-          { text: 'Práctica', url: '../astro/A1-islands-integraciones/A1-islands-integraciones-practica.md' }
+          { text: 'Material', url: url_git+'astro/A1-islands-integraciones/A1-islands-integraciones.md' },
+          { text: 'Práctica', url: url_git+'astro/A1-islands-integraciones/A1-islands-integraciones-practica.md' }
         ]
       },
       {
@@ -459,8 +459,8 @@ window.frameworksData = {
         description: 'Generación de feed RSS con @astrojs/rss y autodiscovery en el layout.',
         type: 'Addon',
         links: [
-          { text: 'Material', url: '../astro/A2-rss-feed/A2-rss-feed.md' },
-          { text: 'Práctica', url: '../astro/A2-rss-feed/A2-rss-feed-practica.md' }
+          { text: 'Material', url: url_git+'astro/A2-rss-feed/A2-rss-feed.md' },
+          { text: 'Práctica', url: url_git+'astro/A2-rss-feed/A2-rss-feed-practica.md' }
         ]
       },
       {
@@ -469,8 +469,8 @@ window.frameworksData = {
         description: 'Base de datos libSQL integrada, Server Actions con Zod y sistema de likes.',
         type: 'Addon',
         links: [
-          { text: 'Material', url: '../astro/A3-astro-db-server-actions/A3-astro-db-server-actions.md' },
-          { text: 'Práctica', url: '../astro/A3-astro-db-server-actions/A3-astro-db-server-actions-practica.md' }
+          { text: 'Material', url: url_git+'astro/A3-astro-db-server-actions/A3-astro-db-server-actions.md' },
+          { text: 'Práctica', url: url_git+'astro/A3-astro-db-server-actions/A3-astro-db-server-actions-practica.md' }
         ]
       },
       {
@@ -479,8 +479,8 @@ window.frameworksData = {
         description: 'Estado compartido entre islas React con NanoStores y carrito de compras.',
         type: 'Addon',
         links: [
-          { text: 'Material', url: '../astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores.md' },
-          { text: 'Práctica', url: '../astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores-practica.md' }
+          { text: 'Material', url: url_git+'astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores.md' },
+          { text: 'Práctica', url: url_git+'astro/A4-ecommerce-carrito-nanostores/A4-ecommerce-carrito-nanostores-practica.md' }
         ]
       }
     ],

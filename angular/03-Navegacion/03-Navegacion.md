@@ -152,13 +152,34 @@ Flujo:
 
 ## 8. RouterLink y tipos de navegación en templates
 
+`routerLink` es la directiva de Angular que intercepta el clic en un enlace y navega internamente sin recargar la página. Para que funcione debe declararse en el array `imports` del componente que lo usa.
+
+```ts
+imports: [RouterLink]
+```
+
+---
+
 ### Sintaxis directa (string)
 
 ```html
 <a routerLink="/students">Estudiantes</a>
+<a routerLink="/">Inicio</a>
 ```
 
-Útil para rutas fijas.
+Se usa cuando la ruta es un literal conocido en tiempo de escritura. Angular asigna el string como destino del enlace directamente.
+
+**Características:**
+- No necesita corchetes `[]` porque no es una expresión TypeScript, es un valor estático.
+- Equivale a un `href` de HTML, pero sin recargar la página.
+- Siempre usa rutas absolutas desde la raíz con `/`.
+
+| Sintaxis | Resultado |
+|----------|----------|
+| `routerLink="/students"` | Navega a `/students` |
+| `routerLink="/"` | Navega a la raíz `/` |
+
+---
 
 ### Sintaxis con binding (array)
 
@@ -166,29 +187,132 @@ Flujo:
 <a [routerLink]="['/students', student.id]">Ver detalle</a>
 ```
 
-Útil para rutas dinámicas, composición con variables y mayor control.
+Se usa cuando la ruta contiene segmentos dinámicos (variables) o se construye en tiempo de ejecución. Los corchetes `[]` indican que el valor es una expresión TypeScript evaluada, no un string literal.
+
+**Cómo se interpreta el array:**
+
+Angular concatena los segmentos del array para formar la URL final:
+
+| Array | URL generada |
+|-------|--------------|
+| `['/students']` | `/students` |
+| `['/students', 1]` | `/students/1` |
+| `['/students', student.id]` | `/students/42` (si `student.id === 42`) |
+| `['/users', userId, 'profile']` | `/users/5/profile` |
+
+**Comparación entre ambas sintaxis:**
+
+| Aspecto | `routerLink="/ruta"` | `[routerLink]="['/ruta', id]"` |
+|---------|----------------------|--------------------------------|
+| Tipo de valor | String estático | Expresión TypeScript |
+| Rutas dinámicas | ❌ No | ✅ Sí |
+| Requiere `[]` | No | Sí |
+| Uso típico | Barra de navegación | Listados, botones con ID |
+
+---
 
 ### routerLinkActive
 
-Permite marcar visualmente la opción activa:
+`routerLinkActive` observa la URL activa y añade automáticamente la clase CSS indicada al elemento cuando su `routerLink` coincide con la URL actual.
 
 ```html
-<a routerLink="/students" routerLinkActive="active">Estudiantes</a>
+<a routerLink="/students" routerLinkActive="nav-link--active">Estudiantes</a>
+```
+
+Cuando la URL es `/students`, Angular añade la clase `nav-link--active` al `<a>`. Cuando la URL cambia a otra cosa, la elimina.
+
+**No hay que escribir ninguna lógica TypeScript**: `routerLinkActive` detecta el cambio de URL automáticamente.
+
+**El problema de la coincidencia parcial:**
+
+Por defecto, `routerLinkActive` usa coincidencia parcial: un enlace con `routerLink="/"` estaría activo en **todas** las rutas porque `/` está contenida en `/students`, `/profile`, etc.
+
+```html
+<!--  Sin exact: el enlace de Inicio estará activo en todas las rutas -->
+<a routerLink="/" routerLinkActive="active">Inicio</a>
+
+<!--  Con exact: solo activo cuando la URL es exactamente / -->
+<a routerLink="/"
+   routerLinkActive="active"
+   [routerLinkActiveOptions]="{ exact: true }">
+  Inicio
+</a>
+```
+
+**`[routerLinkActiveOptions]`:**
+
+| Opción | Tipo | Descripción |
+|--------|------|-------------|
+| `exact: true` | boolean | La URL debe coincidir exactamente, no solo como prefijo. Necesario para rutas raíz (`/`). |
+| `exact: false` | boolean | (Por defecto) Activo si la URL empieza con el path del enlace. |
+
+**Ejemplo completo de barra de navegación:**
+
+```html
+<nav>
+  <a
+    routerLink="/"
+    routerLinkActive="nav-link--active"
+    [routerLinkActiveOptions]="{ exact: true }">
+    Inicio
+  </a>
+  <a
+    routerLink="/students"
+    routerLinkActive="nav-link--active">
+    Estudiantes
+  </a>
+</nav>
+```
+
+```css
+/* La clase añadida por routerLinkActive puede tener cualquier nombre */
+.nav-link--active {
+  color: white;
+  border-bottom: 2px solid #c3002f;
+  font-weight: 600;
+}
+```
+
+**Para que `routerLinkActive` funcione**, debe declararse en `imports`:
+
+```ts
+imports: [RouterLink, RouterLinkActive]
 ```
 
 ---
 
 ## 9. Parámetros de ruta y ActivatedRoute
 
-Los parámetros permiten reutilizar una misma página para múltiples entidades.
+Los parámetros de ruta permiten reutilizar un mismo componente para distintas entidades. En lugar de crear una ruta por cada estudiante, se define una sola ruta con un segmento dinámico (`:id`) y Angular pasa el valor concreto al componente cuando se navega a ella.
 
-Ruta:
+### Definir un parámetro en la ruta
+
+Un parámetro se declara con `:` seguido del nombre que se le quiere dar:
 
 ```ts
 { path: 'students/:id', component: StudentDetailPage }
 ```
 
-Lectura del parámetro en el componente:
+| Parte | Significado |
+|-------|-------------|
+| `students/` | Segmento fijo de la URL |
+| `:id` | Segmento dinámico: acepta cualquier valor (`1`, `42`, `'abc'`) |
+
+Ejemplos de URLs que activan esta ruta:
+
+| URL | Valor de `:id` |
+|-----|----------------|
+| `/students/1` | `'1'` |
+| `/students/42` | `'42'` |
+| `/students/ana-ruiz` | `'ana-ruiz'` |
+
+> ⚠️ El valor siempre llega como **string**, incluso si el segmento parece un número. Convertir con `Number(id)` o `parseInt(id)` si se necesita operar aritméticamente.
+
+---
+
+### ActivatedRoute: leer el parámetro en el componente
+
+`ActivatedRoute` es el servicio de Angular que expone toda la información de la ruta activa: parámetros, query params, fragmentos, datos estáticos, etc.
 
 ```ts
 import { Component, inject } from '@angular/core';
@@ -196,19 +320,118 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-detail-page',
-  template: `<p>ID: {{ id }}</p>`,
+  templateUrl: './student-detail-page.html',
 })
 export class StudentDetailPage {
   private route = inject(ActivatedRoute);
-  readonly id = this.route.snapshot.paramMap.get('id');
+
+  // snapshot: estado de la ruta en el momento de creación del componente.
+  // paramMap: mapa de parámetros de la ruta.
+  // .get('id'): lee el valor del parámetro cuyo nombre coincide con ':id' en app.routes.ts.
+  readonly id = this.route.snapshot.paramMap.get('id'); // string | null
 }
 ```
+
+**Propiedades de `ActivatedRoute` más usadas:**
+
+| Propiedad | Tipo | Descripción |
+|-----------|------|-------------|
+| `snapshot.paramMap` | `ParamMap` | Mapa de parámetros de la ruta en el momento de creación |
+| `snapshot.queryParamMap` | `ParamMap` | Mapa de query params (`?clave=valor`) |
+| `snapshot.fragment` | `string \| null` | Fragmento de la URL (`#seccion`) |
+| `snapshot.data` | `object` | Datos estáticos definidos en `data: {}` de la ruta |
+
+**Métodos de `ParamMap`:**
+
+| Método | Retorno | Descripción |
+|--------|---------|-------------|
+| `.get('nombre')` | `string \| null` | Valor del parámetro o `null` si no existe |
+| `.has('nombre')` | `boolean` | `true` si el parámetro existe en la URL |
+| `.getAll('nombre')` | `string[]` | Todos los valores (útil con query params multivaluados) |
+
+---
+
+### Ejemplo completo: pasar y leer un ID
+
+**En la ruta del listado** (usando binding array para incluir el ID):
+
+```html
+<!-- students-page.html -->
+@for (student of students(); track student.id) {
+  <li>
+    <a [routerLink]="['/students', student.id]">{{ student.name }}</a>
+  </li>
+}
+```
+
+**En el componente de detalle** (leyendo el ID con `ActivatedRoute`):
+
+```ts
+export class StudentDetailPage {
+  private route = inject(ActivatedRoute);
+
+  readonly id = this.route.snapshot.paramMap.get('id'); // '1', '2', etc.
+}
+```
+
+```html
+<!-- student-detail-page.html -->
+<p>Estudiante con ID: <strong>{{ id }}</strong></p>
+```
+
+**Flujo completo:**
+
+```
+/students/42
+    ↓
+Angular busca en routes: { path: 'students/:id' }
+    ↓
+Instancia StudentDetailPage
+    ↓
+ActivatedRoute.snapshot.paramMap.get('id') → '42'
+```
+
+---
+
+### `snapshot` vs observable de params
+
+| Enfoque | Cuándo usarlo |
+|---------|---------------|
+| `snapshot.paramMap.get('id')` | El componente se destruye y se recrea al navegar entre IDs (caso más común en páginas de detalle). |
+| `route.paramMap` (Observable) | El componente se **reutiliza** sin destruirse al cambiar el parámetro (rutas anidadas complejas). |
+
+En páginas de detalle simples como `StudentDetailPage`, `snapshot` es siempre suficiente.
 
 ---
 
 ## 10. Navegación programática con Router
 
-Cuando la navegación depende de lógica TypeScript (validaciones, acciones, flujos), se usa `Router`:
+`routerLink` es declarativo: se escribe en el HTML y Angular navega cuando el usuario hace clic. La navegación **programática** en cambio se dispara desde TypeScript, cuando la ruta de destino depende de lógica del componente.
+
+**Casos típicos donde se usa `Router.navigate()`:**
+- Redirigir tras enviar un formulario con éxito.
+- Navegar solo si el usuario cumple una condición (validación, rol, etc.).
+- Navegar después de una operación asíncrona (carga de datos, login, etc.).
+- Componer la ruta destino con valores calculados en TypeScript.
+
+### `inject()` — inyección funcional de servicios
+
+`inject()` es la función moderna de Angular para obtener una instancia de un servicio dentro de la clase de un componente, sin necesidad de declarar un constructor:
+
+```ts
+// Forma moderna (Angular 14+)
+private router = inject(Router);
+
+// Forma clásica equivalente
+constructor(private router: Router) {}
+```
+
+Ambas formas producen el mismo resultado. `inject()` es preferida en proyectos actuales porque:
+- No requiere constructor cuando el componente no necesita inicialización adicional.
+- Es más legible cuando se inyectan varios servicios.
+- Funciona fuera del constructor en contextos de inicialización de propiedades.
+
+### Uso de `Router.navigate()`
 
 ```ts
 import { Component, inject } from '@angular/core';
@@ -216,16 +439,43 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-example',
-  template: `<button (click)="goToStudents()">Ir a estudiantes</button>`,
+  templateUrl: './example.html',
 })
 export class ExampleComponent {
   private router = inject(Router);
 
+  // Navega a /students
   goToStudents(): void {
     this.router.navigate(['/students']);
   }
+
+  // Navega a /students/42 (ruta con parámetro)
+  goToDetail(id: number): void {
+    this.router.navigate(['/students', id]);
+  }
 }
 ```
+
+`navigate()` recibe el mismo tipo de array que `[routerLink]`: los segmentos se concatenan para formar la URL final.
+
+| Array en `navigate()` | URL resultante |
+|-----------------------|----------------|
+| `['/students']` | `/students` |
+| `['/students', 42]` | `/students/42` |
+| `['/students', id, 'edit']` | `/students/5/edit` |
+
+### ¿Qué más puede hacer el servicio `Router`?
+
+Además de `navigate()`, el servicio `Router` expone otras capacidades útiles:
+
+| Miembro | Descripción |
+|---------|-------------|
+| `router.navigate([...])` | Navega a una ruta por array de segmentos. |
+| `router.navigateByUrl('/ruta')` | Navega a una URL completa como string. |
+| `router.url` | Propiedad que retorna la URL activa en ese momento. |
+| `router.events` | Observable que emite eventos del ciclo de navegación (`NavigationStart`, `NavigationEnd`, etc.). Útil para mostrar loaders globales. |
+
+> En módulos posteriores (guards, formularios) se usará `router.navigate()` con frecuencia para controlar el flujo de la aplicación desde TypeScript.
 
 ---
 
