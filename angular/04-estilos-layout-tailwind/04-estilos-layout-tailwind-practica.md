@@ -554,14 +554,14 @@ La primera distribución es un grid responsivo de hasta 4 columnas. Los cards co
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
     <!--
-      bg-gradient-to-br  → gradiente diagonal (arriba-izquierda → abajo-derecha)
+      bg-linear-to-br  → gradiente diagonal (arriba-izquierda → abajo-derecha)
       from-sky-400 to-blue-600 → de celeste a azul
       shadow-lg  → sombra grande con mayor difuminado
       text-white → texto blanco sobre el gradiente oscuro
       p-5        → padding interno de 1.25rem
       rounded-2xl → border-radius: 1rem
     -->
-    <article class="rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 p-5 shadow-lg text-white">
+    <article class="rounded-2xl bg-linear-to-br from-sky-400 to-blue-600 p-5 shadow-lg text-white">
       <!--
         opacity-80: opacidad del 80% sobre el texto de etiqueta.
       -->
@@ -571,21 +571,21 @@ La primera distribución es un grid responsivo de hasta 4 columnas. Los cards co
     </article>
 
     <!-- from-violet-500 to-purple-700: gradiente de violeta a morado -->
-    <article class="rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 p-5 shadow-lg text-white">
+    <article class="rounded-2xl bg-linear-to-br from-violet-500 to-purple-700 p-5 shadow-lg text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Card 02</p>
       <h3 class="mt-2 text-lg font-semibold">Tareas pendientes</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Resumen visual de trabajo.</p>
     </article>
 
     <!-- from-emerald-400 to-teal-600: gradiente verde esmeralda a teal -->
-    <article class="rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 p-5 shadow-lg text-white">
+    <article class="rounded-2xl bg-linear-to-br from-emerald-400 to-teal-600 p-5 shadow-lg text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Card 03</p>
       <h3 class="mt-2 text-lg font-semibold">Ingresos</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Métrica financiera con lectura inmediata.</p>
     </article>
 
     <!-- from-rose-400 to-pink-600: gradiente rosado -->
-    <article class="rounded-2xl bg-gradient-to-br from-rose-400 to-pink-600 p-5 shadow-lg text-white">
+    <article class="rounded-2xl bg-linear-to-br from-rose-400 to-pink-600 p-5 shadow-lg text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Card 04</p>
       <h3 class="mt-2 text-lg font-semibold">Satisfacción</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Seguimiento de experiencia.</p>
@@ -609,7 +609,7 @@ La primera distribución es un grid responsivo de hasta 4 columnas. Los cards co
 | `gap-4` | Espacio de 1rem entre celdas del grid. |
 | `sm:grid-cols-2` | 2 columnas en pantallas ≥ 640px. |
 | `lg:grid-cols-4` | 4 columnas en pantallas ≥ 1024px. |
-| `bg-gradient-to-br` | Gradiente diagonal de arriba-izquierda a abajo-derecha. |
+| `bg-linear-to-br` | Gradiente diagonal de arriba-izquierda a abajo-derecha. |
 | `from-sky-400 to-blue-600` | Color inicial y final del gradiente. |
 | `shadow-lg` | Sombra grande con mayor difuminado. |
 | `rounded-2xl` | Border-radius: 1rem. |
@@ -754,25 +754,25 @@ Las distribuciones flex permiten organizar items en una fila. Con `overflow-x-au
       min-w-[16rem] → ancho mínimo fijo (valor arbitrario) para que el card no se comprima
       shrink-0      → impide que el card se encoja dentro del flex container
     -->
-    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 p-5 shadow-md text-white">
+    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-linear-to-br from-sky-400 to-blue-600 p-5 shadow-md text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Flex A</p>
       <h3 class="mt-2 text-lg font-semibold">Primer elemento</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Se desplaza sin romper el layout.</p>
     </article>
 
-    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 p-5 shadow-md text-white">
+    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-linear-to-br from-violet-500 to-purple-700 p-5 shadow-md text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Flex B</p>
       <h3 class="mt-2 text-lg font-semibold">Segundo elemento</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Estable y usable en móviles.</p>
     </article>
 
-    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 p-5 shadow-md text-white">
+    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-linear-to-br from-emerald-400 to-teal-600 p-5 shadow-md text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Flex C</p>
       <h3 class="mt-2 text-lg font-semibold">Tercer elemento</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Jerarquía visual consistente.</p>
     </article>
 
-    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-600 p-5 shadow-md text-white">
+    <article class="min-w-[16rem] shrink-0 rounded-2xl bg-linear-to-br from-rose-400 to-pink-600 p-5 shadow-md text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Flex D</p>
       <h3 class="mt-2 text-lg font-semibold">Cuarto elemento</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Se agrega sin cambiar el layout.</p>
