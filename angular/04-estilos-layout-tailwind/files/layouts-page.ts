@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
 
 type LayoutCard = {
   meta: string;
@@ -14,11 +14,11 @@ type LayoutSection = {
   cards: LayoutCard[];
 };
 
-@Component({
-  selector: 'app-layouts-page',
-  standalone: true,
-  templateUrl: './layouts-page.html',
-})
+// @Component({
+//   selector: 'app-layouts-page',
+//   standalone: true,
+//   templateUrl: './layouts-page.html',
+// })
 export class LayoutsPage {
   readonly layoutSections: LayoutSection[] = [
     {
