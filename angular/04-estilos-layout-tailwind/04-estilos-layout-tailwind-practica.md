@@ -696,23 +696,23 @@ Distribución simétrica en 3 columnas. Esta sección usa solo gradiente (sin so
   <div class="grid gap-6 md:grid-cols-3">
 
     <!--
-      bg-gradient-to-tr: gradiente de abajo-izquierda a arriba-derecha.
+      bg-linear-to-tr: gradiente de abajo-izquierda a arriba-derecha.
       from-amber-400 to-orange-500: gradiente cálido amarillo-naranja.
       Sin shadow: se omite la sombra para diferenciarse de los ejemplos anteriores.
     -->
-    <article class="rounded-2xl bg-gradient-to-tr from-amber-400 to-orange-500 p-5 text-white">
+    <article class="rounded-2xl bg-linear-to-tr from-amber-400 to-orange-500 p-5 text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Sección A</p>
       <h3 class="mt-2 text-lg font-semibold">Primero</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Contenido de la primera columna.</p>
     </article>
 
-    <article class="rounded-2xl bg-gradient-to-tr from-cyan-400 to-sky-600 p-5 text-white">
+    <article class="rounded-2xl bg-linear-to-tr from-cyan-400 to-sky-600 p-5 text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Sección B</p>
       <h3 class="mt-2 text-lg font-semibold">Segundo</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Contenido de la segunda columna.</p>
     </article>
 
-    <article class="rounded-2xl bg-gradient-to-tr from-fuchsia-400 to-pink-600 p-5 text-white">
+    <article class="rounded-2xl bg-linear-to-tr from-fuchsia-400 to-pink-600 p-5 text-white">
       <p class="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">Sección C</p>
       <h3 class="mt-2 text-lg font-semibold">Tercero</h3>
       <p class="mt-2 text-sm leading-6 opacity-90">Contenido de la tercera columna.</p>
@@ -728,7 +728,7 @@ Distribución simétrica en 3 columnas. Esta sección usa solo gradiente (sin so
 |---|---|
 | `md:grid-cols-3` | 3 columnas en pantallas ≥ 768px. |
 | `gap-6` | Espacio de 1.5rem entre celdas. |
-| `bg-gradient-to-tr` | Gradiente de abajo-izquierda hacia arriba-derecha. |
+| `bg-linear-to-tr` | Gradiente de abajo-izquierda hacia arriba-derecha. |
 
 ![alt text](assets/p9-6.png)
 ---
