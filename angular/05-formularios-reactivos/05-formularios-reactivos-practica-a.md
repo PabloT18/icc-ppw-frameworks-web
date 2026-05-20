@@ -610,41 +610,6 @@ si el email está disponible.
 
 Un validador async se usa cuando la validación depende de una operación que puede tardar, como consultar una API. Por eso Angular no recibe el resultado inmediatamente, sino mediante un `Observable`. Mientras espera la respuesta, el control queda en estado `PENDING`. Cuando el observable responde, Angular actualiza el estado del formulario como válido o inválido.
 
-
----
-
-### Paso 6. Crear componente `FormFieldComponent` reutilizable
-
-El template del formulario tiene mucha repetición: label + input + errores. Vale la pena extraer esto.
-
-**Objetivo:** mostrar que los validadores viven en el componente, pero la presentación visual puede reutilizarse.
-
-> Ver archivo: [files/form-field.component.ts](files/form-field.component.ts)
-
-Copiar a: `src/app/components/form-field/form-field.component.ts`
-
-El componente acepta:
-- `@Input() label: string`
-- `@Input() control: FormControl`
-- `@Input() type: string = 'text'`
-- `@Input() errorMessages: { [key: string]: string }`
-
-Y renderiza label + input + errores dinámicos.
-
-**Uso en `signup-page.html` (opcional para este módulo):**
-
-```html
-<app-form-field
-  label="Email"
-  [control]="email"
-  type="email"
-  placeholder="tu@email.com"
-/>
-```
-
----
-
-
 ---
 
 ## 6. Validaciones esperadas
@@ -669,5 +634,7 @@ Y renderiza label + input + errores dinámicos.
 ## 8. Commit sugeridos
 
 ```bash
-git commit -m "END: 5 formularios"
+
+git commit -m "feat: formulario signup"
+
 ```

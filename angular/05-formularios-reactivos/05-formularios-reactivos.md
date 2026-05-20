@@ -72,7 +72,33 @@ const form = new FormGroup({
 
 Un `FormGroup` es válido solo si **todos sus controles son válidos**. Si un control es inválido, toda la forma es inválida.
 
-### 3.3 FormBuilder
+### 3.3 FormArray
+
+Contenedor para listas dinámicas de controles (FormControl o FormGroup).
+
+```ts
+const lenguajes = new FormArray([
+  new FormControl('JavaScript'),
+  new FormControl('TypeScript'),
+]);
+```
+
+Permite agregar y eliminar controles dinámicamente:
+
+```ts
+// Agregar
+lenguajes.push(new FormControl('Python'));
+
+// Eliminar
+lenguajes.removeAt(0);
+
+// Acceder
+lenguajes.at(0).value; // 'JavaScript'
+```
+
+Uso típico: listas de elementos que el usuario puede modificar (lenguajes, teléfonos, hobbies, tareas).
+
+### 3.4 FormBuilder
 
 Forma abreviada (y recomendada) de construir formularios sin repetir `new FormControl()`.
 
@@ -88,6 +114,18 @@ La sintaxis `['', [Validators.required]]` es: `[initialValue, validators, asyncV
 
 La sintaxis `this.fb.nonNullable.group(...)` evita que los valores sean `null` por defecto (más seguro).
 
+#### FormBuilder con FormArray
+
+```ts
+const form = this.fb.group({
+  nombre: [''],
+  lenguajes: this.fb.array([
+    this.fb.control('JavaScript'),
+    this.fb.control('TypeScript'),
+  ]),
+});
+```
+
 ---
 
 ## 4. Validación
@@ -98,8 +136,7 @@ Angular proporciona validadores comunes en la clase `Validators`:
 
 | Validador | Uso | Retorna |
 |-----------|-----|---------|
-| `required` | Campo no puede estar vacío | `{ required: true }` |
-| `email` | Debe ser formato email válido | `{ email: true }` |
+| `required` | Campo no puede estar vacío | `{ required: true }` || `requiredTrue` | Checkbox debe estar marcado (true) | `{ required: true }` || `email` | Debe ser formato email válido | `{ email: true }` |
 | `minLength(n)` | Mínimo de n caracteres | `{ minlength: { requiredLength: n, actualLength: m } }` |
 | `maxLength(n)` | Máximo de n caracteres | `{ maxlength: { requiredLength: n, actualLength: m } }` |
 | `pattern(regex)` | Debe coincidir con la expresión regular | `{ pattern: { requiredPattern: '...', actualValue: '...' } }` |
@@ -164,6 +201,54 @@ email: ['', [Validators.required, Validators.email], [emailUniqueValidator()]]
 
 Mientras valida async, el `status` es `PENDING`.
 
+#### Operadores RxJS en validadores async
+
+**`of()`**  
+Convierte un valor normal en un `Observable`:
+
+```ts
+of(null) // Observable que emite null
+of(control.value) // Observable que emite el valor del control
+```
+
+Se usa porque Angular espera un resultado asíncrono, aunque la validación sea simulada.
+
+**`pipe()`**  
+Permite encadenar operaciones sobre el observable:
+
+```ts
+of(control.value).pipe(
+  delay(500),
+  map(...)
+)
+```
+
+1. Tomar el valor actual
+2. Esperar 500ms
+3. Transformar el valor
+
+**`delay(n)`**  
+Simula el tiempo de respuesta de una API. Durante este tiempo, el control entra en estado `PENDING`:
+
+```html
+@if (email.status === 'PENDING') {
+  <p>Verificando disponibilidad...</p>
+}
+```
+
+**`map()`**  
+Transforma el valor emitido por el observable:
+
+```ts
+map((email: string) => {
+  return takenEmails.includes(email) 
+    ? { emailTaken: true } 
+    : null;
+})
+```
+
+Retorna `{ emailTaken: true }` si hay error, o `null` si es válido.
+
 ---
 
 ## 5. Estado del formulario
@@ -177,6 +262,34 @@ Mientras valida async, el `status` es `PENDING`.
 | **errors** | Objeto con errores actuales | Renderizar mensajes personalizados |
 | **valueChanges** | Observable de cambios de valor | Reaccionar a cambios (ej: guardar automático) |
 | **statusChanges** | Observable de cambios de estado | Reaccionar a validación async en progreso |
+
+### Métodos comunes de FormControl y FormGroup
+
+| Método | Descripción | Uso |
+|--------|-------------|-----|
+| **setValue()** | Establece el valor completo del formulario | `form.setValue({ email: '...', password: '...' })` |
+| **patchValue()** | Establece valores parciales | `form.patchValue({ email: '...' })` |
+| **reset()** | Limpia el formulario y marca pristine/untouched | `form.reset()` |
+| **markAsTouched()** | Marca el control como touched | `control.markAsTouched()` |
+| **markAllAsTouched()** | Marca todos los controles como touched | `form.markAllAsTouched()` |
+| **markAsDirty()** | Marca el control como modificado | `control.markAsDirty()` |
+| **markAsPristine()** | Marca el control como sin modificar | `control.markAsPristine()` |
+| **enable()** | Habilita el control | `control.enable()` |
+| **disable()** | Deshabilita el control | `control.disable()` |
+| **get()** | Obtiene un control del FormGroup | `form.get('email')` |
+| **hasError()** | Verifica si existe un error específico | `control.hasError('required')` |
+| **getError()** | Obtiene los detalles de un error | `control.getError('minlength')` |
+
+### Métodos específicos de FormArray
+
+| Método | Descripción | Uso |
+|--------|-------------|-----|
+| **push()** | Agrega un control al final | `array.push(new FormControl(''))` |
+| **insert()** | Inserta un control en posición específica | `array.insert(1, new FormControl(''))` |
+| **removeAt()** | Elimina el control en posición indicada | `array.removeAt(0)` |
+| **at()** | Accede al control en posición indicada | `array.at(0)` |
+| **clear()** | Elimina todos los controles | `array.clear()` |
+| **length** | Número de controles en el array | `array.length` |
 
 ---
 
@@ -232,7 +345,48 @@ onSubmit() {
 
 ---
 
-## 8. Ciclo de vida del formulario
+## 8. Controles especiales
+
+### Radio buttons
+
+Permiten selección única entre múltiples opciones:
+
+```html
+<input type="radio" value="frontend" formControlName="tipo" />
+<input type="radio" value="backend" formControlName="tipo" />
+<input type="radio" value="fullstack" formControlName="tipo" />
+```
+
+Todos comparten el mismo `formControlName`. El valor seleccionado se asigna al control.
+
+### Checkbox
+
+Control booleano (true/false):
+
+```html
+<input type="checkbox" formControlName="notificaciones" />
+```
+
+Para hacer un checkbox obligatorio:
+
+```ts
+terminosAceptados: [false, Validators.requiredTrue]
+```
+
+### Switch (checkbox estilizado)
+
+Funciona igual que checkbox pero con diseño de palanca:
+
+```html
+<input type="checkbox" formControlName="activo" class="sr-only peer" />
+<div class="... peer-checked:bg-sky-600"></div>
+```
+
+Usa clases Tailwind con `peer` para estilos condicionales.
+
+---
+
+## 9. Ciclo de vida del formulario
 
 1. **Creación:** `FormBuilder.group(...)` define estructura y validadores.
 2. **Inicialización:** El formulario comienza con `status = VALID` (si no hay required) o `INVALID` (si hay).
@@ -242,7 +396,7 @@ onSubmit() {
 
 ---
 
-## 9. Buenas prácticas
+## 10. Buenas prácticas
 
 - **Usa FormBuilder**, no `new FormControl()` manualmente.
 - **Agrupa validadores por control**, no los esparza en múltiples líneas.
@@ -253,7 +407,7 @@ onSubmit() {
 
 ---
 
-## 10. Errores comunes
+## 11. Errores comunes
 
 - Olvidar que `FormBuilder` retorna `FormGroup`, no `FormControl`.
 - Olvidar `ReactiveFormsModule` en `imports` del componente.
@@ -264,22 +418,28 @@ onSubmit() {
 
 ---
 
-## 11. Relación con el proyecto incremental
+## 12. Relación con el proyecto incremental
 
-En este módulo se construye una página de sign-up con formulario reactivo. El formulario tiene validación built-in, custom (confirmación de contraseña), y async (verificación de email). Se integra con el router y se demuestra cómo un formulario reactivo escala desde 1 control a N controles sin perder legibilidad.
+Este módulo se compone de tres prácticas incrementales:
+
+**Práctica A: Formulario de signup**  
+Formulario con validación built-in, custom (confirmación de contraseña), y async (verificación de email).
+
+**Práctica B: Reutilización con FormUtils**  
+Creación de una clase helper que centraliza la lógica de validación para evitar código repetitivo.
+
+**Práctica C: Formularios dinámicos y controles especiales**  
+Formulario complejo con FormArray (lista dinámica de lenguajes), radio buttons, switches y checkboxes.
+
+Cada práctica demuestra cómo los formularios reactivos escalan de simples a complejos sin perder legibilidad ni control.
 
 ---
 
-## 12. Referencias recomendadas
+## 13. Referencias recomendadas
 
 - Angular Reactive Forms Docs: https://angular.io/guide/reactive-forms
 - Validators Built-in: https://angular.io/api/forms/Validators
 - Custom Validators: https://angular.io/guide/form-validation#custom-validators
 - [angular/docs/A-heuristicas.md](../docs/A-heuristicas.md)
-
----
-
-## 8. Referencias recomendadas
-
-- [angular/docs/A-heuristicas.md](../docs/A-heuristicas.md)
 - Documentación oficial de formularios: https://angular.dev/guide/forms/reactive-forms
+- RxJS Operators: https://rxjs.dev/api
