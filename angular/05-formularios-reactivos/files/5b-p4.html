@@ -1,0 +1,64 @@
+<section class="max-w-2xl mx-auto space-y-6 p-6">
+  <header class="space-y-2">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">Perfil</p>
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900">Editar información personal</h1>
+  </header>
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    
+    <!-- Nombre -->
+    <div class="space-y-2">
+      <label for="nombre" class="block text-sm font-medium text-slate-700">Nombre completo</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Ingrese su nombre"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+      />
+      
+      @if (formUtils.isValidField(myForm, 'nombre')) {
+        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'nombre') }}</p>
+      }
+    </div>
+
+    <!-- Edad -->
+    <div class="space-y-2">
+      <label for="edad" class="block text-sm font-medium text-slate-700">Edad</label>
+      <input
+        id="edad"
+        type="number"
+        formControlName="edad"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+      />
+      
+      @if (formUtils.isValidField(myForm, 'edad')) {
+        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'edad') }}</p>
+      }
+    </div>
+
+    <!-- Correo -->
+    <div class="space-y-2">
+      <label for="correo" class="block text-sm font-medium text-slate-700">Correo electrónico</label>
+      <input
+        id="correo"
+        type="email"
+        formControlName="correo"
+        placeholder="ejemplo@mail.com"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+      />
+      
+      @if (formUtils.isValidField(myForm, 'correo')) {
+        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'correo') }}</p>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="w-full rounded-lg bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700 disabled:opacity-50"
+      [disabled]="myForm.invalid"
+    >
+      Guardar perfil
+    </button>
+  </form>
+</section>

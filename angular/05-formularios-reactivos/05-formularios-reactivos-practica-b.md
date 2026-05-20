@@ -71,7 +71,7 @@ Crea `src/app/features/profile/pages/profile-page.ts` con campos básicos.
 
 **Objetivo:** mostrar un formulario simple sin helper para evidenciar la repetición.
 
-#### Crear el componente
+#### Crear el componente o usando la extension de VSCode Angular Schematics 
 
 ```bash
 ng g c features/profile/pages/profile-page --standalone --skip-tests
@@ -79,38 +79,134 @@ ng g c features/profile/pages/profile-page --standalone --skip-tests
 
 #### `profile-page.ts`
 
+````md
+#### Paso 1.1 Crear el componente standalone
+
+Usar Angular CLI o Angular Schematics:
+
+```bash
+ng g c features/profile/pages/profile-page --standalone --skip-tests
+````
+
+
+Agregar ruta y navegación
+
+#### Agregar ruta en `app.routes.ts`
+
 ```ts
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-@Component({
-  selector: 'app-profile-page',
-  imports: [ReactiveFormsModule],
-  templateUrl: './profile-page.html',
-  styles: ``
-})
-export default class ProfilePage {
-  private fb = inject(FormBuilder);
-
-  myForm: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(3)]],
-    edad: [0, [Validators.required, Validators.min(18)]],
-    correo: ['', [Validators.required, Validators.email]],
-  });
-
-  get nombre() { return this.myForm.get('nombre')!; }
-  get edad() { return this.myForm.get('edad')!; }
-  get correo() { return this.myForm.get('correo')!; }
-
-  onSubmit() {
-    if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched();
-      return;
-    }
-    console.log('Perfil guardado:', this.myForm.value);
-  }
-}
+{ path: 'profile', component: ProfilePage }
 ```
+
+#### Agregar link en el header
+
+En el componente de navegación, agregar un enlace:
+
+```html
+<a routerLink="/profile" class="...">Perfil</a>
+```
+
+---
+
+#### Paso 1.2 Importar `ReactiveFormsModule`
+
+Agregar `ReactiveFormsModule` en los imports del componente.
+
+
+
+#### Paso 1.3 Inyectar `FormBuilder`
+
+Inyectar la dependencia:
+
+```ts
+FormBuilder
+```
+
+
+
+#### Paso 1.4 Crear el `FormGroup`
+
+Crear:
+
+```ts
+myForm
+```
+
+usando:
+
+```ts
+this.fb.group(...)
+```
+
+
+
+#### Paso 1.5 Agregar control `nombre`
+
+Agregar:
+
+* valor inicial vacío
+* `Validators.required`
+* `Validators.minLength(3)`
+
+
+
+#### Paso 1.6 Agregar control `edad`
+
+Agregar:
+
+* valor inicial `0`
+* `Validators.required`
+* `Validators.min(18)`
+
+
+
+#### Paso 1.7 Agregar control `correo`
+
+Agregar:
+
+* valor inicial vacío
+* `Validators.required`
+* `Validators.email`
+
+
+
+#### Paso 1.8 Crear getters para controles
+
+Crear getters:
+
+* `nombre`
+* `edad`
+* `correo`
+
+
+
+#### Paso 1.9 Crear método `onSubmit()`
+
+Validar:
+
+```ts
+this.myForm.invalid
+```
+
+
+
+#### Paso 1.10 Marcar controles como touched
+
+Usar:
+
+```ts
+this.myForm.markAllAsTouched()
+```
+
+
+
+#### Paso 1.11 Mostrar datos del formulario
+
+Usar:
+
+```ts
+console.log(this.myForm.value)
+```
+
 
 #### Explicación
 
@@ -225,6 +321,11 @@ Crea `src/app/shared/utils/form-utils.ts` para centralizar la lógica de validac
 import { FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 
 export class FormUtils {
+}
+```
+
+Add: Verifica si un campo es inválido y ha sido tocado
+```ts
 
   /**
    * Verifica si un campo es inválido y ha sido tocado
@@ -233,6 +334,12 @@ export class FormUtils {
     const control = form.controls[fieldName];
     return !!control?.errors && control.touched;
   }
+```
+
+
+Add: Obtiene el mensaje de error de un campo
+
+```ts
 
   /**
    * Obtiene el mensaje de error de un campo
@@ -245,6 +352,11 @@ export class FormUtils {
     return FormUtils.getTextError(errors);
   }
 
+```
+
+Add: Traduce el código de error a mensaje legible
+
+```ts
   /**
    * Traduce el código de error a mensaje legible
    */
@@ -284,7 +396,10 @@ export class FormUtils {
     }
     return null;
   }
+```
 
+Add: Verifica si un elemento de FormArray es inválido y obtener el mensaje de error de un elemento de FormArray
+```ts
   /**
    * Verifica si un elemento de FormArray es inválido
    */
@@ -302,7 +417,7 @@ export class FormUtils {
     const errors = formArray.controls[index]?.errors ?? {};
     return FormUtils.getTextError(errors);
   }
-}
+
 ```
 
 #### Explicación de cada método
@@ -358,14 +473,14 @@ export default class ProfilePage {
 Reemplazar los bloques de errores con:
 
 ```html
-<section class="max-w-2xl mx-auto space-y-6 p-6">
-  <header class="space-y-2">
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">Perfil</p>
-    <h1 class="text-3xl font-bold tracking-tight text-slate-900">Editar información personal</h1>
-  </header>
+@if (formUtils.isValidField(myForm, 'nombre')) {
+        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'nombre') }}</p>
+      }
+```
 
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="space-y-4">
-    
+En cada Input debera queda solo un bloque para mostrar el error.
+
+```html
     <!-- Nombre -->
     <div class="space-y-2">
       <label for="nombre" class="block text-sm font-medium text-slate-700">Nombre completo</label>
@@ -381,48 +496,9 @@ Reemplazar los bloques de errores con:
         <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'nombre') }}</p>
       }
     </div>
-
-    <!-- Edad -->
-    <div class="space-y-2">
-      <label for="edad" class="block text-sm font-medium text-slate-700">Edad</label>
-      <input
-        id="edad"
-        type="number"
-        formControlName="edad"
-        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
-      />
-      
-      @if (formUtils.isValidField(myForm, 'edad')) {
-        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'edad') }}</p>
-      }
-    </div>
-
-    <!-- Correo -->
-    <div class="space-y-2">
-      <label for="correo" class="block text-sm font-medium text-slate-700">Correo electrónico</label>
-      <input
-        id="correo"
-        type="email"
-        formControlName="correo"
-        placeholder="ejemplo@mail.com"
-        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
-      />
-      
-      @if (formUtils.isValidField(myForm, 'correo')) {
-        <p class="text-xs text-red-600">{{ formUtils.getFieldError(myForm, 'correo') }}</p>
-      }
-    </div>
-
-    <button
-      type="submit"
-      class="w-full rounded-lg bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700 disabled:opacity-50"
-      [disabled]="myForm.invalid"
-    >
-      Guardar perfil
-    </button>
-  </form>
-</section>
 ```
+
+Aplicar lo mismo para los otros dos inputs
 
 #### Comparación antes y después
 
@@ -447,23 +523,6 @@ Reemplazar los bloques de errores con:
 
 El código es mucho más conciso y reutilizable.
 
----
-
-### Paso 5. Agregar ruta y navegación
-
-#### Agregar ruta en `app.routes.ts`
-
-```ts
-{ path: 'profile', component: ProfilePage }
-```
-
-#### Agregar link en el header
-
-En el componente de navegación, agregar un enlace:
-
-```html
-<a routerLink="/profile" class="...">Perfil</a>
-```
 
 ---
 
@@ -494,7 +553,6 @@ En el componente de navegación, agregar un enlace:
 
 - Captura del formulario vacío mostrando el estado inicial
 - Captura del formulario con todos los errores visibles (después de submit)
-- Captura del formulario válido antes de guardar
 
 ---
 
