@@ -20,27 +20,28 @@
 
 ## 1. Objetivo del tema
 
-Agregar un sistema visual más rico al proyecto incremental usando temas y componentes UI reutilizables, sin perder la base de layout construida con Tailwind en el módulo anterior.
+Diseñar una capa visual consistente y escalable sobre el proyecto incremental: tema global, componentes reutilizables (navbar, header, footer, cards), variantes visuales (glass/gradient) y una página catálogo de componentes responsive.
 
 ---
 
-## 2. Explicación conceptual
+## 2. Enfoque conceptual
 
-Después de dominar layout y responsive, conviene pasar a una segunda capa: sistema visual consistente. Aquí entran temas, componentes predefinidos y piezas reutilizables como navbar, cards, drawer, tablas y badges.
+En el módulo anterior resolvimos estructura y layout. En este módulo resolvemos **sistema visual**. Un sistema visual no es solo "que se vea bonito": define reglas de composición para mantener consistencia entre pantallas.
 
-| Solo Tailwind base | Tailwind + sistema de componentes |
+| Enfoque suelto | Enfoque de sistema |
 |---|---|
-| mayor control manual | mayor velocidad para construir UI repetible |
-| cada componente visual se arma desde cero | existen patrones visuales listos para reutilizar |
-| útil para estructura | útil para consistencia y productividad |
+| cada pantalla se estiliza diferente | mismas reglas de espaciado, color y tipografía |
+| componentes duplicados | componentes reutilizables con variantes |
+| difícil mantener coherencia | fácil escalar nuevos módulos |
+| cambios visuales costosos | cambios globales con bajo costo |
 
-Este módulo puede apoyarse en DaisyUI porque ya existe material previo y encaja bien con la secuencia del curso.
+La combinación Tailwind + DaisyUI permite velocidad de implementación sin perder arquitectura basada en componentes Angular.
 
 ---
 
 ## 3. Fundamento técnico
 
-### 3.1 DaisyUI como capa de componentes
+### 3.1 DaisyUI como capa semántica sobre Tailwind
 
 ```bash
 pnpm add -D daisyui@latest
@@ -51,82 +52,116 @@ pnpm add -D daisyui@latest
 @plugin "daisyui";
 ```
 
-### 3.2 Temas visuales
+DaisyUI aporta clases de componentes (`btn`, `navbar`, `card`, `badge`) y temas listos para acelerar desarrollo.
+
+### 3.2 Tema global y tokens visuales
 
 ```html
-<html data-theme="cupcake"></html>
+<html lang="es" data-theme="cupcake">
 ```
 
-Un tema define colores y estilos base. La ventaja pedagógica es que el estudiante puede experimentar consistencia visual sin escribir una paleta completa desde cero.
+Cambiar `data-theme` modifica colores base y jerarquías visuales sin reescribir toda la UI.
 
-### 3.3 Componentes reutilizables
+Buena práctica: definir un tema por defecto del curso y, si se habilita cambio de tema, documentar contraste y legibilidad en todos los estados (normal, hover, disabled, focus).
 
-Los componentes UI del curso deben montarse como componentes Angular, no como HTML duplicado en muchas páginas. Ejemplos naturales:
+### 3.3 Componentes visuales vs. componentes de dominio
 
-- navbar principal
-- footer
-- stat card
-- empty state card
-- table wrapper
+- **Visuales:** `AppNavbar`, `AppFooter`, `GlassCard`, `StatChip`.
+- **Dominio:** `StudentsPage`, `ProfilePage`, `SignupPage`.
+
+Regla: un componente visual no debería conocer lógica de negocio. Solo recibe inputs y emite eventos.
+
+### 3.4 Variantes visuales modernas: glass + gradients
+
+Las variantes visuales enriquecen la percepción sin romper estructura:
+
+- **Glass:** `bg-white/10`, `backdrop-blur-xl`, `border-white/20`.
+- **Gradient surfaces:** `bg-gradient-to-br`, `from-sky-500`, `via-cyan-400`, `to-indigo-500`.
+
+No deben aplicarse en exceso. Se recomienda concentrarlas en bloques de alto valor (hero, CTA, card destacada).
+
+### 3.5 Distribución responsive por zonas
+
+Una sola página puede combinar varias distribuciones:
+
+- Zona 1: hero 1 columna móvil / 2 columnas desktop.
+- Zona 2: grid de cards 1-2-3 columnas (`grid-cols-1 md:grid-cols-2 xl:grid-cols-3`).
+- Zona 3: bloques asimétricos (`lg:grid-cols-[2fr_1fr]`).
+
+Esto permite enseñar diseño adaptable real, no solo "stack vertical".
 
 ---
 
 ## 4. Ejemplos de código
 
-### Ejemplo 1: navbar con DaisyUI
+### Ejemplo 1: navbar reutilizable
 
 ```html
-<div class="navbar rounded-2xl bg-base-100 shadow-sm">
+<nav class="navbar rounded-2xl border border-base-200 bg-base-100/90 px-4 shadow-sm backdrop-blur">
   <div class="flex-1">
-    <a class="btn btn-ghost text-xl">PPW Angular</a>
+    <a class="text-lg font-black tracking-tight">PPW Angular</a>
   </div>
-  <div class="flex-none gap-2">
-    <a class="btn btn-ghost">Inicio</a>
-    <a class="btn btn-primary">Estudiantes</a>
+  <div class="hidden gap-2 md:flex">
+    <a class="btn btn-ghost btn-sm">Inicio</a>
+    <a class="btn btn-ghost btn-sm">Profile</a>
+    <a class="btn btn-primary btn-sm">Componentes</a>
   </div>
-</div>
+</nav>
 ```
 
-### Ejemplo 2: tarjeta reutilizable
+### Ejemplo 2: card glass reutilizable
 
 ```html
-<article class="card bg-base-100 shadow-sm">
-  <div class="card-body">
-    <h2 class="card-title">Perfil</h2>
-    <p>Gestiona datos y habilidades del usuario.</p>
-  </div>
+<article class="rounded-2xl border border-white/30 bg-white/10 p-5 shadow-lg backdrop-blur-xl">
+  <h3 class="text-lg font-bold text-slate-900">Glass Card</h3>
+  <p class="mt-2 text-sm text-slate-700">Ideal para resúmenes, métricas y accesos rápidos.</p>
 </article>
+```
+
+### Ejemplo 3: bloque gradiente
+
+```html
+<section class="rounded-3xl bg-gradient-to-br from-sky-500 via-cyan-400 to-indigo-500 p-6 text-white shadow-xl">
+  <p class="text-xs font-semibold uppercase tracking-[0.25em]">UI System</p>
+  <h2 class="mt-2 text-2xl font-black">Componentes consistentes</h2>
+  <p class="mt-2 text-sm text-white/90">La misma base visual en todas las páginas.</p>
+</section>
 ```
 
 ---
 
 ## 5. Buenas prácticas
 
-- Introduce componentes UI solo después de tener buen layout base.
-- Evita mezclar demasiadas librerías visuales en el mismo proyecto.
-- Reutiliza componentes Angular para piezas repetidas del sistema visual.
-- Mantén una separación clara entre estructura, tema y datos.
-- Si usas temas, documenta cuál es el tema por defecto y por qué.
+- Definir el tema en un solo lugar y no mezclar múltiples bibliotecas de componentes.
+- Reutilizar navbar, header y footer como componentes compartidos.
+- Mantener variantes visuales como props o clases composables, no duplicar HTML.
+- Usar contrastes accesibles en texto sobre gradientes y superficies glass.
+- Conservar jerarquía tipográfica consistente entre páginas.
+- Usar breakpoints intencionales: móvil primero, luego enriquecer para `md`, `lg`, `xl`.
+- Evitar animaciones excesivas; priorizar claridad de navegación y foco.
 
 ---
 
 ## 6. Errores comunes
 
-- Usar DaisyUI como sustituto de arquitectura de componentes.
-- Duplicar navbar y footer en varias páginas.
-- Introducir demasiados estilos ad hoc encima del sistema visual.
-- Confundir componente visual con componente de dominio.
-- Cambiar de tema sin revisar contraste y legibilidad.
+- Tratar DaisyUI como reemplazo de arquitectura Angular.
+- Duplicar navbar/footer/header en cada page en vez de usar el shell.
+- Usar glass/gradients en todos los bloques y saturar visualmente la interfaz.
+- Cambiar tema sin revisar estados hover/focus/disabled.
+- Crear componentes visuales acoplados a datos de una sola página.
+- Ignorar accesibilidad de contraste y navegación por teclado.
 
 ---
 
 ## 7. Relación con el proyecto incremental
 
-Este módulo convierte el shell y las páginas del proyecto en una interfaz más coherente. Además deja listas piezas reutilizables que luego servirán para consumo HTTP, autenticación y guards.
+Este módulo deja al proyecto con identidad visual real: componentes compartidos robustos y una página de catálogo UI para pruebas rápidas. Esta base acelera los módulos de consumo HTTP, autenticación y guards porque la capa visual ya está resuelta y estandarizada.
 
 ---
 
 ## 8. Referencias recomendadas
 
 - Documentación oficial DaisyUI: https://daisyui.com
+- Documentación TailwindCSS: https://tailwindcss.com/docs
+- Accesibilidad contraste (WCAG): https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
 - [angular/docs/A-heuristicas.md](../docs/A-heuristicas.md)

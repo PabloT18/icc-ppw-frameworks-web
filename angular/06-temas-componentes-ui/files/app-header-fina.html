@@ -1,0 +1,161 @@
+<header class="max-lg:collapse bg-base-100 shadow-sm w-full rounded-md">
+    <input
+        id="navbar-toggle"
+        class="peer hidden"
+        type="checkbox"
+    />
+
+    <label
+        for="navbar-toggle"
+        class="fixed inset-0 hidden max-lg:peer-checked:block"
+    ></label>
+
+    <div class="collapse-title navbar px-4">
+        <div class="navbar-start">
+            <label
+                for="navbar-toggle"
+                class="btn btn-ghost lg:hidden"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                </svg>
+            </label>
+
+            <a
+                class="btn btn-ghost text-xl"
+                routerLink="/"
+            >
+                {{ brand() | uppercase }}
+            </a>
+        </div>
+
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li>
+                    <a
+                        routerLink="/"
+                        routerLinkActive="menu-active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        routerLink="/students"
+                        routerLinkActive="menu-active"
+                    >
+                        Estudiantes
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        routerLink="/layouts"
+                        routerLinkActive="menu-active"
+                    >
+                        Layouts
+                    </a>
+                </li>
+
+                <li>
+                    <details>
+                        <summary>Formularios</summary>
+
+                        <ul class="p-2 bg-base-100 rounded-box shadow">
+                            <li>
+                                <a routerLink="/forms" routerLinkActive="menu-active">
+                                    Signup
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/profile" routerLinkActive="menu-active">
+                                    Perfil
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/project-config" routerLinkActive="menu-active">
+                                    Configurar Proyecto
+                                </a>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-end"></div>
+    </div>
+
+    <div class="collapse-content lg:hidden z-10">
+        <ul class="menu rounded-box bg-base-200">
+            <li>
+                <a
+                    routerLink="/"
+                    routerLinkActive="menu-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                >
+                    Inicio
+                </a>
+            </li>
+
+            <li>
+                <a
+                    routerLink="/students"
+                    routerLinkActive="menu-active"
+                >
+                    Estudiantes
+                </a>
+            </li>
+
+            <li>
+                <a
+                    routerLink="/layouts"
+                    routerLinkActive="menu-active"
+                >
+                    Layouts
+                </a>
+            </li>
+
+            <li>
+                <details>
+                    <summary>Formularios</summary>
+
+                    <ul>
+                        <li>
+                            <a routerLink="/forms" routerLinkActive="menu-active">
+                                Signup
+                            </a>
+                        </li>
+
+                        <li>
+                            <a routerLink="/profile" routerLinkActive="menu-active">
+                                Perfil
+                            </a>
+                        </li>
+
+                        <li>
+                            <a routerLink="/project-config" routerLinkActive="menu-active">
+                                Configurar Proyecto
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,46 @@
+<section class="space-y-10">
+  <header class="grid items-stretch gap-4 lg:grid-cols-[1.3fr_1fr]">
+    <div class="rounded-3xl border border-base-200 bg-base-100 p-6 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-sky-700">UI Components Page</p>
+      <h1 class="mt-2 text-3xl font-black tracking-tight text-slate-900">Catalogo de Componentes</h1>
+      <p class="mt-3 max-w-2xl text-sm text-slate-600">
+        Pagina de prueba para validar componentes visuales reutilizables con distintas distribuciones de pantalla.
+      </p>
+    </div>
+
+    <app-gradient-cta-banner
+      title="Construccion visual consistente"
+      description="Componentes reutilizables para acelerar desarrollo en modulos de negocio."
+      actionLabel="Explorar"
+    />
+  </header>
+
+  <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <app-glass-stat-card label="Pantallas" value="12" helper="Modulos con layout base" />
+    <app-glass-stat-card label="Componentes" value="9" helper="Piezas reutilizables activas" />
+    <app-glass-stat-card label="Rutas" value="15" helper="Navegacion del proyecto" />
+    <app-glass-stat-card label="UI Score" value="A" helper="Consistencia visual" />
+  </section>
+
+  <section class="grid gap-4 lg:grid-cols-[2fr_1fr]">
+    <article class="rounded-3xl border border-base-200 bg-base-100 p-6 shadow-sm">
+      <h2 class="text-xl font-black tracking-tight text-slate-900">Distribucion Asimetrica</h2>
+      <p class="mt-2 text-sm text-slate-600">
+        En desktop, esta zona usa 2 columnas desiguales para contenido principal y panel lateral.
+      </p>
+
+      <div class="mt-4 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-base-200 bg-sky-50/80 p-4">
+          <p class="text-sm font-bold text-slate-800">Bloque 1</p>
+          <p class="mt-1 text-xs text-slate-600">Resumen de actividad visual.</p>
+        </div>
+        <div class="rounded-2xl border border-base-200 bg-cyan-50/80 p-4">
+          <p class="text-sm font-bold text-slate-800">Bloque 2</p>
+          <p class="mt-1 text-xs text-slate-600">Pruebas de componentes por breakpoints.</p>
+        </div>
+      </div>
+    </article>
+
+    <app-feature-chip-list [chips]="quickChips" title="UI Features" />
+  </section>
+</section>
