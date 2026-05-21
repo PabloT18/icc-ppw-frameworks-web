@@ -1,0 +1,89 @@
+<section class="bg-base-200 min-h-screen py-10 px-8">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Hero -->
+    <h1 class="text-4xl font-extrabold tracking-tight mb-1">The Simpsons</h1>
+    <p class="text-base-content/60 text-lg mb-6">
+      Personajes de la serie — powered by The Simpsons API
+    </p>
+
+    <!-- Spinner de carga -->
+    @if (simpsonsResource.isLoading()) {
+      <div class="flex justify-center items-center h-64">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    }
+
+    <!-- Error -->
+    @if (simpsonsResource.error()) {
+      <div class="alert alert-error max-w-lg mx-auto mt-8">
+        <span>Error al cargar los personajes. Intenta de nuevo.</span>
+      </div>
+    }
+
+    <!-- Controles de paginación -->
+    @if (simpsonsResource.hasValue()) {
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <span class="text-sm text-base-content/60">
+          Página {{ paginationService.currentPage() }}
+          de {{ simpsonsResource.value()!.pages }}
+          — {{ simpsonsResource.value()!.count }} personajes en total
+        </span>
+        <div class="join">
+          <a
+            class="join-item btn btn-sm"
+            [class.btn-disabled]="paginationService.currentPage() <= 1"
+            [routerLink]="[]"
+            [queryParams]="{ page: paginationService.currentPage() - 1 }">
+            «
+          </a>
+          <button class="join-item btn btn-sm btn-active">
+            {{ paginationService.currentPage() }}
+          </button>
+          <a
+            class="join-item btn btn-sm"
+            [class.btn-disabled]="paginationService.currentPage() >= simpsonsResource.value()!.pages"
+            [routerLink]="[]"
+            [queryParams]="{ page: paginationService.currentPage() + 1 }">
+            »
+          </a>
+        </div>
+      </div>
+
+      <!-- Grid de cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        @for (char of simpsonsResource.value()!.results; track char.id) {
+          <a
+            [routerLink]="['/simpsons', char.id]"
+            class="card card-bordered bg-base-100 shadow hover:shadow-lg transition-shadow cursor-pointer">
+            <figure class="pt-6">
+              <img
+                [src]="char.portrait_path"
+                [alt]="char.name"
+                class="w-24 h-24 rounded-full object-cover ring-2 ring-primary" />
+            </figure>
+            <div class="card-body items-center text-center p-4">
+              <h2 class="card-title text-sm">{{ char.name }}</h2>
+              <p class="text-xs text-base-content/60">{{ char.occupation }}</p>
+              <span
+                class="badge badge-sm mt-1"
+                [class.badge-success]="char.status === 'Alive'"
+                [class.badge-error]="char.status === 'Dead'">
+                {{ char.status }}
+              </span>
+            </div>
+          </a>
+        }
+      </div>
+
+      <!-- Estado vacío -->
+      @if (simpsonsResource.value()!.results.length === 0) {
+        <div class="text-center py-20">
+          <p class="text-2xl font-bold mb-2">Sin resultados</p>
+          <p class="text-base-content/50">No se encontraron personajes para esta página.</p>
+        </div>
+      }
+    }
+
+  </div>
+</section>
