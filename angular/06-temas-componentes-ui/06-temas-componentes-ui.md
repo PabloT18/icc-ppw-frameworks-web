@@ -121,7 +121,7 @@ Esto permite enseñar diseño adaptable real, no solo "stack vertical".
 ### Ejemplo 3: bloque gradiente
 
 ```html
-<section class="rounded-3xl bg-gradient-to-br from-sky-500 via-cyan-400 to-indigo-500 p-6 text-white shadow-xl">
+<section class="rounded-3xl bg-linner-to-br from-sky-500 via-cyan-400 to-indigo-500 p-6 text-white shadow-xl">
   <p class="text-xs font-semibold uppercase tracking-[0.25em]">UI System</p>
   <h2 class="mt-2 text-2xl font-black">Componentes consistentes</h2>
   <p class="mt-2 text-sm text-white/90">La misma base visual en todas las páginas.</p>
