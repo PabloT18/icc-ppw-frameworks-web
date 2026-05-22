@@ -198,25 +198,12 @@ El template usa `routerLink` y `queryParams`. El componente debe importar `Route
 })
 ```
 
----
-
-## Validaciones esperadas
-
-- [ ] El `PaginationService` está en `shared/services/` y es `providedIn: 'root'`
-- [ ] La URL cambia a `?page=2` al hacer clic en siguiente
-- [ ] `rxResource` lanza una nueva petición cuando la página cambia
-- [ ] El spinner de carga aparece entre cambios de página
-- [ ] El contador "Página X de Y" refleja el estado real de la respuesta
-- [ ] El botón "anterior" está deshabilitado en la página 1
-- [ ] El botón "siguiente" está deshabilitado en la última página
 
 ---
 
 ## Commits sugeridos
 
 ```bash
-git commit -m "feat: crear PaginationService reactivo con toSignal y ActivatedRoute"
-git commit -m "feat: agregar getCharactersOptions con interface Options"
-git commit -m "feat: conectar paginacion reactiva en SimpsonsPage con rxResource"
+
 git commit -m "feat: agregar controles de navegacion de paginas en simpsons-page"
 ```

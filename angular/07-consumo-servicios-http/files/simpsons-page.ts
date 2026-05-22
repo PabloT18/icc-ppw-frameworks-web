@@ -1,18 +1,20 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { PaginationService } from '../../../../shared/services/pagination.service';
 import { SimpsonsService } from '../../services/simpsons.service';
-
 @Component({
   selector: 'app-simpsons-page',
+  imports: [RouterLink, RouterModule],
   templateUrl: './simpsons-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterModule],
 })
-export class SimpsonsPageComponent {
+
+export class SimpsonsPage {
+
   private simpsonsService = inject(SimpsonsService);
-  paginationService = inject(PaginationService);
+
+  paginationService = inject(PaginationService);  // público: el template lo usa
 
   readonly charactersPerPage = signal(10);
 
@@ -27,4 +29,7 @@ export class SimpsonsPageComponent {
         limit: params.limit,
       }),
   });
+
+
+
 }

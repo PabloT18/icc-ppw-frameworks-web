@@ -30,8 +30,8 @@ Haber completado las prácticas 07-A y 07-B. El servicio `SimpsonsService`, el `
 
 ## Archivos involucrados
 
-- `src/environments/environment.ts` — variables de desarrollo
-- `src/environments/environment.prod.ts` — variables de producción
+- `src/environments/environment.development.ts` — variables de desarrollo
+- `src/environments/environment.ts` — variables de producción
 - `src/app/features/simpsons/services/simpsons.service.ts` — usar `environment.apiUrl`
 - `src/app/features/simpsons/pages/simpsons-page/simpsons-page.html` — UI mejorada
 - `src/app/features/simpsons/pages/simpson-detail-page/` — página de detalle (nueva)
@@ -54,11 +54,21 @@ ng generate environments
 
 Esto crea la carpeta `src/environments/` con los archivos base.
 
+
+Caundo usa cada una, dependiendo de la forma de ejecución.
+
+| Comando                               | Archivo real                 |
+| ------------------------------------- | ---------------------------- |
+| `ng serve`                            | `environment.development.ts` |
+| `ng build`                            | `environment.ts`             |
+| `ng build --configuration production` | `environment.ts`             |
+
+
 ---
 
 ## Paso 2. Definir las variables
 
-Editar `src/environments/environment.ts`:
+Editar `src/environments/environment.development.ts`:
 
 ```ts
 export const environment = {
@@ -67,7 +77,7 @@ export const environment = {
 };
 ```
 
-Crear `src/environments/environment.prod.ts`:
+Crear `src/environments/environment.ts`:
 
 ```ts
 export const environment = {
@@ -160,156 +170,10 @@ Mejoras visuales a incorporar:
 }
 ```
 
----
 
-## Paso 5. Crear la página de detalle `SimpsonDetailPage`
-
-```bash
-ng g c features/simpsons/pages/simpson-detail-page --skip-tests
-```
-
-En `simpson-detail-page.ts`:
-
-```ts
-export class SimpsonDetailPageComponent {
-  private route = inject(ActivatedRoute);
-  private simpsonsService = inject(SimpsonsService);
-
-  character = rxResource({
-    params: () => ({ id: Number(this.route.snapshot.paramMap.get('id')) }),
-    stream: ({ params }) => this.simpsonsService.getCharacterById(params.id),
-  });
-}
-```
-
-> Requiere que `SimpsonsService` tenga un método `getCharacterById(id: number)`. Ver [files/simpsons.service.ts](files/simpsons.service.ts) para la versión completa del servicio.
-
-Agregar el método en `SimpsonsService`:
-
-```ts
-getCharacterById(id: number): Observable<SimpsonsCharacter> {
-  return this.http
-    .get<SimpsonsCharacter>(`${this.baseUrl}/characters/${id}`)
-    .pipe(
-      catchError(() =>
-        throwError(() => new Error(`Personaje ${id} no encontrado`))
-      )
-    );
-}
-```
-
-En `simpson-detail-page.html`:
-
-```html
-<section class="bg-base-200 min-h-screen py-10 px-8">
-  <div class="max-w-2xl mx-auto">
-
-    <a routerLink="/simpsons"
-       class="btn btn-ghost btn-sm mb-6">
-      ← Volver al listado
-    </a>
-
-    @if (character.isLoading()) {
-      <div class="flex justify-center items-center h-64">
-        <span class="loading loading-spinner loading-lg text-primary"></span>
-      </div>
-    }
-
-    @if (character.error()) {
-      <div class="alert alert-error">
-        <span>No se pudo cargar el personaje.</span>
-      </div>
-    }
-
-    @if (character.hasValue()) {
-      <div class="card bg-base-100 shadow-xl">
-        <figure class="pt-8">
-          <img
-            [src]="character.value()!.portrait_path"
-            [alt]="character.value()!.name"
-            class="w-36 h-36 rounded-full object-cover ring-4 ring-primary" />
-        </figure>
-        <div class="card-body items-center text-center">
-          <h1 class="card-title text-2xl">{{ character.value()!.name }}</h1>
-          <p class="text-base-content/60">{{ character.value()!.occupation }}</p>
-          <span class="badge badge-lg mt-1"
-            [class.badge-success]="character.value()!.status === 'Alive'"
-            [class.badge-error]="character.value()!.status === 'Dead'">
-            {{ character.value()!.status }}
-          </span>
-          @if (character.value()!.phrases.length > 0) {
-            <div class="divider">Frases</div>
-            <ul class="space-y-2 text-left w-full">
-              @for (phrase of character.value()!.phrases; track $index) {
-                <li class="bg-base-200 rounded-lg px-4 py-2 text-sm italic">
-                  "{{ phrase }}"
-                </li>
-              }
-            </ul>
-          }
-        </div>
-      </div>
-    }
-  </div>
-</section>
-```
-
----
-
-## Paso 6. Registrar la ruta de detalle
-
-En `app.routes.ts`:
-
-```ts
-{
-  path: 'simpsons',
-  component: SimpsonsPageComponent,
-},
-{
-  path: 'simpsons/:id',
-  component: SimpsonDetailPageComponent,
-},
-```
-
-Verificar que los links de la grid de cards en `SimpsonsPage` usan `[routerLink]="['/simpsons', char.id]"`.
-
----
-
-## Paso 7. Revisión final de estilos en todos los componentes del módulo
-
-Revisar que todos los componentes creados en este módulo cumplan:
-
-- [ ] Fondo de sección: `bg-base-200` o `bg-base-100`
-- [ ] Padding de sección: `py-10 px-8`
-- [ ] Contenedor máximo: `max-w-5xl mx-auto` (listado) o `max-w-2xl mx-auto` (detalle)
-- [ ] Spinner de carga: `loading loading-spinner loading-lg text-primary`
-- [ ] Error: `alert alert-error`
-- [ ] Cards con `card card-bordered bg-base-100 shadow`
-- [ ] Badges de estado: `badge-success` / `badge-error` según el valor
-- [ ] Paginación: `join` con `btn btn-sm`
-- [ ] Botones secundarios: `btn btn-ghost btn-sm`
-
----
-
-## Validaciones esperadas
-
-- [ ] `ng serve` usa `environment.ts` sin errores
-- [ ] `ng build --configuration=production` compila sin errores
-- [ ] La URL de la API viene de `environment.apiUrl`
-- [ ] El listado muestra cards con foto, nombre, ocupación y badge de estado
-- [ ] Al hacer clic en una card navega a `/simpsons/:id`
-- [ ] La página de detalle muestra loading, error y datos del personaje
-- [ ] El botón "Volver" regresa al listado
-- [ ] Todos los componentes usan clases de Tailwind y DaisyUI
-
----
 
 ## Commits sugeridos
 
 ```bash
-git commit -m "feat: configurar variables de entorno con ng generate environments"
-git commit -m "feat: usar environment.apiUrl en SimpsonsService"
-git commit -m "feat: mejorar UI de SimpsonsPage con cards DaisyUI"
-git commit -m "feat: agregar SimpsonDetailPage con rxResource y estilos completos"
 git commit -m "feat: registrar ruta simpsons/:id en app.routes"
 ```

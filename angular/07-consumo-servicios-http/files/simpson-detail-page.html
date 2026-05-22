@@ -1,60 +1,62 @@
-<section class="bg-base-200 min-h-screen py-10 px-8">
-  <div class="max-w-2xl mx-auto">
+<section class="mx-auto max-w-4xl space-y-6">
+    <a
+        routerLink="/simpsons"
+        class="btn btn-ghost btn-sm"
+    >← Volver al listado</a>
 
-    <a routerLink="/simpsons" class="btn btn-ghost btn-sm mb-6">
-      ← Volver al listado
-    </a>
-
-    @if (character.isLoading()) {
-      <div class="flex justify-center items-center h-64">
+    @if (characterResource.isLoading()) {
+    <div class="flex h-56 items-center justify-center">
         <span class="loading loading-spinner loading-lg text-primary"></span>
-      </div>
+    </div>
     }
 
-    @if (character.error()) {
-      <div class="alert alert-error">
+    @if (characterResource.error()) {
+    <div class="alert alert-error">
         <span>No se pudo cargar el personaje.</span>
-      </div>
+    </div>
     }
 
-    @if (character.hasValue()) {
-      <div class="card bg-base-100 shadow-xl">
-        <figure class="pt-8">
-          <img
-            [src]="character.value()!.portrait_path"
-            [alt]="character.value()!.name"
-            class="w-36 h-36 rounded-full object-cover ring-4 ring-primary" />
-        </figure>
-        <div class="card-body items-center text-center">
-          <h1 class="card-title text-2xl">{{ character.value()!.name }}</h1>
-          <p class="text-base-content/60">{{ character.value()!.occupation }}</p>
-          <div class="flex gap-2 mt-1">
-            <span
-              class="badge badge-lg"
-              [class.badge-success]="character.value()!.status === 'Alive'"
-              [class.badge-error]="character.value()!.status === 'Dead'">
-              {{ character.value()!.status }}
-            </span>
-            @if (character.value()!.gender) {
-              <span class="badge badge-lg badge-outline">
-                {{ character.value()!.gender }}
-              </span>
-            }
-          </div>
+    @if (characterResource.hasValue()) {
+    <article class="card border border-base-300 bg-base-100 shadow-sm">
+        <div class="card-body gap-6 md:flex-row">
+            <div class="mx-auto md:mx-0">
+                <img
+                    [src]="'https://cdn.thesimpsonsapi.com/500'+characterResource.value()!.portrait_path"
+                    [alt]="characterResource.value()!.name"
+                    class="h-56 w-56 rounded-2xl object-cover ring ring-base-300 ring-offset-2 ring-offset-base-100"
+                />
+            </div>
 
-          @if (character.value()!.phrases.length > 0) {
-            <div class="divider">Frases célebres</div>
-            <ul class="space-y-2 text-left w-full">
-              @for (phrase of character.value()!.phrases; track $index) {
-                <li class="bg-base-200 rounded-lg px-4 py-2 text-sm italic">
-                  "{{ phrase }}"
-                </li>
-              }
-            </ul>
-          }
+            <div class="space-y-3">
+                <h2 class="text-3xl font-black tracking-tight">
+                    {{ characterResource.value()!.name }}
+                </h2>
+
+                <p class="text-base-content/80">
+                    <strong>Ocupacion:</strong>
+                    {{ characterResource.value()!.occupation || 'Sin ocupacion registrada' }}
+                </p>
+
+                <p class="text-base-content/80">
+                    <strong>Genero:</strong>
+                    {{ characterResource.value()!.gender || 'No registrado' }}
+                </p>
+
+                <p class="text-base-content/80">
+                    <strong>Edad:</strong>
+                    {{ characterResource.value()!.age ?? 'No registrada' }}
+                </p>
+
+                <span
+                    class="badge badge-lg"
+                    [class.badge-success]="characterResource.value()!.status === 'Alive'"
+                    [class.badge-error]="characterResource.value()!.status === 'Deceased'"
+                    [class.badge-warning]="characterResource.value()!.status !== 'Alive' && characterResource.value()!.status !== 'Deceased'"
+                >
+                    {{ characterResource.value()!.status || 'Desconocido' }}
+                </span>
+            </div>
         </div>
-      </div>
+    </article>
     }
-
-  </div>
 </section>
