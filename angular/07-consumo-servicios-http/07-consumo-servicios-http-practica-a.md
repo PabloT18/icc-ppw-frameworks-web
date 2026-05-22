@@ -388,6 +388,21 @@ Agregar la ruta dinamica en `app.routes.ts`:
 
 Objetivo: tener una pagina dedicada para detalle, por ejemplo `/simpsons/5`.
 
+> Revisar el template: [text](files/simpson-detail-page.html)
+
+Crear el consumo en `simpson-detail-page.ts`:
+1. Importamos SimpsonsService
+2. Importamos HTTPClient
+3. Creamos metodo de consumo
+
+```ts
+characterResource = rxResource({
+    stream: () => {
+      return this.simpsonsService.getCharacterById(this.characterId);
+    },
+  });
+```
+
 ---
 
 ## Paso 9. Navegar desde el listado al detalle
