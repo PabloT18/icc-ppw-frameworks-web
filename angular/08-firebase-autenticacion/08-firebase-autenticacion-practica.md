@@ -73,7 +73,7 @@ service cloud.firestore {
 En la terminal del proyecto:
 
 ```bash
-pnpm add @angular/fire firebase
+pnpm add firebase@latest @angular/fire@latest
 ```
 
 Puede tener una salida similar a:
