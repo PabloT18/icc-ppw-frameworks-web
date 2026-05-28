@@ -198,6 +198,15 @@ export class AuthService {
   // toSignal convierte el Observable en un signal reactivo para usar en templates.
   currentUser = toSignal(authState(this.auth));
 
+  // SOLO DEMO EN CLASE:
+  // Rol por correo para pruebas rapidas de UI/guards.
+  // No usar como mecanismo de seguridad real.
+  role = computed<'admin' | 'user' | null>(() => {
+    const u = this.currentUser();
+    if (!u) return null;
+    return u.email === 'admin@ups.edu.ec' ? 'admin' : 'user';
+  });
+
   // signInWithEmailAndPassword devuelve una Promise.
   // from() la convierte en Observable para poder encadenar operadores RxJS o usar con rxResource.
   login(email: string, password: string) {
@@ -218,6 +227,12 @@ export class AuthService {
     return this.currentUser()?.uid ?? null;
   }
 }
+```
+
+Imports requeridos para el bloque de rol de prueba:
+
+```ts
+import { Injectable, computed, inject } from '@angular/core';
 ```
 
 Puntos clave del servicio:
@@ -412,8 +427,8 @@ Inyectar `AuthService` y exponer `currentUser`:
 
   logout() {
     this.authService.logout().subscribe(() => {
-      // Redirige al login despues de cerrar sesion.
-      this.router.navigate(['/login']);
+      // Redirige a /auth despues de cerrar sesion.
+      this.router.navigate(['/auth']);
     });
   }
 

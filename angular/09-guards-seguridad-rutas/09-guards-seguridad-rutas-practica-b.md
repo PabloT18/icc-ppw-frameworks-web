@@ -74,6 +74,16 @@ export class AuthService {
   user = toSignal<User | null | undefined>(authState(this.auth), {
     initialValue: undefined,
   });
+
+  // SOLO PRUEBA EN CLASE:
+  // Si quieres probar roles sin custom claims aun,
+  // puedes mapear por correo en frontend.
+  // NO usar esto como seguridad real en produccion.
+  role = computed<'admin' | 'user' | null>(() => {
+    const u = this.user();
+    if (!u) return null;
+    return u.email === 'admin@ups.edu.ec' ? 'admin' : 'user';
+  });
 }
 ```
 
@@ -82,6 +92,14 @@ Interpretacion correcta de estados:
 - `undefined`: no decidir aun con lectura sincronica.
 - `null`: visitante.
 - `User`: autenticado.
+
+Imports necesarios si usas el bloque de rol de prueba:
+
+```ts
+import { Injectable, computed, inject } from '@angular/core';
+import { Auth, authState, User } from '@angular/fire/auth';
+import { toSignal } from '@angular/core/rxjs-interop';
+```
 
 ---
 
@@ -145,7 +163,7 @@ Comportamiento:
 
 Configurar roles en Firebase Auth mediante custom claims (`admin`, `user`).
 
-Ejemplo con Firebase Admin SDK (script backend o Cloud Function de administrador):
+Ejemplo con Firebase Admin SDK:
 
 ```ts
 import * as admin from 'firebase-admin';
@@ -161,10 +179,41 @@ async function setUserRole(uid: string) {
 }
 ```
 
+Donde poner este codigo:
+
+- No va dentro de Angular (`src/app/...`) ni en `AuthService`.
+- Crea un script Node separado, por ejemplo: `tools/set-role.ts`.
+- Ese script se ejecuta una sola vez desde tu maquina con credenciales de cuenta de servicio.
+
+Ejemplo minimo de ejecucion local (sin Cloud Functions):
+
+```bash
+pnpm add -D tsx firebase-admin
+export GOOGLE_APPLICATION_CREDENTIALS="/ruta/service-account.json"
+pnpm tsx tools/set-role.ts
+```
+
+### 7.1.1 Se puede hacer solo desde la consola de Firebase?
+
+Para custom claims, no hay flujo directo desde la UI de Firebase Console para editar `request.auth.token.role` manualmente por usuario.
+
+- Si necesitas custom claims, debes usar Admin SDK (script local, backend o Cloud Function).
+- Si no quieres backend por ahora, usa el script local con Admin SDK.
+
 Importante:
 
 - Los claims se asignan en Firebase (backend), nunca desde frontend.
 - Tras cambiar claims, el usuario debe refrescar token (re-login o refresh) para recibir el nuevo rol.
+
+### 7.1.2 Opcion solo consola (sin custom claims)
+
+Si quieres gestionar rol unicamente desde Firebase Console sin Admin SDK, usa Firestore:
+
+- Coleccion `user_roles`
+- Documento por `uid`
+- Campo `role: 'admin' | 'user'`
+
+Esto si se puede editar manualmente desde Firebase Console. En ese caso el guard debe leer Firestore en lugar de `getIdTokenResult()`.
 
 ### 7.2 Regla de datos en Firestore (opcional recomendado)
 
@@ -289,7 +338,7 @@ Esto mejora UX, pero la seguridad real sigue en guard + Firebase.
 
 - Evaluar solo `currentUser()` sin considerar estado async inicial.
 - Asignar roles desde frontend (incorrecto).
-- No refrescar token despues de cambiar custom claims.
+- No refrescar token despues de cambiar e custom claims.
 - Proteger solo el menu y olvidar guard de ruta.
 - Mezclar rutas antiguas `/login` con ruta actual `/auth`.
 
