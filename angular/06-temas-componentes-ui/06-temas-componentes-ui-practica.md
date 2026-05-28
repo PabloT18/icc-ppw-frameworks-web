@@ -543,12 +543,9 @@ Para cada distribución que agregues:
 2. Captura/s de los componentes implementados 
 3. Colocar capturas en README.md
 
----
 
 
----
-
-## 8. Commits sugeridos
+## 6. Commits sugeridos
 
 ```bash
 git add .
